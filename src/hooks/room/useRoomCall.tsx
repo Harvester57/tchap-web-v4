@@ -143,9 +143,12 @@ export const useRoomCall = (
         const options: PlatformCallType[] = [];
         if (memberCount <= 2) {
             options.push(PlatformCallType.LegacyCall);
-        } else if (mayEditWidgets || hasJitsiWidget) {
+        }/* :TCHAP: remove-jitsi-option
+        else if (mayEditWidgets || hasJitsiWidget) {
             options.push(PlatformCallType.JitsiCall);
-        }
+        }  
+        end :TCHAP:*/
+        
         if (groupCallsEnabled) {
             if (hasGroupCall || mayCreateElementCalls) {
                 options.push(PlatformCallType.ElementCall);
@@ -161,7 +164,7 @@ export const useRoomCall = (
         return options;
     }, [
         memberCount,
-        mayEditWidgets,
+        // mayEditWidgets, :TCHAP: remove-jitsi-option
         hasJitsiWidget,
         groupCallsEnabled,
         hasGroupCall,
