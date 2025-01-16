@@ -682,6 +682,7 @@ module.exports = (env, argv) => {
                     "res/welcome.html",
                     // :TCHAP: sso-agentconnect-flow
                     "res/welcome_sso.html",
+                    "node_modules/@matrix-org/olm/olm_legacy.js",
                     // end :TCHAP:
                     { from: "welcome/**", context: path.resolve(__dirname, "res") },
                     { from: "themes/**", context: path.resolve(__dirname, "res") },
