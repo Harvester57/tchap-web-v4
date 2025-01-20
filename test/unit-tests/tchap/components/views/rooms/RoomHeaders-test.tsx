@@ -1,6 +1,7 @@
 import React from "react";
 import { KnownMembership, PendingEventOrdering, Room } from "matrix-js-sdk/src/matrix";
 import { screen, render, RenderOptions, getByLabelText, queryByLabelText } from "jest-matrix-react";
+import { mocked } from "jest-mock";
 
 import { mkRoomMember, stubClient } from "~tchap-web/test/test-utils";
 import RoomHeader from "~tchap-web/src/components/views/rooms/RoomHeader";
@@ -10,6 +11,10 @@ import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
 import SdkConfig from "~tchap-web/src/SdkConfig";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import { UIFeature } from "~tchap-web/src/settings/UIFeature";
+import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
+import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
+
+jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
 
 function getWrapper(): RenderOptions {
     return {
@@ -47,6 +52,7 @@ describe("RoomHeader", () => {
     const featureVideoName: string = "feature_video_call";
     const featureVideoGroupName: string = "feature_video_group_call";
     const homeserverName: string = "my.home.server";
+    const mockedTchapRoomUtils = mocked(TchapRoomUtils);
 
     const addHomeserverToMockConfig = (homeservers: string[], feature: string) => {
         // mock SdkConfig.get("tchap_features")
@@ -88,6 +94,8 @@ describe("RoomHeader", () => {
         jest.spyOn(SettingsStore, "getValue").mockImplementation(
             (feature) => feature === "feature_group_calls" || feature == UIFeature.Widgets,
         );
+
+        mockedTchapRoomUtils.getTchapRoomType.mockImplementation(() => TchapRoomType.Private);
 
         DMRoomMap.setShared({
             getUserIdForRoomId: jest.fn(),
@@ -166,6 +174,18 @@ describe("RoomHeader", () => {
     });
 
     it("hides the video group when feature is deactivated", () => {
+        addHomeserverToMockConfig(["other.homeserver"], featureVideoGroupName);
+
+        mockRoomMembers(room, 4);
+
+        const { container } = getComponent();
+
+        expect(queryByLabelText(container, "Video call")).toBeNull();
+    });
+
+    it("hides the video group when feature is activated but it is a forum", () => {
+        mockedTchapRoomUtils.getTchapRoomType.mockImplementation(() => TchapRoomType.Forum);
+
         addHomeserverToMockConfig(["other.homeserver"], featureVideoGroupName);
 
         mockRoomMembers(room, 4);

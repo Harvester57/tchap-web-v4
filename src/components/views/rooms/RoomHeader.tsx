@@ -53,9 +53,14 @@ import defaultDispatcher from "../../../dispatcher/dispatcher.ts";
 import { RoomSettingsTab } from "../dialogs/RoomSettingsDialog.tsx";
 import { useScopedRoomContext } from "../../../contexts/ScopedRoomContext.tsx";
 
+import DecoratedRoomAvatar from "../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
+
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: customize-room-header-bar
 import TchapExternalRoomHeader from "~tchap-web/src/tchap/components/views/rooms/TchapExternalRoomHeader"; // :TCHAP: customize-room-header-bar
-import DecoratedRoomAvatar from "../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
+import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils.ts";
+import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap.ts";
+
+
 
 export default function RoomHeader({
     room,
@@ -355,6 +360,7 @@ export default function RoomHeader({
                             {!isVideoRoom && videoCallButton}
                             */ }
                             {!isDirectMessage && TchapUIFeature.isFeatureActiveForHomeserver("feature_video_group_call") &&
+                               TchapRoomUtils.getTchapRoomType(room) !== TchapRoomType.Forum &&
                               !isVideoRoom && videoCallButton}
 
                             {isDirectMessage && TchapUIFeature.isFeatureActiveForHomeserver("feature_video_call") &&
