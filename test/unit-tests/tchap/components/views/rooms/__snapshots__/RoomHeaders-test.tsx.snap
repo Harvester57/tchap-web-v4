@@ -24,7 +24,7 @@ exports[`RoomHeader should render as expected 1`] = `
         </span>
         <div
           aria-labelledby=":r0:"
-          class="mx_DecoratedRoomAvatar_icon mx_DecoratedRoomAvatar_icon_forum"
+          class="mx_DecoratedRoomAvatar_icon mx_DecoratedRoomAvatar_icon_private"
           tabindex="0"
         />
       </div>
