@@ -187,5 +187,11 @@
             "src/SupportedBrowser.ts",
             "src/components/structures/MatrixChat.tsx"
         ]
+    },
+    "remove-jitsi-option": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1130",
+        "files": [
+            "src/hooks/room/useRoomCall.tsx"
+        ]
     }
 }
