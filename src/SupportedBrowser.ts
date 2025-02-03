@@ -96,19 +96,21 @@ export function checkBrowserSupport(): void {
         return;
     }
 
-    const brand = SdkConfig.get().brand;
-    ToastStore.sharedInstance().addOrReplaceToast({
-        key: TOAST_KEY,
-        title: _t("unsupported_browser|title", { brand }),
-        props: {
-            description: _t("unsupported_browser|description", { brand }),
-            secondaryLabel: _t("action|learn_more"),
-            SecondaryIcon: PopOutIcon,
-            onSecondaryClick: onLearnMoreClick,
-            primaryLabel: _t("action|dismiss"),
-            onPrimaryClick: onDismissClick,
-        },
-        component: GenericToast,
-        priority: 40,
-    });
+    //:TCHAP: remove-toast-analytics-browser-support
+    // const brand = SdkConfig.get().brand;
+    // ToastStore.sharedInstance().addOrReplaceToast({
+    //     key: TOAST_KEY,
+    //     title: _t("unsupported_browser|title", { brand }),
+    //     props: {
+    //         description: _t("unsupported_browser|description", { brand }),
+    //         secondaryLabel: _t("action|learn_more"),
+    //         SecondaryIcon: PopOutIcon,
+    //         onSecondaryClick: onLearnMoreClick,
+    //         primaryLabel: _t("action|dismiss"),
+    //         onPrimaryClick: onDismissClick,
+    //     },
+    //     component: GenericToast,
+    //     priority: 40,
+    // });
+    // end 
 }

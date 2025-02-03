@@ -59,5 +59,8 @@
     "auth|continue_with_sso",
     "room|header_avatar_open_settings_label",
     "voip|disabled_no_perms_start_voice_call",
-    "voip|disabled_no_perms_start_video_call"
+    "voip|disabled_no_perms_start_video_call",
+    "unsupported_browser|title",
+    "unsupported_browser|description",
+    "unsupported_browser"
 ]

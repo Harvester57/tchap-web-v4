@@ -1443,7 +1443,10 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private initPosthogAnalyticsToast(): void {
         // Show the analytics toast if necessary
         if (SettingsStore.getValue("pseudonymousAnalyticsOptIn") === null) {
-            showAnalyticsToast();
+            // :TCHAP: remove-toast-analytics-browser-support - showAnalyticsToast();
+            // default the analytics to true
+            SettingsStore.setValue("pseudonymousAnalyticsOptIn", null, SettingLevel.ACCOUNT, true);
+            // end :TCHAP:
         }
 
         // Listen to changes in settings and show the toast if appropriate - this is necessary because account
@@ -1454,15 +1457,18 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             null,
             (originalSettingName, changedInRoomId, atLevel, newValueAtLevel, newValue) => {
                 if (newValue === null) {
-                    showAnalyticsToast();
-                } else {
+                    // :TCHAP: remove-toast-analytics-browser-support - showAnalyticsToast();
+                    // default the analytics to true
+                    SettingsStore.setValue("pseudonymousAnalyticsOptIn", null, SettingLevel.ACCOUNT, true);
+                } /*else {
                     // It's possible for the value to change if a cached sync loads at page load, but then network
                     // sync contains a new value of the flag with it set to false (e.g. another device set it since last
                     // loading the page); so hide the toast.
                     // (this flipping usually happens before first render so the user won't notice it; anyway flicker
                     // on/off is probably better than showing the toast again when the user already dismissed it)
                     hideAnalyticsToast();
-                }
+                }*/
+               // end :TCHAP:
             },
         );
     }

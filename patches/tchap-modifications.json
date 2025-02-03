@@ -180,5 +180,12 @@
             "src/components/views/auth/AuthPage.tsx",
             "src/vector/index.html"
         ]
+    },
+    "remove-toast-analytics-browser-support": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1222",
+        "files": [
+            "src/SupportedBrowser.ts",
+            "src/components/structures/MatrixChat.tsx"
+        ]
     }
 }
