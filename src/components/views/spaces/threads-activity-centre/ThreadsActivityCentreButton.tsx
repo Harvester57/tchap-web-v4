@@ -42,7 +42,9 @@ export const ThreadsActivityCentreButton = forwardRef<HTMLButtonElement, Threads
         const openTooltip = disableTooltip || displayLabel ? false : undefined;
 
         return (
-            <Tooltip label={_t("common|threads")} placement="right" open={openTooltip}>
+            <> 
+            {/* :TCHAP: tac-remove-tooltip - ITS A HACK - We remove the tooltip because it is causing the button to not do anything, we don't know why*/}
+            {/* <Tooltip label={_t("common|threads")} placement="right" open={openTooltip}> */}
                 <IconButton
                     aria-label={_t("common|threads")}
                     className={classNames("mx_ThreadsActivityCentreButton", { expanded: displayLabel })}
@@ -65,7 +67,9 @@ export const ThreadsActivityCentreButton = forwardRef<HTMLButtonElement, Threads
                         )}
                     </>
                 </IconButton>
-            </Tooltip>
+            {/* </Tooltip> */}
+            {/* end :TCHAP: */}
+            </>
         );
     },
 );
