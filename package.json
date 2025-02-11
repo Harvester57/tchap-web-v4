@@ -111,6 +111,8 @@
         "@types/react-virtualized": "^9.21.30",
         "@vector-im/compound-design-tokens": "https://github.com/tchapgouv/compound-design-tokens.git#main",
         "@vector-im/matrix-wysiwyg": "2.38.3",
+        "@tauri-apps/api": "^2.2.0",
+        "@tauri-apps/plugin-stronghold": "^2.2.0",
         "@zxcvbn-ts/core": "^3.0.4",
         "@zxcvbn-ts/language-common": "^3.0.4",
         "@zxcvbn-ts/language-en": "^3.0.2",
