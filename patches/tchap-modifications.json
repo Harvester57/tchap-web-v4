@@ -193,5 +193,11 @@
         "files": [
             "src/hooks/room/useRoomCall.tsx"
         ]
+    },
+    "tac-remove-tooltip": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1233",
+        "files": [
+            "src/components/views/spaces/threads-activity-centre/ThreadsActivityCentreButton.tsx"
+        ]
     }
 }
