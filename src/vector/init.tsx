@@ -31,6 +31,7 @@ import WebPlatform from "./platform/WebPlatform";
 import { initRageshake, initRageshakeStore } from "./rageshakesetup";
 import ModuleApi from "../modules/Api.ts";
 import TauriPlatform from "./platform/tchap-desktop/TauriPlatform";
+import { TauriSecureStorage } from "./platform/tchap-desktop/TauriSecureStorage";
 
 export const rageshakePromise = initRageshake();
 
@@ -40,8 +41,11 @@ export async function preparePlatform(): Promise<void> {
         PlatformPeg.set(new ElectronPlatform());
     // :TCHAP:
     } else if (window.__TAURI__){
-        const tauriPlatform = new TauriPlatform();
-        await tauriPlatform.getSecureStorageInstance().initStronghold();
+        // Inject Tauri Secure storage into platform
+        const tauriSecureStorage = new TauriSecureStorage(); 
+        await tauriSecureStorage.initStronghold();
+        const tauriPlatform = new TauriPlatform(tauriSecureStorage);
+
         PlatformPeg.set(tauriPlatform);
     // end :TCHAP:
     } else if (window.matchMedia("(display-mode: standalone)").matches) {
