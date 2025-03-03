@@ -848,7 +848,7 @@
     },
     "auth|proconnect|button_title": {
         "en": "Login with <br/><b>ProConnect </b>",
-        "fr": "Se connecter avec <br/><b>ProConnect </b>"
+        "fr": "S'identifier avec <br/><b>ProConnect </b>"
     },
     "auth|proconnect|continue": {
         "en": "Continue with ProConnect",
