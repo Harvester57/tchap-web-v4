@@ -957,5 +957,17 @@
     "create_space|error_title": {
         "en": "Impossible to create the space",
         "fr": "Impossible de créer l'espace"
+    },
+    "settings|general|mail_signature": {
+        "en": "Mail signature",
+        "fr": "Signature mail"
+    },
+    "settings|general|mail_signature_description": {
+        "en": "Add a mail signature in your e-mails so that people can contact you easily on tchap",
+        "fr": "Ajoutez une signature dans vos e-mails pour que vos interlocuteurs puissent vous contacter facilement sur tchap"
+    },
+    "settings|general|mail_signature_detail": {
+        "en": "Copy and paste the following block in the signature editor of your mail client. <a> More info in our FAQ </a>",
+        "fr": "Copie-collez le bloc suivant dans l'éditeur de signature de votre client mail. <a> Plus d'info dans notre FAQ </a>"
     }
 }
