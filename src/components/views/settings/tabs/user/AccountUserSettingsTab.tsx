@@ -27,6 +27,8 @@ import { SDKContext } from "../../../../../contexts/SDKContext";
 import { UserPersonalInfoSettings } from "../../UserPersonalInfoSettings";
 import { useMatrixClientContext } from "../../../../../contexts/MatrixClientContext";
 import TchapRedListSettings from "~tchap-web/src/tchap/components/views/settings/tabs/user/TchapRedListSettings"; // :TCHAP: red-list-settings
+import TchapMailSignature from "~tchap-web/src/tchap/components/views/settings/tabs/user/TchapMailSignature";
+import { makeUserPermalink } from "~tchap-web/src/utils/permalinks/Permalinks"; // :TCHAP: mail-signature
 
 interface IProps {
     closeSettingsFn: () => void;
@@ -195,6 +197,9 @@ const AccountUserSettingsTab: React.FC<IProps> = ({ closeSettingsFn }) => {
                     onPasswordChanged={onPasswordChanged}
                     onPasswordChangeError={onPasswordChangeError}
                 />
+                {/* :TCHAP: mail-signature */}
+                <TchapMailSignature userPermalink={makeUserPermalink(cli.getUserId() ?? "")} />
+                {/* end :TCHAP: */}
                 {/* :TCHAP: red-list-settings */}
                 <TchapRedListSettings />
                 {/* end :TCHAP: */}
