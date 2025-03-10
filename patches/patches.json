@@ -12,5 +12,12 @@
         "files": [
             "dist/css/homepage-full.css"
         ]
+    },
+    "prefer-sso-interactive-auth": {
+        "package": "matrix-js-sdk",
+        "files": [
+            "src/interactive-auth.ts"
+        ]
     }
+
 }
