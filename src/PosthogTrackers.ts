@@ -18,6 +18,15 @@ import { PosthogAnalytics } from "./PosthogAnalytics";
 export type ScreenName = ScreenEvent["$current_url"];
 export type InteractionName = InteractionEvent["name"];
 
+// :TCHAP: mail-signature
+// Extend the interface using declaration merging
+export type TchapInteractionName = 
+  | "WebTchapMailSignatureButton" 
+  | InteractionEvent['name'];
+
+export type TchapScreenName = "EmailPrecheckSso" | ScreenName;
+// end :TCHAP:
+
 const notLoggedInMap: Record<Exclude<Views, Views.LOGGED_IN>, ScreenName> = {
     [Views.LOADING]: "Loading",
     [Views.CONFIRM_LOCK_THEFT]: "ConfirmStartup",
@@ -30,6 +39,7 @@ const notLoggedInMap: Record<Exclude<Views, Views.LOGGED_IN>, ScreenName> = {
     [Views.E2E_SETUP]: "E2ESetup",
     [Views.SOFT_LOGOUT]: "SoftLogout",
     [Views.LOCK_STOLEN]: "SessionLockStolen",
+    [Views.EMAIL_PRECHECK_SSO]: "EmailPrecheckSso" as ScreenName // :TCHAP:
 };
 
 const loggedInPageTypeMap: Record<PageType, ScreenName> = {
