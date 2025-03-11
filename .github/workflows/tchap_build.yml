@@ -37,7 +37,7 @@ jobs:
               run: "yarn build"
 
             - name: Upload build in artifact
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: devbuild # because we used the dev config file
                   path: webapp
