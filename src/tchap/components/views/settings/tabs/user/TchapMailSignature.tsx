@@ -3,6 +3,7 @@ import { SettingsSubsection, SettingsSubsectionText } from '~tchap-web/src/compo
 import { _t } from "~tchap-web/src/languageHandler";
 import CopyableText from '~tchap-web/src/components/views/elements/CopyableText';
 import TchapUrls from '~tchap-web/src/tchap/util/TchapUrls';
+import PosthogTrackers, { InteractionName } from '~tchap-web/src/PosthogTrackers';
 
 interface TchapMailSignatureProps {
     userPermalink: string
@@ -44,11 +45,15 @@ export const generateSignatureHtml = (userPermalink: string): string => {
     `;
 };
 
+
 /**
  * A copyable mail signature html bloc to add in emails
  */
 const TchapMailSignature: React.FC<TchapMailSignatureProps> = (props) => {
-    const signatureHtml = generateSignatureHtml(props.userPermalink);
+    const signatureHtmlCopy = () => {
+        PosthogTrackers.trackInteraction("WebTchapMailSignatureButton" as InteractionName);
+        return generateSignatureHtml(props.userPermalink);
+    }
 
     return <SettingsSubsection
             heading={_t("settings|general|mail_signature")}
@@ -67,8 +72,8 @@ const TchapMailSignature: React.FC<TchapMailSignatureProps> = (props) => {
                         })}
                     </SettingsSubsectionText>
                 </div>
-                <CopyableText getTextToCopy={() => signatureHtml} aria-labelledby={"mail-signature"}>
-                    <div dangerouslySetInnerHTML={{ __html: signatureHtml }} />
+                <CopyableText getTextToCopy={signatureHtmlCopy} aria-labelledby={"mail-signature"}>
+                    <div dangerouslySetInnerHTML={{ __html: generateSignatureHtml(props.userPermalink) }} />
                 </CopyableText>
             </SettingsSubsection>
 }

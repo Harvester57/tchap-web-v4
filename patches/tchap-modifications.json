@@ -199,5 +199,12 @@
         "files": [
             "src/components/views/spaces/threads-activity-centre/ThreadsActivityCentreButton.tsx"
         ]
+    },
+    "mail-signature": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1254",
+        "files": [
+            "src/tchap/components/views/settings/tabs/user/TchapMailSignature.tsx",
+            "src/PosthogTrackers.ts"
+        ]
     }
 }
