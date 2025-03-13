@@ -2,9 +2,7 @@ import { render, screen } from "jest-matrix-react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 
-import TchapMailSignature, {
-    generateSignatureHtml,
-} from "~tchap-web/src/tchap/components/views/settings/tabs/user/TchapMailSignature";
+import TchapMailSignature from "~tchap-web/src/tchap/components/views/settings/tabs/user/TchapMailSignature";
 
 describe("TchapMailSignature", () => {
     const profileUri = "https://tchap.gouv.fr";
@@ -12,9 +10,13 @@ describe("TchapMailSignature", () => {
 
     beforeEach(() => {
         // Mock clipboard API
+        const ClipboardItemMock = jest.fn().mockImplementation((data) => data) as unknown as typeof ClipboardItem;
+        ClipboardItemMock.supports = jest.fn().mockReturnValue(true);
+        global.ClipboardItem = ClipboardItemMock;
+
         Object.assign(navigator, {
             clipboard: {
-                writeText: jest.fn(),
+                write: jest.fn(),
             },
         });
     });
@@ -26,9 +28,14 @@ describe("TchapMailSignature", () => {
 
         await userEvent.click(copyButton);
 
+        const signatureElement = document.querySelector(".mx_TchapMailSignature");
+        const clipboardItem = new ClipboardItem({
+            "text/html": new Blob([signatureElement?.innerHTML.trim() || ""], { type: "text/html" }),
+            "text/plain": new Blob([signatureElement?.textContent || ""], { type: "text/plain" }),
+        });
+
         // check that the signature is copied to the clipboard
-        const signatureHtml = generateSignatureHtml(profileUri);
-        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(signatureHtml);
+        expect(navigator.clipboard.write).toHaveBeenCalledWith([clipboardItem]);
     });
 
     it("should go to user profile when clicking on contactez-moi sur tchap", async () => {
