@@ -154,7 +154,9 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
                 aria-labelledby="mail-signature"
                 class="mx_CopyableText mx_CopyableText_border"
               >
-                <div>
+                <div
+                  class="mx_TchapMailSignature"
+                >
                   
         
                   <table
