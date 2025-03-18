@@ -342,6 +342,7 @@ export default abstract class BasePlatform {
         fragmentAfterLogin?: string,
         idpId?: string,
         action?: SSOAction,
+        loginHint?: string,
     ): void {
         // persist hs url and is url for when the user is returned to the app with the login token
         localStorage.setItem(SSO_HOMESERVER_URL_KEY, mxClient.getHomeserverUrl());
@@ -352,7 +353,14 @@ export default abstract class BasePlatform {
             localStorage.setItem(SSO_IDP_ID_KEY, idpId);
         }
         const callbackUrl = this.getSSOCallbackUrl(fragmentAfterLogin);
-        window.location.href = mxClient.getSsoLoginUrl(callbackUrl.toString(), loginType, idpId, action); // redirect to SSO
+        let ssoLoginUrl = mxClient.getSsoLoginUrl(callbackUrl.toString(), loginType, idpId, action);
+
+        // add login_hint if necessary
+        if(loginHint){
+            ssoLoginUrl = ssoLoginUrl + "&login_hint=" + loginHint;
+        }
+
+        window.location.href = ssoLoginUrl; // redirect to SSO
     }
 
     /**
