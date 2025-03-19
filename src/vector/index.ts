@@ -244,11 +244,8 @@ async function start(): Promise<void> {
         // app load critical path starts here
         // assert things started successfully
         // ##################################
-<<<<<<< HEAD
         await loadOlmPromise;
-=======
         await loadPluginsPromise;
->>>>>>> v1.11.95
         await loadModulesPromise;
         await loadThemePromise;
         await loadLanguagePromise;

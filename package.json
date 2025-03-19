@@ -1,16 +1,10 @@
 {
     "name": "element-web",
-<<<<<<< HEAD
     "productName": "Tchap",
     "version": "4.13.4",
-    "version-element-web": "1.11.89",
+    "version-element-web": "1.11.95",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
-=======
-    "version": "1.11.95",
-    "description": "Element: the future of secure communication",
-    "author": "New Vector Ltd.",
->>>>>>> v1.11.95
     "repository": {
         "type": "git",
         "url": "https://github.com/tchapgouv/tchap-web-v4"
@@ -81,8 +75,7 @@
         "test:playwright:open": "yarn test:playwright --ui",
         "test:playwright:screenshots": "yarn test:playwright:screenshots:build && yarn test:playwright:screenshots:run",
         "test:playwright:screenshots:build": "docker build playwright -t element-web-playwright",
-<<<<<<< HEAD
-        "test:playwright:screenshots:run": "docker run --rm --network host -e BASE_URL -e CI -v $(pwd):/work/ -v $(node -e 'console.log(require(`path`).dirname(require.resolve(`matrix-js-sdk/package.json`)))'):/work/node_modules/matrix-js-sdk -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ -it element-web-playwright --grep @screenshot",
+        "test:playwright:screenshots:run": "docker run --rm --network host -e BASE_URL -e CI -v $(pwd):/work/ -v $(node -e 'console.log(require(`path`).dirname(require.resolve(`matrix-js-sdk/package.json`)))'):/work/node_modules/matrix-js-sdk -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ -it element-web-playwright --grep @screenshot --project=Chrome",
         "test:tchap": "jest unit-tests/tchap/",
         "coverage:tchap": "yarn test:tchap --coverage",
         "coverage": "yarn test --coverage",
@@ -90,10 +83,6 @@
         "patch-package": "patch-package",
         "patches-reapply": "cd ./yarn-linked-dependencies/matrix-js-sdk; git checkout .; cd ../..; ./scripts/tchap/apply_patches.sh",
         "patch-make": "node scripts/tchap/makePatch.ts",
-=======
-        "test:playwright:screenshots:run": "docker run --rm --network host -e BASE_URL -e CI -v $(pwd):/work/ -v $(node -e 'console.log(require(`path`).dirname(require.resolve(`matrix-js-sdk/package.json`)))'):/work/node_modules/matrix-js-sdk -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ -it element-web-playwright --grep @screenshot --project=Chrome",
-        "coverage": "yarn test --coverage",
->>>>>>> v1.11.95
         "analyse:webpack-bundles": "webpack-bundle-analyzer webpack-stats.json webapp",
         "update:jitsi": "curl -s https://meet.element.io/libs/external_api.min.js > ./res/jitsi_external_api.min.js",
         "postinstall": "./scripts/tchap/postinstall.sh"
@@ -224,11 +213,8 @@
         "@sentry/webpack-plugin": "^3.0.0",
         "@stylistic/eslint-plugin": "^3.0.0",
         "@svgr/webpack": "^8.0.0",
-<<<<<<< HEAD
         "@testing-library/cypress": "^9.0.0",
-=======
         "@testcontainers/postgresql": "^10.16.0",
->>>>>>> v1.11.95
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.4.8",
         "@testing-library/react": "^16.0.0",

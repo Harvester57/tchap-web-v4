@@ -16,14 +16,8 @@ import SettingsStore from "../../../settings/SettingsStore";
 import InlineSpinner from "../elements/InlineSpinner";
 import { mediaFromContent } from "../../../customisations/Media";
 import { BLURHASH_FIELD } from "../../../utils/image-media";
-<<<<<<< HEAD
-import { IBodyProps } from "./IBodyProps";
-import { ImageSize, suggestedSize as suggestedVideoSize } from "../../../settings/enums/ImageSize";
-=======
 import { type IBodyProps } from "./IBodyProps";
-import MFileBody from "./MFileBody";
 import { type ImageSize, suggestedSize as suggestedVideoSize } from "../../../settings/enums/ImageSize";
->>>>>>> v1.11.95
 import RoomContext, { TimelineRenderingType } from "../../../contexts/RoomContext";
 import MediaProcessingError from "./shared/MediaProcessingError";
 

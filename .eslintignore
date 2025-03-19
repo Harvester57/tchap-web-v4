@@ -7,7 +7,6 @@ test/end-to-end-tests/lib/
 src/component-index.js
 # Auto-generated file
 src/modules.ts
-<<<<<<< HEAD
 
 # remove those files from eslint
 test/.eslintrc.js
@@ -15,6 +14,4 @@ test/setupTests.js
 patches/patches.json
 patches_legacy/patches.json
 src/tchap
-=======
 src/modules.js
->>>>>>> v1.11.95

@@ -17,16 +17,10 @@ import LanguageSelector from "./LanguageSelector";
 import EmbeddedPage from "../../structures/EmbeddedPage";
 import { MATRIX_LOGO_HTML } from "../../structures/static-page-vars";
 
-<<<<<<< HEAD
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
 
-interface IProps {}
-
-export default class Welcome extends React.PureComponent<IProps> {
-=======
 export default class Welcome extends React.PureComponent<EmptyObject> {
->>>>>>> v1.11.95
     public render(): React.ReactNode {
         const pagesConfig = SdkConfig.getObject("embedded_pages");
         let pageUrl: string | undefined;

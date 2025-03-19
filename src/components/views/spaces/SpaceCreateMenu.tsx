@@ -44,13 +44,9 @@ import { KeyBindingAction } from "../../../accessibility/KeyboardShortcuts";
 import defaultDispatcher from "../../../dispatcher/dispatcher";
 import { Action } from "../../../dispatcher/actions";
 import { Filter } from "../dialogs/spotlight/Filter";
-<<<<<<< HEAD
-import { OpenSpotlightPayload } from "../../../dispatcher/payloads/OpenSpotlightPayload.ts";
+import { type OpenSpotlightPayload } from "../../../dispatcher/payloads/OpenSpotlightPayload.ts";
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: space-remove-public-and-subspace
 import ExternalAccountHandler from "~tchap-web/src/tchap/lib/ExternalAccountHandler.ts";
-=======
-import { type OpenSpotlightPayload } from "../../../dispatcher/payloads/OpenSpotlightPayload.ts";
->>>>>>> v1.11.95
 
 export const createSpace = async (
     client: MatrixClient,

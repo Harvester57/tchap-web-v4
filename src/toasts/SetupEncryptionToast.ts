@@ -57,14 +57,11 @@ const getSetupCaption = (kind: Kind): string => {
         case Kind.SET_UP_ENCRYPTION:
             /* :TCHAP: cross-signing-ui
             return _t("action|continue");
-<<<<<<< HEAD
             */
             return _t("action|enable");
             // end :TCHAP:
-=======
         case Kind.SET_UP_RECOVERY:
             return _t("action|continue");
->>>>>>> v1.11.95
         case Kind.VERIFY_THIS_SESSION:
             return _t("action|verify");
         case Kind.KEY_STORAGE_OUT_OF_SYNC:

@@ -336,14 +336,8 @@ export default class SecurityUserSettingsTab extends React.Component<IProps, ISt
                     hasCancel: false,
                 });
             };
-<<<<<<< HEAD
-            privacySection = (
-                <SettingsSection heading={_t("common|privacy")}>
-                    {/* <DiscoverySettings /> :TCHAP: metrics-call we remove the discovery settings that appear when posthog is enabled */}
-=======
             posthogSection = (
                 <>
->>>>>>> v1.11.95
                     <SettingsSubsection
                         heading={_t("common|analytics")}
                         description={_t("settings|security|analytics_description")}
@@ -387,17 +381,13 @@ export default class SecurityUserSettingsTab extends React.Component<IProps, ISt
                 {/* end :TCHAP: */}
                 <SettingsSection heading={_t("settings|security|encryption_section")}>
                     {crossSigning}
+                    {eventIndex}
                     <CryptographyPanel />
-                    {privacySection}
                 </SettingsSection>
-<<<<<<< HEAD
-                { /* end :TCHAP: */ }
-=======
                 <SettingsSection heading={_t("common|privacy")}>
-                    <DiscoverySettings />
+                    {/* <DiscoverySettings /> :TCHAP: metrics-call we remove the discovery settings that appear when posthog is enabled */}
                     {posthogSection}
                 </SettingsSection>
->>>>>>> v1.11.95
                 {advancedSection}
             </SettingsTab>
         );

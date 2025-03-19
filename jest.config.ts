@@ -49,7 +49,6 @@ const config: Config = {
         "^!!raw-loader!.*": "jest-raw-loader",
         "recorderWorkletFactory": "<rootDir>/__mocks__/empty.js",
         "^fetch-mock$": "<rootDir>/node_modules/fetch-mock",
-<<<<<<< HEAD
         // :TCHAP:
         "MImageBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningImageBody.tsx",
         "<rootDir>/src/tchap/components/views/messages/OriginalFileBody":
@@ -60,10 +59,8 @@ const config: Config = {
         "MStickerBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningStickerBody.tsx",
         "~tchap-web/(.*)": "<rootDir>/$1",
         // end :TCHAP:
-=======
         // Requires ESM which is incompatible with our current Jest setup
         "^@element-hq/element-web-module-api$": "<rootDir>/__mocks__/empty.js",
->>>>>>> v1.11.95
     },
     transformIgnorePatterns: ["/node_modules/(?!(mime|matrix-js-sdk)).+$"],
     collectCoverageFrom: [

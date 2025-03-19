@@ -131,21 +131,6 @@ const SidebarUserSettingsTab: React.FC = () => {
                                 </SettingsSubsectionText>
                             </StyledCheckbox>
 
-<<<<<<< HEAD
-                    <StyledCheckbox
-                        checked={!!peopleEnabled}
-                        onChange={onMetaSpaceChangeFactory(MetaSpace.People, "WebSettingsSidebarTabSpacesCheckbox")}
-                        className="mx_SidebarUserSettingsTab_checkbox"
-                    >
-                        <SettingsSubsectionText>
-                            <UserProfileSolidIcon />
-                            {_t("Direct Messages") /* TCHAP: use-the-term-direct-messages-not-people - change label _t("common|people") */}
-                        </SettingsSubsectionText>
-                        <SettingsSubsectionText>
-                            {_t("settings|sidebar|metaspaces_people_description")}
-                        </SettingsSubsectionText>
-                    </StyledCheckbox>
-=======
                             <StyledCheckbox
                                 checked={!!peopleEnabled}
                                 onChange={onMetaSpaceChangeFactory(
@@ -156,7 +141,7 @@ const SidebarUserSettingsTab: React.FC = () => {
                             >
                                 <SettingsSubsectionText>
                                     <UserProfileSolidIcon />
-                                    {_t("common|people")}
+                                    {_t("Direct Messages") /* TCHAP: use-the-term-direct-messages-not-people - change label _t("common|people") */}
                                 </SettingsSubsectionText>
                                 <SettingsSubsectionText>
                                     {_t("settings|sidebar|metaspaces_people_description")}
@@ -164,7 +149,6 @@ const SidebarUserSettingsTab: React.FC = () => {
                             </StyledCheckbox>
                         </>
                     )}
->>>>>>> v1.11.95
 
                     <StyledCheckbox
                         checked={!!orphansEnabled}

@@ -256,90 +256,11 @@ export default function RoomHeader({
 
     return (
         <>
-<<<<<<< HEAD:src/components/views/rooms/RoomHeader.tsx
-            <Flex as="header" align="center" gap="var(--cpd-space-3x)" className="mx_RoomHeader light-panel">
-                {/* :TCHAP: customize-room-header-bar - RoomAvatar -> DecoratedRoomAvatar */}
-                {/* <WithPresenceIndicator room={room} size="8px">
-                    {/* We hide this from the tabIndex list as it is a pointer shortcut and superfluous for a11y
-                    <RoomAvatar
-                        room={room}
-                        size="40px"
-                        oobData={oobData}
-                        onClick={onAvatarClick}
-                        tabIndex={-1}
-                        aria-label={_t("room|header_avatar_open_settings_label")}
-                    />
-                </WithPresenceIndicator> */}
-                <DecoratedRoomAvatar room={room} size="40px" />
-                {/* end :TCHAP: */}
-                {/* :tchap: customize-room-header-bar - Add external caption when room is open to external */}
-                <TchapExternalRoomHeader room={room}></TchapExternalRoomHeader>
-                {/* :tchap: end */}
-                <button
-                    aria-label={_t("right_panel|room_summary_card|title")}
-                    tabIndex={0}
-                    onClick={() => RightPanelStore.instance.showOrHidePhase(RightPanelPhases.RoomSummary)}
-                    className="mx_RoomHeader_infoWrapper"
-                >
-                    <Box flex="1" className="mx_RoomHeader_info">
-                        <BodyText
-                            as="div"
-                            size="lg"
-                            weight="semibold"
-                            dir="auto"
-                            role="heading"
-                            aria-level={1}
-                            className="mx_RoomHeader_heading"
-                        >
-                            <span className="mx_RoomHeader_truncated mx_lineClamp">{roomName}</span>
-
-                            {/* :tchap: customize-room-header-bar - remove public forum icon
-                            {!isDirectMessage && joinRule === JoinRule.Publicc && (
-                                <Tooltip label={_t("common|public_room")} placement="right">
-                                    <PublicIcon
-                                        width="16px"
-                                        height="16px"
-                                        className="mx_RoomHeader_icon text-secondary"
-                                        aria-label={_t("common|public_room")}
-                                    />
-                                </Tooltip>
-                            )}
-                            */}
-
-                            {/* :tchap: customize-room-header-bar - do not show e2eStatus
-                            {isDirectMessage && e2eStatus === E2EStatus.Verified && (
-                                <Tooltip label={_t("common|verified")} placement="right">
-                                    <VerifiedIcon
-                                        width="16px"
-                                        height="16px"
-                                        className="mx_RoomHeader_icon mx_Verified"
-                                        aria-label={_t("common|verified")}
-                                    />
-                                </Tooltip>
-                            )}
-                            */}
-
-                            {/* :tchap: customize-room-header-bar - do not show E2EStatus.Warning
-                            {isDirectMessage && e2eStatus === E2EStatus.Warning && (
-                                <Tooltip label={_t("room|header_untrusted_label")} placement="right">
-                                    <ErrorIcon
-                                        width="16px"
-                                        height="16px"
-                                        className="mx_RoomHeader_icon mx_Untrusted"
-                                        aria-label={_t("room|header_untrusted_label")}
-                                    />
-                                </Tooltip>
-                            )}
-                            */}
-                        </BodyText>
-                    </Box>
-                </button>
-                <Flex align="center" gap="var(--cpd-space-2x)">
-=======
             <CurrentRightPanelPhaseContextProvider roomId={room.roomId}>
                 <Flex as="header" align="center" gap="var(--cpd-space-3x)" className="mx_RoomHeader light-panel">
-                    <WithPresenceIndicator room={room} size="8px">
-                        {/* We hide this from the tabIndex list as it is a pointer shortcut and superfluous for a11y */}
+                    {/* :TCHAP: customize-room-header-bar - RoomAvatar -> DecoratedRoomAvatar */}
+                    {/* <WithPresenceIndicator room={room} size="8px">
+                        {/* We hide this from the tabIndex list as it is a pointer shortcut and superfluous for a11y }
                         <RoomAvatar
                             room={room}
                             size="40px"
@@ -348,7 +269,12 @@ export default function RoomHeader({
                             tabIndex={-1}
                             aria-label={_t("room|header_avatar_open_settings_label")}
                         />
-                    </WithPresenceIndicator>
+                    </WithPresenceIndicator> */}
+                    <DecoratedRoomAvatar room={room} size="40px" />
+                    {/* end :TCHAP: */}
+                    {/* :tchap: customize-room-header-bar - Add external caption when room is open to external */}
+                    <TchapExternalRoomHeader room={room}></TchapExternalRoomHeader>
+                    {/* :tchap: end */}
                     <button
                         aria-label={_t("right_panel|room_summary_card|title")}
                         tabIndex={0}
@@ -367,6 +293,7 @@ export default function RoomHeader({
                             >
                                 <span className="mx_RoomHeader_truncated mx_lineClamp">{roomName}</span>
 
+                                {/* :tchap: customize-room-header-bar - remove public forum icon
                                 {!isDirectMessage && joinRule === JoinRule.Public && (
                                     <Tooltip label={_t("common|public_room")} placement="right">
                                         <PublicIcon
@@ -377,7 +304,9 @@ export default function RoomHeader({
                                         />
                                     </Tooltip>
                                 )}
+                                */}
 
+                                {/* :tchap: customize-room-header-bar - do not show e2eStatus
                                 {isDirectMessage && e2eStatus === E2EStatus.Verified && (
                                     <Tooltip label={_t("common|verified")} placement="right">
                                         <VerifiedIcon
@@ -388,7 +317,9 @@ export default function RoomHeader({
                                         />
                                     </Tooltip>
                                 )}
+                                */}
 
+                                {/* :tchap: customize-room-header-bar - do not show E2EStatus.Warning
                                 {isDirectMessage && e2eStatus === E2EStatus.Warning && (
                                     <Tooltip label={_t("room|header_untrusted_label")} placement="right">
                                         <ErrorIcon
@@ -399,11 +330,11 @@ export default function RoomHeader({
                                         />
                                     </Tooltip>
                                 )}
+                                */}
                             </BodyText>
                         </Box>
                     </button>
 
->>>>>>> v1.11.95:src/components/views/rooms/RoomHeader/RoomHeader.tsx
                     {additionalButtons?.map((props) => {
                         const label = props.label();
 

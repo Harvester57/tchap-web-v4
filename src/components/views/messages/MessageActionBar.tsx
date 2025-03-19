@@ -56,16 +56,10 @@ import { shouldDisplayReply } from "../../../utils/Reply";
 import { Key } from "../../../Keyboard";
 import { ALTERNATE_KEY_NAME } from "../../../accessibility/KeyboardShortcuts";
 import { Action } from "../../../dispatcher/actions";
-<<<<<<< HEAD
-import { ShowThreadPayload } from "../../../dispatcher/payloads/ShowThreadPayload";
-import { GetRelationsForEvent, IEventTileType } from "../rooms/EventTile";
-import { ButtonEvent } from "../elements/AccessibleButton";
-import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: remove-thread-buttons
-=======
 import { type ShowThreadPayload } from "../../../dispatcher/payloads/ShowThreadPayload";
 import { type GetRelationsForEvent, type IEventTileType } from "../rooms/EventTile";
 import { type ButtonEvent } from "../elements/AccessibleButton";
->>>>>>> v1.11.95
+import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: remove-thread-buttons
 import PinningUtils from "../../../utils/PinningUtils";
 import PosthogTrackers from "../../../PosthogTrackers.ts";
 

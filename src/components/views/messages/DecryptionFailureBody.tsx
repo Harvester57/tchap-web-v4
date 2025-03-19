@@ -13,13 +13,9 @@ import { DecryptionFailureCode } from "matrix-js-sdk/src/crypto-api";
 import { BlockIcon } from "@vector-im/compound-design-tokens/assets/web/icons";
 
 import { _t } from "../../../languageHandler";
-<<<<<<< HEAD
 import { IBodyProps } from "./IBodyProps";
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: better-text-for-locked-messages
 import ExternalLink from "../elements/ExternalLink"; // :TCHAP: better-text-for-locked-messages
-=======
-import { type IBodyProps } from "./IBodyProps";
->>>>>>> v1.11.95
 import { LocalDeviceVerificationStateContext } from "../../../contexts/LocalDeviceVerificationStateContext";
 
 function getErrorMessage(mxEvent: MatrixEvent, isVerified: boolean | undefined): string | React.JSX.Element {

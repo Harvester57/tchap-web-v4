@@ -26,14 +26,11 @@ import {
 import TextInputDialog from "../dialogs/TextInputDialog";
 import AccessibleButton from "../elements/AccessibleButton";
 import withValidation from "../elements/Validation";
-<<<<<<< HEAD
-import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils";
-=======
 import { type SettingKey, type Settings } from "../../../settings/Settings.tsx";
->>>>>>> v1.11.95
+
+import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils";
 
 const SETTING_NAME = "room_directory_servers";
-
 export interface IPublicRoomDirectoryConfig {
     roomServer: string;
     instanceId?: string;

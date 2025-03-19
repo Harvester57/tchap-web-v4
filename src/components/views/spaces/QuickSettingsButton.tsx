@@ -85,51 +85,12 @@ const QuickSettingsButton: React.FC<{
                     </AccessibleButton>
                 )}
 
-<<<<<<< HEAD
-                <h4 className="mx_QuickSettingsButton_pinToSidebarHeading">
-                    <PinUprightIcon className="mx_QuickSettingsButton_icon" />
-                    {_t("quick_settings|metaspace_section")}
-                </h4>
-
-                <StyledCheckbox
-                    className="mx_QuickSettingsButton_favouritesCheckbox"
-                    checked={!!favouritesEnabled}
-                    onChange={onMetaSpaceChangeFactory(MetaSpace.Favourites, "WebQuickSettingsPinToSidebarCheckbox")}
-                >
-                    <FavouriteSolidIcon className="mx_QuickSettingsButton_icon" />
-                    {_t("common|favourites")}
-                </StyledCheckbox>
-                <StyledCheckbox
-                    className="mx_QuickSettingsButton_peopleCheckbox"
-                    checked={!!peopleEnabled}
-                    onChange={onMetaSpaceChangeFactory(MetaSpace.People, "WebQuickSettingsPinToSidebarCheckbox")}
-                >
-                    <UserProfileSolidIcon className="mx_QuickSettingsButton_icon" />
-                    {/* TCHAP: use-the-term-direct-messages-not-people - change label {_t("common|people")} */}
-                    {_t("Direct Messages")}
-                    {/* end TCHAP */}
-                </StyledCheckbox>
-                <AccessibleButton
-                    className="mx_QuickSettingsButton_moreOptionsButton"
-                    onClick={() => {
-                        closeMenu();
-                        defaultDispatcher.dispatch({
-                            action: Action.ViewUserSettings,
-                            initialTabId: UserTab.Sidebar,
-                        });
-                    }}
-                >
-                    <OverflowHorizontalIcon className="mx_QuickSettingsButton_icon" />
-                    {_t("quick_settings|sidebar_settings")}
-                </AccessibleButton>
-=======
                 {!newRoomListEnabled && (
                     <>
                         <h4 className="mx_QuickSettingsButton_pinToSidebarHeading">
                             <PinUprightIcon className="mx_QuickSettingsButton_icon" />
                             {_t("quick_settings|metaspace_section")}
                         </h4>
->>>>>>> v1.11.95
 
                         <StyledCheckbox
                             className="mx_QuickSettingsButton_favouritesCheckbox"
@@ -151,7 +112,9 @@ const QuickSettingsButton: React.FC<{
                             )}
                         >
                             <UserProfileSolidIcon className="mx_QuickSettingsButton_icon" />
-                            {_t("common|people")}
+                             {/* TCHAP: use-the-term-direct-messages-not-people - change label {_t("common|people")} */}
+                            {_t("Direct Messages")}
+                            {/* end TCHAP */}
                         </StyledCheckbox>
                         <AccessibleButton
                             className="mx_QuickSettingsButton_moreOptionsButton"
