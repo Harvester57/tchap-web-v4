@@ -1,8 +1,8 @@
 diff --git a/node_modules/matrix-js-sdk/src/interactive-auth.ts b/node_modules/matrix-js-sdk/src/interactive-auth.ts
-index e98ed64..3f4cc8e 100644
+index 0e02d29..765eec6 100644
 --- a/node_modules/matrix-js-sdk/src/interactive-auth.ts
 +++ b/node_modules/matrix-js-sdk/src/interactive-auth.ts
-@@ -622,8 +622,17 @@ export class InteractiveAuth<T> {
+@@ -624,8 +624,17 @@ export class InteractiveAuth<T> {
  
      // Returns a low number for flows we consider best. Counts increase for longer flows and even more so
      // for flows which contain stages not listed in `supportedStages`.
@@ -21,7 +21,7 @@ index e98ed64..3f4cc8e 100644
          if (this.supportedStages !== undefined) {
              // Add 10 points to the score for each unsupported stage in the flow.
              score += flow.stages.filter((stage) => !this.supportedStages!.has(stage)).length * 10;
-@@ -653,9 +662,16 @@ export class InteractiveAuth<T> {
+@@ -655,9 +664,16 @@ export class InteractiveAuth<T> {
          const haveEmail = Boolean(this.inputs.emailAddress) || Boolean(this.emailSid);
          const haveMsisdn = Boolean(this.inputs.phoneCountry) && Boolean(this.inputs.phoneNumber);
  
