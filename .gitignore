@@ -36,7 +36,12 @@ electron/pub
 
 # Auto-generated file
 /src/modules.ts
+<<<<<<< HEAD
 #/build_config.yaml # :TCHAP: writes this by hand.
+=======
+/src/modules.js
+/build_config.yaml
+>>>>>>> v1.11.95
 /book
 /index.html
 

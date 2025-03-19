@@ -2,14 +2,15 @@
 Copyright 2024 New Vector Ltd.
 Copyright 2023 Suguru Hirahara
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
-import { Page } from "@playwright/test";
+import { type Page } from "@playwright/test";
+import { type Visibility } from "matrix-js-sdk/src/matrix";
 
 import { test, expect } from "../../element-web-test";
-import { ElementAppPage } from "../../pages/ElementAppPage";
+import { type ElementAppPage } from "../../pages/ElementAppPage";
 
 test.describe("Room Header", () => {
     test.use({
@@ -71,7 +72,9 @@ test.describe("Room Header", () => {
 
                 // Assert the size of buttons on RoomHeader are specified and the buttons are not compressed
                 // Note these assertions do not check the size of mx_LegacyRoomHeader_name button
-                const buttons = header.locator(".mx_Flex").getByRole("button");
+                const buttons = header.getByRole("button").filter({
+                    has: page.locator("svg"),
+                });
                 await expect(buttons).toHaveCount(5);
 
                 for (const button of await buttons.all()) {
@@ -83,6 +86,15 @@ test.describe("Room Header", () => {
                 await expect(header).toMatchScreenshot("room-header-long-name.png");
             },
         );
+
+        test("should render room header icon correctly", { tag: "@screenshot" }, async ({ page, app, user }) => {
+            await app.client.createRoom({ name: "Test Room", visibility: "public" as Visibility });
+            await app.viewRoomByName("Test Room");
+
+            const header = page.locator(".mx_RoomHeader");
+
+            await expect(header).toMatchScreenshot("room-header-with-icon.png");
+        });
     });
 
     test.describe("with a video room", () => {
@@ -108,6 +120,10 @@ test.describe("Room Header", () => {
                 { tag: "@screenshot" },
                 async ({ page, app, user }) => {
                     await createVideoRoom(page, app);
+
+                    // Dismiss a toast that is otherwise in the way (it's the other
+                    // side but there's no need to have it in the screenshot)
+                    await page.getByRole("button", { name: "Later" }).click();
 
                     const header = page.locator(".mx_RoomHeader");
 

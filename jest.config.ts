@@ -2,7 +2,7 @@
 Copyright 2024 New Vector Ltd.
 Copyright 2023 The Matrix.org Foundation C.I.C.
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
@@ -25,6 +25,8 @@ const config: Config = {
     testEnvironment: "jsdom",
     testEnvironmentOptions: {
         url: "http://localhost/",
+        // This is needed to be able to load dual CJS/ESM WASM packages e.g. rust crypto & matrix-wywiwyg
+        customExportConditions: ["browser", "node"],
     },
     testMatch: ["<rootDir>/test/**/*-test.[tj]s?(x)"],
     globalSetup: "<rootDir>/test/globalSetup.ts",
@@ -47,6 +49,7 @@ const config: Config = {
         "^!!raw-loader!.*": "jest-raw-loader",
         "recorderWorkletFactory": "<rootDir>/__mocks__/empty.js",
         "^fetch-mock$": "<rootDir>/node_modules/fetch-mock",
+<<<<<<< HEAD
         // :TCHAP:
         "MImageBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningImageBody.tsx",
         "<rootDir>/src/tchap/components/views/messages/OriginalFileBody":
@@ -57,6 +60,10 @@ const config: Config = {
         "MStickerBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningStickerBody.tsx",
         "~tchap-web/(.*)": "<rootDir>/$1",
         // end :TCHAP:
+=======
+        // Requires ESM which is incompatible with our current Jest setup
+        "^@element-hq/element-web-module-api$": "<rootDir>/__mocks__/empty.js",
+>>>>>>> v1.11.95
     },
     transformIgnorePatterns: ["/node_modules/(?!(mime|matrix-js-sdk)).+$"],
     collectCoverageFrom: [

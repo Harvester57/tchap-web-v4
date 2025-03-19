@@ -3,7 +3,7 @@ Copyright 2019-2024 New Vector Ltd.
 Copyright 2019 The Matrix.org Foundation C.I.C.
 Copyright 2019 Michael Telatynski <7t3chguy@gmail.com>
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
@@ -189,9 +189,15 @@ const AccountUserSettingsTab: React.FC<IProps> = ({ closeSettingsFn }) => {
                     canSetDisplayName={canSetDisplayName}
                     canSetAvatar={canSetAvatar}
                 />
+<<<<<<< HEAD
                 {/* :TCHAP: hide-discovery-email-phone-settings-updated */}
                 {/* <UserPersonalInfoSettings canMake3pidChanges={canMake3pidChanges} /> */}
                 {/* end :TCHAP: */}
+=======
+                {(!isAccountManagedExternally || canMake3pidChanges) && (
+                    <UserPersonalInfoSettings canMake3pidChanges={canMake3pidChanges} />
+                )}
+>>>>>>> v1.11.95
                 <AccountSection
                     canChangePassword={canChangePassword}
                     onPasswordChanged={onPasswordChanged}

@@ -2,25 +2,25 @@
 Copyright 2024 New Vector Ltd.
 Copyright 2015-2021 The Matrix.org Foundation C.I.C.
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
 import {
     AuthType,
     createClient,
-    IAuthData,
-    AuthDict,
-    IInputs,
+    type IAuthData,
+    type AuthDict,
+    type IInputs,
     MatrixError,
-    IRegisterRequestParams,
-    IRequestTokenResponse,
-    MatrixClient,
-    SSOFlow,
+    type IRegisterRequestParams,
+    type IRequestTokenResponse,
+    type MatrixClient,
+    type SSOFlow,
     SSOAction,
-    RegisterResponse,
+    type RegisterResponse,
 } from "matrix-js-sdk/src/matrix";
-import React, { Fragment, ReactNode } from "react";
+import React, { Fragment, type ReactNode } from "react";
 import classNames from "classnames";
 import { logger } from "matrix-js-sdk/src/logger";
 
@@ -28,24 +28,23 @@ import { _t } from "../../../languageHandler";
 import { adminContactStrings, messageForResourceLimitError, resourceLimitStrings } from "../../../utils/ErrorUtils";
 import AutoDiscoveryUtils from "../../../utils/AutoDiscoveryUtils";
 import * as Lifecycle from "../../../Lifecycle";
-import { IMatrixClientCreds, MatrixClientPeg } from "../../../MatrixClientPeg";
+import { type IMatrixClientCreds, MatrixClientPeg } from "../../../MatrixClientPeg";
 import AuthPage from "../../views/auth/AuthPage";
-import Login, { OidcNativeFlow } from "../../../Login";
+import Login, { type OidcNativeFlow } from "../../../Login";
 import dis from "../../../dispatcher/dispatcher";
 import SSOButtons from "../../views/elements/SSOButtons";
 import ServerPicker from "../../views/elements/ServerPicker";
 import RegistrationForm from "../../views/auth/RegistrationForm";
-import AccessibleButton, { ButtonEvent } from "../../views/elements/AccessibleButton";
+import AccessibleButton, { type ButtonEvent } from "../../views/elements/AccessibleButton";
 import AuthBody from "../../views/auth/AuthBody";
 import AuthHeader from "../../views/auth/AuthHeader";
-import InteractiveAuth, { InteractiveAuthCallback } from "../InteractiveAuth";
+import InteractiveAuth, { type InteractiveAuthCallback } from "../InteractiveAuth";
 import Spinner from "../../views/elements/Spinner";
 import { AuthHeaderDisplay } from "./header/AuthHeaderDisplay";
 import { AuthHeaderProvider } from "./header/AuthHeaderProvider";
 import { AuthHeaderModifier } from './header/AuthHeaderModifier'; // :TCHAP: registration-for-mainlining
 import SettingsStore from "../../../settings/SettingsStore";
-import { ValidatedServerConfig } from "../../../utils/ValidatedServerConfig";
-import { Features } from "../../../settings/Settings";
+import { type ValidatedServerConfig } from "../../../utils/ValidatedServerConfig";
 import { startOidcLogin } from "../../../utils/oidc/authorize";
 
 import TchapUtils from '~tchap-web/src/tchap/util/TchapUtils'; // :TCHAP: registration-for-mainlining
@@ -78,10 +77,7 @@ interface IProps {
     mobileRegister?: boolean;
     // Called when the user has logged in. Params:
     // - object with userId, deviceId, homeserverUrl, identityServerUrl, accessToken
-    // - The user's password, if available and applicable (may be cached in memory
-    //   for a short time so the user is not required to re-enter their password
-    //   for operations like uploading cross-signing keys).
-    onLoggedIn(params: IMatrixClientCreds, password: string): Promise<void>;
+    onLoggedIn(params: IMatrixClientCreds): Promise<void>;
     // registration shouldn't know or care how login is done.
     onLoginClick(): void;
     onServerConfigChange(config: ValidatedServerConfig): void;
@@ -139,8 +135,6 @@ export default class Registration extends React.Component<IProps, IState> {
     private readonly loginLogic: Login;
     // `replaceClient` tracks latest serverConfig to spot when it changes under the async method which fetches flows
     private latestServerConfig?: ValidatedServerConfig;
-    // cache value from settings store
-    private oidcNativeFlowEnabled = false;
 
     public constructor(props: IProps) {
         super(props);
@@ -159,14 +153,10 @@ export default class Registration extends React.Component<IProps, IState> {
             serverDeadError: "",
         };
 
-        // only set on a config level, so we don't need to watch
-        this.oidcNativeFlowEnabled = SettingsStore.getValue(Features.OidcNativeFlow);
-
         const { hsUrl, isUrl, delegatedAuthentication } = this.props.serverConfig;
         this.loginLogic = new Login(hsUrl, isUrl, null, {
             defaultDeviceDisplayName: "Element login check", // We shouldn't ever be used
-            // if native OIDC is enabled in the client pass the server's delegated auth settings
-            delegatedAuthentication: this.oidcNativeFlowEnabled ? delegatedAuthentication : undefined,
+            delegatedAuthentication,
         });
     }
 
@@ -236,10 +226,7 @@ export default class Registration extends React.Component<IProps, IState> {
 
         this.loginLogic.setHomeserverUrl(hsUrl);
         this.loginLogic.setIdentityServerUrl(isUrl);
-        // if native OIDC is enabled in the client pass the server's delegated auth settings
-        const delegatedAuthentication = this.oidcNativeFlowEnabled ? serverConfig.delegatedAuthentication : undefined;
-
-        this.loginLogic.setDelegatedAuthentication(delegatedAuthentication);
+        this.loginLogic.setDelegatedAuthentication(serverConfig.delegatedAuthentication);
 
         let ssoFlow: SSOFlow | undefined;
         let oidcNativeFlow: OidcNativeFlow | undefined;
@@ -454,16 +441,13 @@ export default class Registration extends React.Component<IProps, IState> {
                 newState.busy = false;
                 newState.completedNoSignin = true;
             } else {
-                await this.props.onLoggedIn(
-                    {
-                        userId,
-                        deviceId: (response as RegisterResponse).device_id!,
-                        homeserverUrl: this.state.matrixClient.getHomeserverUrl(),
-                        identityServerUrl: this.state.matrixClient.getIdentityServerUrl(),
-                        accessToken,
-                    },
-                    this.state.formVals.password!,
-                );
+                await this.props.onLoggedIn({
+                    userId,
+                    deviceId: (response as RegisterResponse).device_id!,
+                    homeserverUrl: this.state.matrixClient.getHomeserverUrl(),
+                    identityServerUrl: this.state.matrixClient.getIdentityServerUrl(),
+                    accessToken,
+                });
 
                 this.setupPushers();
             }
