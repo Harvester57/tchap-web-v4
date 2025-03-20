@@ -21,6 +21,7 @@ import SeshatResetDialog from "../dialogs/SeshatResetDialog";
 import InlineSpinner from "../elements/InlineSpinner";
 import ExternalLink from "../elements/ExternalLink";
 import { SettingsSubsectionText } from "./shared/SettingsSubsection";
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
 
 interface IState {
     enabling: boolean;
@@ -198,7 +199,8 @@ export default class EventIndexPanel extends React.Component<EmptyObject, IState
                         {
                             desktopLink: (sub) => (
                                 <ExternalLink
-                                    href="https://element.io/get-started"
+                                    href={TchapUrls.helpBaseUrl} // :TCHAP:
+                                    // href="https://element.io/get-started"
                                     target="_blank"
                                     rel="noreferrer noopener"
                                 >

@@ -12,10 +12,10 @@ import { _t } from "~tchap-web/src/languageHandler";
 import { Icon as UserExportIcon } from "~tchap-web/res/img/tchap/user-export.svg";
 
 import "~tchap-web/res/css/views/rooms/TchapExportMembersButton.pcss";
+import { MemberWithSeparator, SEPARATOR } from "~tchap-web/src/components/viewmodels/memberlist/MemberListViewModel";
 
 interface IProps {
-  room: Room;
-  roomMembersIds: Array<string>;
+  roomMembers: MemberWithSeparator[];
 }
 
 interface IState {
@@ -28,11 +28,27 @@ export default class MemberList extends React.Component<IProps, IState> {
     super(props);
   }
 
+  private membersWithSeparatorToJoinedMember = () => {
+    const arrayMembersId = [];
+    for (let member of this.props.roomMembers) {
+      if (member == SEPARATOR) break;
+      arrayMembersId.push(member.member?.userId)
+    }
+    
+    return arrayMembersId;
+  }
+
+  private getRoomId = () => {
+    const ts = (new Date()).getTime();
+    const roomName = "roomId";
+    return `${roomName}_${ts}`
+  }
+
   private onExportButtonClick = (ev: ButtonEvent): void => {
-    const blob = new Blob([this.props.roomMembersIds.join()], { type : 'plain/text' })
+    const blob = new Blob([this.membersWithSeparatorToJoinedMember().join()], { type : 'plain/text' })
 
     const filename = _t('members_of_%(roomName)s.txt', {
-        roomName: this.props.room.normalizedName,
+        roomName: this.getRoomId(),
     });
 
     this.downloader.download({
@@ -44,7 +60,7 @@ export default class MemberList extends React.Component<IProps, IState> {
   };
 
   public render(): React.ReactNode {
-    if (this.props.room?.getMyMembership() === "join" && !this.props.room.isSpaceRoom() && this.props.roomMembersIds.length > 0) {
+    if (this.props.roomMembers.length > 0) {
       return (
           <AccessibleButton
               data-testid="tc_exportRoomMembersButton"

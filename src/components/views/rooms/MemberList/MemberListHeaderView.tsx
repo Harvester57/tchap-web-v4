@@ -13,6 +13,7 @@ import { UserAddIcon } from "@vector-im/compound-design-tokens/assets/web/icons"
 import { Flex } from "../../../utils/Flex";
 import { type MemberListViewState } from "../../../viewmodels/memberlist/MemberListViewModel";
 import { _t } from "../../../../languageHandler";
+import TchapExportMembersButton from "~tchap-web/src/tchap/components/views/rooms/TchapExportMembersButton";
 
 interface TooltipProps {
     canInvite: boolean;
@@ -102,7 +103,7 @@ export const MemberListHeaderView: React.FC<Props> = (props: Props) => {
     if (vm.shouldShowSearch) {
         // When we need to show the search box
         contentJSX = (
-            <Flex justify="center" className="mx_MemberListHeaderView_container">
+            <Flex direction="column" justify="center" className="mx_MemberListHeaderView_container">
                 <Search
                     className="mx_MemberListHeaderView_search mx_no_textinput"
                     name="searchMembers"
@@ -110,13 +111,19 @@ export const MemberListHeaderView: React.FC<Props> = (props: Props) => {
                     onChange={(e) => vm.search((e as React.ChangeEvent<HTMLInputElement>).target.value)}
                 />
                 <InviteButton vm={vm} />
+                {/** :TCHAP: export-room-members */}
+                <TchapExportMembersButton roomMembers={vm.members} />
+                {/** end :TCHAP: */}
             </Flex>
         );
     } else if (!vm.shouldShowSearch && vm.shouldShowInvite) {
         // When we don't need to show the search box but still need an invite button
         contentJSX = (
-            <Flex justify="center" className="mx_MemberListHeaderView_container">
+            <Flex direction="column" justify="center" className="mx_MemberListHeaderView_container">
                 <InviteButton vm={vm} />
+                {/** :TCHAP: export-room-members */}
+                <TchapExportMembersButton roomMembers={vm.members} />
+                {/** end :TCHAP: */}
             </Flex>
         );
     } else {

@@ -569,8 +569,8 @@
     },
     "settings|security|message_search_unsupported_web": {
         "comment": "We have to include a <<desktopLink> otherwise the i18n checker crashes. So add an empty one.",
-        "en": "Currently %(brand)s does not support searching into messages.<desktopLink></desktopLink>",
-        "fr": "Actuellement %(brand)s ne supporte pas la recherche dans les messages.<desktopLink></desktopLink>"
+        "en": "Currently %(brand)s does not support searching into messages in encrypted rooms.<desktopLink></desktopLink>",
+        "fr": "Actuellement %(brand)s ne supporte pas la recherche des messages dans les salons chiffrés.<desktopLink></desktopLink>"
     },
     "settings|security|restore_key_backup": { "en": "Retrieve my messages", "fr": "Récupérer mes messages" },
     "settings|sessions|best_security_note": {

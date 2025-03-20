@@ -54,8 +54,7 @@ import { RoomSettingsTab } from "../../dialogs/RoomSettingsDialog.tsx";
 import { useScopedRoomContext } from "../../../../contexts/ScopedRoomContext.tsx";
 import { ToggleableIcon } from "./toggle/ToggleableIcon.tsx";
 import { CurrentRightPanelPhaseContextProvider } from "../../../../contexts/CurrentRightPanelPhaseContext.tsx";
-
-import DecoratedRoomAvatar from "../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
+import DecoratedRoomAvatar from "../../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
 
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: customize-room-header-bar
 import TchapExternalRoomHeader from "~tchap-web/src/tchap/components/views/rooms/TchapExternalRoomHeader"; // :TCHAP: customize-room-header-bar
@@ -273,7 +272,7 @@ export default function RoomHeader({
                     <DecoratedRoomAvatar room={room} size="40px" />
                     {/* end :TCHAP: */}
                     {/* :tchap: customize-room-header-bar - Add external caption when room is open to external */}
-                    <TchapExternalRoomHeader room={room}></TchapExternalRoomHeader>
+                    <TchapExternalRoomHeader room={room} />
                     {/* :tchap: end */}
                     <button
                         aria-label={_t("right_panel|room_summary_card|title")}

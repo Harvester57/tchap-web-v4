@@ -3,7 +3,7 @@ import { EventTimeline, EventType, GuestAccess, JoinRule, Room } from "matrix-js
 import React, { useEffect, useState } from 'react';
 import LabelledToggleSwitch from '~tchap-web/src/components/views/elements/LabelledToggleSwitch';
 import { _t } from '~tchap-web/src/languageHandler';
-import { randomString } from 'matrix-js-sdk/src/randomstring';
+import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
 import TchapRoomUtils from '../../../util/TchapRoomUtils';
 import { makeRoomPermalink, RoomPermalinkCreator } from "~tchap-web/src/utils/permalinks/Permalinks";
 import { TchapRoomType } from "../../../@types/tchap";
@@ -58,7 +58,7 @@ export default function TchapRoomLinkAccess({room, onUpdateParentView}: ITchapRo
             let link = "";
             // create an alias if not existing
             if (!room.getCanonicalAlias()) {
-                const aliasName = (room.name?.replace(/[^a-z0-9]/gi, "") ?? "") + randomString(11);
+                const aliasName = (room.name?.replace(/[^a-z0-9]/gi, "") ?? "") + secureRandomString(11);
                 const fullAlias = `#${aliasName}:${room.client.getDomain()}`;
                 
                 await room.client.createAlias(fullAlias, room.roomId)
