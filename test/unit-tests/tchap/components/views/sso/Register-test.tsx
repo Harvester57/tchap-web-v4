@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "jest-matrix-react";
-import { mocked, MockedObject } from "jest-mock";
-import { MatrixClient, MatrixError, OidcClientConfig, createClient } from "matrix-js-sdk/src/matrix";
+import { mocked, type MockedObject } from "jest-mock";
+import { type MatrixClient, MatrixError, type OidcClientConfig, createClient } from "matrix-js-sdk/src/matrix";
 import fetchMock from "fetch-mock";
 
-import SdkConfig, { ConfigOptions, DEFAULTS } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions, DEFAULTS } from "~tchap-web/src/SdkConfig";
 import Registration from "~tchap-web/src/components/structures/auth/Registration";
 import {
     getMockClientWithEventEmitter,
@@ -15,7 +15,7 @@ import {
 import { makeDelegatedAuthConfig } from "~tchap-web/test/test-utils/oidc";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import AutoDiscoveryUtils from "~tchap-web/src/utils/AutoDiscoveryUtils";
-import { ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
+import { type ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
 
 jest.mock("~tchap-web/src/utils/oidc/authorize", () => ({
     startOidcLogin: jest.fn(),
@@ -55,7 +55,7 @@ describe("<Register />", () => {
     beforeEach(async function () {
         const authConfig = makeDelegatedAuthConfig();
         // @ts-ignore
-        authConfig.metadata["prompt_values_supported"] = ["create"];
+        authConfig.prompt_values_supported = ["create"];
 
         SdkConfig.put({
             ...DEFAULTS,
@@ -97,12 +97,12 @@ describe("<Register />", () => {
         });
 
         fetchMock.get(`${defaultHsUrl}/_matrix/client/unstable/org.matrix.msc2965/auth_issuer`, {
-            issuer: authConfig.metadata.issuer,
+            issuer: authConfig.issuer,
         });
 
-        fetchMock.get("https://auth.org/.well-known/openid-configuration", authConfig.metadata);
+        fetchMock.get("https://auth.org/.well-known/openid-configuration", authConfig);
 
-        fetchMock.get(authConfig.metadata.jwks_uri!, { keys: [] });
+        fetchMock.get(authConfig.jwks_uri!, { keys: [] });
 
         fetchMock.get(`${defaultHsUrl}/_matrix/client/v3/login`, {
             body: { flows: [{ type: "m.login.sso" }, { type: "m.login.password" }] },
