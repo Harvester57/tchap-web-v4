@@ -969,5 +969,37 @@
     "settings|general|mail_signature_detail": {
         "en": "Copy and paste the following block in the signature editor of your mail client. <a> More info in our FAQ </a>",
         "fr": "Copie-collez le bloc suivant dans l'éditeur de signature de votre client mail. <a> Plus d'info dans notre FAQ </a>"
+    },
+    "settings|encryption|recovery|change_recovery_key_title": {
+        "en": "Change the recovery code ?",
+        "fr": "Changer le code de récupération?"
+    },
+    "settings|encryption|recovery|change_recovery_key": {
+        "en": "Change the recovery code",
+        "fr": "Changer le code de récupération"
+    },
+    "settings|encryption|recovery|change_recovery_key_description": {
+        "en": "Keep it in a safe place, such as your password manager or a protected document on your computer. You will need to copy/paste it to retrieve your messages, so avoid taking screenshots. Then click on Continue to confirm the modification",
+        "fr": "Conservez-le dans un endroit sûr, comme votre gestionnaire de mot de passe ou un document protégé sur votre ordinateur. Vous aurez à le copier / coller pour récupérer vos messages, donc évitez la capture d’écran. Cliquez ensuite sur Continuer pour confirmer la modification."
+    },
+    "settings|encryption|recovery|enter_recovery_key": {
+        "en": "Enter the recovery code",
+        "fr": "Saisir le code de récupération"
+    },
+    "settings|encryption|recovery|forgot_recovery_key": {
+        "en": "Forgot recovery code ?",
+        "fr": "Code de récupération oubliée?"
+    },
+    "settings|encryption|recovery|save_key_title": {
+        "en": "Recovery code",
+        "fr": "Code de récupération"
+    },
+    "settings|encryption|recovery|set_up_recovery_confirm_title": {
+        "en": "Enter your recovery code to confirm",
+        "fr": "Saisissez votre code de récupération pour confirmer"
+    },
+    "settings|encryption|recovery|description": {
+        "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
+        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
     }
 }

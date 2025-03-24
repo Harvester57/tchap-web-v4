@@ -13,6 +13,7 @@ import { UserAddIcon } from "@vector-im/compound-design-tokens/assets/web/icons"
 import { Flex } from "../../../utils/Flex";
 import { type MemberListViewState } from "../../../viewmodels/memberlist/MemberListViewModel";
 import { _t } from "../../../../languageHandler";
+
 import TchapExportMembersButton from "~tchap-web/src/tchap/components/views/rooms/TchapExportMembersButton";
 
 interface TooltipProps {
@@ -103,32 +104,55 @@ export const MemberListHeaderView: React.FC<Props> = (props: Props) => {
     if (vm.shouldShowSearch) {
         // When we need to show the search box
         contentJSX = (
-            <Flex direction="column" justify="center" className="mx_MemberListHeaderView_container">
-                <Search
-                    className="mx_MemberListHeaderView_search mx_no_textinput"
-                    name="searchMembers"
-                    placeholder={_t("member_list|filter_placeholder")}
-                    onChange={(e) => vm.search((e as React.ChangeEvent<HTMLInputElement>).target.value)}
-                />
-                <InviteButton vm={vm} />
-                {/** :TCHAP: export-room-members */}
+            // :TCHAP: export-room-members
+            // <Flex justify="center" className="mx_MemberListHeaderView_container"> // :TCHAP:
+            //     <Search
+            //         className="mx_MemberListHeaderView_search mx_no_textinput"
+            //         name="searchMembers"
+            //         placeholder={_t("member_list|filter_placeholder")}
+            //         onChange={(e) => vm.search((e as React.ChangeEvent<HTMLInputElement>).target.value)}
+            //     />
+            //     <InviteButton vm={vm} />
+            // </Flex>
+            <Flex direction="column" align="center" justify="center" className="mx_MemberListHeaderView_container">
+                <Flex justify="center">
+                    <Search
+                        className="mx_MemberListHeaderView_search mx_no_textinput"
+                        name="searchMembers"
+                        placeholder={_t("member_list|filter_placeholder")}
+                        onChange={(e) => vm.search((e as React.ChangeEvent<HTMLInputElement>).target.value)}
+                    />
+                    <InviteButton vm={vm} />
+                </Flex>
+
                 <TchapExportMembersButton roomMembers={vm.members} />
-                {/** end :TCHAP: */}
             </Flex>
+            /** end :TCHAP: */
         );
     } else if (!vm.shouldShowSearch && vm.shouldShowInvite) {
         // When we don't need to show the search box but still need an invite button
         contentJSX = (
-            <Flex direction="column" justify="center" className="mx_MemberListHeaderView_container">
+            // :TCHAP: export-room-members 
+            // <Flex justify="center" className="mx_MemberListHeaderView_container"> // :TCHAP:
+            //     <InviteButton vm={vm} />
+            // </Flex>
+            <Flex direction="column" align="center" justify="center" className="mx_MemberListHeaderView_container">
                 <InviteButton vm={vm} />
-                {/** :TCHAP: export-room-members */}
+                
                 <TchapExportMembersButton roomMembers={vm.members} />
-                {/** end :TCHAP: */}
             </Flex>
+            // end :TCHAP: 
         );
     } else {
         // No search box and no invite icon, so nothing to render!
-        contentJSX = null;
+        // :TCHAP: export-room-members
+        // contentJSX = null;
+        contentJSX = (
+            <Flex justify="center" className="mx_MemberListHeaderView_container">
+                <TchapExportMembersButton roomMembers={vm.members} />
+            </Flex>
+        // end :TCHAP:
+        );
     }
 
     return (
