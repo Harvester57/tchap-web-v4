@@ -491,12 +491,6 @@
         "en": "The instant messaging app of the French public sector",
         "fr": "La messagerie instantanée du secteur public"
     },
-    "members_of_%(roomName)s.txt": { "en": "members_of_%(roomName)s.txt", "fr": "membres_de_%(roomName)s.txt" },
-    "onboarding|free_e2ee_messaging_unlimited_voip": {
-        "comment": "remove when we have voip (audio and video)",
-        "en": "With free end-to-end encrypted messaging, %(brand)s is a great way to stay in touch.",
-        "fr": "Grâce à la messagerie chiffrée de bout en bout gratuite, %(brand)s est un excellent moyen de rester en contact."
-    },
     "room|error_join_title": { "en": "Failed to join this room.", "fr": "Impossible de rejoindre ce salon" },
     "room|status_bar|server_connectivity_lost_description": {
         "en": "Messages will be sent when your connection returns.",
@@ -722,30 +716,6 @@
         "en": "Tchap Info",
         "fr": "Annonces Tchap"
     },
-    "onboarding|enable_secure_backup": {
-        "en": "Back up your messages automatically",
-        "fr": "Sauvegarder vos messages automatiquement"
-    },
-    "onboarding|enable_secure_backup_description": {
-        "en": "You will be able to retrieve them on any device using the Recovery Code.",
-        "fr": "Vous pourrez les récupérez sur n'importe quel appareil à l'aide du Code de Récupération."
-    },
-    "onboarding|enable_secure_backup_action": {
-        "en": "Setup Secure Backup",
-        "fr": "Activer la sauvegarde automatique"
-    },
-    "onboarding|find_coworkers": {
-        "en": "Find and invite your co-workers",
-        "fr": "Trouver et inviter vos collègues"
-    },
-    "onboarding|set_up_profile": {
-        "en": "Set up your profile picture",
-        "fr": "Ajouter une photo de profil"
-    },
-    "onboarding|download_app": {
-        "en": "Download mobile app",
-        "fr": "Télécharger l'application mobile"
-    },
     "settings|notifications|enable_notifications_email_detail": {
         "en": "Receive an e-mail if at least one message is unread during 72h. <a> Learn more </a>",
         "fr": "Recevez un e-mail si au moins un message reste non lu pendant 72h. <a>En savoir plus</a>"
@@ -781,18 +751,6 @@
     "auth|warning|dont_close_windows": {
         "en": "Please don't close this window. You will need it later.",
         "fr": "Ne pas fermer cette page. Elle sera nécessaire pour la suite."
-    },
-    "onboarding|check_user_guide": {
-        "en": "Visit Tchap user guide",
-        "fr": "Consulter le guide de prise en main"
-    },
-    "onboarding|check_user_guide_description": {
-        "en": "Discover how to better use Tchap",
-        "fr": "Découvrez comment bien démarrer sur Tchap"
-    },
-    "onboarding|check_user_guide_action": {
-        "en": "Read the article",
-        "fr": "Lire l'article"
     },
     "migrating_crypto": {
         "en": "Hang tight. We are updating %(brand)s to make encryption faster and more reliable. Don't worry, it can take some time",
