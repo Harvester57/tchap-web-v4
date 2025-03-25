@@ -1,5 +1,5 @@
 import React from "react";
-import { RenderResult, render, screen } from "jest-matrix-react";
+import { type RenderResult, render, screen } from "jest-matrix-react";
 import userEvent from "@testing-library/user-event";
 import { EventEmitter } from "events";
 

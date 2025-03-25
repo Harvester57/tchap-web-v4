@@ -1,9 +1,9 @@
 import React from "react";
 import { MatrixCall, CallState } from "matrix-js-sdk/src/webrtc/call";
 import { fireEvent, render, waitFor } from "jest-matrix-react";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
 
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import { stubClient } from "~tchap-web/test/test-utils";
 import LegacyCallView from "~tchap-web/src/components/views/voip/LegacyCallView";
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";

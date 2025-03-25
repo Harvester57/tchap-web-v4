@@ -9,16 +9,16 @@ Please see LICENSE files in the repository root for full details.
 import React from "react";
 import { render } from "jest-matrix-react";
 import { logger } from "matrix-js-sdk/src/logger";
-import { CryptoApi, DeviceVerificationStatus, VerificationRequest } from "matrix-js-sdk/src/crypto-api";
+import { type CryptoApi, DeviceVerificationStatus, type VerificationRequest } from "matrix-js-sdk/src/crypto-api";
 import {
     LOCAL_NOTIFICATION_SETTINGS_PREFIX,
     MatrixEvent,
     PUSHER_DEVICE_ID,
     PUSHER_ENABLED,
     GET_LOGIN_TOKEN_CAPABILITY,
-    MatrixClient,
+    type MatrixClient,
 } from "matrix-js-sdk/src/matrix";
-import { mocked, MockedObject } from "jest-mock";
+import { mocked, type MockedObject } from "jest-mock";
 import fetchMock from "fetch-mock-jest";
 
 import {

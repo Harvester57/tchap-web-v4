@@ -1,6 +1,6 @@
 import { logRoles, render, screen } from "jest-matrix-react";
 import { mocked } from "jest-mock";
-import { MatrixClient, PendingEventOrdering, Room, JoinRule, KnownMembership } from "matrix-js-sdk/src/matrix";
+import { type MatrixClient, PendingEventOrdering, Room, JoinRule, KnownMembership } from "matrix-js-sdk/src/matrix";
 import React from "react";
 
 import { stubClient } from "~tchap-web/test/test-utils/test-utils";
@@ -8,7 +8,7 @@ import { clearAllModals } from "~tchap-web/test/test-utils";
 import { ChevronFace } from "~tchap-web/src/components/structures/ContextMenu";
 import {
     RoomGeneralContextMenu,
-    RoomGeneralContextMenuProps,
+    type RoomGeneralContextMenuProps,
 } from "~tchap-web/src/components/views/context_menus/RoomGeneralContextMenu";
 import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
 import { MatrixClientPeg } from "~tchap-web/src/MatrixClientPeg";

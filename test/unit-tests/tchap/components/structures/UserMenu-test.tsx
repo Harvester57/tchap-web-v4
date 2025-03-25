@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "jest-matrix-react";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
 
 import UnwrappedUserMenu from "~tchap-web/src/components/structures/UserMenu";
 import { TestSdkContext } from "~tchap-web/test/unit-tests/TestSdkContext";

@@ -8,12 +8,11 @@ import RoomHeader from "~tchap-web/src/components/views/rooms/RoomHeader/RoomHea
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
 import { MatrixClientPeg } from "~tchap-web/src/MatrixClientPeg";
 import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import { UIFeature } from "~tchap-web/src/settings/UIFeature";
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
-import RightPanelStore from "~tchap-web/src/stores/right-panel/RightPanelStore";
 
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
 
@@ -22,7 +21,6 @@ jest.mock("~tchap-web/src/hooks/right-panel/useCurrentPhase", () => ({
         return { currentPhase: "foo", isOpen: false };
     },
 }));
-
 
 function getWrapper(): RenderOptions {
     return {
@@ -83,8 +81,6 @@ describe("RoomHeader", () => {
             },
         } as unknown as DMRoomMap);
     }
-    
-    let setCardSpy: jest.SpyInstance | undefined;
 
     beforeEach(async () => {
         const mockClient = stubClient();
@@ -110,8 +106,6 @@ describe("RoomHeader", () => {
         DMRoomMap.setShared({
             getUserIdForRoomId: jest.fn(),
         } as unknown as DMRoomMap);
-
-        setCardSpy = jest.spyOn(RightPanelStore.instance, "setCard");
     });
 
     afterEach(() => {

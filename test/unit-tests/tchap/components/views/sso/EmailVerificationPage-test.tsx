@@ -1,13 +1,14 @@
 import React from "react";
 import { render, cleanup, fireEvent, screen, act } from "jest-matrix-react";
-import { mocked, MockedObject } from "jest-mock";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { mocked, type MockedObject } from "jest-mock";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
+
+import type BasePlatform from "~tchap-web/src/BasePlatform";
 
 import EmailVerificationPage from "~tchap-web/src/tchap/components/views/sso/EmailVerificationPage";
 import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils";
-import { ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
+import { type ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
 import { flushPromises, mockPlatformPeg, stubClient } from "~tchap-web/test/test-utils";
-import BasePlatform from "~tchap-web/src/BasePlatform";
 import Login from "~tchap-web/src/Login";
 
 jest.mock("~tchap-web/src/PlatformPeg");

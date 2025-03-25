@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RenderResult, fireEvent, render } from "jest-matrix-react";
+import { type RenderResult, fireEvent, render } from "jest-matrix-react";
 
 import BugReportDialog from "~tchap-web/src/components/views/dialogs/BugReportDialog";
 import { flushPromises } from "~tchap-web/test/test-utils";

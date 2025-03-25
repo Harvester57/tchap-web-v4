@@ -8,9 +8,9 @@ Please see LICENSE files in the repository root for full details.
 
 import React from "react";
 import { render } from "jest-matrix-react";
-import { MatrixEvent, Room, MatrixClient, JoinRule } from "matrix-js-sdk/src/matrix";
+import { MatrixEvent, Room, type MatrixClient, JoinRule } from "matrix-js-sdk/src/matrix";
 import { KnownMembership } from "matrix-js-sdk/src/types";
-import { mocked, MockedObject } from "jest-mock";
+import { mocked, type MockedObject } from "jest-mock";
 
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
 import RoomSummaryCard from "~tchap-web/src/components/views/right_panel/RoomSummaryCard";

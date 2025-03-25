@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "jest-matrix-react";
 import { mocked } from "jest-mock";
-import { JoinRule, MatrixClient, Room } from "matrix-js-sdk/src/matrix";
+import { JoinRule, type MatrixClient, type Room } from "matrix-js-sdk/src/matrix";
 
 import TchapJoinRuleSettings from "~tchap-web/src/tchap/components/views/settings/TchapJoinRuleSettings";
 import { TchapRoomAccessRule, TchapRoomAccessRulesEventId } from "~tchap-web/src/tchap/@types/tchap";
