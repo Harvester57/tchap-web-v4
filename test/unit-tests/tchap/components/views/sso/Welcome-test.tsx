@@ -2,7 +2,7 @@ import React from "react";
 import { render, cleanup, screen } from "jest-matrix-react";
 import fetchMock from "fetch-mock";
 
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import Welcome from "~tchap-web/src/components/views/auth/Welcome";
 import { flushPromises } from "~tchap-web/test/test-utils";
 

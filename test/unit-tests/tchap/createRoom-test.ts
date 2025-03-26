@@ -1,5 +1,5 @@
-import { mocked, Mocked } from "jest-mock";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { mocked, type Mocked } from "jest-mock";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
 
 import {
     mockPlatformPeg,
@@ -9,7 +9,7 @@ import {
 } from "~tchap-web/test/test-utils";
 import createRoom from "~tchap-web/src/createRoom";
 import ExternalAccountHandler from "~tchap-web/src/tchap/lib/ExternalAccountHandler";
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import Modal from "~tchap-web/src/Modal";
 
 jest.mock("~tchap-web/src/tchap/lib/ExternalAccountHandler.ts");

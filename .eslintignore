@@ -14,3 +14,4 @@ test/setupTests.js
 patches/patches.json
 patches_legacy/patches.json
 src/tchap
+src/modules.js

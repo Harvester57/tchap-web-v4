@@ -491,12 +491,6 @@
         "en": "The instant messaging app of the French public sector",
         "fr": "La messagerie instantanée du secteur public"
     },
-    "members_of_%(roomName)s.txt": { "en": "members_of_%(roomName)s.txt", "fr": "membres_de_%(roomName)s.txt" },
-    "onboarding|free_e2ee_messaging_unlimited_voip": {
-        "comment": "remove when we have voip (audio and video)",
-        "en": "With free end-to-end encrypted messaging, %(brand)s is a great way to stay in touch.",
-        "fr": "Grâce à la messagerie chiffrée de bout en bout gratuite, %(brand)s est un excellent moyen de rester en contact."
-    },
     "room|error_join_title": { "en": "Failed to join this room.", "fr": "Impossible de rejoindre ce salon" },
     "room|status_bar|server_connectivity_lost_description": {
         "en": "Messages will be sent when your connection returns.",
@@ -569,8 +563,8 @@
     },
     "settings|security|message_search_unsupported_web": {
         "comment": "We have to include a <<desktopLink> otherwise the i18n checker crashes. So add an empty one.",
-        "en": "Currently %(brand)s does not support searching into messages.<desktopLink></desktopLink>",
-        "fr": "Actuellement %(brand)s ne supporte pas la recherche dans les messages.<desktopLink></desktopLink>"
+        "en": "Currently %(brand)s does not support searching into messages in encrypted rooms.<desktopLink></desktopLink>",
+        "fr": "Actuellement %(brand)s ne supporte pas la recherche des messages dans les salons chiffrés.<desktopLink></desktopLink>"
     },
     "settings|security|restore_key_backup": { "en": "Retrieve my messages", "fr": "Récupérer mes messages" },
     "settings|sessions|best_security_note": {
@@ -722,30 +716,6 @@
         "en": "Tchap Info",
         "fr": "Annonces Tchap"
     },
-    "onboarding|enable_secure_backup": {
-        "en": "Back up your messages automatically",
-        "fr": "Sauvegarder vos messages automatiquement"
-    },
-    "onboarding|enable_secure_backup_description": {
-        "en": "You will be able to retrieve them on any device using the Recovery Code.",
-        "fr": "Vous pourrez les récupérez sur n'importe quel appareil à l'aide du Code de Récupération."
-    },
-    "onboarding|enable_secure_backup_action": {
-        "en": "Setup Secure Backup",
-        "fr": "Activer la sauvegarde automatique"
-    },
-    "onboarding|find_coworkers": {
-        "en": "Find and invite your co-workers",
-        "fr": "Trouver et inviter vos collègues"
-    },
-    "onboarding|set_up_profile": {
-        "en": "Set up your profile picture",
-        "fr": "Ajouter une photo de profil"
-    },
-    "onboarding|download_app": {
-        "en": "Download mobile app",
-        "fr": "Télécharger l'application mobile"
-    },
     "settings|notifications|enable_notifications_email_detail": {
         "en": "Receive an e-mail if at least one message is unread during 72h. <a> Learn more </a>",
         "fr": "Recevez un e-mail si au moins un message reste non lu pendant 72h. <a>En savoir plus</a>"
@@ -781,18 +751,6 @@
     "auth|warning|dont_close_windows": {
         "en": "Please don't close this window. You will need it later.",
         "fr": "Ne pas fermer cette page. Elle sera nécessaire pour la suite."
-    },
-    "onboarding|check_user_guide": {
-        "en": "Visit Tchap user guide",
-        "fr": "Consulter le guide de prise en main"
-    },
-    "onboarding|check_user_guide_description": {
-        "en": "Discover how to better use Tchap",
-        "fr": "Découvrez comment bien démarrer sur Tchap"
-    },
-    "onboarding|check_user_guide_action": {
-        "en": "Read the article",
-        "fr": "Lire l'article"
     },
     "migrating_crypto": {
         "en": "Hang tight. We are updating %(brand)s to make encryption faster and more reliable. Don't worry, it can take some time",
@@ -969,5 +927,37 @@
     "settings|general|mail_signature_detail": {
         "en": "Copy and paste the following block in the signature editor of your mail client. <a> More info in our FAQ </a>",
         "fr": "Copie-collez le bloc suivant dans l'éditeur de signature de votre client mail. <a> Plus d'info dans notre FAQ </a>"
+    },
+    "settings|encryption|recovery|change_recovery_key_title": {
+        "en": "Change the recovery code ?",
+        "fr": "Changer le code de récupération?"
+    },
+    "settings|encryption|recovery|change_recovery_key": {
+        "en": "Change the recovery code",
+        "fr": "Changer le code de récupération"
+    },
+    "settings|encryption|recovery|change_recovery_key_description": {
+        "en": "Keep it in a safe place, such as your password manager or a protected document on your computer. You will need to copy/paste it to retrieve your messages, so avoid taking screenshots. Then click on Continue to confirm the modification",
+        "fr": "Conservez-le dans un endroit sûr, comme votre gestionnaire de mot de passe ou un document protégé sur votre ordinateur. Vous aurez à le copier / coller pour récupérer vos messages, donc évitez la capture d’écran. Cliquez ensuite sur Continuer pour confirmer la modification."
+    },
+    "settings|encryption|recovery|enter_recovery_key": {
+        "en": "Enter the recovery code",
+        "fr": "Saisir le code de récupération"
+    },
+    "settings|encryption|recovery|forgot_recovery_key": {
+        "en": "Forgot recovery code ?",
+        "fr": "Code de récupération oubliée?"
+    },
+    "settings|encryption|recovery|save_key_title": {
+        "en": "Recovery code",
+        "fr": "Code de récupération"
+    },
+    "settings|encryption|recovery|set_up_recovery_confirm_title": {
+        "en": "Enter your recovery code to confirm",
+        "fr": "Saisissez votre code de récupération pour confirmer"
+    },
+    "settings|encryption|recovery|description": {
+        "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
+        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
     }
 }

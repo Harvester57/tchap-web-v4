@@ -1,20 +1,26 @@
 import React from "react";
 import { KnownMembership, PendingEventOrdering, Room } from "matrix-js-sdk/src/matrix";
-import { screen, render, RenderOptions, getByLabelText, queryByLabelText } from "jest-matrix-react";
+import { screen, render, type RenderOptions, getByLabelText, queryByLabelText } from "jest-matrix-react";
 import { mocked } from "jest-mock";
 
 import { mkRoomMember, stubClient } from "~tchap-web/test/test-utils";
-import RoomHeader from "~tchap-web/src/components/views/rooms/RoomHeader";
+import RoomHeader from "~tchap-web/src/components/views/rooms/RoomHeader/RoomHeader";
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
 import { MatrixClientPeg } from "~tchap-web/src/MatrixClientPeg";
 import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
-import SdkConfig from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import { UIFeature } from "~tchap-web/src/settings/UIFeature";
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
 
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
+
+jest.mock("~tchap-web/src/hooks/right-panel/useCurrentPhase", () => ({
+    useCurrentPhase: () => {
+        return { currentPhase: "foo", isOpen: false };
+    },
+}));
 
 function getWrapper(): RenderOptions {
     return {

@@ -206,5 +206,11 @@
             "src/tchap/components/views/settings/tabs/user/TchapMailSignature.tsx",
             "src/PosthogTrackers.ts"
         ]
+    },
+    "export-room-members": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1263",
+        "files": [
+            "src/components/views/rooms/MemberList/MemberListHeaderView.tsx"
+        ]
     }
 }

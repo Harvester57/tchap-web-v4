@@ -1,8 +1,8 @@
 import React from "react";
 import {
     ConditionKind,
-    IPushRules,
-    IThreepid,
+    type IPushRules,
+    type IThreepid,
     LOCAL_NOTIFICATION_SETTINGS_PREFIX,
     MatrixEvent,
     PushRuleActionName,

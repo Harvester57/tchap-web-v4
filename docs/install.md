@@ -60,6 +60,34 @@ would be:
 docker run --rm -p 127.0.0.1:80:80 -v /etc/element-web/config.json:/app/config.json vectorim/element-web
 ```
 
+The Docker image is configured to run as an unprivileged (non-root) user by
+default. This should be fine on modern Docker runtimes, but binding to port 80
+on other runtimes may require root privileges. To resolve this, either run the
+image as root (`docker run --user 0`) or, better, change the port that nginx
+listens on via the `ELEMENT_WEB_PORT` environment variable.
+
+[Element Web Modules](https://github.com/element-hq/element-modules/tree/main/packages/element-web-module-api) can be dynamically loaded
+by being made available (e.g. via bind mount) in a directory within `/tmp/element-web-modules/`.
+The default entrypoint will be index.js in that directory but can be overridden if a package.json file is found with a `main` directive.
+These modules will be presented in a `/modules` subdirectory within the webroot, and automatically added to the config.json `modules` field.
+
+If you wish to use docker in read-only mode,
+you should follow the [upstream instructions](https://hub.docker.com/_/nginx#:~:text=Running%20nginx%20in%20read%2Donly%20mode)
+but additionally include the following directories:
+
+- /tmp/element-web-config/
+- /etc/nginx/conf.d/
+
+The behaviour of the docker image can be customised via the following
+environment variables:
+
+- `ELEMENT_WEB_PORT`
+
+    The port to listen on (within the docker container) for HTTP
+    traffic. Defaults to `80`.
+
+### Building the docker image
+
 To build the image yourself:
 
 ```bash

@@ -8,7 +8,14 @@ Please see LICENSE files in the repository root for full details.
 
 import React from "react";
 import { render, screen, waitFor } from "jest-matrix-react";
-import { EventType, GuestAccess, HistoryVisibility, JoinRule, MatrixEvent, Room } from "matrix-js-sdk/src/matrix";
+import {
+    EventType,
+    type GuestAccess,
+    HistoryVisibility,
+    type JoinRule,
+    MatrixEvent,
+    Room,
+} from "matrix-js-sdk/src/matrix";
 import { mocked } from "jest-mock";
 
 import SecurityRoomSettingsTab from "~tchap-web/src/components/views/settings/tabs/room/SecurityRoomSettingsTab";

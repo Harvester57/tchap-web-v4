@@ -3,7 +3,7 @@ Copyright 2024 New Vector Ltd.
 Copyright 2023 Suguru Hirahara
 Copyright 2023 The Matrix.org Foundation C.I.C.
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
@@ -77,7 +77,7 @@ test.describe("Invite dialog", function () {
         "should support inviting a user to Direct Messages",
         { tag: "@screenshot" },
         async ({ page, app, user, bot }) => {
-            await page.locator(".mx_RoomList").getByRole("button", { name: "Start chat" }).click();
+            await page.locator(".mx_LegacyRoomList").getByRole("button", { name: "Start chat" }).click();
 
             const other = page.locator(".mx_InviteDialog_other");
             // Assert that the header is rendered

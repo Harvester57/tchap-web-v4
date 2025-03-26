@@ -1,17 +1,17 @@
 import React from "react";
 import { render, screen } from "jest-matrix-react";
 import userEvent from "@testing-library/user-event";
-import { MatrixClient, MatrixError, Room } from "matrix-js-sdk/src/matrix";
-import { Mocked } from "jest-mock";
+import { type MatrixClient, MatrixError, Room } from "matrix-js-sdk/src/matrix";
+import { type Mocked } from "jest-mock";
 
 import InviteDialog from "~tchap-web/src/components/views/dialogs/InviteDialog";
 import { InviteKind } from "~tchap-web/src/components/views/dialogs/InviteDialogTypes";
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
 import SdkConfig from "~tchap-web/src/SdkConfig";
-import { ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
-import { IConfigOptions } from "~tchap-web/src/IConfigOptions";
+import { type ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
+import { type IConfigOptions } from "~tchap-web/src/IConfigOptions";
 import { SdkContextClass } from "~tchap-web/src/contexts/SDKContext";
-import { IProfileInfo } from "~tchap-web/src/hooks/useProfileInfo";
+import { type IProfileInfo } from "~tchap-web/src/hooks/useProfileInfo";
 import Modal from "~tchap-web/src/Modal";
 import { filterConsole, flushPromises, getMockClientWithEventEmitter } from "~tchap-web/test/test-utils";
 

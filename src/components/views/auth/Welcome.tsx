@@ -1,12 +1,13 @@
 /*
 Copyright 2019-2024 New Vector Ltd.
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
 */
 
 import React from "react";
 import classNames from "classnames";
+import { type EmptyObject } from "matrix-js-sdk/src/matrix";
 
 import SdkConfig from "../../../SdkConfig";
 import AuthPage from "./AuthPage";
@@ -19,9 +20,7 @@ import { MATRIX_LOGO_HTML } from "../../structures/static-page-vars";
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
 
-interface IProps {}
-
-export default class Welcome extends React.PureComponent<IProps> {
+export default class Welcome extends React.PureComponent<EmptyObject> {
     public render(): React.ReactNode {
         const pagesConfig = SdkConfig.getObject("embedded_pages");
         let pageUrl: string | undefined;

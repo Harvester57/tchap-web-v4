@@ -1,10 +1,10 @@
-import { Mocked, mocked } from "jest-mock";
+import { type Mocked, mocked } from "jest-mock";
 import {
-    HttpApiEvent,
-    HttpApiEventHandlerMap,
-    IHttpOpts,
-    IThreepid,
-    MatrixClient,
+    type HttpApiEvent,
+    type HttpApiEventHandlerMap,
+    type IHttpOpts,
+    type IThreepid,
+    type MatrixClient,
     TypedEventEmitter,
     MatrixHttpApi,
 } from "matrix-js-sdk/src/matrix";

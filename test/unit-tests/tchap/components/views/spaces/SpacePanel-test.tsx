@@ -1,11 +1,11 @@
 import React from "react";
 import { render, cleanup } from "jest-matrix-react";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
 
 import { stubClient, wrapInMatrixClientContext, wrapInSdkContext } from "~tchap-web/test/test-utils";
 import { SdkContextClass } from "~tchap-web/src/contexts/SDKContext";
 import UnwrappedSpacePanel from "~tchap-web/src/components/views/spaces/SpacePanel";
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 
 jest.mock("~tchap-web/src/tchap/components/views/common/Gaufre.tsx", () => {
     return jest.fn((props: { isPanelCollapsed: boolean }) => <div>Mocked ChildComponent with text: </div>);

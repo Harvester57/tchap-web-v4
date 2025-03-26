@@ -2,18 +2,18 @@
 Copyright 2024 New Vector Ltd.
 Copyright 2016 Jani Mustonen
 
-SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Commercial
 Please see LICENSE files in the repository root for full details.
  */
 
 import React, {
-    ComponentProps,
-    ComponentPropsWithoutRef,
+    type ComponentProps,
+    type ComponentPropsWithoutRef,
     forwardRef,
-    FunctionComponent,
-    ReactElement,
-    KeyboardEvent,
-    Ref,
+    type FunctionComponent,
+    type ReactElement,
+    type KeyboardEvent,
+    type Ref,
 } from "react";
 import classnames from "classnames";
 import { Tooltip } from "@vector-im/compound-web";
@@ -80,7 +80,7 @@ type Props<T extends ElementType = "div"> = {
     /**
      * The tooltip to show on hover or focus.
      */
-    title?: TooltipProps["label"];
+    title?: string;
     /**
      * The caption is a secondary text displayed under the `title` of the tooltip.
      * Only valid when used in conjunction with `title`.

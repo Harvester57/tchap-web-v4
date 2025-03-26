@@ -1,14 +1,14 @@
 import { render } from "jest-matrix-react";
 import React from "react";
-import { MatrixClient } from "matrix-js-sdk/src/matrix";
+import { type MatrixClient } from "matrix-js-sdk/src/matrix";
 import { logger } from "matrix-js-sdk/src/logger";
-import { MockedObject } from "jest-mock";
+import { type MockedObject } from "jest-mock";
 
 import AccountUserSettingsTab from "~tchap-web/src/components/views/settings/tabs/user/AccountUserSettingsTab";
 import { SdkContextClass, SDKContext } from "~tchap-web/src/contexts/SDKContext";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import { UIFeature } from "~tchap-web/src/settings/UIFeature";
-import { OidcClientStore } from "~tchap-web/src/stores/oidc/OidcClientStore";
+import { type OidcClientStore } from "~tchap-web/src/stores/oidc/OidcClientStore";
 import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
 import {
     getMockClientWithEventEmitter,

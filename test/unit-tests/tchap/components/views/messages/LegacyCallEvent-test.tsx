@@ -1,13 +1,14 @@
 import * as React from "react";
 import { render, screen } from "jest-matrix-react";
 import { mocked } from "jest-mock";
-import { MatrixEvent } from "matrix-js-sdk/src/matrix";
+import { type MatrixEvent } from "matrix-js-sdk/src/matrix";
 import { CallErrorCode, CallState } from "matrix-js-sdk/src/webrtc/call";
+
+import type LegacyCallEventGrouper from "~tchap-web/src/components/structures/LegacyCallEventGrouper";
 
 import LegacyCallEvent from "~tchap-web/src/components/views/messages/LegacyCallEvent";
 import BugReportDialog from "~tchap-web/src/components/views/dialogs/BugReportDialog";
 import Modal from "~tchap-web/src/Modal";
-import LegacyCallEventGrouper from "~tchap-web/src/components/structures/LegacyCallEventGrouper";
 
 const THEIR_USER_ID = "@them:here";
 

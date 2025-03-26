@@ -1,7 +1,7 @@
 import React from "react";
 import { logRoles, render, screen, waitFor, waitForElementToBeRemoved } from "jest-matrix-react";
 import { mocked } from "jest-mock";
-import { EventType, GuestAccess, JoinRule, MatrixClient, Room } from "matrix-js-sdk/src/matrix";
+import { EventType, GuestAccess, JoinRule, type MatrixClient, type Room } from "matrix-js-sdk/src/matrix";
 import userEvent from "@testing-library/user-event";
 
 import { flushPromises, waitEnoughCyclesForModal } from "../../../../../test-utils";
@@ -11,7 +11,7 @@ import { makeRoomPermalink } from "~tchap-web//src/utils/permalinks/Permalinks";
 import TchapRoomLinkAccess from "~tchap-web//src/tchap/components/views/rooms/TchapRoomLinkAccess";
 import { TchapRoomType } from "~tchap-web//src/tchap/@types/tchap";
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
-import SdkConfig, { ConfigOptions } from "~tchap-web/src/SdkConfig";
+import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
 
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
