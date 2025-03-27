@@ -182,8 +182,9 @@
     "devDependencies-comments": {
         "tchap-added": {
             "@tauri-apps/api": "^2.2.0",
-            "taurpc": "^1.8.0",
-            "@tauri-apps/plugin-stronghold": "^2.2.0"
+            "@tauri-apps/plugin-stronghold": "^2.2.0",
+            "@tauri-apps/plugin-process": "^2.2.0",
+            "@tauri-apps/plugin-updater": "^2.6.0"
         }
     },
     "devDependencies": {

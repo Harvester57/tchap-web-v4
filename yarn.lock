@@ -2890,9 +2890,14 @@
   resolved "https://registry.yarnpkg.com/@testcontainers/postgresql/-/postgresql-10.19.0.tgz#e1ff9fbfee76c23bc899865524ee8e2ee297bdf2"
   integrity sha512-3+yQJHCWEtp4hylfZgRxCWN1P6dGqKhFM7Bypg22NpJqq1x/dcmamVCvD+4eTdm1uHV1Ta0BkHRWejxGOyTnrw==
   dependencies:
+<<<<<<< HEAD
     testcontainers "^10.19.0"
 
     
+=======
+    testcontainers "^10.22.0"
+
+>>>>>>> 4770fc8dfa5 (TCHAP(desktop): update package json after rebase)
 
 "@tauri-apps/api@^2.0.0", "@tauri-apps/api@^2.2.0":
   version "2.2.0"
