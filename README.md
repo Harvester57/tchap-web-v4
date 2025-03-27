@@ -1,3 +1,10 @@
+# TCHAP web app
+
+Tchap is a web app that allows you to chat through the matrix protocol for the French public service. It is a fork of [Element web](https://github.com/vector-im/element-web)
+
+You can have more information on the [Tchap website](https://tchap.numerique.gouv.fr/) and find help on our [FAQ](https://aide.tchap.numerique.gouv.fr/)
+
+
 ## Config variable
 
 - tchap_features : Object containing the feature that can be activated by homeserver
@@ -40,7 +47,7 @@ yarn start
 // end :TCHAP:
 ```
 
-Then also update the `subtree-modifications.json` file. We continue to keep track of the changes we make to the sdk. It will also be easier to separate different functionnality that tchap added to the code
+Then also update the `tchap-modifications.json` file. We continue to keep track of the changes we make to the sdk. It will also be easier to separate different functionnality that tchap added to the code
 
 ### Tests
 
