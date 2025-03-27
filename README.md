@@ -1,8 +1,23 @@
-# TCHAP web app
+<p align="center">
+  <a href="https://github.com/tchapgouv">
+    <img alt="tchap-logo" src="./res/themes/tchap/img/logos/tchap-logo.svg" width="300" />
+  </a>
+</p>
+
+<p align="center">
+  Bienvenue sur Tchap! Le système de messagerie instantanée du secteur public français
+</p>
+
+<p align="center">
+  <a href="https://tchap.numerique.gouv.fr">
+    Site web de présentation
+  </a> - 
+  <a href="contact@tchap.beta.gouv.fr">
+    Contactez-nous
+  </a>
+</p>
 
 Tchap is a web app that allows you to chat through the matrix protocol for the French public service. It is a fork of [Element web](https://github.com/vector-im/element-web)
-
-You can have more information on the [Tchap website](https://tchap.numerique.gouv.fr/) and find help on our [FAQ](https://aide.tchap.numerique.gouv.fr/)
 
 ## Config variable
 
