@@ -4,7 +4,6 @@ Tchap is a web app that allows you to chat through the matrix protocol for the F
 
 You can have more information on the [Tchap website](https://tchap.numerique.gouv.fr/) and find help on our [FAQ](https://aide.tchap.numerique.gouv.fr/)
 
-
 ## Config variable
 
 - tchap_features : Object containing the feature that can be activated by homeserver
@@ -56,9 +55,12 @@ Then also update the `tchap-modifications.json` file. We continue to keep track 
 
 ## Copyright & License
 
-Copyright (c) 2024-2025 Direction Interministérielle du Numérique - Gouvernement Français
+Copyright (c) 2014-2017 OpenMarket Ltd
+Copyright (c) 2017 Vector Creations Ltd
+Copyright (c) 2017-2025 New Vector Ltd
+2024-2025, Direction interministérielle du numérique
 
-This software is multi licensed by DINUM. It can be used either:
+This software is multi licensed by New Vector Ltd (Element).. It can be used either:
 
 (1) for free under the terms of the GNU Affero General Public License (as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version); OR
 
