@@ -2,7 +2,7 @@ import { Client, Store, Stronghold } from '@tauri-apps/plugin-stronghold';
 import { appDataDir } from '@tauri-apps/api/path';
 import { logger } from 'matrix-js-sdk/src/logger';
 
-// Tauri secure storage - using strongholg
+// Tauri secure storage - using stronghold
 export class TauriSecureStorage {
     private store: Store | undefined;
     private client: Stronghold | undefined;
