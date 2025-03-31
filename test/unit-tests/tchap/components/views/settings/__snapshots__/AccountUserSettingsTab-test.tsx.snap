@@ -193,7 +193,7 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
                                 
                                   <img
                                     alt="Tchap"
-                                    src="https://www.tchap.gouv.fr/themes/tchap/img/logos/tchap-logo.svg"
+                                    src="https://www.tchap.gouv.fr/vector-icons/120.png"
                                     style="display:block;min-width:50px;"
                                     width="50"
                                   />
