@@ -17,9 +17,9 @@
   </a>
 </p>
 
-Tchap is a web app that allows you to chat through the matrix protocol for the French public service. It is a fork of [Element web](https://github.com/vector-im/element-web)
+Tchap is a web app that allows you to chat through the matrix protocol for the French public service. It is a soft fork of [Element web](https://github.com/vector-im/element-web), we diverge only for specific requirements.
 
-## Config variable
+## Config variables
 
 - tchap_features : Object containing the feature that can be activated by homeserver
     - "feature_email_notification": Email notification
@@ -52,7 +52,7 @@ yarn start
 
 ### Making a change
 
-- In element code :
+- In Element code (everything outside of tchap folders) :
   You need to add around your code those comments
 
 ```
@@ -75,7 +75,7 @@ Copyright (c) 2017 Vector Creations Ltd
 Copyright (c) 2017-2025 New Vector Ltd
 2024-2025, Direction interministérielle du numérique
 
-This software is multi licensed by New Vector Ltd (Element).. It can be used either:
+This software is multi licensed by New Vector Ltd (Element). It can be used either:
 
 (1) for free under the terms of the GNU Affero General Public License (as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version); OR
 
