@@ -29,22 +29,22 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
         const key = `seshat|${userId}|${deviceId}`;
 
         let passphrase: Uint8Array = await this.platform.getSecureStorageInstance().getItem(key);
-        logger.log("[init_event_index] key", key);
+        logger.info("[init_event_index] key", key);
 
         if (!passphrase) {
-            logger.log("[init_event_index] Passphrase was not found, creating new one");
+            logger.info("[init_event_index] Passphrase was not found, creating new one");
             const ramdom32Bytes: Uint8Array = this.platform.getSecureStorageInstance().getRandom32Bytes();
             this.platform.getSecureStorageInstance().createItem(key, ramdom32Bytes);
             passphrase = ramdom32Bytes;
         }
         
         const passphraseString: string = new TextDecoder().decode(passphrase);
-        logger.log("[init_event_index] passphrase decoded", passphraseString);
+        logger.info("[init_event_index] passphrase decoded", passphraseString);
         return this.ipc.call("init_event_index", {passphrase: passphraseString});
     }
 
     public async addEventToIndex(event: IMatrixEvent, profile: IMatrixProfile): Promise<void> {
-        logger.log("[addliveenent] ", event);
+        logger.info("[addliveenent] ", event);
 
         // return this.ipc.call("add_event_to_index", {event: seshatEvent, profile});
         return this.ipc.call("add_event_to_index", {event, profile});
@@ -68,7 +68,7 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
 
     public async searchEventIndex(searchArgs: ISearchArgs): Promise<IResultRoomEvents> {
         const result = await this.ipc.call("search_event_index", {searchConfig: searchArgs});
-        logger.log("[searcheventindex]", result);
+        logger.info("[searcheventindex]", result);
         return result;
     }
 

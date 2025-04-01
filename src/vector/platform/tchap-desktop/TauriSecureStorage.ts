@@ -53,20 +53,20 @@ export class TauriSecureStorage {
 
     // On dev build, loading the stronghold vault takes a really long time https://github.com/tauri-apps/tauri/issues/4197
     public async initStronghold(): Promise<void> {
-        logger.log("[Tauri] Initializing stronghold");
+        logger.info("[Tauri] Initializing stronghold");
         try {
             if (!this.store) {
                 const vaultPath = `${await appDataDir()}/vault.hold`;
-                logger.log("[Tauri] vaulpath", vaultPath);
+                logger.info("[Tauri] vaulpath", vaultPath);
                 const vaultPassword = 'tchap-desktop-vault321';
                 const stronghold = await Stronghold.load(vaultPath, vaultPassword);
                 const clientName = 'tchap-desktop';
                 let client: Client;
                 try {
-                    logger.log("[Tauri] stronghold loaded");
+                    logger.info("[Tauri] stronghold loaded");
                     client = await stronghold.loadClient(clientName);
                 } catch {
-                    logger.log("[Tauri] stronghold created");
+                    logger.info("[Tauri] stronghold created");
                     client = await stronghold.createClient(clientName);
                 }
               

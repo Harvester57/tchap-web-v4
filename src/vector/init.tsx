@@ -41,7 +41,7 @@ export async function preparePlatform(): Promise<void> {
         PlatformPeg.set(new ElectronPlatform());
     // :TCHAP:
     } else if (window.__TAURI__){
-        logger.log("Using Tauri platform");
+        logger.info("Using Tauri platform");
         // Inject Tauri Secure storage into platform
         const tauriSecureStorage = new TauriSecureStorage(); 
         await tauriSecureStorage.initStronghold();

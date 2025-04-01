@@ -63,7 +63,7 @@ export default class TauriPlatform extends BasePlatform {
 
         // this.ipc.call("set_homeserver_url", MatrixClientPeg.get()?.getHomeserverUrl());
         // getCurrentWindow().onCloseRequested(async (event) => {
-        //     logger.log("tchap-desktop closing", event);
+        //     logger.info("tchap-desktop closing", event);
         //     // shutdown eventindex db 
         //     this.eventIndexManager.closeEventIndex();
         //     process.exit();
@@ -76,7 +76,7 @@ export default class TauriPlatform extends BasePlatform {
         
         const update = await check();
         if (update) {
-            logger.log(
+            logger.info(
                 `found update ${update.version} from ${update.date} with notes ${update.body}`
             );
             let downloaded = 0;
@@ -86,19 +86,19 @@ export default class TauriPlatform extends BasePlatform {
                 switch (event.event) {
                 case 'Started':
                     contentLength = event.data.contentLength ?? 0;
-                    logger.log(`started downloading desktop update${contentLength} bytes`);
+                    logger.info(`started downloading desktop update${contentLength} bytes`);
                     break;
                 case 'Progress':
                     downloaded += event.data.chunkLength;
-                    logger.log(`downloaded ${downloaded} from ${contentLength}`);
+                    logger.info(`downloaded ${downloaded} from ${contentLength}`);
                     break;
                 case 'Finished':
-                    logger.log('download tauri update finished');
+                    logger.info('download tauri update finished');
                     break;
                 }
             });
 
-            logger.log('Desktop update installed');
+            logger.info('Desktop update installed');
             await relaunch();
         }
     }
