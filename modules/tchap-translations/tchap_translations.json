@@ -979,5 +979,9 @@
     "onboarding|create_room": {
         "en": "Download the mobile app",
         "fr": "Télécharger l'application mobile"
+    },
+    "room_settings|permissions|m.call.member": {
+        "en": "Allow users to start group calls",
+        "fr": "Autoriser les utilisateurs à démarrer les appels groupés"
     }
 }

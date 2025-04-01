@@ -182,7 +182,8 @@ export default async function createRoom(client: MatrixClient, opts: IOpts): Pro
             events: {
                 ...DEFAULT_EVENT_POWER_LEVELS,
                 // It should always (including non video rooms) be possible to join a group call.
-                [ElementCall.MEMBER_EVENT_TYPE.name]: 0,
+                // [ElementCall.MEMBER_EVENT_TYPE.name]: 0, // :TCHAP: group-calls-settings-tab only admin can enable group calls
+                [ElementCall.MEMBER_EVENT_TYPE.name]: 100, // :TCHAP: group-calls-settings-tab only admin can enable group calls
                 // Make sure only admins can enable it (DEPRECATED)
                 [ElementCall.CALL_EVENT_TYPE.name]: 100,
             },

@@ -183,9 +183,15 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
         stateLevel: number,
         eventsLevel: number,
     ): void {
+        console.log("populateDefaultPlEvents", eventsSection, stateLevel, eventsLevel);
+        console.log("plEventsToShow", plEventsToShow);
         for (const desiredEvent of Object.keys(plEventsToShow)) {
             if (!(desiredEvent in eventsSection)) {
-                eventsSection[desiredEvent] = plEventsToShow[desiredEvent].isState ? stateLevel : eventsLevel;
+                if (desiredEvent === ElementCall.MEMBER_EVENT_TYPE.name) {
+                    eventsSection[desiredEvent] = 100; // Set to 0 instead of stateLevel
+                } else {
+                    eventsSection[desiredEvent] = plEventsToShow[desiredEvent].isState ? stateLevel : eventsLevel;
+                }
             }
         }
     }
@@ -440,6 +446,11 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
         // hide the power level selector for enabling E2EE if it the room is already encrypted
         if (this.state.isRoomEncrypted) {
             delete eventsLevels[EventType.RoomEncryption];
+        }
+
+        // :TCHAP: group-calls-settings-tab
+        if (SettingsStore.getValue("feature_group_calls")) {
+            delete eventsLevels[ElementCall.CALL_EVENT_TYPE.name];
         }
 
         const eventPowerSelectors = Object.keys(eventsLevels)
