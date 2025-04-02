@@ -54,7 +54,7 @@
         "UIFeature.shareSocial": false,
         "UIFeature.registration": true,
         "UIFeature.urlPreviews": false,
-        "UIFeature.widgets": false,
+        "UIFeature.widgets": true,
         "UIFeature.shareQrCode": false,
         "UIFeature.thirdPartyId": true,
         "UIFeature.identityServer": true,
@@ -123,5 +123,8 @@
     "posthog": {
         "project_api_key": "phc_FFa4pkvmuWjF9nZOMmYJWUXMibuYnCnPyf3DqPGZs4L",
         "api_host": "https://posthogdev.tchap.incubateur.net"
+    },
+    "element_call": {
+        "url": "https://call.preprod.tchap.gouv.fr/"
     }
 }
