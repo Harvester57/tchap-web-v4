@@ -21,7 +21,7 @@ export const generateSignatureHtml = (userPermalink: string): string => {
                     <table cellpadding="0" style="border-collapse:collapse;">
                         <tr>
                             <td valign="top" style="margin:0px;padding:0 10px 0 0;">
-                                <img src="https://www.tchap.gouv.fr/themes/tchap/img/logos/tchap-logo.svg" width="50" style="display:block;min-width:50px;" alt="Tchap">
+                                <img src="https://www.tchap.gouv.fr/vector-icons/120.png" width="50" style="display:block;min-width:50px;" alt="Tchap">
                             </td>
                             <td style="margin:0px;padding:0 10px 0 0;" valign="top">
                                 <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
