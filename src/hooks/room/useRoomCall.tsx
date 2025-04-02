@@ -143,6 +143,8 @@ export const useRoomCall = (
         const options: PlatformCallType[] = [];
         if (memberCount <= 2) {
             options.push(PlatformCallType.LegacyCall);
+            return options; // :TCHAP: flow-legacy-call-element-call in all case if 
+                            // we are only two in the room we use legacy call, compatible with legacy mobile apps
         }/* :TCHAP: remove-jitsi-option
         else if (mayEditWidgets || hasJitsiWidget) {
             options.push(PlatformCallType.JitsiCall);

@@ -2,6 +2,7 @@ import React from "react";
 import { KnownMembership, PendingEventOrdering, Room } from "matrix-js-sdk/src/matrix";
 import { screen, render, type RenderOptions, getByLabelText, queryByLabelText } from "jest-matrix-react";
 import { mocked } from "jest-mock";
+import { CallType } from "matrix-js-sdk/src/webrtc/call";
 
 import { mkRoomMember, stubClient } from "~tchap-web/test/test-utils";
 import RoomHeader from "~tchap-web/src/components/views/rooms/RoomHeader/RoomHeader";
@@ -13,8 +14,11 @@ import SettingsStore from "~tchap-web/src/settings/SettingsStore";
 import { UIFeature } from "~tchap-web/src/settings/UIFeature";
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
+import { placeCall } from "~tchap-web/src/utils/room/placeCall";
+import { PlatformCallType } from "~tchap-web/src/hooks/room/useRoomCall";
 
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
+jest.mock("~tchap-web/src/utils/room/placeCall");
 
 jest.mock("~tchap-web/src/hooks/right-panel/useCurrentPhase", () => ({
     useCurrentPhase: () => {
@@ -60,10 +64,15 @@ describe("RoomHeader", () => {
     const homeserverName: string = "my.home.server";
     const mockedTchapRoomUtils = mocked(TchapRoomUtils);
 
-    const addHomeserverToMockConfig = (homeservers: string[], feature: string) => {
-        // mock SdkConfig.get("tchap_features")
+    const addHomeserverToMockConfig = (homeservers: string[], feature: string | string[]) => {
         const config: ConfigOptions = { tchap_features: {} };
-        config.tchap_features[feature] = homeservers;
+        if (Array.isArray(feature)) {
+            feature.forEach((f) => {
+                config.tchap_features[f] = homeservers;
+            });
+        } else {
+            config.tchap_features[feature] = homeservers;
+        }
         SdkConfig.put(config);
     };
 
@@ -106,6 +115,10 @@ describe("RoomHeader", () => {
         DMRoomMap.setShared({
             getUserIdForRoomId: jest.fn(),
         } as unknown as DMRoomMap);
+
+        jest.mocked(placeCall).mockImplementation(async (room, type, deviceOptions, startWithVideo) => {
+            return Promise.resolve();
+        });
     });
 
     afterEach(() => {
@@ -161,7 +174,7 @@ describe("RoomHeader", () => {
     it("hides the video button when feature is activated but is not a direct message room", () => {
         addHomeserverToMockConfig([homeserverName], featureVideoName);
 
-        mockDMRoom(4);
+        mockRoomMembers(room, 4);
 
         const { container } = getComponent();
 
@@ -199,5 +212,45 @@ describe("RoomHeader", () => {
         const { container } = getComponent();
 
         expect(queryByLabelText(container, "Video call")).toBeNull();
+    });
+
+    // :TCHAP: flow-legacy-call-element-call
+    it("directly start legacy call when there is only two users in the room", async () => {
+        addHomeserverToMockConfig([homeserverName], featureVideoGroupName);
+        mockRoomMembers(room, 2);
+
+        const { container } = getComponent();
+        const videoButton = getByLabelText(container, "Video call");
+
+        // Click the video call button
+        await videoButton.click();
+        // placeCall to have been called with PlatformCallType.LegacyCall
+        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
+    });
+
+    it("directly start legacy call when it is a DM room and element call is enabled", async () => {
+        addHomeserverToMockConfig([homeserverName], [featureVideoGroupName, featureVideoName]);
+        mockDMRoom();
+
+        const { container } = getComponent();
+        const videoButton = getByLabelText(container, "Video call");
+
+        // Click the video call button
+        await videoButton.click();
+        // placeCall to have been called with PlatformCallType.LegacyCall
+        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
+    });
+
+    it("directly start element call when there is more than two users in the room", async () => {
+        addHomeserverToMockConfig([homeserverName], featureVideoGroupName);
+        mockRoomMembers(room, 4);
+
+        const { container } = getComponent();
+        const videoButton = getByLabelText(container, "Video call");
+
+        // Click the video call button
+        await videoButton.click();
+        // placeCall to have been called with PlatformCallType.ElementCall
+        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
     });
 });
