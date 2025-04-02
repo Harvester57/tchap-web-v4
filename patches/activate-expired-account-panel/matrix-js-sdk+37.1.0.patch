@@ -1,5 +1,5 @@
 diff --git a/node_modules/matrix-js-sdk/src/http-api/fetch.ts b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-index 4285d92..459e1b8 100644
+index 4285d92..c644ae2 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 @@ -210,6 +210,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
@@ -9,7 +9,7 @@ index 4285d92..459e1b8 100644
 +            //:tchap: this error is sent by the synapse module (synapse-email-account-validity)[https://github.com/matrix-org/synapse-email-account-validity]
 +            // when user account has expired
 +            else if (error.errcode == 'ORG_MATRIX_EXPIRED_ACCOUNT') {
-+                this.eventEmitter.emit(HttpApiEvent.ORG_MATRIX_EXPIRED_ACCOUNT, err);
++                this.eventEmitter.emit(HttpApiEvent.ORG_MATRIX_EXPIRED_ACCOUNT, error);
 +            }
 +            //:tchap end
  
