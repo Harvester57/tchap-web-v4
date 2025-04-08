@@ -59,5 +59,6 @@
     "unsupported_browser|title",
     "unsupported_browser|description",
     "unsupported_browser",
-    "common|not_trusted"
+    "common|not_trusted",
+    "voip|video_call_using"
 ]

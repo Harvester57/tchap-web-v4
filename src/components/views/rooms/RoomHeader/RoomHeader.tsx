@@ -159,51 +159,65 @@ export default function RoomHeader({
     );
 
     const startVideoCallButton = (
+        // :TCHAP: flow-legacy-call-element-call
+        // We don't show the user a selection of different type of calls, we make the descision based on the number of members in the room
+        // <>
+        //     {/* Can be either a menu or just a button depending on the number of call options.*/}
+        //     {callOptions.length > 1 ? (
+        //         <Menu
+        //             open={menuOpen}
+        //             onOpenChange={onOpenChange}
+        //             title={_t("voip|video_call_using")}
+        //             trigger={
+        //                 <IconButton
+        //                     disabled={!!videoCallDisabledReason}
+        //                     aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
+        //                 >
+        //                     {callIconWithTooltip}
+        //                 </IconButton>
+        //             }
+        //             side="left"
+        //             align="start"
+        //         >
+        //             {callOptions.map((option) => {
+        //                 const { label, children } = getPlatformCallTypeProps(option);
+        //                 return (
+        //                     <MenuItem
+        //                         key={option}
+        //                         label={label}
+        //                         aria-label={label}
+        //                         children={children}
+        //                         className="mx_RoomHeader_videoCallOption"
+        //                         onClick={(ev) => videoCallClick(ev, option)}
+        //                         Icon={VideoCallIcon}
+        //                         onSelect={() => {} /* Dummy handler since we want the click event.*/}
+        //                     />
+        //                 );
+        //             })}
+        //         </Menu>
+        //     ) : (
+        //         <IconButton
+        //             disabled={!!videoCallDisabledReason}
+        //             aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
+        //             onClick={videoClick}
+        //         >
+        //             {callIconWithTooltip}
+        //         </IconButton>
+        //     )}
+        // </>
+
         <>
-            {/* Can be either a menu or just a button depending on the number of call options.*/}
-            {callOptions.length > 1 ? (
-                <Menu
-                    open={menuOpen}
-                    onOpenChange={onOpenChange}
-                    title={_t("voip|video_call_using")}
-                    trigger={
-                        <IconButton
-                            disabled={!!videoCallDisabledReason}
-                            aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
-                        >
-                            {callIconWithTooltip}
-                        </IconButton>
-                    }
-                    side="left"
-                    align="start"
-                >
-                    {callOptions.map((option) => {
-                        const { label, children } = getPlatformCallTypeProps(option);
-                        return (
-                            <MenuItem
-                                key={option}
-                                label={label}
-                                aria-label={label}
-                                children={children}
-                                className="mx_RoomHeader_videoCallOption"
-                                onClick={(ev) => videoCallClick(ev, option)}
-                                Icon={VideoCallIcon}
-                                onSelect={() => {} /* Dummy handler since we want the click event.*/}
-                            />
-                        );
-                    })}
-                </Menu>
-            ) : (
-                <IconButton
-                    disabled={!!videoCallDisabledReason}
-                    aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
-                    onClick={videoClick}
-                >
-                    {callIconWithTooltip}
-                </IconButton>
-            )}
+            <IconButton
+                disabled={!!videoCallDisabledReason}
+                aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
+                onClick={videoClick}
+            >
+                {callIconWithTooltip}
+            </IconButton>
         </>
+        // end :TCHAP:
     );
+    
     let voiceCallButton: JSX.Element | undefined = (
         <Tooltip label={voiceCallDisabledReason ?? _t("voip|voice_call")}>
             <IconButton
