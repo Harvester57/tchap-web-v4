@@ -150,8 +150,8 @@ export default class TauriPlatform extends BasePlatform {
     public async clearStorage(): Promise<void> {
         try {
             await super.clearStorage();
-            await this.ipc.call("clearStorage");
-        } catch {}
+            await this.ipc.call("clear_storage");
+        } catch {}  
     }
       
     public getEventIndexingManager(): BaseEventIndexManager | null {

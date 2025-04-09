@@ -306,6 +306,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
      *  * If all else fails, present a login screen.
      */
     private async initSession(): Promise<void> {
+        logger.info("------- Init session -------");
         // The Rust Crypto SDK will break if two Element instances try to use the same datastore at once, so
         // make sure we are the only Element instance in town (on this browser/domain).
         if (!(await getSessionLock(() => this.onSessionLockStolen()))) {
@@ -358,6 +359,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         // the old creds, but rather go straight to the relevant page
         const firstScreen = this.screenAfterLogin ? this.screenAfterLogin.screen : null;
         const restoreSuccess = await this.loadSession();
+        logger.info("------- Restore session -------");
         if (restoreSuccess) {
             return;
         }
@@ -1687,6 +1689,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
      * @private
      */
     private async onClientStarted(): Promise<void> {
+        console.log("----- onClientStarted -----");
         const cli = MatrixClientPeg.safeGet();
 
         const shouldForceVerification = await this.shouldForceVerification();
@@ -1701,6 +1704,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         }
 
         const crypto = cli.getCrypto();
+        console.log("----- onClientStarted crypto -----", crypto);
         if (crypto) {
             const blacklistEnabled = SettingsStore.getValueAt(SettingLevel.DEVICE, "blacklistUnverifiedDevices");
             crypto.globalBlacklistUnverifiedDevices = blacklistEnabled;
@@ -1715,6 +1719,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         this.setState({
             ready: true,
         });
+        console.log("----- onClientStarted ready -----");
     }
 
     public showScreen(screen: string, params?: { [key: string]: any }): void {
@@ -2073,10 +2078,12 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         } else if (this.state.view === Views.E2E_SETUP) {
             view = <E2eSetup onFinished={this.onCompleteSecurityE2eSetupFinished} />;
         } else if (this.state.view === Views.LOGGED_IN) {
+            console.log("----- LOGGED_IN -----");
             // `ready` and `view==LOGGED_IN` may be set before `page_type` (because the
             // latter is set via the dispatcher). If we don't yet have a `page_type`,
             // keep showing the spinner for now.
             if (this.state.ready && this.state.page_type) {
+                console.log("----- LOGGED_IN ready -----");
                 /* for now, we stuff the entirety of our props and state into the LoggedInView.
                  * we should go through and figure out what we actually need to pass down, as well
                  * as using something like redux to avoid having a billion bits of state kicking around.
@@ -2092,6 +2099,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
                     />
                 );
             } else {
+                console.log("----- LOGGED_IN else -----");
                 // we think we are logged in, but are still waiting for the /sync to complete
                 view = (
                     <LoginSplashView
