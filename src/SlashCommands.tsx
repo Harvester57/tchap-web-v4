@@ -61,6 +61,7 @@ import { deop, op } from "./slash-commands/op";
 import { CommandCategories } from "./slash-commands/interface";
 import { Command } from "./slash-commands/command";
 import { goto, join } from "./slash-commands/join";
+import { visioCommand } from "./tchap/util/TchapCommands";
 
 export { CommandCategories, Command };
 
@@ -900,6 +901,24 @@ export const Commands = [
         category: CommandCategories.messages,
         hideCompletionAfterSpace: true,
     }),
+
+    // :TCHAP: visio-command
+    new Command({
+        command: "visio",
+        description: _td("slash_command|visio"),
+        category: CommandCategories.messages,
+        runFn: function (cli, roomId, threadId, args) {
+            const visioUrl = visioCommand();
+            const description = args ? args : _t("slash_command|visio_default_description");
+            const message = `${description} : ${visioUrl}`;
+
+            return successSync(ContentHelpers.makeHtmlMessage(message, `
+                <h3>${description}:</h3>
+                <a href="${visioUrl}">${visioUrl}</a>
+            `));
+        },
+    }),
+    // end :TCHAP:
 
     ...CHAT_EFFECTS.map((effect) => {
         return new Command({

@@ -959,5 +959,13 @@
     "settings|encryption|recovery|description": {
         "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
         "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
+    },
+    "slash_command|visio": {
+        "en": "Create a link to Visio with a message",
+        "fr": "Créer un lien Visio avec le message suivant"
+    },
+    "slash_command|visio_default_description": {
+        "en": "Generated Visio link",
+        "fr": "Lien Visio généré"
     }
 }
