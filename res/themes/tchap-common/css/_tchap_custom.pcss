@@ -130,3 +130,22 @@
 .mx_MemberListHeaderView {
     max-height: none;
 }
+
+/* tchap home page button */
+.mx_HomePage_default {
+    .mx_HomePage_default_buttons {
+        .mx_AccessibleButton {
+            &.mx_HomePage_button_sendDm::before {
+                mask-image: url("$(res)/img/tchap/guide.svg");
+            }
+            
+            &.mx_HomePage_button_explore::before {
+                mask-image: url("$(res)/img/tchap/backup.svg");
+            }
+            
+            &.mx_HomePage_button_createGroup::before {
+                mask-image: url("$(res)/img/tchap/installation.svg");
+            }
+        }
+    }
+}
