@@ -169,7 +169,7 @@ export default async function createRoom(client: MatrixClient, opts: IOpts): Pro
                     // Allow all users to send call membership updates
                     [ElementCall.MEMBER_EVENT_TYPE.name]: 0,
                     // Make calls immutable, even to admins
-                    [ElementCall.CALL_EVENT_TYPE.name]: 200,
+                    // [ElementCall.CALL_EVENT_TYPE.name]: 200, :TCHAP: (DEPRECATED)
                 },
                 users: {
                     // Temporarily give ourselves the power to set up a call
@@ -182,10 +182,9 @@ export default async function createRoom(client: MatrixClient, opts: IOpts): Pro
             events: {
                 ...DEFAULT_EVENT_POWER_LEVELS,
                 // It should always (including non video rooms) be possible to join a group call.
-                // [ElementCall.MEMBER_EVENT_TYPE.name]: 0, // :TCHAP: group-calls-settings-tab only admin can enable group calls
-                [ElementCall.MEMBER_EVENT_TYPE.name]: 100, // :TCHAP: group-calls-settings-tab only admin can enable group calls
+                [ElementCall.MEMBER_EVENT_TYPE.name]: 0,
                 // Make sure only admins can enable it (DEPRECATED)
-                [ElementCall.CALL_EVENT_TYPE.name]: 100,
+                // [ElementCall.CALL_EVENT_TYPE.name]: 100, :TCHAP:
             },
         };
     }

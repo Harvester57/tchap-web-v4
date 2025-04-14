@@ -1040,7 +1040,8 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
         } else if (
             (this.props.continuation && this.context.timelineRenderingType !== TimelineRenderingType.File) ||
             eventType === EventType.CallInvite ||
-            ElementCall.CALL_EVENT_TYPE.matches(eventType)
+            // ElementCall.CALL_EVENT_TYPE.matches(eventType) :TCHAP: deprecated-call-event-permissions
+            ElementCall.MEMBER_EVENT_TYPE.matches(eventType)
         ) {
             // no avatar or sender profile for continuation messages and call tiles
             avatarSize = null;

@@ -81,8 +81,12 @@ export function getEventDisplayInfo(
         eventType === EventType.RoomCreate ||
         eventType === EventType.RoomEncryption ||
         factory === JitsiEventFactory;
+    // :TCHAP:
+    // const isLeftAlignedBubbleMessage =
+    //     !isBubbleMessage && (eventType === EventType.CallInvite || ElementCall.CALL_EVENT_TYPE.matches(eventType));
     const isLeftAlignedBubbleMessage =
-        !isBubbleMessage && (eventType === EventType.CallInvite || ElementCall.CALL_EVENT_TYPE.matches(eventType));
+        !isBubbleMessage && (eventType === EventType.CallInvite || ElementCall.MEMBER_EVENT_TYPE.matches(eventType));
+    // end :TCHAP:
     let isInfoMessage = calcIsInfoMessage(eventType, content, isBubbleMessage, isLeftAlignedBubbleMessage);
     // Some non-info messages want to be rendered in the appropriate bubble column but without the bubble background
     const noBubbleEvent =
