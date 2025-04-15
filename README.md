@@ -45,7 +45,6 @@ Tchap is a web app that allows you to chat through the matrix protocol for the F
 ```
 yarn install
 yarn start
-
 ```
 
 ## Dev guidelines
