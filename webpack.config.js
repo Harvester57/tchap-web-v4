@@ -20,7 +20,7 @@ const { RetryChunkLoadPlugin } = require("webpack-retry-chunk-load-plugin");
 
 dotenv.config();
 let ogImageUrl = process.env.RIOT_OG_IMAGE_URL;
-if (!ogImageUrl) ogImageUrl = "https://app.element.io/themes/element/img/logos/opengraph.png";
+if (!ogImageUrl) ogImageUrl = "https://www.tchap.gouv.fr/vector-icons/620x300.png"; // :TCHAP:
 
 const cssThemes = {
     // CSS themes
