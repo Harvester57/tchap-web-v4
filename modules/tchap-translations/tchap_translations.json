@@ -244,7 +244,7 @@
         "fr": "La connexion à Tchap n'est pas possible pour le moment %(errCode)s. <a>Voir l'état du service</a>"
     },
     "That email is not allowed on Tchap": {
-        "en": "Your email adress is not allowed on Tchap. Make an autorization request <a>here</a>",
+        "en": "Your email address is not allowed on Tchap. Make an authorization request <a>here</a>",
         "fr": "Votre adresse mail n'est pas autorisée sur Tchap. Demandez l'accès à Tchap pour votre administration via <a>ce formulaire</a>"
     },
     "You can refresh the page to continue your conversations": {
