@@ -967,5 +967,17 @@
     "slash_command|visio_default_description": {
         "en": "Generated Visio link",
         "fr": "Lien Visio généré"
+    },
+    "onboarding|send_dm": {
+        "en": "Consult the onboarding guide",
+        "fr": "Consulter le guide de prise en main"
+    },
+    "onboarding|explore_rooms": {
+        "en": "Activate automatic backup",
+        "fr": "Activer la sauvegarde automatique"
+    },
+    "onboarding|create_room": {
+        "en": "Download the mobile app",
+        "fr": "Télécharger l'application mobile"
     }
 }
