@@ -112,8 +112,6 @@ async function start(): Promise<void> {
         registerExpiredAccountListener,
         saveAppVersionInLocalStorage,
         queueOverideUserSettings,
-        queueClearCacheAndReload,
-        needsRefreshForVersion4,
     } = await import(
         /* webpackChunkName: "initTchap" */
         /* webpackPreload: true */
@@ -150,10 +148,6 @@ async function start(): Promise<void> {
         await settled(rageshakePromise);
 
         const fragparts = parseQsFromFragment(window.location);
-        //:tchap: determine if a hard refresh is needed
-        const needRefreshForV4 = await needsRefreshForVersion4();
-        console.log(`:TCHAP: queue a hard clear cache and reload for this version? ${needRefreshForV4}`);
-        //:tchap: end
 
         // don't try to redirect to the native apps if we're
         // verifying a 3pid (but after we've loaded the config)
@@ -267,10 +261,6 @@ async function start(): Promise<void> {
 
         //:tchap attach handler
         queueOverideUserSettings();
-
-        if (needRefreshForV4) {
-            queueClearCacheAndReload();
-        }
 
         registerExpiredAccountListener();
         //end of :tchap:
