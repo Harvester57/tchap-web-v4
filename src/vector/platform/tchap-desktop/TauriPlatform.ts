@@ -1,9 +1,10 @@
 // import { listen } from '@tauri-apps/api/event';
 import { getVersion } from '@tauri-apps/api/app';
 import { logger } from 'matrix-js-sdk/src/logger';
-import { getCurrentWindow } from "@tauri-apps/api/window";
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
+import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
+import { MatrixClient } from 'matrix-js-sdk/src/matrix';
 
 import BasePlatform from "../../../BasePlatform";
 import dis from "../../../dispatcher/dispatcher";
@@ -17,13 +18,14 @@ import { TauriSecureStorage } from './TauriSecureStorage';
 
 import BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexManager';
 
+const SSO_ID_KEY = "tchap-desktop-ssoid";
+
 function onAction(payload: ActionPayload): void {
     // Whitelist payload actions, no point sending most across
     if (["call_state"].includes(payload.action)) {
         window.__TAURI__.core.invoke("app_onAction", payload);
     }
 }
-
 
 function platformFriendlyName(): string {
     // used to use window.process but the same info is available here
@@ -48,7 +50,9 @@ export default class TauriPlatform extends BasePlatform {
     private readonly ipc = new IPCManager();
     private readonly eventIndexManager: BaseEventIndexManager = new TauriSeshatIndexManager(this);
     protected tauriSecureStorage: TauriSecureStorage;
-
+    
+    // this is the opaque token we pass to the HS which when we get it in our callback we can resolve to a profile
+    private readonly ssoID: string = secureRandomString(32);
     public constructor(tauriSecureStorage: TauriSecureStorage) {
         super();
 
@@ -166,6 +170,29 @@ export default class TauriPlatform extends BasePlatform {
         // This configuration is element-desktop specific so the types here do not know about it
         return (SdkConfig.get() as unknown as Record<string, string>)["web_base_url"] ?? "https://www.tchap.gouv.fr/";
     }
+
+
+    public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
+        const url = super.getSSOCallbackUrl(fragmentAfterLogin);
+        url.protocol = "tchap";
+        url.searchParams.set(SSO_ID_KEY, this.ssoID);
+        return url;
+    }
+
+    public startSingleSignOn(
+        mxClient: MatrixClient,
+        loginType: "sso" | "cas",
+        fragmentAfterLogin: string,
+        idpId?: string,
+    ): void {
+        // this will get intercepted by electron-main will-navigate
+        super.startSingleSignOn(mxClient, loginType, fragmentAfterLogin, idpId);
+    }
+
+    public getOidcClientState(): string {
+        return `:${SSO_ID_KEY}:${this.ssoID}`;
+    }
+
 
     public async getAppVersion(): Promise<string> {
         return await getVersion();

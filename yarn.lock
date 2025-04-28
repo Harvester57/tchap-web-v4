@@ -2885,29 +2885,15 @@
     "@svgr/plugin-jsx" "8.1.0"
     "@svgr/plugin-svgo" "8.1.0"
 
-"@testcontainers/postgresql@^10.18.0":
-  version "10.19.0"
-  resolved "https://registry.yarnpkg.com/@testcontainers/postgresql/-/postgresql-10.19.0.tgz#e1ff9fbfee76c23bc899865524ee8e2ee297bdf2"
-  integrity sha512-3+yQJHCWEtp4hylfZgRxCWN1P6dGqKhFM7Bypg22NpJqq1x/dcmamVCvD+4eTdm1uHV1Ta0BkHRWejxGOyTnrw==
-  dependencies:
-<<<<<<< HEAD
-    testcontainers "^10.19.0"
-
-    
-=======
-    testcontainers "^10.22.0"
-
->>>>>>> 4770fc8dfa5 (TCHAP(desktop): update package json after rebase)
-
 "@tauri-apps/api@^2.0.0", "@tauri-apps/api@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-2.2.0.tgz#daaff2515b1a4ff1e763cf84a414548b02b566c5"
-  integrity sha512-R8epOeZl1eJEl603aUMIGb4RXlhPjpgxbGVEaqY+0G5JG9vzV/clNlzTeqc+NLYXVqXcn8mb4c5b9pJIUDEyAg==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-2.5.0.tgz#f1c67b5505ba689621b549f9d0165389337586dc"
+  integrity sha512-Ldux4ip+HGAcPUmuLT8EIkk6yafl5vK0P0c0byzAKzxJh7vxelVtdPONjfgTm96PbN24yjZNESY8CKo8qniluA==
 
 "@tauri-apps/plugin-process@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-process/-/plugin-process-2.2.0.tgz#e9f9b510374250967d2ba7d343a08c9024bdd473"
-  integrity sha512-uypN2Crmyop9z+KRJr3zl71OyVFgTuvHFjsJ0UxxQ/J5212jVa5w4nPEYjIewcn8bUEXacRebwE6F7owgrbhSw==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-process/-/plugin-process-2.2.1.tgz#0d442377e37dac52b45d5a1b55d35a20df5f550c"
+  integrity sha512-cF/k8J+YjjuowhNG1AboHNTlrGiOwgX5j6NzsX6WFf9FMzyZUchkCgZMxCdSE5NIgFX0vvOgLQhODFJgbMenLg==
   dependencies:
     "@tauri-apps/api" "^2.0.0"
 
@@ -2919,19 +2905,18 @@
     "@tauri-apps/api" "^2.0.0"
 
 "@tauri-apps/plugin-updater@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-updater/-/plugin-updater-2.6.0.tgz#08302050b8f3974af2b0bff61fe96921f3696584"
-  integrity sha512-j74RUolLIhQDQwrff6R28xIewYVXME1gFU+d+4LYN1dLRzLD+ySa7VHqzyWYxWEvm+TPZ7lkUxa5a9uH9Ist3A==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-updater/-/plugin-updater-2.7.1.tgz#82adcfd06cdd4bc6d64343c8934b700c9174913a"
+  integrity sha512-1OPqEY/z7NDVSeTEMIhD2ss/vXWdpfZ5Th2Mk0KtPR/RA6FKuOTDGZQhxoyYBk0pcZJ+nNZUbl/IujDCLBApjA==
   dependencies:
     "@tauri-apps/api" "^2.0.0"
 
-"@testing-library/cypress@^9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-9.0.0.tgz#3facad49c4654a99bbd138f83f33b415d2d6f097"
-  integrity sha512-c1XiCGeHGGTWn0LAU12sFUfoX3qfId5gcSE2yHode+vsyHDWraxDPALjVnHd4/Fa3j4KBcc5k++Ccy6A9qnkMA==
+"@testcontainers/postgresql@^10.18.0":
+  version "10.19.0"
+  resolved "https://registry.yarnpkg.com/@testcontainers/postgresql/-/postgresql-10.19.0.tgz#e1ff9fbfee76c23bc899865524ee8e2ee297bdf2"
+  integrity sha512-3+yQJHCWEtp4hylfZgRxCWN1P6dGqKhFM7Bypg22NpJqq1x/dcmamVCvD+4eTdm1uHV1Ta0BkHRWejxGOyTnrw==
   dependencies:
-    "@babel/runtime" "^7.14.6"
-    "@testing-library/dom" "^8.1.0"
+    testcontainers "^10.19.0"
 
 "@testing-library/dom@^10.4.0":
   version "10.4.0"
@@ -12380,7 +12365,6 @@ tar-js@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/tar-js/-/tar-js-0.3.0.tgz#6949aabfb0ba18bb1562ae51a439fd0f30183a17"
   integrity sha512-9uqP2hJUZNKRkwPDe5nXxXdzo6w+BFBPq9x/tyi5/U/DneuSesO/HMb0y5TeWpfcv49YDJTs7SrrZeeu8ZHWDA==
-
 
 tar-stream@^2.1.4:
   version "2.2.0"
