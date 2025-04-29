@@ -109,7 +109,7 @@ export default function EmailVerificationPage() {
             }
 
             // start SSO flow since we got the homeserver
-            PlatformPeg.get()?.startSingleSignOn(matrixClient, "sso", "/home", "", SSOAction.LOGIN);
+            PlatformPeg.get()?.startSingleSignOn(matrixClient, "sso", "/home", "", SSOAction.LOGIN, email);
 
             setLoading(false);
 

@@ -218,5 +218,12 @@
         "files": [
             "src/components/views/rooms/RoomHeader.tsx"
         ]
+    },
+    "sso-login-hint": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1245",
+        "files": [
+            "src/BasePlatform.ts",
+            "src/components/views/auth/InteractiveAuthEntryComponents.tsx"
+        ]
     }
 }

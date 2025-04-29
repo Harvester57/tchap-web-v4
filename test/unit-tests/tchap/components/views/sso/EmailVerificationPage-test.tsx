@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup, fireEvent, screen, act } from "jest-matrix-react";
 import { mocked, type MockedObject } from "jest-mock";
-import { type MatrixClient } from "matrix-js-sdk/src/matrix";
+import { SSOAction, type MatrixClient } from "matrix-js-sdk/src/matrix";
 
 import type BasePlatform from "~tchap-web/src/BasePlatform";
 
@@ -185,7 +185,16 @@ describe("<EmailVerificationPage />", () => {
             base_url: defaultHsUrl,
             server_name: defaultHsUrl,
         });
-        expect(PlatformPegMocked.startSingleSignOn).toHaveBeenCalledTimes(1);
+
+        expect(PlatformPegMocked.startSingleSignOn).toHaveBeenNthCalledWith(
+            1,
+            mockedClient,
+            "sso",
+            "/home",
+            "",
+            SSOAction.LOGIN,
+            userEmail,
+        );
     });
 
     it("should start sso with correct homeserver 2", async () => {
@@ -213,7 +222,16 @@ describe("<EmailVerificationPage />", () => {
             base_url: secondHsUrl,
             server_name: secondHsUrl,
         });
-        expect(PlatformPegMocked.startSingleSignOn).toHaveBeenCalledTimes(1);
+
+        expect(PlatformPegMocked.startSingleSignOn).toHaveBeenNthCalledWith(
+            1,
+            mockedClient,
+            "sso",
+            "/home",
+            "",
+            SSOAction.LOGIN,
+            userEmail,
+        );
     });
 
     it("should display error when sso is not configured in homeserer", async () => {
