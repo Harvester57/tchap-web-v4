@@ -171,10 +171,6 @@
         "en": "One of your devices <b>wants to check your Tchap Keys</b> to unlock your messages.",
         "fr": "L'un de vos appareils <b>demande à partager vos Clés Tchap</b> pour déverrouiller vos messages."
     },
-    "Passphrase must be at least 8 character long": {
-        "en": "Passphrase must be at least 8 character long",
-        "fr": "Le mot de passe doit minimum faire 8 caractères"
-    },
     "encryption|verification|incoming_sas_dialog_waiting": {
         "en": "Please confirm the objects on the other device (loading).",
         "fr": "Veuillez confirmer les objets sur l'autre appareil (en cours)."

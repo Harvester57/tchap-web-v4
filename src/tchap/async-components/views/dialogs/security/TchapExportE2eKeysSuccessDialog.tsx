@@ -30,7 +30,7 @@ interface IProps {
 }
 
 export default class TchapExportE2eKeysSuccessDialog extends React.Component<IProps> {
-    private constructor(props: IProps) {
+    public constructor(props: IProps) {
         super(props);
 
         this.onClick = this.onClick.bind(this);
