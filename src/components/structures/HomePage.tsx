@@ -13,8 +13,8 @@ import AutoHideScrollbar from "./AutoHideScrollbar";
 import { getHomePageUrl } from "../../utils/pages";
 import { _t, _tDom } from "../../languageHandler";
 import SdkConfig from "../../SdkConfig";
-import dis from "../../dispatcher/dispatcher";
-import { Action } from "../../dispatcher/actions";
+// import dis from "../../dispatcher/dispatcher"; // :TCHAP:
+// import { Action } from "../../dispatcher/actions"; // :TCHAP:
 import BaseAvatar from "../views/avatars/BaseAvatar";
 import { OwnProfileStore } from "../../stores/OwnProfileStore";
 import AccessibleButton, { type ButtonEvent } from "../views/elements/AccessibleButton";
@@ -25,20 +25,39 @@ import MiniAvatarUploader, { AVATAR_SIZE } from "../views/elements/MiniAvatarUpl
 import PosthogTrackers from "../../PosthogTrackers";
 import EmbeddedPage from "./EmbeddedPage";
 
-const onClickSendDm = (ev: ButtonEvent): void => {
-    PosthogTrackers.trackInteraction("WebHomeCreateChatButton", ev);
-    dis.dispatch({ action: Action.CreateChat });
+import { accessSecretStorage } from "~tchap-web/src/SecurityManager"; // :TCHAP:
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP:
+
+/**
+ * 
+ * :TCHAP:
+ */
+// const onClickSendDm = (ev: ButtonEvent): void => {
+//     PosthogTrackers.trackInteraction("WebHomeCreateChatButton", ev);
+//     dis.dispatch({ action: Action.CreateChat });
+// };
+
+// const onClickExplore = (ev: ButtonEvent): void => {
+//     PosthogTrackers.trackInteraction("WebHomeExploreRoomsButton", ev);
+//     dis.fire(Action.ViewRoomDirectory);
+// };
+
+// const onClickNewRoom = (ev: ButtonEvent): void => {
+//     PosthogTrackers.trackInteraction("WebHomeCreateRoomButton", ev);
+//     dis.dispatch({ action: Action.CreateRoom });
+// };
+const onClickFAQ = (ev: ButtonEvent): void => {
+    window.open(TchapUrls.helpBaseUrl, "_blank");
 };
 
-const onClickExplore = (ev: ButtonEvent): void => {
-    PosthogTrackers.trackInteraction("WebHomeExploreRoomsButton", ev);
-    dis.fire(Action.ViewRoomDirectory);
+const onClickActivateSecureStorage = (ev: ButtonEvent): void => {
+    accessSecretStorage();
 };
 
-const onClickNewRoom = (ev: ButtonEvent): void => {
-    PosthogTrackers.trackInteraction("WebHomeCreateRoomButton", ev);
-    dis.dispatch({ action: Action.CreateRoom });
+const onClickDownloadApps = (ev: ButtonEvent): void => {
+    window.open(TchapUrls.landingPage, "_blank");
 };
+// end :TCHAP:
 
 interface IProps {
     justRegistered?: boolean;
@@ -116,13 +135,16 @@ const HomePage: React.FC<IProps> = ({ justRegistered = false }) => {
             <div className="mx_HomePage_default_wrapper">
                 {introSection}
                 <div className="mx_HomePage_default_buttons">
-                    <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm">
+                    {/*:TCHAP: <AccessibleButton onClick={onClickSendDm} className="mx_HomePage_button_sendDm"> */}
+                    <AccessibleButton onClick={onClickFAQ} className="mx_HomePage_button_sendDm">
                         {_tDom("onboarding|send_dm")}
                     </AccessibleButton>
-                    <AccessibleButton onClick={onClickExplore} className="mx_HomePage_button_explore">
+                    {/* :TCHAP: <AccessibleButton onClick={onClickExplore} className="mx_HomePage_button_explore"> */}
+                    <AccessibleButton onClick={onClickActivateSecureStorage} className="mx_HomePage_button_explore">
                         {_tDom("onboarding|explore_rooms")}
                     </AccessibleButton>
-                    <AccessibleButton onClick={onClickNewRoom} className="mx_HomePage_button_createGroup">
+                    {/* :TCHAP: <AccessibleButton onClick={onClickNewRoom} className="mx_HomePage_button_createGroup"> */}
+                    <AccessibleButton onClick={onClickDownloadApps} className="mx_HomePage_button_createGroup">
                         {_tDom("onboarding|create_room")}
                     </AccessibleButton>
                 </div>
