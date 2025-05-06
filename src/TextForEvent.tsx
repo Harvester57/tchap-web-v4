@@ -922,7 +922,9 @@ for (const evType of ALL_RULE_TYPES) {
 }
 
 // Add both stable and unstable m.call events
-for (const evType of ElementCall.CALL_EVENT_TYPE.names) {
+// :TCHAP: deprecated-call-event-permissions
+// for (const evType of ElementCall.CALL_EVENT_TYPE.names) {
+for (const evType of ElementCall.MEMBER_EVENT_TYPE.names) {
     stateHandlers[evType] = textForCallEvent;
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { KnownMembership, PendingEventOrdering, Room } from "matrix-js-sdk/src/matrix";
-import { screen, render, type RenderOptions, getByLabelText, queryByLabelText } from "jest-matrix-react";
+import { screen, render, type RenderOptions, getByLabelText, queryByLabelText, logRoles } from "jest-matrix-react";
 import { mocked } from "jest-mock";
 import { CallType } from "matrix-js-sdk/src/webrtc/call";
 
@@ -81,7 +81,8 @@ describe("RoomHeader", () => {
     function mockDMRoom(memberCount: number = 2) {
         mockRoomMembers(room, memberCount);
         jest.spyOn(SettingsStore, "getValue").mockImplementation(() => false);
-        jest.spyOn(room.currentState, "mayClientSendStateEvent").mockReturnValue(false);
+        // in a dm room, the users are both admins
+        jest.spyOn(room.currentState, "mayClientSendStateEvent").mockReturnValue(true);
         jest.spyOn(room, "getMember").mockReturnValue(mkRoomMember(room.roomId, "@alice:example.org"));
 
         DMRoomMap.setShared({
@@ -153,11 +154,13 @@ describe("RoomHeader", () => {
     });
 
     // For 1 to 1 video call
-    it("display well the video button when feature is activated for 1v1 call", () => {
+    it("display well the video button when feature is activated for 1v1 call and has permission to send state event", () => {
         addHomeserverToMockConfig([homeserverName], featureVideoName);
+
         mockDMRoom();
 
         const { container } = getComponent();
+        logRoles(container);
 
         expect(queryByLabelText(container, "Video call")).toBeInTheDocument();
     });
@@ -208,6 +211,18 @@ describe("RoomHeader", () => {
         addHomeserverToMockConfig(["other.homeserver"], featureVideoGroupName);
 
         mockRoomMembers(room, 4);
+
+        const { container } = getComponent();
+
+        expect(queryByLabelText(container, "Video call")).toBeNull();
+    });
+
+    it("disables the video group when feature is activated user as not the right permissions", () => {
+        addHomeserverToMockConfig([homeserverName], featureVideoGroupName);
+
+        mockRoomMembers(room, 4);
+        // give  lower permissions to the user
+        jest.spyOn(room.currentState, "mayClientSendStateEvent").mockReturnValue(false);
 
         const { container } = getComponent();
 

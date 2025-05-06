@@ -63,7 +63,7 @@ const plEventsToShow: Record<string, IEventShowOpts> = {
     [EventType.RoomRedaction]: { isState: false, hideForSpace: true },
 
     // MSC3401: Native Group VoIP signaling
-    [ElementCall.CALL_EVENT_TYPE.name]: { isState: true, hideForSpace: true },
+    // [ElementCall.CALL_EVENT_TYPE.name]: { isState: true, hideForSpace: true }, // :TCHAP: deprecated-call-event-permissions
     [ElementCall.MEMBER_EVENT_TYPE.name]: { isState: true, hideForSpace: true },
 
     // TODO: Enable support for m.widget event type (https://github.com/vector-im/element-web/issues/13111)
@@ -298,7 +298,7 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
 
         // MSC3401: Native Group VoIP signaling
         if (SettingsStore.getValue("feature_group_calls")) {
-            plEventsToLabels[ElementCall.CALL_EVENT_TYPE.name] = _td("room_settings|permissions|m.call");
+            // plEventsToLabels[ElementCall.CALL_EVENT_TYPE.name] = _td("room_settings|permissions|m.call"); // :TCHAP: deprecated-call-event-permissions
             plEventsToLabels[ElementCall.MEMBER_EVENT_TYPE.name] = _td("room_settings|permissions|m.call.member");
         }
 
@@ -440,6 +440,11 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
         // hide the power level selector for enabling E2EE if it the room is already encrypted
         if (this.state.isRoomEncrypted) {
             delete eventsLevels[EventType.RoomEncryption];
+        }
+
+        // :TCHAP: group-calls-settings-tab
+        if (SettingsStore.getValue("feature_group_calls")) {
+            delete eventsLevels[ElementCall.CALL_EVENT_TYPE.name];
         }
 
         const eventPowerSelectors = Object.keys(eventsLevels)

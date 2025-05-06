@@ -54,20 +54,21 @@ const ElementCallSwitch: React.FC<ElementCallSwitchProps> = ({ room }) => {
 
             if (enabled) {
                 const userLevel = newContent.events[EventType.RoomMessage] ?? content.users_default ?? 0;
-                const moderatorLevel = content.kick ?? 50;
+                // const moderatorLevel = content.kick ?? 50; // :TCHAP: remove deprecated CALL_EVENT_TYPE
 
-                newContent.events[ElementCall.CALL_EVENT_TYPE.name] = isPublic ? moderatorLevel : userLevel;
+                // newContent.events[ElementCall.CALL_EVENT_TYPE.name] = isPublic ? moderatorLevel : userLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
                 newContent.events[ElementCall.MEMBER_EVENT_TYPE.name] = userLevel;
             } else {
                 const adminLevel = newContent.events[EventType.RoomPowerLevels] ?? content.state_default ?? 100;
 
-                newContent.events[ElementCall.CALL_EVENT_TYPE.name] = adminLevel;
+                // newContent.events[ElementCall.CALL_EVENT_TYPE.name] = adminLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
                 newContent.events[ElementCall.MEMBER_EVENT_TYPE.name] = adminLevel;
             }
 
             room.client.sendStateEvent(room.roomId, EventType.RoomPowerLevels, newContent);
         },
-        [room.client, room.roomId, content, isPublic],
+        // [room.client, room.roomId, content, isPublic], // :TCHAP:
+        [room.client, room.roomId, content], 
     );
 
     const brand = SdkConfig.get("element_call").brand ?? DEFAULTS.element_call.brand;
