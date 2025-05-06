@@ -32,4 +32,6 @@ export default class TchapUrls {
     public static helpProconnectInstances = `${TchapUrls.helpBaseUrl}/fr/article/se-connecter-a-tchap-avec-proconnect-1dh1peg`;
     
     public static helpMailSignature = `${TchapUrls.helpBaseUrl}/fr/article/comment-parametrer-ma-signature-mail-avec-un-lien-vers-tchap-7qyhfa/?bust=1741184944276`;
+
+    public static landingPage = "https://tchap.numerique.gouv.fr";
 }
