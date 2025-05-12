@@ -42,44 +42,12 @@ export const ThreadsActivityCentreButton = function ThreadsActivityCentreButton(
     ...props
 }: ThreadsActivityCentreButtonProps): JSX.Element {
     // Disable tooltip when the label is displayed
-    const openTooltip = disableTooltip || displayLabel ? false : undefined;
+    // const openTooltip = disableTooltip || displayLabel ? false : undefined; // :TCHAP: tac-remove-tooltip
 
-<<<<<<< HEAD
-        return (
-            <> 
-            {/* :TCHAP: tac-remove-tooltip - ITS A HACK - We remove the tooltip because it is causing the button to not do anything, we don't know why*/}
-            {/* <Tooltip label={_t("common|threads")} placement="right" open={openTooltip}> */}
-                <IconButton
-                    aria-label={_t("common|threads")}
-                    className={classNames("mx_ThreadsActivityCentreButton", { expanded: displayLabel })}
-                    indicator={notificationLevelToIndicator(notificationLevel)}
-                    {...props}
-                    ref={ref}
-                >
-                    <>
-                        <ThreadsSolidIcon className="mx_ThreadsActivityCentreButton_Icon" />
-                        {/* This is dirty, but we need to add the label to the indicator icon */}
-                        {displayLabel && (
-                            <Text
-                                className="mx_ThreadsActivityCentreButton_Text"
-                                as="span"
-                                size="md"
-                                title={_t("common|threads")}
-                            >
-                                {_t("common|threads")}
-                            </Text>
-                        )}
-                    </>
-                </IconButton>
-            {/* </Tooltip> */}
-            {/* end :TCHAP: */}
-            </>
-        );
-    },
-);
-=======
     return (
-        <Tooltip label={_t("common|threads")} placement="right" open={openTooltip}>
+        <> 
+        {/* :TCHAP: tac-remove-tooltip - ITS A HACK - We remove the tooltip because it is causing the button to not do anything, we don't know why*/}
+        {/* <Tooltip label={_t("common|threads")} placement="right" open={openTooltip}> */}
             <IconButton
                 aria-label={_t("common|threads")}
                 className={classNames("mx_ThreadsActivityCentreButton", { expanded: displayLabel })}
@@ -102,7 +70,9 @@ export const ThreadsActivityCentreButton = function ThreadsActivityCentreButton(
                     )}
                 </>
             </IconButton>
-        </Tooltip>
+        {/* </Tooltip> */}
+        {/* end :TCHAP: */}
+        </>
     );
 };
->>>>>>> v1.11.100
+

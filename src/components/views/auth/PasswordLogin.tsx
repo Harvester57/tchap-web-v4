@@ -440,7 +440,6 @@ export default class PasswordLogin extends React.PureComponent<IProps, IState> {
                         disabled={this.props.busy}
                         autoFocus={autoFocusPassword}
                         onValidate={this.onPasswordValidate}
-<<<<<<< HEAD
                         ref={(field) => (this[LoginField.Password] = field)}
                         postfixComponent={(
                             <div
@@ -456,11 +455,6 @@ export default class PasswordLogin extends React.PureComponent<IProps, IState> {
                                 />
                             </div>
                         )}
-=======
-                        ref={(field) => {
-                            this[LoginField.Password] = field;
-                        }}
->>>>>>> v1.11.100
                     />
                     {forgotPasswordJsx}
                     {!this.props.busy && (

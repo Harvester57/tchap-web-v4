@@ -24,8 +24,11 @@ import { searchPagination, SearchScope } from "../../Searching";
 import type ResizeNotifier from "../../utils/ResizeNotifier";
 import MatrixClientContext from "../../contexts/MatrixClientContext";
 import { RoomPermalinkCreator } from "../../utils/permalinks/Permalinks";
-import Tchapi18nUtils from "~tchap-web/src/tchap/i18n/Tchapi18nUtils"; // :tchap: error-tchap-is-down
 import { useScopedRoomContext } from "../../contexts/ScopedRoomContext.tsx";
+import ErrorDialog from "../views/dialogs/ErrorDialog.tsx"; // :TCHAP: error-tchap-is-down
+
+import Tchapi18nUtils from "~tchap-web/src/tchap/i18n/Tchapi18nUtils"; // :tchap: error-tchap-is-down
+import Modal from "~tchap-web/src/Modal.tsx"; // :TCHAP: error-tchap-is-down
 
 const DEBUG = false;
 let debuglog = function (msg: string): void {};
@@ -131,51 +134,16 @@ export const RoomSearchView = ({
                     if (aborted.current) {
                         logger.error("Discarding stale search results");
                         return false;
-<<<<<<< HEAD
-                    },
-                    (error) => {
-                        if (aborted.current) {
-                            logger.error("Discarding stale search results");
-                            return false;
-                        }
-                        logger.error("Search failed", error);
-                        Modal.createDialog(ErrorDialog, {
-                            title: _t("error_dialog|search_failed|title"),
-                            // :TCHAP: error-tchap-is-down - description: error?.message ?? _t("error_dialog|search_failed|server_unavailable"),
-                            description: error?.message ?? Tchapi18nUtils.getServerDownMessage(),
-                        });
-                        onUpdate(false, null);
-                        return false;
-                    },
-                );
-            },
-            [client, term, onUpdate],
-        );
-
-        // Mount & unmount effect
-        useEffect(() => {
-            aborted.current = false;
-            handleSearchResult(promise);
-            return () => {
-                aborted.current = true;
-                abortController?.abort();
-            };
-        }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-        // show searching spinner
-        if (results === null) {
-            return (
-                <div
-                    className="mx_RoomView_messagePanel mx_RoomView_messagePanelSearchSpinner"
-                    data-testid="messagePanelSearchSpinner"
-                />
-=======
                     }
+                    Modal.createDialog(ErrorDialog, {
+                        title: _t("error_dialog|search_failed|title"),
+                        // :TCHAP: error-tchap-is-down - description: error?.message ?? _t("error_dialog|search_failed|server_unavailable"),
+                        description: error?.message ?? Tchapi18nUtils.getServerDownMessage(),
+                    });
                     logger.error("Search failed", error);
                     onUpdate(false, null, error);
                     return false;
                 },
->>>>>>> v1.11.100
             );
         },
         [client, term, onUpdate],

@@ -13,15 +13,8 @@ import { useMatrixClientContext } from "../../../contexts/MatrixClientContext";
 import PowerSelector from "../elements/PowerSelector";
 import { _t } from "../../../languageHandler";
 import SettingsFieldset from "./SettingsFieldset";
-<<<<<<< HEAD
-import QuestionDialog from "../dialogs/QuestionDialog"; // :TCHAP: last-admin-warning-room-settings
-
-import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils"; // :TCHAP: last-admin-warning-room-settings
-import Modal from "~tchap-web/src/Modal"; // :TCHAP: last-admin-warning-room-settings
-=======
 import Modal from "../../../Modal";
 import QuestionDialog from "../dialogs/QuestionDialog";
->>>>>>> v1.11.100
 
 /**
  * Display in a fieldset, the power level of the users and allow to change them.
@@ -112,31 +105,6 @@ export function PowerLevelSelector({
                         disabled={!canChange}
                         label={userId}
                         key={userId}
-<<<<<<< HEAD
-                        onChange={async (value) =>  {
-                            // :TCHAP: last-admin-warning-room-settings
-                            const userLevelsTmp = Object.assign({}, userLevels);
-                            userLevelsTmp[userId] = value;
-
-                            if (!TchapRoomUtils.roomHasAtLeastOneAdmin(userLevelsTmp)) {
-                                const { finished } = Modal.createDialog(QuestionDialog, {
-                                    title: _t("common|warning"),
-                                    description: (
-                                        <div>
-                                            {_t("user_info|demote_self_confirm_room")}
-                                        </div>
-                                    ),
-                                    button: _t("action|continue"),
-                                });
-                                const [confirmed] = await finished;
-                                if (!confirmed) return;
-                            }
-                            // end :TCHAP:
-                            setCurrentPowerLevel({ value, userId });
-
-                            }
-                        }
-=======
                         onChange={async (value) => {
                             const userLevelsTmp = Object.assign({}, userLevels);
                             userLevelsTmp[userId] = value;
@@ -155,7 +123,6 @@ export function PowerLevelSelector({
                             }
                             setCurrentPowerLevel({ value, userId });
                         }}
->>>>>>> v1.11.100
                     />
                 );
             })}

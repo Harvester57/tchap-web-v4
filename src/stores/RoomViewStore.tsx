@@ -50,12 +50,9 @@ import { type CancelAskToJoinPayload } from "../dispatcher/payloads/CancelAskToJ
 import { type SubmitAskToJoinPayload } from "../dispatcher/payloads/SubmitAskToJoinPayload";
 import { ModuleRunner } from "../modules/ModuleRunner";
 import { setMarkedUnreadState } from "../utils/notifications";
-<<<<<<< HEAD
-import ExternalAccountHandler from "../tchap/lib/ExternalAccountHandler";
-=======
 import { ConnectionState, ElementCall } from "../models/Call";
 import { isVideoRoom } from "../utils/video-rooms";
->>>>>>> v1.11.100
+import ExternalAccountHandler from "../tchap/lib/ExternalAccountHandler"; // :TCHAP:
 
 const NUM_JOIN_RETRY = 5;
 

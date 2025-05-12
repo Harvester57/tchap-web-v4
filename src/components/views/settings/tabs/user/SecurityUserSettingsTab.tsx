@@ -30,8 +30,9 @@ import SettingsTab from "../SettingsTab";
 import { SettingsSection } from "../../shared/SettingsSection";
 import { SettingsSubsection, SettingsSubsectionText } from "../../shared/SettingsSubsection";
 import { useOwnDevices } from "../../devices/useOwnDevices";
-import { DiscoverySettings } from "../../discovery/DiscoverySettings";
+// import { DiscoverySettings } from "../../discovery/DiscoverySettings"; // :TCHAP: metrics-call
 import SetIntegrationManager from "../../SetIntegrationManager";
+
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 
 interface IIgnoredUserProps {
@@ -294,25 +295,7 @@ export default class SecurityUserSettingsTab extends React.Component<IProps, ISt
     }
 
     public render(): React.ReactNode {
-<<<<<<< HEAD
-        // :TCHAP: change-sections-order-in-security-privacy-settings - we're moving this subsection out, so it's now a section
-        const secureBackup = (
-            <SettingsSection heading={_t("common|secure_backup")}>
-                <SecureBackupPanel />
-            </SettingsSection>
-        );
-        /*
-        const secureBackup = (
-            <SettingsSubsection heading={_t("common|secure_backup")}>
-                <SecureBackupPanel />
-                <DehydratedDeviceStatus />
-            </SettingsSubsection>
-        );
-        */
-        // end :TCHAP:
-=======
         const secureBackup = <SecureBackup />;
->>>>>>> v1.11.100
 
         const eventIndex = (
             <SettingsSubsection heading={_t("settings|security|message_search_section")}>
@@ -375,20 +358,12 @@ export default class SecurityUserSettingsTab extends React.Component<IProps, ISt
         return (
             <SettingsTab>
                 {warning}
-                { /* :TCHAP: change-sections-order-in-security-privacy-settings - move secureBackup and privacySection, and remove eventIndex */ }
-                {secureBackup}
                 {/* :TCHAP: hide-widgets-settings - <SetIntegrationManager />*/}
                 { TchapUIFeature.showWidgetsSettings && <SetIntegrationManager />}
                 {/* end :TCHAP: */}
                 <SettingsSection heading={_t("settings|security|encryption_section")}>
-<<<<<<< HEAD
-                    {crossSigning}
-                    {eventIndex}
-                    <CryptographyPanel />
-=======
                     {secureBackup}
                     {eventIndex}
->>>>>>> v1.11.100
                 </SettingsSection>
                 <SettingsSection heading={_t("common|privacy")}>
                     {/* <DiscoverySettings /> :TCHAP: metrics-call we remove the discovery settings that appear when posthog is enabled */}

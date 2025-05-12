@@ -9,14 +9,13 @@ Please see LICENSE files in the repository root for full details.
 import React, { type JSX } from "react";
 import { type ImageContent } from "matrix-js-sdk/src/types";
 
-<<<<<<< HEAD
-import MImageBody from "~tchap-web/src/tchap/components/views/messages/OriginalImageBody"; // :TCHAP: content-scanner
-// import MImageBody from "./MImageBody"; // :TCHAP: content-scanner
-=======
-import { MImageBodyInner } from "./MImageBody";
+
+
+// import { MImageBodyInner } from "./MImageBody"; // :TCHAP: content-scanner
 import { type IBodyProps } from "./IBodyProps";
 import { useMediaVisible } from "../../../hooks/useMediaVisible";
->>>>>>> v1.11.100
+
+import { MImageBodyInner } from "~tchap-web/src/tchap/components/views/messages/OriginalImageBody"; // :TCHAP: content-scanner
 
 const FORCED_IMAGE_HEIGHT = 44;
 

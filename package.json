@@ -1,16 +1,10 @@
 {
     "name": "element-web",
-<<<<<<< HEAD
     "productName": "Tchap",
     "version": "4.14.3",
-    "version-element-web": "1.11.95",
+    "version-element-web": "1.11.100",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
-=======
-    "version": "1.11.100",
-    "description": "Element: the future of secure communication",
-    "author": "New Vector Ltd.",
->>>>>>> v1.11.100
     "repository": {
         "type": "git",
         "url": "https://github.com/tchapgouv/tchap-web-v4"
@@ -78,15 +72,9 @@
         "test:cypress:open": "cypress open",
         "test:playwright": "playwright test",
         "test:playwright:open": "yarn test:playwright --ui",
-<<<<<<< HEAD
-        "test:playwright:screenshots": "yarn test:playwright:screenshots:build && yarn test:playwright:screenshots:run",
-        "test:playwright:screenshots:build": "docker build playwright -t element-web-playwright",
-        "test:playwright:screenshots:run": "docker run --rm --network host -e BASE_URL -e CI -v $(pwd):/work/ -v $(node -e 'console.log(require(`path`).dirname(require.resolve(`matrix-js-sdk/package.json`)))'):/work/node_modules/matrix-js-sdk -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ -it element-web-playwright --grep @screenshot --project=Chrome",
+        "test:playwright:screenshots": "playwright-screenshots --project=Chrome",
         "test:tchap": "jest unit-tests/tchap/",
         "coverage:tchap": "yarn test:tchap --coverage",
-=======
-        "test:playwright:screenshots": "playwright-screenshots --project=Chrome",
->>>>>>> v1.11.100
         "coverage": "yarn test --coverage",
         "analyse:unused-exports": "ts-node ./scripts/analyse_unused_exports.ts",
         "patch-package": "patch-package",
@@ -94,17 +82,7 @@
         "patch-make": "node scripts/tchap/makePatch.ts",
         "analyse:webpack-bundles": "webpack-bundle-analyzer webpack-stats.json webapp",
         "update:jitsi": "curl -s https://meet.element.io/libs/external_api.min.js > ./res/jitsi_external_api.min.js",
-<<<<<<< HEAD
         "postinstall": "./scripts/tchap/postinstall.sh"
-    },
-    "resolutions": {
-        "@types/react": "18.3.18",
-        "@types/react-dom": "18.3.5",
-        "oidc-client-ts": "3.2.0",
-        "jwt-decode": "4.0.0",
-        "caniuse-lite": "1.0.30001702",
-=======
-        "postinstall": "patch-package"
     },
     "resolutions": {
         "**/pretty-format/react-is": "19.1.0",
@@ -115,7 +93,6 @@
         "jwt-decode": "4.0.0",
         "caniuse-lite": "1.0.30001714",
         "testcontainers": "10.24.2",
->>>>>>> v1.11.100
         "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0",
         "wrap-ansi": "npm:wrap-ansi@^7.0.0"
     },
@@ -125,12 +102,8 @@
         "@fontsource/inconsolata": "^5",
         "@fontsource/inter": "^5",
         "@formatjs/intl-segmenter": "^11.5.7",
-<<<<<<< HEAD
         "@gouvfr-lasuite/integration": "^1.0.2",
-        "@matrix-org/analytics-events": "^0.29.0",
-=======
         "@matrix-org/analytics-events": "^0.29.2",
->>>>>>> v1.11.100
         "@matrix-org/emojibase-bindings": "^1.3.4",
         "@matrix-org/olm": "3.2.15",
         "@matrix-org/react-sdk-module-api": "^2.4.0",
@@ -237,23 +210,16 @@
         "@element-hq/element-call-embedded": "0.9.0",
         "@element-hq/element-web-playwright-common": "^1.1.5",
         "@peculiar/webcrypto": "^1.4.3",
-<<<<<<< HEAD
         "@percy/cli": "^1.3.0",
         "@percy/cypress": "^3.1.2",
-        "@playwright/test": "^1.40.1",
-=======
         "@playwright/test": "^1.50.1",
->>>>>>> v1.11.100
         "@principalstudio/html-webpack-inject-preload": "^1.2.7",
         "@rrweb/types": "^2.0.0-alpha.18",
         "@sentry/webpack-plugin": "^3.0.0",
         "@stylistic/eslint-plugin": "^4.0.0",
         "@svgr/webpack": "^8.0.0",
-<<<<<<< HEAD
         "@testcontainers/postgresql": "^10.16.0",
         "@testing-library/cypress": "^9.0.0",
-=======
->>>>>>> v1.11.100
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.4.8",
         "@testing-library/react": "^16.0.0",
@@ -314,13 +280,8 @@
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
         "eslint-plugin-react-hooks": "^5.0.0",
-<<<<<<< HEAD
-        "eslint-plugin-unicorn": "56.0.0",
-        "express": "^4.18.2",
-=======
         "eslint-plugin-unicorn": "^56.0.0",
         "express": "^5.0.0",
->>>>>>> v1.11.100
         "fake-indexeddb": "^6.0.0",
         "fetch-mock": "9.11.0",
         "fetch-mock-jest": "^1.5.1",
@@ -342,11 +303,7 @@
         "modernizr": "^3.12.0",
         "node-fetch": "^2.6.7",
         "patch-package": "^8.0.0",
-<<<<<<< HEAD
-        "playwright-core": "^1.45.1",
-=======
         "playwright-core": "^1.51.0",
->>>>>>> v1.11.100
         "postcss": "8.4.46",
         "postcss-easings": "^4.0.0",
         "postcss-hexrgba": "2.1.0",
