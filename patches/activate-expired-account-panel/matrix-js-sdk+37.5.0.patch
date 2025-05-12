@@ -1,8 +1,8 @@
 diff --git a/node_modules/matrix-js-sdk/src/http-api/fetch.ts b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-index 4285d92..c644ae2 100644
+index 6dc5c78..adcb6cb 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-@@ -210,6 +210,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
+@@ -203,6 +203,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
              } else if (error.errcode == "M_CONSENT_NOT_GIVEN") {
                  this.eventEmitter.emit(HttpApiEvent.NoConsent, error.message, error.data.consent_uri);
              }
@@ -16,10 +16,10 @@ index 4285d92..c644ae2 100644
              throw error;
          }
 diff --git a/node_modules/matrix-js-sdk/src/http-api/interface.ts b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-index bfa604c..c235575 100644
+index d5a01de..652e061 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/interface.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-@@ -104,6 +104,10 @@ export interface IContentUri {
+@@ -115,6 +115,10 @@ export interface IContentUri {
  export enum HttpApiEvent {
      SessionLoggedOut = "Session.logged_out",
      NoConsent = "no_consent",
@@ -30,7 +30,7 @@ index bfa604c..c235575 100644
  }
  
  export type HttpApiEventHandlerMap = {
-@@ -131,6 +135,9 @@ export type HttpApiEventHandlerMap = {
+@@ -142,6 +146,9 @@ export type HttpApiEventHandlerMap = {
       * ```
       */
      [HttpApiEvent.NoConsent]: (message: string, consentUri: string) => void;
