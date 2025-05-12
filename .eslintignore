@@ -15,3 +15,6 @@ patches/patches.json
 patches_legacy/patches.json
 src/tchap
 src/modules.js
+# Test result files
+/playwright/test-results/
+/playwright/html-report/

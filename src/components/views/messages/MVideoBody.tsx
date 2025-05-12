@@ -20,6 +20,8 @@ import { type IBodyProps } from "./IBodyProps";
 import { type ImageSize, suggestedSize as suggestedVideoSize } from "../../../settings/enums/ImageSize";
 import RoomContext, { TimelineRenderingType } from "../../../contexts/RoomContext";
 import MediaProcessingError from "./shared/MediaProcessingError";
+import { HiddenMediaPlaceholder } from "./HiddenMediaPlaceholder";
+import { useMediaVisible } from "../../../hooks/useMediaVisible";
 
 import MFileBody from "~tchap-web/src/tchap/components/views/messages/OriginalFileBody"; // :TCHAP: content-scanner
 
@@ -33,7 +35,19 @@ interface IState {
     blurhashUrl: string | null;
 }
 
-export default class MVideoBody extends React.PureComponent<IBodyProps, IState> {
+interface IProps extends IBodyProps {
+    /**
+     * Should the media be behind a preview.
+     */
+    mediaVisible: boolean;
+    /**
+     * Set the visibility of the media event.
+     * @param visible Should the event be visible.
+     */
+    setMediaVisible: (visible: boolean) => void;
+}
+
+class MVideoBodyInner extends React.PureComponent<IProps, IState> {
     public static contextType = RoomContext;
     declare public context: React.ContextType<typeof RoomContext>;
 
@@ -48,6 +62,10 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
         error: null,
         posterLoading: false,
         blurhashUrl: null,
+    };
+
+    private onClick = (): void => {
+        this.props.setMediaVisible(true);
     };
 
     private getContentUrl(): string | undefined {
@@ -121,11 +139,7 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
         }
     }
 
-    public async componentDidMount(): Promise<void> {
-        this.sizeWatcher = SettingsStore.watchSetting("Images.size", null, () => {
-            this.forceUpdate(); // we don't really have a reliable thing to update, so just update the whole thing
-        });
-
+    private async downloadVideo(): Promise<void> {
         try {
             this.loadBlurhash();
         } catch (e) {
@@ -143,7 +157,6 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
                         decryptedThumbnailUrl: thumbnailUrl,
                         decryptedBlob: await this.props.mediaEventHelper.sourceBlob.value,
                     });
-                    this.props.onHeightChanged?.();
                 } else {
                     logger.log("NOT preloading video");
                     const content = this.props.mxEvent.getContent<MediaEventContent>();
@@ -172,6 +185,23 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
                     error: err,
                 });
             }
+        }
+    }
+
+    public async componentDidMount(): Promise<void> {
+        this.sizeWatcher = SettingsStore.watchSetting("Images.size", null, () => {
+            this.forceUpdate(); // we don't really have a reliable thing to update, so just update the whole thing
+        });
+
+        // Do not attempt to load the media if we do not want to show previews here.
+        if (this.props.mediaVisible) {
+            await this.downloadVideo();
+        }
+    }
+
+    public async componentDidUpdate(prevProps: Readonly<IProps>): Promise<void> {
+        if (!prevProps.mediaVisible && this.props.mediaVisible) {
+            await this.downloadVideo();
         }
     }
 
@@ -205,7 +235,6 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
                 this.videoRef.current.play();
             },
         );
-        this.props.onHeightChanged?.();
     };
 
     protected get showFileBody(): boolean {
@@ -242,6 +271,22 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
                 <MediaProcessingError className="mx_MVideoBody">
                     {_t("timeline|m.video|error_decrypting")}
                 </MediaProcessingError>
+            );
+        }
+
+        // Users may not even want to show a poster, so instead show a preview button.
+        if (!this.props.mediaVisible) {
+            return (
+                <span className="mx_MVideoBody">
+                    <div
+                        className="mx_MVideoBody_container"
+                        style={{ width: maxWidth, height: maxHeight, aspectRatio }}
+                    >
+                        <HiddenMediaPlaceholder onClick={this.onClick}>
+                            {_t("timeline|m.video|show_video")}
+                        </HiddenMediaPlaceholder>
+                    </div>
+                </span>
             );
         }
 
@@ -295,3 +340,11 @@ export default class MVideoBody extends React.PureComponent<IBodyProps, IState> 
         );
     }
 }
+
+// Wrap MVideoBody component so we can use a hook here.
+const MVideoBody: React.FC<IBodyProps> = (props) => {
+    const [mediaVisible, setVisible] = useMediaVisible(props.mxEvent.getId(), props.mxEvent.getRoomId());
+    return <MVideoBodyInner mediaVisible={mediaVisible} setMediaVisible={setVisible} {...props} />;
+};
+
+export default MVideoBody;

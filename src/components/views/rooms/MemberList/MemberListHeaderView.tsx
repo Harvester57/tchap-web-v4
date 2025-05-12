@@ -54,6 +54,7 @@ const InviteButton: React.FC<Props> = ({ vm }) => {
                     Icon={InviteIcon}
                     disabled={disabled}
                     aria-label={_t("action|invite")}
+                    type="button"
                 />
             </OptionalTooltip>
         );
@@ -69,6 +70,7 @@ const InviteButton: React.FC<Props> = ({ vm }) => {
                 className="mx_MemberListHeaderView_invite_large"
                 disabled={!vm.canInvite}
                 onClick={vm.onInviteButtonClick}
+                type="button"
             >
                 {_t("action|invite")}
             </Button>

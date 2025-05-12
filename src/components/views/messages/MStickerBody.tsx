@@ -5,21 +5,31 @@ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Com
 Please see LICENSE files in the repository root for full details.
 */
 
-import React, { type ComponentProps, type ReactNode } from "react";
+import React, { type JSX, type ComponentProps, type ReactNode } from "react";
 import { type Tooltip } from "@vector-im/compound-web";
 import { type MediaEventContent } from "matrix-js-sdk/src/types";
 
+<<<<<<< HEAD
+=======
+import { MImageBodyInner } from "./MImageBody";
+>>>>>>> v1.11.100
 import { BLURHASH_FIELD } from "../../../utils/image-media";
 import IconsShowStickersSvg from "../../../../res/img/icons-show-stickers.svg";
+import { type IBodyProps } from "./IBodyProps";
+import { useMediaVisible } from "../../../hooks/useMediaVisible";
 
+<<<<<<< HEAD
 import MImageBody from "~tchap-web/src/tchap/components/views/messages/OriginalImageBody"; // :TCHAP: content-scanner
 
 export default class MStickerBody extends MImageBody {
+=======
+class MStickerBodyInner extends MImageBodyInner {
+>>>>>>> v1.11.100
     // Mostly empty to prevent default behaviour of MImageBody
     protected onClick = (ev: React.MouseEvent): void => {
         ev.preventDefault();
-        if (!this.state.showImage) {
-            this.showImage();
+        if (!this.props.mediaVisible) {
+            this.props.setMediaVisible?.(true);
         }
     };
 
@@ -27,7 +37,7 @@ export default class MStickerBody extends MImageBody {
     // which is added by mx_MStickerBody_wrapper
     protected wrapImage(contentUrl: string, children: React.ReactNode): JSX.Element {
         let onClick: React.MouseEventHandler | undefined;
-        if (!this.state.showImage) {
+        if (!this.props.mediaVisible) {
             onClick = this.onClick;
         }
         return (
@@ -76,3 +86,10 @@ export default class MStickerBody extends MImageBody {
         return null; // we don't need a banner, we have a tooltip
     }
 }
+
+const MStickerBody: React.FC<IBodyProps> = (props) => {
+    const [mediaVisible, setVisible] = useMediaVisible(props.mxEvent.getId(), props.mxEvent.getRoomId());
+    return <MStickerBodyInner mediaVisible={mediaVisible} setMediaVisible={setVisible} {...props} />;
+};
+
+export default MStickerBody;

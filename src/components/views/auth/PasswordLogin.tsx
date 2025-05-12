@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Com
 Please see LICENSE files in the repository root for full details.
 */
 
-import React, { type SyntheticEvent } from "react";
+import React, { type JSX, type SyntheticEvent } from "react";
 import classNames from "classnames";
 
 import { _t } from "../../../languageHandler";
@@ -440,6 +440,7 @@ export default class PasswordLogin extends React.PureComponent<IProps, IState> {
                         disabled={this.props.busy}
                         autoFocus={autoFocusPassword}
                         onValidate={this.onPasswordValidate}
+<<<<<<< HEAD
                         ref={(field) => (this[LoginField.Password] = field)}
                         postfixComponent={(
                             <div
@@ -455,6 +456,11 @@ export default class PasswordLogin extends React.PureComponent<IProps, IState> {
                                 />
                             </div>
                         )}
+=======
+                        ref={(field) => {
+                            this[LoginField.Password] = field;
+                        }}
+>>>>>>> v1.11.100
                     />
                     {forgotPasswordJsx}
                     {!this.props.busy && (

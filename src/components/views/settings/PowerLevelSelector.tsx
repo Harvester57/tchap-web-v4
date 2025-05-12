@@ -13,10 +13,15 @@ import { useMatrixClientContext } from "../../../contexts/MatrixClientContext";
 import PowerSelector from "../elements/PowerSelector";
 import { _t } from "../../../languageHandler";
 import SettingsFieldset from "./SettingsFieldset";
+<<<<<<< HEAD
 import QuestionDialog from "../dialogs/QuestionDialog"; // :TCHAP: last-admin-warning-room-settings
 
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils"; // :TCHAP: last-admin-warning-room-settings
 import Modal from "~tchap-web/src/Modal"; // :TCHAP: last-admin-warning-room-settings
+=======
+import Modal from "../../../Modal";
+import QuestionDialog from "../dialogs/QuestionDialog";
+>>>>>>> v1.11.100
 
 /**
  * Display in a fieldset, the power level of the users and allow to change them.
@@ -81,6 +86,13 @@ export function PowerLevelSelector({
     // No user to display, we return the children into fragment to convert it to JSX.Element type
     if (!users.length) return <>{children}</>;
 
+    // check at least one admin in the list
+    const roomHasAtLeastOneAdmin = (usersLevels: Record<string, number>): boolean => {
+        const userLevelValues = Object.values(usersLevels);
+        // At least one user as the pL 100 which means he is admin
+        return userLevelValues.some((uL) => uL === 100);
+    };
+
     return (
         <SettingsFieldset legend={title}>
             {users.map((userId) => {
@@ -100,6 +112,7 @@ export function PowerLevelSelector({
                         disabled={!canChange}
                         label={userId}
                         key={userId}
+<<<<<<< HEAD
                         onChange={async (value) =>  {
                             // :TCHAP: last-admin-warning-room-settings
                             const userLevelsTmp = Object.assign({}, userLevels);
@@ -123,6 +136,26 @@ export function PowerLevelSelector({
 
                             }
                         }
+=======
+                        onChange={async (value) => {
+                            const userLevelsTmp = Object.assign({}, userLevels);
+                            userLevelsTmp[userId] = value;
+                            if (!roomHasAtLeastOneAdmin(userLevelsTmp)) {
+                                const { finished } = Modal.createDialog(QuestionDialog, {
+                                    title: _t("common|warning"),
+                                    description: <div>{_t("user_info|demote_self_confirm_room")}</div>,
+                                    button: _t("action|continue"),
+                                });
+                                const [confirmed] = await finished;
+                                if (!confirmed) {
+                                    // if cancel, we reput initial value
+                                    setCurrentPowerLevel({ value: userLevels[userId], userId });
+                                    return;
+                                }
+                            }
+                            setCurrentPowerLevel({ value, userId });
+                        }}
+>>>>>>> v1.11.100
                     />
                 );
             })}
