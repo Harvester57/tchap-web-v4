@@ -20,7 +20,7 @@ import React from "react";
 import InlineSpinner from "~tchap-web/src/components/views/elements/InlineSpinner";
 import TextWithTooltip from "~tchap-web/src/components/views/elements/TextWithTooltip";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";
-import { IMediaEventContent } from "~tchap-web/src/customisations/models/IMediaEventContent";
+import { type MediaEventContent } from "matrix-js-sdk/src/types";
 import { _t } from "~tchap-web/src/languageHandler";
 import { presentableTextForFile } from "~tchap-web/src/utils/FileUtils";
 
@@ -122,8 +122,8 @@ export default class ContentScanningFileBody extends React.PureComponent<Props, 
         return placeholder;
     }
 
-    private get content(): IMediaEventContent {
-        return this.props.mxEvent.getContent<IMediaEventContent>();
+    private get content(): MediaEventContent {
+        return this.props.mxEvent.getContent<MediaEventContent>();
     }
 
     private get icon(): React.ReactNode {
@@ -141,6 +141,6 @@ export default class ContentScanningFileBody extends React.PureComponent<Props, 
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 }

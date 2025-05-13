@@ -75,6 +75,6 @@ export default class ContentScanningVoiceMessageBody extends React.PureComponent
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 }

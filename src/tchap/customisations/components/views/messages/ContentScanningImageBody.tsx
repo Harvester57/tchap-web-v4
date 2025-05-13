@@ -19,7 +19,7 @@ import "../../../../../../res/css/views/messages/ContentScanningImageBody.pcss";
 import React from "react";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
-import { IMediaEventContent } from "~tchap-web/src/customisations/models/IMediaEventContent";
+import { ImageContent, type MediaEventContent } from "matrix-js-sdk/src/types";
 import { presentableTextForFile } from "~tchap-web/src/utils/FileUtils";
 import { _t } from "~tchap-web/src/languageHandler";
 import SettingsStore from "~tchap-web/src/settings/SettingsStore";
@@ -66,13 +66,13 @@ export default class ContentScanningImageBody extends React.Component<IBodyProps
     }
 
     public render() {
-        const content = this.props.mxEvent.getContent<IMediaEventContent>();
+        const content = this.props.mxEvent.getContent<ImageContent>();
         let infoWidth = 342;
         let infoHeight = 342;
 
         if (content?.info) {
-            infoWidth = Math.min(content.info.w || 9999, infoWidth);
-            infoHeight = Math.min(content.info.h || 9999, infoHeight);
+            infoWidth = Math.min(content.info?.w || 9999, infoWidth);
+            infoHeight = Math.min(content.info?.h || 9999, infoHeight);
         }
 
         const { w: width, h: height } = suggestedImageSize(
@@ -123,14 +123,14 @@ export default class ContentScanningImageBody extends React.Component<IBodyProps
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 
     private get fileName() {
         return presentableTextForFile(this.content, _t("common|image"), true, false);
     }
 
-    private get content(): IMediaEventContent {
-        return this.props.mxEvent.getContent<IMediaEventContent>();
+    private get content(): MediaEventContent {
+        return this.props.mxEvent.getContent<MediaEventContent>();
     }
 }

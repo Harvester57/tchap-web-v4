@@ -19,7 +19,7 @@ import "../../../../../../res/css/views/messages/ContentScanningImageBody.pcss";
 import React from "react";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
-import { IMediaEventContent } from "~tchap-web/src/customisations/models/IMediaEventContent";
+import { ImageContent, type MediaEventContent } from "matrix-js-sdk/src/types";
 import { presentableTextForFile } from "~tchap-web/src/utils/FileUtils";
 import { _t } from "~tchap-web/src/languageHandler";
 
@@ -64,13 +64,13 @@ export default class ContentScanningStickerBody extends React.Component<IBodyPro
     }
 
     public render() {
-        const content = this.props.mxEvent.getContent<IMediaEventContent>();
+        const content = this.props.mxEvent.getContent<ImageContent>();
         let width = 342;
         let height = 342;
 
         if (content?.info) {
-            width = Math.min(content.info.w || 9999, width);
-            height = Math.min(content.info.h || 9999, height);
+            width = Math.min(content.info?.w || 9999, width);
+            height = Math.min(content.info?.h || 9999, height);
         }
 
         if (this.state.isScanning) {
@@ -115,14 +115,14 @@ export default class ContentScanningStickerBody extends React.Component<IBodyPro
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 
     private get fileName() {
         return presentableTextForFile(this.content, _t("common|sticker"), true, false);
     }
 
-    private get content(): IMediaEventContent {
-        return this.props.mxEvent.getContent<IMediaEventContent>();
+    private get content(): MediaEventContent {
+        return this.props.mxEvent.getContent<MediaEventContent>();
     }
 }

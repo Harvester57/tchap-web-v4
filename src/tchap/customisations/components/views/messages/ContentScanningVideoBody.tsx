@@ -19,7 +19,7 @@ import "../../../../../../res/css/views/messages/ContentScanningVideoBody.pcss";
 import React from "react";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
-import { IMediaEventContent } from "~tchap-web/src/customisations/models/IMediaEventContent";
+import { type MediaEventContent } from "matrix-js-sdk/src/types";
 import { presentableTextForFile } from "~tchap-web/src/utils/FileUtils";
 import { _t } from "~tchap-web/src/languageHandler";
 
@@ -64,7 +64,7 @@ export default class ContentScanningVideoBody extends React.Component<IBodyProps
     }
 
     public render() {
-        const content = this.props.mxEvent.getContent<IMediaEventContent>();
+        const content = this.props.mxEvent.getContent<MediaEventContent>();
         let width = 342;
         let height = 342;
 
@@ -111,14 +111,14 @@ export default class ContentScanningVideoBody extends React.Component<IBodyProps
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 
     private get fileName() {
         return presentableTextForFile(this.content, _t("common|video"), true, false);
     }
 
-    private get content(): IMediaEventContent {
-        return this.props.mxEvent.getContent<IMediaEventContent>();
+    private get content(): MediaEventContent {
+        return this.props.mxEvent.getContent<MediaEventContent>();
     }
 }
