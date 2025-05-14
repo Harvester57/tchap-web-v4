@@ -27,6 +27,9 @@ export function shouldCauseReorder(event: MatrixEvent): boolean {
     // Ignore avatar changes
     if (type === EventType.RoomMember && prevContent.avatar_url !== content.avatar_url) return false;
 
+    // :TCHAP: remove-notification-powerlevel-change, we don't want to reorder rooms when the power level changes in all cases
+    if (type === EventType.RoomPowerLevels) return false;
+
     return true;
 }
 
