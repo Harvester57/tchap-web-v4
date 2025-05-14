@@ -2,15 +2,16 @@
  * Copyright 2022 DINUM
  */
 
-import React, { forwardRef } from "react";
+import React from "react";
 import { MatrixEvent } from "matrix-js-sdk/src/matrix";
 import { _t } from "~tchap-web/src/languageHandler"; // :TCHAP:
 interface IProps {
     mxEvent: MatrixEvent;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export default forwardRef(({ mxEvent, children }: IProps, ref: React.RefObject<HTMLDivElement>) => {
+const TchapUnknownBody = ({ mxEvent, children, ref }: IProps) =>  {
     // :TCHAP: user-friendly message in the case of lost keys
     const content = mxEvent.getContent();
     if (content.msgtype && content.msgtype === "m.bad.encrypted") {
@@ -33,4 +34,6 @@ export default forwardRef(({ mxEvent, children }: IProps, ref: React.RefObject<H
             {children}
         </div>
     );
-});
+};
+
+export default TchapUnknownBody;

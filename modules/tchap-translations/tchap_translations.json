@@ -31,7 +31,6 @@
         "en": "Accessible to all users from the forum directory or from a shared link.",
         "fr": "Accessible à tous les utilisateurs à partir de la liste des forums ou d'un lien partagé."
     },
-    "Activate on this device": { "en": "Activate on this device", "fr": "Activer sur cet appareil" },
     "Allow access to this room to all users, even outside \"%(domain)s\" domain": {
         "en": "Allow access to this room to all users, even outside \"%(domain)s\" domain",
         "fr": "Autoriser l'accès à tous les utilisateurs, même ceux qui ne sont pas membres du domaine \"%(domain)s\""
@@ -51,10 +50,6 @@
     "restore_key_backup_dialog|recovery_key_mismatch_description": {
         "en": "Please try again with your recovery code.",
         "fr": "Merci d'essayer à nouveau avec votre code de récupération."
-    },
-    "encryption|destroy_cross_signing_dialog|primary_button_text": {
-        "en": "Reset Recovery Code",
-        "fr": "Réinitialiser les clés de signature croisée"
     },
     "Confirm your Tchap Key password": {
         "en": "Confirm your Tchap Key password",
@@ -79,14 +74,6 @@
     "Decryption fail: Please open Tchap on an other connected device to allow key sharing.": {
         "en": "Decryption fail: Please open Tchap on an other connected device to allow key sharing.",
         "fr": "Message verrouillé par sécurité. Récupérez vos clés Tchap pour déverrouiller vos messages."
-    },
-    "encryption|destroy_cross_signing_dialog|warning": {
-        "en": "Resetting your Recovery Code is permanent. Please use this procedure only if you have lost all devices that allow you to perform cross-signing.",
-        "fr": "Réinitialiser les clés de signature croisée est permanent. Utiliser cette procédure uniquement si vous avez perdu tous les appareils vous permettant d’effectuer une signature croisée."
-    },
-    "encryption|destroy_cross_signing_dialog|title": {
-        "en": "Reset cross-signing keys?",
-        "fr": "Réinitialiser les clés de signature croisée ?"
     },
     "Direct Messages": { "en": "Direct Messages", "fr": "Messages directs" },
     "Download the list of all this room's members, in a text file. Useful for adding them all to another room.": {
@@ -124,7 +111,6 @@
     },
     "Forum room": { "en": "Public room", "fr": "Forum" },
     "Frequently Asked Questions (FAQ)": { "en": "Frequently Asked Questions (FAQ)", "fr": "Foire Aux Questions (FAQ)" },
-    "Generate a new code": { "en": "Generate a new code", "fr": "Générer un nouveau code" },
     "auth|logout_dialog|skip_key_backup": { "en": "Log out anyway", "fr": "Se déconnecter quand-même" },
     "I renewed the validity of my account": { "en": "Continue", "fr": "Continuer" },
     "I wrote down my code": { "en": "I wrote down my code", "fr": "J'ai noté mon code" },
@@ -174,10 +160,6 @@
     "encryption|verification|incoming_sas_dialog_waiting": {
         "en": "Please confirm the objects on the other device (loading).",
         "fr": "Veuillez confirmer les objets sur l'autre appareil (en cours)."
-    },
-    "Please note this is not your recovery code for your automatic backup.": {
-        "en": "Please note this is not your Recovery Code for your automatic backup.",
-        "fr": "Attention ceci n’est pas votre Code de Récupération pour votre sauvegarde automatique."
     },
     "Please tell us what went wrong in the \"Notes\" field.": {
         "en": "Please tell us what went wrong in the \"Notes\" field.",
@@ -258,10 +240,6 @@
     "The validity period of your account has expired": {
         "en": "Your Tchap account has expired",
         "fr": "Votre compte Tchap a expiré"
-    },
-    "These keys only apply to the current session.": {
-        "en": "These keys only apply to the current session.",
-        "fr": "Ces clés ne concernent que la session en cours."
     },
     "This action is irreversible.": { "en": "This action is irreversible.", "fr": "Cette action est irréversible." },
     "This file will be protected by a password, which will be asked next time you log in, when you will import the keys to unlock your messages.": {
@@ -395,18 +373,6 @@
         "en": "Setting up your Recovery Code",
         "fr": "Configuration du Code de Récupération"
     },
-    "encryption|cross_signing_not_ready": {
-        "en": "Cross-signing is not active.",
-        "fr": "La signature croisée n’est pas active"
-    },
-    "encryption|cross_signing_ready": {
-        "en": "Cross-signing is activated on this device.",
-        "fr": "La signature croisée est activée sur cet appareil."
-    },
-    "encryption|cross_signing_ready_no_backup": {
-        "en": "Cross-signing is ready but not the secure backup.",
-        "fr": "La signature croisée est activée mais pas la sauvegarde automatique des messages."
-    },
     "encryption|new_recovery_method_detected|description_1": {
         "en": "A new Recovery Code for Secure Messages has been detected.",
         "fr": "Un nouveau Code de Récupération pour les messages sécurisés a été détecté."
@@ -537,32 +503,19 @@
         "en": "Use a secret phrase only you know, and optionally save a Recovery Code to use for backup.",
         "fr": "Utilisez une phrase secrète que vous êtes seul à connaître et enregistrez éventuellement un Code de Récupération à utiliser pour la sauvegarde."
     },
-    "settings|security|backup_keys_description": {
-        "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
-        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
-    },
-    "settings|security|cryptography_section": { "en": "Tchap keys", "fr": "Clés Tchap" },
-    "settings|security|export_megolm_keys": { "en": "Save your Tchap keys", "fr": "Sauvegardez vos clés Tchap" },
+    "settings|encryption|advanced|title": { "en": "Tchap keys", "fr": "Clés Tchap" },
+    "settings|encryption|advanced|export_keys": { "en": "Save your Tchap keys", "fr": "Sauvegardez vos clés Tchap" },
     "settings|security|ignore_users_section": { "en": "Ignored users", "fr": "Membres ignorés" },
-    "settings|security|import_megolm_keys": {
+    "settings|encryption|advanced|import_keys": {
         "en": "Import your Tchap keys from the downloaded file",
         "fr": "Importez vos clés Tchap depuis le fichier sauvegardé"
     },
-    "settings|security|key_backup_active": {
-        "en": "This device automatically backs up your messages.",
-        "fr": "Cet appareil sauvegarde automatiquement vos messages."
-    },
     "settings|security|key_backup_connect": { "en": "Verify this device", "fr": "Vérifier cet appareil" },
-    "settings|security|key_backup_inactive_warning": {
-        "en": "This device is <b>not backing up</b> your messages.",
-        "fr": "Cet appareil <b>ne sauvegarde pas</b> vos messages."
-    },
     "settings|security|message_search_unsupported_web": {
         "comment": "We have to include a <<desktopLink> otherwise the i18n checker crashes. So add an empty one.",
         "en": "Currently %(brand)s does not support searching into messages in encrypted rooms.<desktopLink></desktopLink>",
         "fr": "Actuellement %(brand)s ne supporte pas la recherche des messages dans les salons chiffrés.<desktopLink></desktopLink>"
     },
-    "settings|security|restore_key_backup": { "en": "Retrieve my messages", "fr": "Récupérer mes messages" },
     "settings|sessions|best_security_note": {
         "en": "Verify your devices to unlock your messages",
         "fr": "Vérifier tous vos appareils pour déverrouiller tous vos messages"
@@ -952,9 +905,37 @@
         "en": "Enter your recovery code to confirm",
         "fr": "Saisissez votre code de récupération pour confirmer"
     },
+    "settings|encryption|recovery|set_up_recovery_confirm_description": {
+        "en": "Enter the recovery code displayed on the previous screen to finish the recovery setup.",
+        "fr": "Saisissez le code de récupération affiché sur l'écran précédent pour terminer la configuration de la récupération."
+    },
     "settings|encryption|recovery|description": {
         "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
         "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
+    },
+    "settings|encryption|recovery|set_up_recovery_secondary_description": {
+        "en": "After clicking continue, we will generate a recovery code for you.",
+        "fr": "Après avoir cliqué sur continuer, nous allons générer un code de récupération pour vous."
+    },
+    "settings|encryption|recovery|change_recovery_confirm_button": {
+        "en": "Confirm the new recovery code",
+        "fr": "Confirmer le nouveau code de récupération"
+    },
+    "settings|encryption|recovery|change_recovery_confirm_description": {
+        "en": "Enter the new recovery code below to finish. Your old code will no longer work.",
+        "fr": "Saisissez votre nouveau code de récupération ci-dessous pour terminer. Votre ancien code ne fonctionnera plus."
+    },
+    "settings|encryption|recovery|change_recovery_confirm_title": {
+        "en": "Enter the new recovery code",
+        "fr": "Saisir votre nouveau code de récupération"
+    },
+    "settings|encryption|recovery|enter_key_error": {
+        "en": "The recovery code you entered is incorrect.",
+        "fr": "Le code de récupération que vous avez saisie est incorrect."
+    },
+    "settings|encryption|recovery|set_up_recovery_description": {
+        "en": "The storage of your keys is protected by a recovery code. If you need a new recovery code after creation, you can create it by selecting \"%(changeRecoveryKeyButton)s\".",
+        "fr": "Le stockage de vos clés est protégé par un code de récupération. Si vous avez besoin d'un nouveau code de récupération après la création, vous pouvez le recréer en sélectionnant « %(changeRecoveryKeyButton)s »."
     },
     "slash_command|visio": {
         "en": "Create a link to Visio with a message",

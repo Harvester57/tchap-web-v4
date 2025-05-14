@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { render, screen, waitFor } from "jest-matrix-react";
 
 import ExpiredAccountDialog from "~tchap-web/src/tchap/components/views/dialogs/ExpiredAccountDialog";

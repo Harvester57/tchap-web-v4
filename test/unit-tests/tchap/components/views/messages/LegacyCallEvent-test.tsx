@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { render, screen } from "jest-matrix-react";
 import { mocked } from "jest-mock";
 import { type MatrixEvent } from "matrix-js-sdk/src/matrix";

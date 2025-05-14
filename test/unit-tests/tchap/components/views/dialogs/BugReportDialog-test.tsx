@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { type RenderResult, fireEvent, render } from "jest-matrix-react";
 
 import BugReportDialog from "~tchap-web/src/components/views/dialogs/BugReportDialog";

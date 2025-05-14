@@ -136,7 +136,7 @@ export const RoomSearchView = ({
                         return false;
                     }
                     Modal.createDialog(ErrorDialog, {
-                        title: _t("error_dialog|search_failed|title"),
+                        title: _t("settings|security|message_search_failed"),
                         // :TCHAP: error-tchap-is-down - description: error?.message ?? _t("error_dialog|search_failed|server_unavailable"),
                         description: error?.message ?? Tchapi18nUtils.getServerDownMessage(),
                     });
