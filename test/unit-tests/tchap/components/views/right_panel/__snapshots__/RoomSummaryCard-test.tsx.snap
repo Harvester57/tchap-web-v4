@@ -53,18 +53,21 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
           <div
             class="mx_DecoratedRoomAvatar_positionedParent"
           >
-            <span
-              class="_avatar_1qbcf_8 mx_BaseAvatar _avatar-imageless_1qbcf_52"
-              data-color="1"
-              data-testid="avatar-img"
-              data-type="round"
-              role="presentation"
-              style="--cpd-avatar-size: 80px;"
+            <div
+              class="mx_DecoratedRoomAvatar"
             >
-              !
-            </span>
+              <span
+                class="_avatar_1qbcf_8 mx_BaseAvatar _avatar-imageless_1qbcf_52"
+                data-color="1"
+                data-testid="avatar-img"
+                data-type="round"
+                role="presentation"
+                style="--cpd-avatar-size: 80px;"
+              >
+                !
+              </span>
+            </div>
           </div>
-           
         </div>
         <h1
           class="_typography_6v6n8_153 _font-heading-md-semibold_6v6n8_112 mx_RoomSummaryCard_roomName text-primary"
