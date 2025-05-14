@@ -20,6 +20,7 @@ exports[`<UserMenu> <UserMenu> UI should render as expected 1`] = `
         />
         <span
           class="mx_UserMenu_contextMenu_userId"
+          title="@userId:matrix.org"
         >
           @userId:matrix.org
         </span>

@@ -4,7 +4,7 @@ exports[`RoomHeader should render as expected 1`] = `
 <div>
   <header
     class="mx_Flex mx_RoomHeader light-panel"
-    style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x);"
+    style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
   >
     <div
       class="mx_DecoratedRoomAvatar mx_DecoratedRoomAvatar_cutout"
@@ -23,7 +23,7 @@ exports[`RoomHeader should render as expected 1`] = `
           !
         </span>
         <div
-          aria-labelledby=":r0:"
+          aria-labelledby="«r0»"
           class="mx_DecoratedRoomAvatar_icon mx_DecoratedRoomAvatar_icon_private"
           tabindex="0"
         />
@@ -55,7 +55,7 @@ exports[`RoomHeader should render as expected 1`] = `
     </button>
     <button
       aria-label="Room info"
-      aria-labelledby=":r5:"
+      aria-labelledby="«r5»"
       class="_icon-button_m2erp_8"
       role="button"
       style="--cpd-icon-button-size: 32px;"
@@ -84,7 +84,7 @@ exports[`RoomHeader should render as expected 1`] = `
     >
       <div
         aria-label="0 members"
-        aria-labelledby=":ra:"
+        aria-labelledby="«ra»"
         class="mx_AccessibleButton mx_FacePile"
         role="button"
         tabindex="0"

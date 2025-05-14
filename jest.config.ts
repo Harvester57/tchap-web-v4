@@ -51,8 +51,12 @@ const config: Config = {
         "^fetch-mock$": "<rootDir>/node_modules/fetch-mock",
         // :TCHAP:
         "MImageBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningImageBody.tsx",
-        "<rootDir>/src/tchap/components/views/messages/OriginalFileBody":
+        "MImageReplyBody":
+            "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningImageReplyBody.tsx",
+        "<rootDir>/src/tchap/components/views/messages/OriginalImageBody":
             "<rootDir>/node_modules/matrix-react-sdk/src/components/views/messages/MImageBody.tsx",
+        "<rootDir>/src/tchap/components/views/messages/OriginalFileBody":
+            "<rootDir>/node_modules/matrix-react-sdk/src/components/views/messages/MFileBody.tsx",
         "MAudioBody": "<rootDir>/src/tchap/customisations/components/views/messages/ContentScanningAudioBody.tsx",
         "<rootDir>/src/tchap/components/views/messages/OriginalAudioBody":
             "<rootDir>/node_modules/matrix-react-sdk/src/components/views/messages/MAudioBody.tsx",
