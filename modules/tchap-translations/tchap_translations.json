@@ -504,12 +504,7 @@
         "fr": "Utilisez une phrase secrète que vous êtes seul à connaître et enregistrez éventuellement un Code de Récupération à utiliser pour la sauvegarde."
     },
     "settings|encryption|advanced|title": { "en": "Tchap keys", "fr": "Clés Tchap" },
-    "settings|encryption|advanced|export_keys": { "en": "Save your Tchap keys", "fr": "Sauvegardez vos clés Tchap" },
     "settings|security|ignore_users_section": { "en": "Ignored users", "fr": "Membres ignorés" },
-    "settings|encryption|advanced|import_keys": {
-        "en": "Import your Tchap keys from the downloaded file",
-        "fr": "Importez vos clés Tchap depuis le fichier sauvegardé"
-    },
     "settings|security|key_backup_connect": { "en": "Verify this device", "fr": "Vérifier cet appareil" },
     "settings|security|message_search_unsupported_web": {
         "comment": "We have to include a <<desktopLink> otherwise the i18n checker crashes. So add an empty one.",
@@ -879,11 +874,11 @@
     },
     "settings|encryption|recovery|change_recovery_key_title": {
         "en": "Change the recovery code ?",
-        "fr": "Changer le code de récupération?"
+        "fr": "Changer le Code de Récupération?"
     },
     "settings|encryption|recovery|change_recovery_key": {
         "en": "Change the recovery code",
-        "fr": "Changer le code de récupération"
+        "fr": "Changer le Code de Récupération"
     },
     "settings|encryption|recovery|change_recovery_key_description": {
         "en": "Keep it in a safe place, such as your password manager or a protected document on your computer. You will need to copy/paste it to retrieve your messages, so avoid taking screenshots. Then click on Continue to confirm the modification",
@@ -903,11 +898,11 @@
     },
     "settings|encryption|recovery|set_up_recovery_confirm_title": {
         "en": "Enter your recovery code to confirm",
-        "fr": "Saisissez votre code de récupération pour confirmer"
+        "fr": "Saisissez votre Code de Récupération pour confirmer"
     },
     "settings|encryption|recovery|set_up_recovery_confirm_description": {
         "en": "Enter the recovery code displayed on the previous screen to finish the recovery setup.",
-        "fr": "Saisissez le code de récupération affiché sur l'écran précédent pour terminer la configuration de la récupération."
+        "fr": "Saisissez le Code de Récupération affiché sur l'écran précédent pour terminer la configuration de la récupération."
     },
     "settings|encryption|recovery|description": {
         "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
@@ -923,11 +918,11 @@
     },
     "settings|encryption|recovery|change_recovery_confirm_description": {
         "en": "Enter the new recovery code below to finish. Your old code will no longer work.",
-        "fr": "Saisissez votre nouveau code de récupération ci-dessous pour terminer. Votre ancien code ne fonctionnera plus."
+        "fr": "Saisissez votre nouveau Code de Récupération ci-dessous pour terminer. Votre ancien code ne fonctionnera plus."
     },
     "settings|encryption|recovery|change_recovery_confirm_title": {
         "en": "Enter the new recovery code",
-        "fr": "Saisir votre nouveau code de récupération"
+        "fr": "Saisir votre nouveau Code de Récupération"
     },
     "settings|encryption|recovery|enter_key_error": {
         "en": "The recovery code you entered is incorrect.",
@@ -968,5 +963,21 @@
     "room_settings|voip|enable_element_call_label": {
         "en": "Enable group calls as an additional calling option in this room",
         "fr": "Activer les appels de groupe comme une option d'appel supplémentaire dans ce salon"
+    },
+    "settings|encryption|key_storage|title": {
+        "en": "Activate automatic backup",
+        "fr": "Activer la sauvegarde automatique"
+    },
+    "settings|encryption|key_storage|allow_key_storage": {
+        "en": "Allow to automatically back up your messages",
+        "fr": "Autoriser la sauvegarde automatique des clés"
+    },
+    "settings|encryption|recovery|set_up_recovery_save_key_title": {
+        "en": "Save your recovery code somewhere safe",
+        "fr": "Sauvegardez votre Code de Récupération dans un endroit sûr"
+    },
+    "settings|encryption|recovery|set_up_recovery_save_key_description": {
+        "en": "Write down this recovery code somewhere safe, like a password manager, encrypted note, or a physical safe.",
+        "fr": "Recopier ce Code de Récupération dans un endroit sûr, comme un gestionnaire de mots de passe, une note chiffrée ou un coffre-fort physique."
     }
 }
