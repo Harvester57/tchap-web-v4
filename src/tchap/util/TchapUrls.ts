@@ -33,5 +33,7 @@ export default class TchapUrls {
     
     public static helpMailSignature = `${TchapUrls.helpBaseUrl}/fr/article/comment-parametrer-ma-signature-mail-avec-un-lien-vers-tchap-7qyhfa/?bust=1741184944276`;
 
+    public static helpSecureStorage = `${TchapUrls.helpBaseUrl}/fr/article/comment-activer-la-sauvegarde-automatique-des-messages-3gaarx/`;
+
     public static landingPage = "https://tchap.numerique.gouv.fr";
 }

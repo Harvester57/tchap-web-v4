@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Com
 Please see LICENSE files in the repository root for full details.
 */
 
-import React from "react";
+import React, { type JSX } from "react";
 import classNames from "classnames";
 import {
     EventType,
@@ -34,6 +34,7 @@ import { getJoinedNonFunctionalMembers } from "../../../utils/room/getJoinedNonF
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
 import "~tchap-web/res/css/views/avatars/_TchapDecoratedRoomAvatar.pcss";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
+import WithTchapIndicator from "~tchap-web/src/tchap/components/views/avatars/WithTchapIndicator";
 
 interface IProps {
     room: Room;
@@ -77,14 +78,6 @@ function tooltipText(variant: Icon): string | undefined {
     switch (variant) {
         case Icon.Globe:
             return _t("room|header|room_is_public");
-        // :TCHAP: tchap-room-icons - add icons for custom room types
-        case Icon.Forum:
-            return _t("This room is a public forum");
-        case Icon.Private:
-            return _t("This room is private");
-        case Icon.External:
-            return _t("This room is private and open to external users");
-        // end :TCHAP:
         case Icon.PresenceOnline:
             return _t("presence|online");
         case Icon.PresenceAway:
@@ -96,6 +89,9 @@ function tooltipText(variant: Icon): string | undefined {
     }
 }
 
+/**
+ * @deprecated Use {@link RoomAvatarView} instead.
+ */
 export default class DecoratedRoomAvatar extends React.PureComponent<IProps, IState> {
     private _dmUser: User | null = null;
     private isUnmounted = false;
@@ -141,7 +137,7 @@ export default class DecoratedRoomAvatar extends React.PureComponent<IProps, ISt
         if (this.isUnmounted) return;
         if (this.props.room.roomId !== room?.roomId) return;
 
-        if (ev.getType() === EventType.RoomJoinRules || ev.getType() === EventType.RoomMember) {
+         if (ev.getType() === EventType.RoomJoinRules || ev.getType() === EventType.RoomMember) {
             const newIcon = this.calculateIcon();
             if (newIcon !== this.state.icon) {
                 this.setState({ icon: newIcon });
@@ -248,19 +244,22 @@ export default class DecoratedRoomAvatar extends React.PureComponent<IProps, ISt
                 https://github.com/tchapgouv/tchap-web-v4/issues/890
                 Issue should be opened in element-web. */ }
                 <div className="mx_DecoratedRoomAvatar_positionedParent">
-                <RoomAvatar
-                    room={this.props.room}
-                    size={this.props.size}
-                    oobData={this.props.oobData}
-                    viewAvatarOnClick={this.props.viewAvatarOnClick}
-                />
-                {icon && (
-                    <Tooltip label={tooltipText(this.state.icon)!} placement="bottom">
-                        {icon}
-                    </Tooltip>
-                )}
-                {badge}
-                </div> { /*:TCHAP: close div */ }
+                    { /*:TCHAP: tchap-room-icons - we add the tchap hook so that the icon is well updated on room creation*/ }
+                    <WithTchapIndicator room={this.props.room} size={this.props.size} tooltipProps={{ tabIndex: this.props.tooltipProps?.tabIndex }}>
+                        <RoomAvatar
+                            room={this.props.room}
+                            size={this.props.size}
+                        oobData={this.props.oobData}
+                        viewAvatarOnClick={this.props.viewAvatarOnClick}
+                        />
+                        {/* {icon && (
+                            <Tooltip label={tooltipText(this.state.icon)!} placement="bottom">
+                                {icon}
+                            </Tooltip>
+                        )} */}
+                        {badge}
+                    </WithTchapIndicator>
+                </div>
             </div>
         );
     }

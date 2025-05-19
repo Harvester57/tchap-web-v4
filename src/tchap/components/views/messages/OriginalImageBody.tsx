@@ -22,4 +22,4 @@ limitations under the License.
  * @see ../../../../customisations.json
  */
 
-export { default } from "~tchap-web/src/components/views/messages/MImageBody";
+export { default, MImageBodyInner } from "~tchap-web/src/components/views/messages/MImageBody";

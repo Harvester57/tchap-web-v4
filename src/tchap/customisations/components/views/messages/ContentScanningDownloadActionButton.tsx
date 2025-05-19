@@ -15,16 +15,16 @@
  */
 
 import { MatrixEvent } from "matrix-js-sdk/src/matrix";
-import React from "react";
+import React, { type JSX } from "react";
 import classNames from "classnames";
-import { MediaEventHelper } from "~tchap-web/src/utils/MediaEventHelper";
+import { type MediaEventHelper } from "~tchap-web/src/utils/MediaEventHelper";
 import { FileDownloader } from "~tchap-web/src/utils/FileDownloader";
 import { _t } from "~tchap-web/src/languageHandler";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
 import { RovingAccessibleButton } from "~tchap-web/src/accessibility/RovingTabIndex";
 import { DownloadIcon } from "@vector-im/compound-design-tokens/assets/web/icons";
 
-import { Media } from "../../../ContentScanningMedia";
+import { type Media } from "../../../ContentScanningMedia";
 import { BlockedIcon } from "../../../../components/views/elements/BlockedIcon";
 
 enum DownloadState {
@@ -41,7 +41,7 @@ interface IProps {
     // XXX: It can take a cycle or two for the MessageActionBar to have all the props/setup
     // required to get us a MediaEventHelper, so we use a getter function instead to prod for
     // one.
-    mediaEventHelperGet: () => MediaEventHelper;
+    mediaEventHelperGet: () => MediaEventHelper | undefined;
 }
 
 interface IState {
@@ -65,20 +65,26 @@ export default class ContentScanningDownloadActionButton extends React.PureCompo
     }
 
     private onDownloadClick = async () => {
+        console.log("===== onDownloadClick", this.state.downloadState);
         if (this.state.downloadState === DownloadState.Scanning) {
             return;
         }
-
+        
         if (this.state.blob) {
+            console.log("===== onDownloadClick inside blob", this.state.blob);
             // Cheat and trigger a download, again.
-            return this.doDownload();
+            return this.doDownload(this.state.blob);
         }
 
         this.setState({
             downloadState: DownloadState.Scanning,
         });
 
-        const media = this.props.mediaEventHelperGet().media as any as Media;
+        const mediaEventHelperGet = this.props.mediaEventHelperGet();
+        if (!mediaEventHelperGet) return;
+
+        const media = mediaEventHelperGet.media as any as Media;
+
         const safe = await Promise.all([media.scanSource(), media.scanThumbnail()])
             .then(([ok1, ok2]) => {
                 const isSafe = ok1 && ok2;
@@ -98,15 +104,15 @@ export default class ContentScanningDownloadActionButton extends React.PureCompo
             return;
         }
 
-        const blob = await this.props.mediaEventHelperGet().sourceBlob.value;
+        const blob = await mediaEventHelperGet.sourceBlob.value;
         this.setState({ blob });
-        await this.doDownload();
+        await this.doDownload(blob);
     };
 
-    private async doDownload() {
+    private async doDownload(blob: Blob) {
         return this.downloader.download({
-            blob: this.state.blob,
-            name: this.props.mediaEventHelperGet().fileName,
+            blob,
+            name: this.props.mediaEventHelperGet()!.fileName,
         });
     }
 

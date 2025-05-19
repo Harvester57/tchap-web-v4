@@ -17,7 +17,7 @@
 import React from "react";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";
-import { IMediaEventContent } from "~tchap-web/src/customisations/models/IMediaEventContent";
+import { type MediaEventContent } from "matrix-js-sdk/src/types";
 import { _t } from "~tchap-web/src/languageHandler";
 import { presentableTextForFile } from "~tchap-web/src/utils/FileUtils";
 
@@ -102,14 +102,14 @@ export default class ContentScanningImageReplyBody extends React.PureComponent<I
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 
     private get fileName() {
         return presentableTextForFile(this.content, _t("common|image"), true, false);
     }
 
-    private get content(): IMediaEventContent {
-        return this.props.mxEvent.getContent<IMediaEventContent>();
+    private get content(): MediaEventContent {
+        return this.props.mxEvent.getContent<MediaEventContent>();
     }
 }

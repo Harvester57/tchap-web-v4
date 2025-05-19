@@ -75,6 +75,6 @@ export default class ContentScanningAudioBody extends React.PureComponent<IBodyP
     }
 
     private get media(): Media {
-        return this.props.mediaEventHelper.media as any as Media;
+        return this.props.mediaEventHelper!.media as any as Media;
     }
 }

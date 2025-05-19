@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only OR LicenseRef-Element-Com
 Please see LICENSE files in the repository root for full details.
 */
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { type JSX, useCallback, useMemo, useState } from "react";
 import { Body as BodyText, Button, IconButton, Menu, MenuItem, Tooltip } from "@vector-im/compound-web";
 import VideoCallIcon from "@vector-im/compound-design-tokens/assets/web/icons/video-call-solid";
 import VoiceCallIcon from "@vector-im/compound-design-tokens/assets/web/icons/voice-call-solid";
@@ -60,6 +60,7 @@ import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP
 import TchapExternalRoomHeader from "~tchap-web/src/tchap/components/views/rooms/TchapExternalRoomHeader"; // :TCHAP: customize-room-header-bar
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils.ts";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap.ts";
+import WithTchapIndicator from "~tchap-web/src/tchap/components/views/avatars/WithTchapIndicator.tsx";
 
 
 
@@ -271,19 +272,22 @@ export default function RoomHeader({
         <>
             <CurrentRightPanelPhaseContextProvider roomId={room.roomId}>
                 <Flex as="header" align="center" gap="var(--cpd-space-3x)" className="mx_RoomHeader light-panel">
-                    {/* :TCHAP: customize-room-header-bar - RoomAvatar -> DecoratedRoomAvatar */}
-                    {/* <WithPresenceIndicator room={room} size="8px">
-                        {/* We hide this from the tabIndex list as it is a pointer shortcut and superfluous for a11y }
-                        <RoomAvatar
-                            room={room}
-                            size="40px"
-                            oobData={oobData}
-                            onClick={onAvatarClick}
-                            tabIndex={-1}
-                            aria-label={_t("room|header_avatar_open_settings_label")}
-                        />
-                    </WithPresenceIndicator> */}
-                    <DecoratedRoomAvatar room={room} size="40px" />
+                    {/* :TCHAP: customize-room-header-bar - add room type decoration */}
+                     {/* <WithPresenceIndicator room={room} size="8px"> */}
+                     <WithTchapIndicator room={room} size="8px" tooltipProps={{ tabIndex: -1 }}>
+                        {/* We hide this from the tabIndex list as it is a pointer shortcut and superfluous for a11y } */}
+                        <div className="mx_DecoratedRoomAvatar_positionedParent">
+                            <RoomAvatar
+                                room={room}
+                                size="40px"
+                                oobData={oobData}
+                                onClick={onAvatarClick}
+                                tabIndex={-1}
+                                aria-label={_t("room|header_avatar_open_settings_label")}
+                            />
+                        </div>
+                    </WithTchapIndicator>
+                    {/* </WithPresenceIndicator>  */}
                     {/* end :TCHAP: */}
                     {/* :tchap: customize-room-header-bar - Add external caption when room is open to external */}
                     <TchapExternalRoomHeader room={room} />

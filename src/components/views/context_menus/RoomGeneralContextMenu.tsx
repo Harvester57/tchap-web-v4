@@ -7,8 +7,8 @@ Please see LICENSE files in the repository root for full details.
 */
 
 import { logger } from "matrix-js-sdk/src/logger";
-import { JoinRule, Room } from "matrix-js-sdk/src/matrix"; // :tchap: copy-link-room-behavior
-import React, { useContext } from "react";
+import { type Room, JoinRule } from "matrix-js-sdk/src/matrix";
+import React, { type JSX, useContext } from "react";
 
 import { KeyBindingAction } from "../../../accessibility/KeyboardShortcuts";
 import RoomListActions from "../../../actions/RoomListActions";
