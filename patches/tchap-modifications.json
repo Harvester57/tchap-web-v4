@@ -131,7 +131,8 @@
     "remove-notification-powerlevel-change": {
         "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1176",
         "files": [
-            "src/Unread.ts"
+            "src/Unread.ts",
+            "src/stores/room-list/algorithms/tag-sorting/RecentAlgorithm.ts"
         ]
     },
     "externals-error-messages": {

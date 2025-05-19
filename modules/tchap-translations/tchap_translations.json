@@ -886,15 +886,15 @@
     },
     "settings|encryption|recovery|enter_recovery_key": {
         "en": "Enter the recovery code",
-        "fr": "Saisir le code de récupération"
+        "fr": "Saisir le Code de Récupération"
     },
     "settings|encryption|recovery|forgot_recovery_key": {
         "en": "Forgot recovery code ?",
-        "fr": "Code de récupération oubliée?"
+        "fr": "Code de Récupération oublié?"
     },
     "settings|encryption|recovery|save_key_title": {
         "en": "Recovery code",
-        "fr": "Code de récupération"
+        "fr": "Code de Récupération"
     },
     "settings|encryption|recovery|set_up_recovery_confirm_title": {
         "en": "Enter your recovery code to confirm",
@@ -914,7 +914,7 @@
     },
     "settings|encryption|recovery|change_recovery_confirm_button": {
         "en": "Confirm the new recovery code",
-        "fr": "Confirmer le nouveau code de récupération"
+        "fr": "Confirmer le nouveau Code de Récupération"
     },
     "settings|encryption|recovery|change_recovery_confirm_description": {
         "en": "Enter the new recovery code below to finish. Your old code will no longer work.",
@@ -965,12 +965,12 @@
         "fr": "Activer les appels de groupe comme une option d'appel supplémentaire dans ce salon"
     },
     "settings|encryption|key_storage|title": {
-        "en": "Activate automatic backup",
-        "fr": "Activer la sauvegarde automatique"
+        "en": "Automatic backup of messages",
+        "fr": "Sauvegarde automatique des messages"
     },
     "settings|encryption|key_storage|allow_key_storage": {
-        "en": "Allow to automatically back up your messages",
-        "fr": "Autoriser la sauvegarde automatique des clés"
+        "en": "Activate automatic backup of messages",
+        "fr": "Activer la Sauvegarde automatique des messages"
     },
     "settings|encryption|recovery|set_up_recovery_save_key_title": {
         "en": "Save your recovery code somewhere safe",
