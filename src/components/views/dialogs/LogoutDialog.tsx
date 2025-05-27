@@ -20,6 +20,9 @@ import QuestionDialog from "./QuestionDialog";
 import BaseDialog from "./BaseDialog";
 import Spinner from "../elements/Spinner";
 import DialogButtons from "../elements/DialogButtons";
+import ExternalLink from "../elements/ExternalLink";
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
+import InfoIcon from "@vector-im/compound-design-tokens/icons/info.svg"; // :TCHAP:
 
 interface IProps {
     onFinished: (success: boolean) => void;
@@ -256,11 +259,35 @@ export default class LogoutDialog extends React.Component<IProps, IState> {
                     <QuestionDialog
                         hasCancelButton={true}
                         title={_t("action|sign_out")}
-                        description={_t("auth|logout_dialog|description")}
+                        // :TCHAP: warning-logout-dialog
+                        description={_t("auth|logout_dialog|description",  {},
+                            {
+                                div: (text) => (
+                                    <div style={{ marginTop: "10px", color: "red", display: "flex", alignItems: "center" }}>
+                                          <img 
+                                            src={InfoIcon} 
+                                            alt="info" 
+                                            style={{ 
+                                                width: "16px", 
+                                                height: "16px",
+                                                filter: "brightness(0) saturate(100%) invert(13%) sepia(94%) saturate(7151%) hue-rotate(3deg) brightness(97%) contrast(118%)",
+                                                marginRight: "5px"
+                                            }}
+                                        />
+                                        {text}
+                                    </div>
+                                ),
+                                a: (sub) => (
+                                    <ExternalLink href={TchapUrls.lockedMessagesPage} style={{ color: "red", textDecoration: "underline" }}>
+                                        {sub}
+                                    </ExternalLink>
+                                ),
+                            })}
+                        // end :TCHAP:
                         button={_t("action|sign_out")}
                         onFinished={this.onFinished}
                     />
-                );
+                )
 
             case BackupStatus.NO_BACKUP:
             case BackupStatus.SERVER_BACKUP_BUT_DISABLED:

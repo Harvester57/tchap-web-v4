@@ -241,5 +241,11 @@
             "src/BasePlatform.ts",
             "src/components/views/auth/InteractiveAuthEntryComponents.tsx"
         ]
+    },
+    "warning-logout-dialog": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1319",
+        "files": [
+            "src/components/views/dialogs/LogoutDialog.tsx"
+        ]
     }
 }
