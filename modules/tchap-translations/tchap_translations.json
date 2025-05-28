@@ -979,5 +979,9 @@
     "settings|encryption|recovery|set_up_recovery_save_key_description": {
         "en": "Write down this recovery code somewhere safe, like a password manager, encrypted note, or a physical safe.",
         "fr": "Recopier ce Code de Récupération dans un endroit sûr, comme un gestionnaire de mots de passe, une note chiffrée ou un coffre-fort physique."
+    },
+    "auth|logout_dialog|description": {
+        "en": "Are you sure you want to sign out? <div>Keep at least one connected device in order to not lose any messages during your leave.</div><a>Learn more</a>",
+        "fr": "Voulez-vous vraiment vous déconnecter ? <div>Gardez au moins un appareil connecté pour ne pas perdre les messages reçus en votre absence.</div><a>En savoir plus</a>"
     }
 }
