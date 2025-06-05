@@ -36,4 +36,6 @@ export default class TchapUrls {
     public static helpSecureStorage = `${TchapUrls.helpBaseUrl}/fr/article/comment-activer-la-sauvegarde-automatique-des-messages-3gaarx/`;
 
     public static landingPage = "https://tchap.numerique.gouv.fr";
+
+    public static helpPrivacyPolicy = `https://tchap.numerique.gouv.fr/politique-de-confidentialite/`;
 }
