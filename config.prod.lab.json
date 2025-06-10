@@ -92,7 +92,8 @@
         "feature_notification_settings2": false,
         "feature_new_room_decoration_ui": true,
         "feature_rust_crypto": true,
-        "feature_latex_maths": true
+        "feature_latex_maths": true,
+        "feature_group_calls": true
     },
     "feedback": {
         "existing_issues_url": "https://github.com/tchapgouv/tchap-web-v4/issues?q=is%3Aopen+is%3Aissue+sort%3Areactions-%2B1-desc",
@@ -146,7 +147,7 @@
         "UIFeature.shareSocial": false,
         "UIFeature.registration": true,
         "UIFeature.urlPreviews": false,
-        "UIFeature.widgets": false,
+        "UIFeature.widgets": true,
         "UIFeature.shareQrCode": false,
         "UIFeature.thirdPartyId": true,
         "UIFeature.identityServer": true,
@@ -199,7 +200,7 @@
         "feature_space": ["agent.dinum.tchap.gouv.fr"],
         "feature_audio_call": ["*"],
         "feature_video_call": ["*"],
-        "feature_video_group_call": [],
+        "feature_video_group_call": ["agent.dinum.tchap.gouv.fr"],
         "feature_screenshare_call": ["*"]
     },
     "tchap_sso_flow": {
@@ -209,5 +210,8 @@
     "posthog": {
         "project_api_key": "phc_FFa4pkvmuWjF9nZOMmYJWUXMibuYnCnPyf3DqPGZs4L",
         "api_host": "https://posthogdev.tchap.incubateur.net"
+    },
+    "element_call": {
+        "url": "https://call.tchap.gouv.fr/"
     }
 }
