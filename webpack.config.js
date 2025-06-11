@@ -221,6 +221,103 @@ module.exports = (env, argv) => {
 
                 // :TCHAP:
                 "~tchap-web": path.resolve(__dirname, "."),
+                // Hack in order to include the fonts declare in tchap compound-design-tokens
+                "./Marianne-Thin.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Thin.woff2",
+                ),
+                "./Marianne-Thin.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Thin.woff",
+                ),
+                "./Marianne-Thin_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Thin_Italic.woff2",
+                ),
+                "./Marianne-Thin_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Thin_Italic.woff",
+                ),
+                "./Marianne-Light.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Light.woff2",
+                ),
+                "./Marianne-Light.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Light.woff",
+                ),
+                "./Marianne-Light_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Light_Italic.woff2",
+                ),
+                "./Marianne-Light_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Light_Italic.woff",
+                ),
+                "./Marianne-Regular.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Regular.woff2",
+                ),
+                "./Marianne-Regular.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Regular.woff",
+                ),
+                "./Marianne-Regular_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Regular_Italic.woff2",
+                ),
+                "./Marianne-Regular_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Regular_Italic.woff",
+                ),
+                "./Marianne-Medium.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Medium.woff2",
+                ),
+                "./Marianne-Medium.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Medium.woff",
+                ),
+                "./Marianne-Medium_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Medium_Italic.woff2",
+                ),
+                "./Marianne-Medium_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Medium_Italic.woff",
+                ),
+                "./Marianne-Bold.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Bold.woff2",
+                ),
+                "./Marianne-Bold.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Bold.woff",
+                ),
+                "./Marianne-Bold_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Bold_Italic.woff2",
+                ),
+                "./Marianne-Bold_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-Bold_Italic.woff",
+                ),
+                "./Marianne-ExtraBold.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-ExtraBold.woff2",
+                ),
+                "./Marianne-ExtraBold.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-ExtraBold.woff",
+                ),
+                "./Marianne-ExtraBold_Italic.woff2": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-ExtraBold_Italic.woff2",
+                ),
+                "./Marianne-ExtraBold_Italic.woff": path.resolve(
+                    __dirname,
+                    "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-ExtraBold_Italic.woff",
+                ),
             },
             fallback: {
                 // Mock out the NodeFS module: The opus decoder imports this wrongly.
