@@ -3664,20 +3664,6 @@
   version "4.0.4"
   resolved "https://github.com/tchapgouv/compound-design-tokens.git#3d218b2fe64614467f296b8a8c975f59db8c2914"
 
-"@vector-im/compound-web@https://github.com/tchapgouv/compound-web.git#main_tchap":
-  version "7.12.0"
-  resolved "https://github.com/tchapgouv/compound-web.git#99a1ea08d11ee4556db5f51883be93f984f095ad"
-  dependencies:
-    "@floating-ui/react" "^0.27.0"
-    "@radix-ui/react-context-menu" "^2.2.1"
-    "@radix-ui/react-dropdown-menu" "^2.1.1"
-    "@radix-ui/react-form" "^0.1.0"
-    "@radix-ui/react-progress" "^1.1.0"
-    "@radix-ui/react-separator" "^1.1.0"
-    "@radix-ui/react-slot" "^1.1.0"
-    classnames "^2.5.1"
-    vaul "^1.0.0"
-
 "@vector-im/matrix-wysiwyg-wasm@link:../../.cache/yarn/v6/npm-@vector-im-matrix-wysiwyg-2.38.3-cc54d8b3e9472bcd8e622126ba364ee31952cd8a-integrity/node_modules/bindings/wysiwyg-wasm":
   version "0.0.0"
   uid ""
@@ -5003,6 +4989,21 @@ commonmark@^0.31.0:
     entities "~3.0.1"
     mdurl "~1.0.1"
     minimist "~1.2.8"
+
+compound-web-tchap@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/compound-web-tchap/-/compound-web-tchap-1.0.1.tgz#21b7fd009773c5d8299c8de31b0c5f19a1ef8a91"
+  integrity sha512-xM2CjkOeaZ/lfHUvEqjGfEu3NqoebvlgXdS+lUV7kjGpPUbd9x6tcqfHnD+grwyCGq1VzP7TJ5Cug5nFaTMgxg==
+  dependencies:
+    "@floating-ui/react" "^0.27.0"
+    "@radix-ui/react-context-menu" "^2.2.1"
+    "@radix-ui/react-dropdown-menu" "^2.1.1"
+    "@radix-ui/react-form" "^0.1.0"
+    "@radix-ui/react-progress" "^1.1.0"
+    "@radix-ui/react-separator" "^1.1.0"
+    "@radix-ui/react-slot" "^1.1.0"
+    classnames "^2.5.1"
+    vaul "^1.0.0"
 
 compress-commons@^6.0.2:
   version "6.0.2"

@@ -318,6 +318,8 @@ module.exports = (env, argv) => {
                     __dirname,
                     "./node_modules/@vector-im/compound-design-tokens/assets/web/fonts/Marianne-ExtraBold_Italic.woff",
                 ),
+                // we use tchap own compound-web package
+                "@vector-im/compound-web": path.resolve(__dirname, "node_modules/compound-web-tchap"),
             },
             fallback: {
                 // Mock out the NodeFS module: The opus decoder imports this wrongly.
@@ -928,6 +930,12 @@ function getAssetOutputPath(url, resourcePath) {
     const compoundMatch = outputDir.match(compoundImportsPrefix);
     if (compoundMatch) {
         outputDir = outputDir.substring(compoundMatch.index + compoundMatch[0].length);
+    }
+    // for tchap compound web
+    const compoundTchapImports = "compound-web-tchap";
+    const compoundTchapMatch = outputDir.match(compoundTchapImports);
+    if (compoundTchapMatch) {
+        outputDir = outputDir.substring(compoundTchapMatch.index + compoundTchapMatch[0].length);
     }
 
     if (isFontSource) {
