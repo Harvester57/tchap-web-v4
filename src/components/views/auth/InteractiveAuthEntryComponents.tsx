@@ -824,7 +824,7 @@ export class SSOAuthEntry extends React.Component<ISSOAuthEntryProps, ISSOAuthEn
         const { threepids } = await this.props.matrixClient.getThreePids();
         const email = threepids.find((t) => t.medium === "email")?.address;
         // in the url, there is alreay a query param for sessionId, so we use & instead of ?
-        this.ssoUrl = this.ssoUrl + "&" + encodeParams({"login_hint" :email});;
+        this.ssoUrl = this.ssoUrl + "&" + encodeParams({"login_hint" :email});
         // end :TCHAP:
         this.popupWindow = window.open(this.ssoUrl, "_blank");
         this.setState({ phase: SSOAuthEntry.PHASE_POSTAUTH });
