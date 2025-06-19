@@ -23,6 +23,7 @@ import Spinner from "../elements/Spinner";
 import CaptchaForm from "./CaptchaForm";
 import { Flex } from "../../utils/Flex";
 import { pickBestPolicyLanguage } from "../../../Terms.ts";
+import { encodeParams } from "matrix-js-sdk/src/utils.ts";
 
 /* This file contains a collection of components which are used by the
  * InteractiveAuth to prompt the user to enter the information needed
@@ -823,7 +824,7 @@ export class SSOAuthEntry extends React.Component<ISSOAuthEntryProps, ISSOAuthEn
         const { threepids } = await this.props.matrixClient.getThreePids();
         const email = threepids.find((t) => t.medium === "email")?.address;
         // in the url, there is alreay a query param for sessionId, so we use & instead of ?
-        this.ssoUrl = this.ssoUrl + "&login_hint=" + email;
+        this.ssoUrl = this.ssoUrl + "&" + encodeParams({"login_hint" :email});
         // end :TCHAP:
         this.popupWindow = window.open(this.ssoUrl, "_blank");
         this.setState({ phase: SSOAuthEntry.PHASE_POSTAUTH });

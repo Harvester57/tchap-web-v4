@@ -34,6 +34,7 @@ import SdkConfig from "./SdkConfig";
 import { buildAndEncodePickleKey, encryptPickleKey } from "./utils/tokens/pickling";
 import Favicon from "./favicon.ts";
 import { getVectorConfig } from "./vector/getconfig.ts";
+import { encodeParams } from "matrix-js-sdk/src/utils.ts";
 
 export const SSO_HOMESERVER_URL_KEY = "mx_sso_hs_url";
 export const SSO_ID_SERVER_URL_KEY = "mx_sso_is_url";
@@ -368,7 +369,7 @@ export default abstract class BasePlatform {
 
         // :TCHAP: sso-login-hint add login_hint if necessary
         if(loginHint){
-            ssoLoginUrl = ssoLoginUrl + "&login_hint=" + loginHint;
+            ssoLoginUrl = ssoLoginUrl + "&" + encodeParams({"login_hint" :loginHint});
         }
         // end :TCHAP:
         window.location.href = ssoLoginUrl; // redirect to SSO
