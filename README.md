@@ -62,6 +62,11 @@ yarn start
 
 Then also update the `tchap-modifications.json` file. We continue to keep track of the changes we make to the sdk. It will also be easier to separate different functionnality that tchap added to the code
 
+### Compound Web tchap
+
+We use our own compound-web and compound-design-token packages. When upgrading the version, do not forget to also upgrade compoound-web-tchap npm package.
+The reference to `@vector-im/compound-web` are still present, but it is only an alias to our package `compound-design-tchap` defined in webpack. The only direct reference to this package is in the css import of `_common.pcss`, because the pcss loader doesnt manage aliases.
+
 ### Tests
 
 - Now that `matrix-react-sdk` is merged inside tchap-web, we only target the `test/tchap` folder in order to run our tests on only the files that tchap has modified.

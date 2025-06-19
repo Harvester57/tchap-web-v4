@@ -58,7 +58,8 @@ exports[`RoomHeader should render as expected 1`] = `
     <button
       aria-label="Room info"
       aria-labelledby="«r5»"
-      class="_icon-button_m2erp_8"
+      class="_icon-button_1pz9o_8"
+      data-kind="primary"
       role="button"
       style="--cpd-icon-button-size: 32px;"
       tabindex="0"
