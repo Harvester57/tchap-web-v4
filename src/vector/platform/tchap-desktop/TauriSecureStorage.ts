@@ -15,20 +15,15 @@ export class TauriSecureStorage {
     }
 
     public getRandomUtf832Bytes(): Uint8Array{
-        // Define the Unicode range for Greek alphabet characters
-        const minCodePoint = 0x0391; // 'Α' (Greek Capital Letter Alpha)
-        const maxCodePoint = 0x03A9; // 'Ω' (Greek Capital Letter Omega)
-        const range = maxCodePoint - minCodePoint + 1;
-
         // Create a Uint32Array to hold the random value
-        const randomValue = new Uint8Array(32);
-        crypto.getRandomValues(randomValue);
+        const randomValue = this.getRandom32Bytes();
 
-        // Map the random value to the desired Unicode range
-        const randomCodePoint = randomValue.map(value => minCodePoint + (value % range));
+        // Map to printable ASCII range (33-126: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~)
+        for (let i = 0; i < randomValue.length; i++) {
+            randomValue[i] = 33 + (randomValue[i] % 94);
+        }
 
-        // Convert the code point to a character
-        return randomCodePoint;
+        return randomValue;
     }
 
     public async getItem(key: string): Promise<any> {

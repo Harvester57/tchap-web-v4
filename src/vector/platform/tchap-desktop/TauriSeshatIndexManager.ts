@@ -33,13 +33,18 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
 
         if (!passphrase) {
             logger.info("[init_event_index] Passphrase was not found, creating new one");
-            const ramdom32Bytes: Uint8Array = this.platform.getSecureStorageInstance().getRandom32Bytes();
+            // Stronghold needs a Uint32 bytes array
+            const ramdom32Bytes: Uint8Array = this.platform.getSecureStorageInstance().getRandomUtf832Bytes();
+            
             this.platform.getSecureStorageInstance().createItem(key, ramdom32Bytes);
             passphrase = ramdom32Bytes;
         }
         
+        // In order to be a readable string, the 32bytes array has been restricted to ascii char codes
         const passphraseString: string = new TextDecoder().decode(passphrase);
+
         logger.info("[init_event_index] passphrase decoded", passphraseString);
+        logger.info("[init_event_index] passphrase encoded", passphrase);
         return this.ipc.call("init_event_index", {passphrase: passphraseString});
     }
 
