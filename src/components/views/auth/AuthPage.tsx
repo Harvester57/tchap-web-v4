@@ -13,6 +13,7 @@ import SdkConfig from "../../../SdkConfig";
 import AuthFooter from "./AuthFooter";
 
 import { TchapHeader } from "~tchap-web/src/tchap/components/views/common/TchapHeader";
+import TchapFooter from "~tchap-web/src/tchap/components/views/common/TchapFooter";
 
 export default class AuthPage extends React.PureComponent<React.PropsWithChildren> {
     private static welcomeBackgroundUrl?: string;
@@ -75,7 +76,10 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
                         {this.props.children}
                     </div>
                 </div>
-                <AuthFooter />
+                {/* :TCHAP: lasuite-footer */}
+                {/* <AuthFooter /> */}
+                <TchapFooter />
+                {/* end :TCHAP: */}
             </div>
         );
     }

@@ -983,5 +983,9 @@
     "auth|logout_dialog|description": {
         "en": "Are you sure you want to sign out? <div>Keep at least one connected device in order to not lose any messages during your leave.</div><a>Learn more</a>",
         "fr": "Voulez-vous vraiment vous déconnecter ? <div>Gardez au moins un appareil connecté pour ne pas perdre les messages reçus en votre absence.</div><a>En savoir plus</a>"
+    },
+    "footer|code_source": {
+        "en": "The code of Tchap is publicly available and based on the Matrix protocol. The development of the application benefits from the advances of the Matrix community, in terms of functional improvements and security.",
+        "fr": "Le code de Tchap est consultable publiquement et se base sur le protocole Matrix. Le développement de l'application bénéficie ainsi des avancées de la communauté Matrix, en terme d'amélioration fonctionnelle et de sécurité."
     }
 }
