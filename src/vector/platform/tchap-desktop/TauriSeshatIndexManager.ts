@@ -1,16 +1,16 @@
 // eslint-disable-next-line no-restricted-imports
-import { IMatrixProfile, IEventWithRoomId as IMatrixEvent, IResultRoomEvents } from "matrix-js-sdk/src/@types/search";
+import { type IMatrixProfile, type IEventWithRoomId as IMatrixEvent, type IResultRoomEvents } from "matrix-js-sdk/src/@types/search";
 import { logger } from "matrix-js-sdk/src/logger";
 
 import BaseEventIndexManager, {
-    ICrawlerCheckpoint,
-    IEventAndProfile,
-    IIndexStats,
-    ISearchArgs,
-    ILoadArgs,
+    type ICrawlerCheckpoint,
+    type IEventAndProfile,
+    type IIndexStats,
+    type ISearchArgs,
+    type ILoadArgs,
 } from "../../../indexing/BaseEventIndexManager";
 import { TauriIPCManager as IPCManager } from "./TauriIPCManager";
-import TauriPlatform from "./TauriPlatform";
+import type TauriPlatform from "./TauriPlatform";
 
 export class TauriSeshatIndexManager extends BaseEventIndexManager {
     private readonly ipc = new IPCManager();
@@ -29,10 +29,10 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
         const key = `seshat|${userId}|${deviceId}`;
 
         let passphrase: Uint8Array = await this.platform.getSecureStorageInstance().getItem(key);
-        logger.info("[init_event_index] key", key);
+        logger.debug("[init_event_index] key", key);
 
         if (!passphrase) {
-            logger.info("[init_event_index] Passphrase was not found, creating new one");
+            logger.debug("[init_event_index] Passphrase was not found, creating new one");
             // Stronghold needs a Uint32 bytes array
             const ramdom32Bytes: Uint8Array = this.platform.getSecureStorageInstance().getRandomUtf832Bytes();
             
@@ -43,14 +43,13 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
         // In order to be a readable string, the 32bytes array has been restricted to ascii char codes
         const passphraseString: string = new TextDecoder().decode(passphrase);
 
-        logger.info("[init_event_index] passphrase decoded", passphraseString);
-        logger.info("[init_event_index] passphrase encoded", passphrase);
+        logger.debug("[init_event_index] passphrase decoded", passphraseString);
+        logger.debug("[init_event_index] passphrase encoded", passphrase);
         return this.ipc.call("init_event_index", {passphrase: passphraseString});
     }
 
     public async addEventToIndex(event: IMatrixEvent, profile: IMatrixProfile): Promise<void> {
-        logger.info("[addliveenent] ", event);
-
+        logger.debug("[addliveenent] ", event);
         // return this.ipc.call("add_event_to_index", {event: seshatEvent, profile});
         return this.ipc.call("add_event_to_index", {event, profile});
     }
@@ -73,7 +72,7 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
 
     public async searchEventIndex(searchArgs: ISearchArgs): Promise<IResultRoomEvents> {
         const result = await this.ipc.call("search_event_index", {searchConfig: searchArgs});
-        logger.info("[searcheventindex]", result);
+        logger.debug("[searcheventindex]", result);
         return result;
     }
 
@@ -82,10 +81,12 @@ export class TauriSeshatIndexManager extends BaseEventIndexManager {
         newCheckpoint: ICrawlerCheckpoint | null,
         oldCheckpoint: ICrawlerCheckpoint | null,
     ): Promise<boolean> {
+        logger.debug("[addHistoricEvents] ", event);
         return this.ipc.call("add_historic_events", { events, newCheckpoint, oldCheckpoint });
     }
 
     public async addCrawlerCheckpoint(checkpoint: ICrawlerCheckpoint): Promise<void> {
+        logger.debug("[add_crawler_checkpoint] checkpoint", checkpoint);
         return this.ipc.call("add_crawler_checkpoint", { checkpoint });
     }
 

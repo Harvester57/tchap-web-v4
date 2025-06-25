@@ -4,19 +4,18 @@ import { logger } from 'matrix-js-sdk/src/logger';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
-import { MatrixClient } from 'matrix-js-sdk/src/matrix';
+import { type MatrixClient } from 'matrix-js-sdk/src/matrix';
 
 import BasePlatform from "../../../BasePlatform";
 import dis from "../../../dispatcher/dispatcher";
 import SdkConfig from "../../../SdkConfig";
-import { ActionPayload } from "../../../dispatcher/payloads";
+import { type ActionPayload } from "../../../dispatcher/payloads";
 // import { TauriSeshatIndexManager as SeshatIndexManager } from "./TauriSeshatIndexManager";
 import { TauriIPCManager as IPCManager } from "./TauriIPCManager";
 import { _t } from "../../../languageHandler";
 import { TauriSeshatIndexManager } from './TauriSeshatIndexManager';
-import { TauriSecureStorage } from './TauriSecureStorage';
-
-import BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexManager';
+import { type TauriSecureStorage } from './TauriSecureStorage';
+import type BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexManager';
 
 const SSO_ID_KEY = "tchap-desktop-ssoid";
 
