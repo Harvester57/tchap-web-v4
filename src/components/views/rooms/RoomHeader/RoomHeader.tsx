@@ -208,6 +208,7 @@ export default function RoomHeader({
         // </>
 
         <>
+<<<<<<< HEAD
             <IconButton
                 disabled={!!videoCallDisabledReason}
                 aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
@@ -215,6 +216,53 @@ export default function RoomHeader({
             >
                 {callIconWithTooltip}
             </IconButton>
+=======
+            {/* Can be either a menu or just a button depending on the number of call options.*/}
+            {callOptions.length > 1 ? (
+                <Menu
+                    open={menuOpen}
+                    onOpenChange={onOpenChange}
+                    title={_t("voip|video_call_using")}
+                    trigger={
+                        <IconButton
+                            disabled={!!videoCallDisabledReason}
+                            aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
+                        >
+                            {callIconWithTooltip}
+                        </IconButton>
+                    }
+                    side="left"
+                    align="start"
+                >
+                    {callOptions.map((option) => {
+                        const { label, children } = getPlatformCallTypeProps(option);
+                        return (
+                            <MenuItem
+                                key={option}
+                                label={label}
+                                aria-label={label}
+                                children={children}
+                                className="mx_RoomHeader_videoCallOption"
+                                onClick={(ev) => {
+                                    setMenuOpen(false);
+                                    videoCallClick(ev, option);
+                                }}
+                                Icon={VideoCallIcon}
+                                onSelect={() => {} /* Dummy handler since we want the click event.*/}
+                            />
+                        );
+                    })}
+                </Menu>
+            ) : (
+                <IconButton
+                    disabled={!!videoCallDisabledReason}
+                    aria-label={videoCallDisabledReason ?? _t("voip|video_call")}
+                    onClick={videoClick}
+                >
+                    {callIconWithTooltip}
+                </IconButton>
+            )}
+>>>>>>> v1.11.104
         </>
         // end :TCHAP:
     );

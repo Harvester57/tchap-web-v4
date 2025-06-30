@@ -741,22 +741,11 @@
     "empty_room_was_name": "Sala vacía (antes era %(oldName)s)",
     "encryption": {
         "access_secret_storage_dialog": {
-            "enter_phrase_or_key_prompt": "Escribe tu frase de seguridad o <button>usa tu clave de seguridad</button> para continuar.",
             "key_validation_text": {
-                "invalid_security_key": "Clave de seguridad inválida",
-                "recovery_key_is_correct": "¡Se ve bien!",
-                "wrong_file_type": "Tipo de archivo incorrecto",
                 "wrong_security_key": "Clave de seguridad incorrecta"
             },
-            "reset_title": "Restablecer todo",
-            "reset_warning_1": "Solo haz esto si no tienes ningún otro dispositivo con el que completar la verificación.",
-            "reset_warning_2": "Si restableces todo, volverás a empezar sin sesiones ni usuarios de confianza, y puede que no puedas ver mensajes anteriores.",
             "restoring": "Restaurando las claves desde copia de seguridad",
-            "security_key_title": "Clave de seguridad",
-            "security_phrase_incorrect_error": "No se ha podido acceder al almacenamiento seguro. Por favor, comprueba que la frase de seguridad es correcta.",
-            "security_phrase_title": "Frase de seguridad",
-            "separator": "%(securityKey)s o %(recoveryFile)s",
-            "use_security_key_prompt": "Usa tu llave de seguridad para continuar."
+            "security_key_title": "Clave de seguridad"
         },
         "bootstrap_title": "Configurando claves",
         "cancel_entering_passphrase_description": "¿Estas seguro que quieres cancelar el ingresar tu contraseña de recuperación?",
@@ -813,7 +802,6 @@
             "accepting": "Aceptando…",
             "after_new_login": {
                 "device_verified": "Dispositivo verificado",
-                "reset_confirmation": "¿De verdad quieres restablecer las claves de verificación?",
                 "skip_verification": "Saltar la verificación por ahora",
                 "unable_to_verify": "No se ha podido verificar el dispositivo",
                 "verify_this_device": "Verificar este dispositivo"
@@ -883,7 +871,6 @@
             "verify_emoji_prompt": "Verifica comparando emoji únicos.",
             "verify_emoji_prompt_qr": "Si no puedes escanear el código de arriba, verifica comparando emoji únicos.",
             "verify_later": "La verificaré en otro momento",
-            "verify_reset_warning_1": "Una vez restableces las claves de verificación, no lo podrás deshacer. Después de restablecerlas, no podrás acceder a los mensajes cifrados antiguos, y cualquier persona que te haya verificado verá avisos de seguridad hasta que vuelvas a hacer la verificación con ella.",
             "verify_using_device": "Verificar con otro dispositivo",
             "verify_using_key": "Verificar con una clave de seguridad",
             "verify_using_key_or_phrase": "Verificar con una clave o frase de seguridad",
@@ -2602,7 +2589,6 @@
         "heading_without_query": "Buscar",
         "join_button_text": "Unirte a %(roomAddress)s",
         "keyboard_scroll_hint": "Usa <arrows/> para desplazarte",
-        "message_search_section_title": "Otras búsquedas",
         "other_rooms_in_space": "Otras salas en %(spaceName)s",
         "public_rooms_label": "Salas públicas",
         "recent_searches_section_title": "Búsquedas recientes",
@@ -2611,7 +2597,6 @@
         "result_may_be_hidden_privacy_warning": "Algunos resultados pueden estar ocultos por motivos de privacidad",
         "result_may_be_hidden_warning": "Algunos resultados pueden estar ocultos",
         "search_dialog": "Ventana de búsqueda",
-        "search_messages_hint": "Para buscar contenido de mensajes, usa este icono en la parte de arriba de una sala: <icon/>",
         "spaces_title": "Tus espacios",
         "start_group_chat_button": "Crear conversación en grupo"
     },

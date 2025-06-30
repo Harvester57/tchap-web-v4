@@ -10,13 +10,12 @@ import { logger } from "matrix-js-sdk/src/logger";
 
 import type { MatrixClient } from "matrix-js-sdk/src/matrix";
 import type { RoomNotificationState } from "../../../../src/stores/notifications/RoomNotificationState";
-import { RoomListStoreV3Class } from "../../../../src/stores/room-list-v3/RoomListStoreV3";
+import { LISTS_UPDATE_EVENT, RoomListStoreV3Class } from "../../../../src/stores/room-list-v3/RoomListStoreV3";
 import { AsyncStoreWithClient } from "../../../../src/stores/AsyncStoreWithClient";
 import { RecencySorter } from "../../../../src/stores/room-list-v3/skip-list/sorters/RecencySorter";
-import { mkEvent, mkMessage, mkSpace, stubClient, upsertRoomStateEvents } from "../../../test-utils";
+import { mkEvent, mkMessage, mkSpace, mkStubRoom, stubClient, upsertRoomStateEvents } from "../../../test-utils";
 import { getMockedRooms } from "./skip-list/getMockedRooms";
 import { AlphabeticSorter } from "../../../../src/stores/room-list-v3/skip-list/sorters/AlphabeticSorter";
-import { LISTS_UPDATE_EVENT } from "../../../../src/stores/room-list/RoomListStore";
 import dispatcher from "../../../../src/dispatcher/dispatcher";
 import SpaceStore from "../../../../src/stores/spaces/SpaceStore";
 import { MetaSpace, UPDATE_SELECTED_SPACE } from "../../../../src/stores/spaces";
@@ -28,6 +27,7 @@ import { SortingAlgorithm } from "../../../../src/stores/room-list-v3/skip-list/
 import SettingsStore from "../../../../src/settings/SettingsStore";
 import * as utils from "../../../../src/utils/notifications";
 import * as roomMute from "../../../../src/stores/room-list/utils/roomMute";
+import { Action } from "../../../../src/dispatcher/actions";
 
 describe("RoomListStoreV3", () => {
     async function getRoomListStore() {
@@ -122,6 +122,27 @@ describe("RoomListStoreV3", () => {
             expect(store.getSortedRooms()[0].roomId).toEqual(room.roomId);
         });
 
+        it("Forgotten room is removed", async () => {
+            const { store, rooms, dispatcher } = await getRoomListStore();
+            const room = rooms[37];
+
+            // Room at index 37 should be in the store now
+            expect(store.getSortedRooms().map((r) => r.roomId)).toContain(room.roomId);
+
+            // Forget room at index 37
+            const payload = {
+                action: Action.AfterForgetRoom,
+                room: room,
+            };
+            const fn = jest.fn();
+            store.on(LISTS_UPDATE_EVENT, fn);
+            dispatcher.dispatch(payload, true);
+
+            // Room at index 37 should no longer be in the store
+            expect(fn).toHaveBeenCalled();
+            expect(store.getSortedRooms().map((r) => r.roomId)).not.toContain(room.roomId);
+        });
+
         it.each([KnownMembership.Join, KnownMembership.Invite])(
             "Room is removed when membership changes to leave",
             async (membership) => {
@@ -206,14 +227,17 @@ describe("RoomListStoreV3", () => {
             expect(roomIds).toContain(newRoom.roomId);
         });
 
-        it("Rooms are inserted on m.direct event", async () => {
-            const { store, dispatcher } = await getRoomListStore();
+        it("Rooms are re-inserted on m.direct event", async () => {
+            const { store, dispatcher, client } = await getRoomListStore();
+
+            // Let's mock the client to return new rooms with the name "My DM Room"
+            client.getRoom = (roomId: string) => mkStubRoom(roomId, "My DM Room", client);
 
             // Let's create a m.direct event that we can dispatch
             const content = {
-                "@bar1:matrix.org": ["!newroom1:matrix.org", "!newroom2:matrix.org"],
-                "@bar2:matrix.org": ["!newroom3:matrix.org", "!newroom4:matrix.org"],
-                "@bar3:matrix.org": ["!newroom5:matrix.org"],
+                "@bar1:matrix.org": ["!foo1:matrix.org", "!foo2:matrix.org"],
+                "@bar2:matrix.org": ["!foo3:matrix.org", "!foo4:matrix.org"],
+                "@bar3:matrix.org": ["!foo5:matrix.org"],
             };
             const event = mkEvent({
                 event: true,
@@ -224,6 +248,8 @@ describe("RoomListStoreV3", () => {
 
             const fn = jest.fn();
             store.on(LISTS_UPDATE_EVENT, fn);
+
+            // Do the actual dispatch
             dispatcher.dispatch(
                 {
                     action: "MatrixActions.accountData",
@@ -236,17 +262,21 @@ describe("RoomListStoreV3", () => {
             // Ensure only one emit occurs
             expect(fn).toHaveBeenCalledTimes(1);
 
-            // Each of these rooms should now appear in the store
-            // We don't need to mock the rooms themselves since our mocked
-            // client will create the rooms on getRoom() call.
-            const roomIds = store.getSortedRooms().map((r) => r.roomId);
-            [
-                "!newroom1:matrix.org",
-                "!newroom2:matrix.org",
-                "!newroom3:matrix.org",
-                "!newroom4:matrix.org",
-                "!newroom5:matrix.org",
-            ].forEach((id) => expect(roomIds).toContain(id));
+            /*
+             When the dispatched event is processed by the room-list, the associated
+             rooms will be fetched via client.getRoom and will be re-inserted into the
+             skip list. We can confirm that this happened by checking if all the dm rooms
+             have the same name ("My DM Room") since we've mocked the client to return such rooms.
+             */
+            const ids = [
+                "!foo1:matrix.org",
+                "!foo2:matrix.org",
+                "!foo3:matrix.org",
+                "!foo4:matrix.org",
+                "!foo5:matrix.org",
+            ];
+            const rooms = store.getSortedRooms().filter((r) => ids.includes(r.roomId));
+            rooms.forEach((room) => expect(room.name).toBe("My DM Room"));
         });
 
         it("Room is re-inserted on tag change", async () => {
@@ -386,6 +416,32 @@ describe("RoomListStoreV3", () => {
         }
 
         describe("Spaces", () => {
+            it("Newly created space is not added by the store", async () => {
+                const { client, rooms } = getClientAndRooms();
+                const infoSpy = jest.spyOn(logger, "info");
+
+                const store = new RoomListStoreV3Class(dispatcher);
+                await store.start();
+
+                // Create a space and let the store know about it
+                const { spaceRoom } = createSpace(rooms, [6, 8, 13, 27, 75], client);
+                dispatcher.dispatch(
+                    {
+                        action: "MatrixActions.Room.myMembership",
+                        oldMembership: KnownMembership.Leave,
+                        membership: KnownMembership.Invite,
+                        room: spaceRoom,
+                    },
+                    true,
+                );
+
+                // Space room should not be added
+                expect(store.getSortedRooms()).not.toContain(spaceRoom);
+                expect(infoSpy).toHaveBeenCalledWith(
+                    expect.stringContaining("RoomListStoreV3: Refusing to add new room"),
+                );
+            });
+
             it("Filtering by spaces work", async () => {
                 const { client, rooms } = getClientAndRooms();
                 // Let's choose 5 rooms to put in space
@@ -740,6 +796,55 @@ describe("RoomListStoreV3", () => {
             expect(lastFiveRooms).not.toContain(unmutedRoom);
             // Room 64 should go to index 34 since we're sorting by recency
             expect(store.getSortedRooms()[34]).toEqual(unmutedRoom);
+        });
+    });
+
+    describe("Low priority rooms", () => {
+        async function getRoomListStoreWithRooms() {
+            const client = stubClient();
+            const rooms = getMockedRooms(client);
+
+            // Let's say that rooms 34, 84, 64, 14, 57 are low priority
+            const lowPriorityIndices = [34, 84, 64, 14, 57];
+            const lowPriorityRooms = lowPriorityIndices.map((i) => rooms[i]);
+            for (const room of lowPriorityRooms) {
+                room.tags[DefaultTagID.LowPriority] = {};
+            }
+
+            // Let's say that rooms 14, 57, 65, 78, 82, 5, 36 are muted
+            const mutedIndices = [14, 57, 65, 78, 82, 5, 36];
+            const mutedRooms = mutedIndices.map((i) => rooms[i]);
+            jest.spyOn(RoomNotificationStateStore.instance, "getRoomState").mockImplementation((room) => {
+                const state = {
+                    muted: mutedRooms.includes(room),
+                } as unknown as RoomNotificationState;
+                return state;
+            });
+
+            client.getVisibleRooms = jest.fn().mockReturnValue(rooms);
+            jest.spyOn(AsyncStoreWithClient.prototype, "matrixClient", "get").mockReturnValue(client);
+            const store = new RoomListStoreV3Class(dispatcher);
+            await store.start();
+
+            // We expect the following order: Low Priority -> Low Priority & Muted -> Muted
+            const expectedRoomIds = [84, 64, 34, 57, 14, 82, 78, 65, 36, 5].map((i) => rooms[i].roomId);
+
+            return {
+                client,
+                rooms,
+                expectedRoomIds,
+                store,
+                dispatcher,
+            };
+        }
+
+        it("Low priority rooms are pushed to the bottom of the list just before muted rooms", async () => {
+            const { store, expectedRoomIds } = await getRoomListStoreWithRooms();
+            const result = store
+                .getSortedRooms()
+                .slice(90)
+                .map((r) => r.roomId);
+            expect(result).toEqual(expectedRoomIds);
         });
     });
 });

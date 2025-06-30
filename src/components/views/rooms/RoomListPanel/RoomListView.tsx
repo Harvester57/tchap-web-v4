@@ -11,7 +11,6 @@ import { useRoomListViewModel } from "../../../viewmodels/roomlist/RoomListViewM
 import { RoomList } from "./RoomList";
 import { EmptyRoomList } from "./EmptyRoomList";
 import { RoomListPrimaryFilters } from "./RoomListPrimaryFilters";
-import { RoomListSecondaryFilters } from "./RoomListSecondaryFilters";
 
 /**
  * Host the room list and the (future) room filters
@@ -19,12 +18,18 @@ import { RoomListSecondaryFilters } from "./RoomListSecondaryFilters";
 export function RoomListView(): JSX.Element {
     const vm = useRoomListViewModel();
     const isRoomListEmpty = vm.rooms.length === 0;
-
+    let listBody;
+    if (vm.isLoadingRooms) {
+        listBody = <div className="mx_RoomListSkeleton" />;
+    } else if (isRoomListEmpty) {
+        listBody = <EmptyRoomList vm={vm} />;
+    } else {
+        listBody = <RoomList vm={vm} />;
+    }
     return (
         <>
             <RoomListPrimaryFilters vm={vm} />
-            <RoomListSecondaryFilters vm={vm} />
-            {isRoomListEmpty ? <EmptyRoomList vm={vm} /> : <RoomList vm={vm} />}
+            {listBody}
         </>
     );
 }

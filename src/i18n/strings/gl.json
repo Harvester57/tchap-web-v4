@@ -669,22 +669,11 @@
     "empty_room_was_name": "Sala baleira (era %(oldName)s)",
     "encryption": {
         "access_secret_storage_dialog": {
-            "enter_phrase_or_key_prompt": "Escribe a túa Frase de Seguridade ou <button>usa a túa Chave de Seguridade</button> para continuar.",
             "key_validation_text": {
-                "invalid_security_key": "Chave de Seguridade non válida",
-                "recovery_key_is_correct": "Pinta ben!",
-                "wrong_file_type": "Tipo de ficheiro erróneo",
                 "wrong_security_key": "Chave de Seguridade incorrecta"
             },
-            "reset_title": "Restablecer todo",
-            "reset_warning_1": "Fai isto únicamente se non tes outro dispositivo co que completar a verificación.",
-            "reset_warning_2": "Se restableces todo, volverás a comezar sen sesións verificadas, usuarias de confianza, e poderías non poder ver as mensaxes anteriores.",
             "restoring": "Restablecendo chaves desde a copia",
-            "security_key_title": "Chave de Seguridade",
-            "security_phrase_incorrect_error": "Non se puido acceder ao almacenaxe segredo. Comproba que escribiches correctamente a Frase de Seguridade.",
-            "security_phrase_title": "Frase de seguridade",
-            "separator": "%(securityKey)s ou %(recoveryFile)s",
-            "use_security_key_prompt": "Usa a túa Chave de Seguridade para continuar."
+            "security_key_title": "Chave de Seguridade"
         },
         "bootstrap_title": "Configurando as chaves",
         "cancel_entering_passphrase_description": "¿Estás seguro de que non queres escribir a frase de paso?",
@@ -741,7 +730,6 @@
             "accepting": "Aceptando…",
             "after_new_login": {
                 "device_verified": "Dispositivo verificado",
-                "reset_confirmation": "Queres restablecer as chaves de verificación?",
                 "skip_verification": "Omitir a verificación por agora",
                 "unable_to_verify": "Non se puido verificar este dispositivo",
                 "verify_this_device": "Verifica este dispositivo"
@@ -804,7 +792,6 @@
             "verify_emoji_prompt": "Verficación por comparación de emoticonas.",
             "verify_emoji_prompt_qr": "Se non podes escanear o código superior, verifica comparando as emoticonas.",
             "verify_later": "Verificarei máis tarde",
-            "verify_reset_warning_1": "O restablecemento das chaves de seguridade non se pode desfacer. Tras o restablecemento, non terás acceso ás antigas mensaxes cifradas, e calquera amizade que verificaras con anterioridade vai ver un aviso de seguridade ata que volvades a verificarvos mutuamente.",
             "verify_using_device": "Verifica usando outro dispositivo",
             "verify_using_key": "Verificar coa Chave de Seguridade",
             "verify_using_key_or_phrase": "Verificar coa Chave ou Frase de Seguridade",
@@ -2372,7 +2359,6 @@
         "heading_without_query": "Buscar",
         "join_button_text": "Unirse a %(roomAddress)s",
         "keyboard_scroll_hint": "Usa <arrows/> para desprazarte",
-        "message_search_section_title": "Outras buscas",
         "other_rooms_in_space": "Outras salas en %(spaceName)s",
         "public_rooms_label": "Salas públicas",
         "recent_searches_section_title": "Buscas recentes",
@@ -2381,7 +2367,6 @@
         "result_may_be_hidden_privacy_warning": "Algúns resultados poden estar agochados por privacidade",
         "result_may_be_hidden_warning": "Algúns resultados poderían estar agochados",
         "search_dialog": "Diálogo de busca",
-        "search_messages_hint": "Para buscar mensaxes, busca esta icona arriba de todo na sala <icon/>",
         "spaces_title": "Espazos nos que estás",
         "start_group_chat_button": "Inicia un chat en grupo"
     },
