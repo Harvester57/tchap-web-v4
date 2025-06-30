@@ -89,10 +89,6 @@
         "en": "Enter Recovery Code",
         "fr": "Saisir le Code de Récupération"
     },
-    "encryption|access_secret_storage_dialog|enter_phrase_or_key_prompt": {
-        "en": "Enter your Security Phrase or <button>use your Recovery Code</button> to continue.",
-        "fr": "Saisissez votre phrase de sécurité ou <button>utilisez votre Code de Récupération</button> pour continuer."
-    },
     "Export room members": { "en": "Export room members", "fr": "Exporter les membres du salon" },
     "External members cannot be re-invited. If you need to give access to externals, you will have to create a new room": {
         "en": "External members cannot be re-invited. If you need to give access to externals, you will have to create a new room.",
@@ -268,10 +264,6 @@
     "Type of room": { "en": "Type of room", "fr": "Type de salon" },
     "Upgrade private room": { "en": "This room will be updated", "fr": "Ce salon va être mis à jour" },
     "Upgrade room": { "en": "Upgrade room", "fr": "Mettre à jour le salon" },
-    "encryption|access_secret_storage_dialog|use_security_key_prompt": {
-        "en": "Use your Recovery Code to continue.",
-        "fr": "Utilisez votre Code de Récupération pour continuer."
-    },
     "Verified!": { "en": "Verified!", "fr": "Vérifié !" },
     "Wait for at least %(wait)s seconds between two emails": {
         "en": "Wait for at least %(wait)s seconds between two emails",
@@ -389,10 +381,6 @@
         "en": "Activate message Secure Backup",
         "fr": "Activer la sauvegarde automatique des messages"
     },
-    "encryption|verification|after_new_login|reset_confirmation": {
-        "en": "Really reset Recovery Code?",
-        "fr": "Réinitialiser le Code de Récupération, c’est certain ?"
-    },
     "encryption|verification|after_new_login|unable_to_verify": {
         "en": "You are logging into a new device",
         "fr": "Vous vous connectez à un nouvel appareil"
@@ -408,14 +396,6 @@
     "encryption|verification|verification_success_with_backup": {
         "en": "Your new device is now verified. It has access to your encrypted messages, and other users will see it as trusted.",
         "fr": "Votre nouvel appareil est maintenant vérifié. Il a accès à vos messages chiffrés et les autres utilisateurs le verront comme fiable."
-    },
-    "encryption|verification|verify_reset_warning_1": {
-        "en": "Resetting your Recovery Code cannot be undone. After resetting, you will no longer have access to your previous locked messages.",
-        "fr": "La réinitialisation de votre Code de Récupération ne peut pas être annulée. Après la réinitialisation, vous n’aurez plus accès à vos anciens messages verrouillés."
-    },
-    "encryption|verification|verify_reset_warning_2": {
-        "en": "Please only proceed if you're sure you've lost all of your other devices and your Recovery Code.",
-        "fr": "Veuillez ne continuer que si vous êtes certain d’avoir perdu tous vos autres appareils et votre Code de Récupération."
     },
     "encryption|verification|verify_using_key": {
         "en": "Verify with Recovery Code",
