@@ -1,5 +1,5 @@
 diff --git a/node_modules/matrix-js-sdk/src/http-api/fetch.ts b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-index 6dc5c78..adcb6cb 100644
+index e6728fb..c506bbf 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 @@ -203,6 +203,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
@@ -16,10 +16,10 @@ index 6dc5c78..adcb6cb 100644
              throw error;
          }
 diff --git a/node_modules/matrix-js-sdk/src/http-api/interface.ts b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-index d5a01de..652e061 100644
+index 1b0df88..e7504d7 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/interface.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-@@ -115,6 +115,10 @@ export interface IContentUri {
+@@ -116,6 +116,10 @@ export interface IContentUri {
  export enum HttpApiEvent {
      SessionLoggedOut = "Session.logged_out",
      NoConsent = "no_consent",
@@ -30,7 +30,7 @@ index d5a01de..652e061 100644
  }
  
  export type HttpApiEventHandlerMap = {
-@@ -142,6 +146,9 @@ export type HttpApiEventHandlerMap = {
+@@ -143,6 +147,9 @@ export type HttpApiEventHandlerMap = {
       * ```
       */
      [HttpApiEvent.NoConsent]: (message: string, consentUri: string) => void;
@@ -41,7 +41,7 @@ index d5a01de..652e061 100644
  
  export interface UploadProgress {
 diff --git a/node_modules/matrix-js-sdk/src/sync.ts b/node_modules/matrix-js-sdk/src/sync.ts
-index 1419d1c..fd0c725 100644
+index 3fdbb8a..00184f5 100644
 --- a/node_modules/matrix-js-sdk/src/sync.ts
 +++ b/node_modules/matrix-js-sdk/src/sync.ts
 @@ -599,6 +599,14 @@ export class SyncApi {
