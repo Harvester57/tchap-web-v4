@@ -296,18 +296,14 @@ const RoomSummaryCardView: React.FC<IProps> = ({
 
                 <Separator />
 
-<<<<<<< HEAD:src/components/views/right_panel/RoomSummaryCard.tsx
                 {/* :TCHAP: copy-link-room-behavior - <MenuItem Icon={LinkIcon} label={_t("action|copy_link")} onSelect={onShareRoomClick} /> */}
                 <MenuItem 
                     Icon={LinkIcon} 
                     label={_t("action|copy_link")} 
-                    onSelect={onShareRoomClick} 
+                    onSelect={vm.onShareRoomClick} 
                     disabled={TchapRoomUtils.getRoomJoinRule(room) === JoinRule.Invite}
                 />
                 {/* end :TCHAP: */}
-=======
-                <MenuItem Icon={LinkIcon} label={_t("action|copy_link")} onSelect={vm.onShareRoomClick} />
->>>>>>> v1.11.104:src/components/views/right_panel/RoomSummaryCardView.tsx
 
                 {!vm.isVideoRoom && (
                     <>

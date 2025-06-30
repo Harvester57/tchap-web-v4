@@ -23,12 +23,9 @@ import Field from "../elements/Field";
 import Spinner from "../elements/Spinner";
 import CaptchaForm from "./CaptchaForm";
 import { pickBestPolicyLanguage } from "../../../Terms.ts";
-<<<<<<< HEAD
 import { encodeParams } from "matrix-js-sdk/src/utils.ts";
-=======
 import { EncryptionCardButtons } from "../settings/encryption/EncryptionCardButtons.tsx";
 import { EncryptionCard } from "../settings/encryption/EncryptionCard.tsx";
->>>>>>> v1.11.104
 
 /* This file contains a collection of components which are used by the
  * InteractiveAuth to prompt the user to enter the information needed

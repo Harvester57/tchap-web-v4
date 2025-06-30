@@ -19,11 +19,8 @@ import { SetupEncryptionStore, Phase } from "../../../stores/SetupEncryptionStor
 import EncryptionPanel from "../../views/right_panel/EncryptionPanel";
 import AccessibleButton, { type ButtonEvent } from "../../views/elements/AccessibleButton";
 import Spinner from "../../views/elements/Spinner";
-<<<<<<< HEAD
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: help-access-verify-device
-=======
 import { ResetIdentityDialog } from "../../views/dialogs/ResetIdentityDialog";
->>>>>>> v1.11.104
 
 function keyHasPassphrase(keyInfo: SecretStorageKeyDescription): boolean {
     return Boolean(keyInfo.passphrase && keyInfo.passphrase.salt && keyInfo.passphrase.iterations);
@@ -168,15 +165,10 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
                         {/* end :TCHAP: */}
 
                         <div className="mx_CompleteSecurity_actionRow">
-<<<<<<< HEAD
-                            <AccessibleButton kind="primary" onClick={this.onResetConfirmClick}>
+                            <AccessibleButton kind="primary" onClick={this.onResetClick}>
                                 {/* :TCHAP: cross-signing-ui - _t("encryption|verification|reset_proceed_prompt") */}
                                 {_t("Set up")}
                                 {/* end :TCHAP: */}
-=======
-                            <AccessibleButton kind="primary" onClick={this.onResetClick}>
-                                {_t("encryption|verification|reset_proceed_prompt")}
->>>>>>> v1.11.104
                             </AccessibleButton>
                         </div>
                     </div>

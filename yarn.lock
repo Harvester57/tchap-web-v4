@@ -3847,26 +3847,7 @@
   version "4.0.4"
   resolved "https://github.com/tchapgouv/compound-design-tokens.git#3d218b2fe64614467f296b8a8c975f59db8c2914"
 
-<<<<<<< HEAD
 "@vector-im/matrix-wysiwyg-wasm@link:../../.cache/yarn/v6/npm-@vector-im-matrix-wysiwyg-2.38.3-cc54d8b3e9472bcd8e622126ba364ee31952cd8a-integrity/node_modules/bindings/wysiwyg-wasm":
-=======
-"@vector-im/compound-web@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@vector-im/compound-web/-/compound-web-7.11.0.tgz#b7c466e64089320b41f8eaf6f2b30950e9692ca2"
-  integrity sha512-lRxXUOQJHdBswhykpNs/J/cBW4fPY1qbwyDexlWxX5zCVAYiuMCWo2tI+Y7/SK4tNbDr7nwoTDRh4H9CO1L5LQ==
-  dependencies:
-    "@floating-ui/react" "^0.27.0"
-    "@radix-ui/react-context-menu" "^2.2.1"
-    "@radix-ui/react-dropdown-menu" "^2.1.1"
-    "@radix-ui/react-form" "^0.1.0"
-    "@radix-ui/react-progress" "^1.1.0"
-    "@radix-ui/react-separator" "^1.1.0"
-    "@radix-ui/react-slot" "^1.1.0"
-    classnames "^2.5.1"
-    vaul "^1.0.0"
-
-"@vector-im/matrix-wysiwyg-wasm@link:../../../.cache/yarn/v6/npm-@vector-im-matrix-wysiwyg-2.38.3-cc54d8b3e9472bcd8e622126ba364ee31952cd8a-integrity/node_modules/bindings/wysiwyg-wasm":
->>>>>>> v1.11.104
   version "0.0.0"
   uid ""
 

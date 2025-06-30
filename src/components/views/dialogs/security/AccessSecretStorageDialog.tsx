@@ -43,11 +43,7 @@ interface IProps {
 }
 
 interface IState {
-<<<<<<< HEAD
-    displayPassword: boolean;
-=======
     //! The recovery key/phrase that the user entered
->>>>>>> v1.11.104
     recoveryKey: string;
     //! Is the recovery key/phrase correct?  `null` means no key/phrase has been entered
     recoveryKeyCorrect: boolean | null;
@@ -63,21 +59,10 @@ export default class AccessSecretStorageDialog extends React.PureComponent<IProp
         super(props);
 
         this.state = {
-            displayPassword: false, // :TCHAP: ux-improvements-for-xsss
             recoveryKey: "",
             recoveryKeyCorrect: null,
         };
     }
-
-    // :TCHAP: ux-improvements-for-xsss - add functionality that displays the Recovery Code for 2mn when clicking on the input eye icon 
-    private setDisplayPassword = (): void => {
-        this.setState({ displayPassword: true });
-    
-        setTimeout(() => {
-          this.setState({ displayPassword: false });
-        }, 120 * 1000);
-    };
-    // end :TCHAP:
 
     private onCancel = (): void => {
         this.props.onFinished(false);
@@ -174,84 +159,6 @@ export default class AccessSecretStorageDialog extends React.PureComponent<IProp
                 "mx_AccessSecretStorageDialog_recoveryKeyFeedback": true,
                 "mx_AccessSecretStorageDialog_recoveryKeyFeedback--invalid": true,
             });
-<<<<<<< HEAD
-            const recoveryKeyFeedback = <div className={feedbackClasses}>{this.getKeyValidationText()}</div>;
-
-            content = (
-                <div>
-                    <p>{_t("encryption|access_secret_storage_dialog|use_security_key_prompt")}</p>
-
-                    <form
-                        className="mx_AccessSecretStorageDialog_primaryContainer"
-                        onSubmit={this.onRecoveryKeyNext}
-                        spellCheck={false}
-                        autoComplete="off"
-                    >
-                        <div className="mx_AccessSecretStorageDialog_recoveryKeyEntry">
-                            <div className="mx_AccessSecretStorageDialog_recoveryKeyEntry_textInput">
-                                <Field
-                                    type={this.state.displayPassword ? "text": "password"}
-                                    id="mx_securityKey"
-                                    label={_t("encryption|access_secret_storage_dialog|security_key_title")}
-                                    value={this.state.recoveryKey}
-                                    onChange={this.onRecoveryKeyChange}
-                                    autoFocus={true}
-                                    forceValidity={this.state.recoveryKeyCorrect ?? undefined}
-                                    autoComplete="off"
-                                    postfixComponent={(
-                                        <div
-                                            className="tc_textInput_postfixComponent"
-                                            onClick={() => this.setDisplayPassword()}
-                                        >
-                                            <img
-                                                src={require("~tchap-web/res/img/grey-eye.svg").default}
-                                                width="24"
-                                                height="24"
-                                                alt={_t("Eye")}
-                                            />
-                                        </div>
-                                    )}
-                                />
-                            </div>
-                            {/*
-                             :TCHAP: ux-improvements-for-xsss - hide for csss feature
-                            <span className="mx_AccessSecretStorageDialog_recoveryKeyEntry_entryControlSeparatorText">
-                                {_t("encryption|access_secret_storage_dialog|separator", {
-                                    recoveryFile: "",
-                                    securityKey: "",
-                                })}
-                            </span>
-                             <div>
-                                <input
-                                    type="file"
-                                    className="mx_AccessSecretStorageDialog_recoveryKeyEntry_fileInput"
-                                    ref={this.fileUpload}
-                                    onClick={chromeFileInputFix}
-                                    onChange={this.onRecoveryKeyFileChange}
-                                />
-                                <AccessibleButton kind="primary" onClick={this.onRecoveryKeyFileUploadClick}>
-                                    {_t("action|upload")}
-                                </AccessibleButton>
-                            :end TCHAP
-                            </div> */}
-                        </div>
-                        {recoveryKeyFeedback}
-                        <DialogButtons
-                            primaryButton={_t("action|continue")}
-                            onPrimaryButtonClick={this.onRecoveryKeyNext}
-                            hasCancel={true}
-                            cancelButton={_t("action|go_back")}
-                            cancelButtonClass="warning"
-                            onCancel={this.onCancel}
-                            focus={false}
-                            primaryDisabled={!this.state.recoveryKeyValid}
-                            additive={resetLine}
-                        />
-                    </form>
-                </div>
-            );
-=======
->>>>>>> v1.11.104
         }
 
         return (

@@ -1,16 +1,10 @@
 {
     "name": "element-web",
-<<<<<<< HEAD
     "productName": "Tchap",
     "version": "4.15.1",
-    "version-element-web": "1.11.100",
+    "version-element-web": "1.11.104",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
-=======
-    "version": "1.11.104",
-    "description": "Element: the future of secure communication",
-    "author": "New Vector Ltd.",
->>>>>>> v1.11.104
     "repository": {
         "type": "git",
         "url": "https://github.com/tchapgouv/tchap-web-v4"
@@ -115,12 +109,7 @@
         "@sentry/browser": "^9.0.0",
         "@types/png-chunks-extract": "^1.0.2",
         "@types/react-virtualized": "^9.21.30",
-<<<<<<< HEAD
         "@vector-im/compound-design-tokens": "https://github.com/tchapgouv/compound-design-tokens.git#main",
-=======
-        "@vector-im/compound-design-tokens": "^4.0.0",
-        "@vector-im/compound-web": "^7.11.0",
->>>>>>> v1.11.104
         "@vector-im/matrix-wysiwyg": "2.38.3",
         "@zxcvbn-ts/core": "^3.0.4",
         "@zxcvbn-ts/language-common": "^3.0.4",
@@ -340,7 +329,6 @@
     "engines": {
         "node": ">=20.0.0"
     },
-<<<<<<< HEAD
     "engines-comment": {
         "2022-11-07": "matrix-js-sdk requires >=16.0.0. SSL librairies do not work with 18 and 19. 17 has incompatibilities with some deps.",
         "2023-08-29": "matrix-js-sdk requires >=18.0.0",
@@ -348,8 +336,6 @@
     },
     "optionalDependencies": {
         "tchap-translations": "file:./modules/tchap-translations"
-    }
-=======
+    },
     "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
->>>>>>> v1.11.104
 }

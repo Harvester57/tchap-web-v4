@@ -60,11 +60,8 @@ import { deop, op } from "./slash-commands/op";
 import { CommandCategories } from "./slash-commands/interface";
 import { Command } from "./slash-commands/command";
 import { goto, join } from "./slash-commands/join";
-<<<<<<< HEAD
 import { visioCommand } from "./tchap/util/TchapCommands";
-=======
 import { manuallyVerifyDevice } from "./components/views/dialogs/ManualDeviceKeyVerificationDialog";
->>>>>>> v1.11.104
 
 export { CommandCategories, Command };
 
