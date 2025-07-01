@@ -16,7 +16,9 @@ import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
 import { placeCall } from "~tchap-web/src/utils/room/placeCall";
 import { PlatformCallType } from "~tchap-web/src/hooks/room/useRoomCall";
+import * as ShieldUtils from "~tchap-web/src/utils/ShieldUtils";
 
+jest.mock("~tchap-web/src/utils/ShieldUtils");
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
 jest.mock("~tchap-web/src/utils/room/placeCall");
 
@@ -76,14 +78,13 @@ describe("RoomHeader", () => {
         SdkConfig.put(config);
     };
 
-    const getComponent = () => render(<RoomHeader room={room} />, getWrapper());
+    const getComponent = (r = room) => render(<RoomHeader room={r} />, getWrapper());
 
-    function mockDMRoom(memberCount: number = 2) {
-        mockRoomMembers(room, memberCount);
-        jest.spyOn(SettingsStore, "getValue").mockImplementation(() => false);
+    function mockDMRoom(memberCount: number = 2, r = room) {
+        mockRoomMembers(r, memberCount);
         // in a dm room, the users are both admins
-        jest.spyOn(room.currentState, "mayClientSendStateEvent").mockReturnValue(true);
-        jest.spyOn(room, "getMember").mockReturnValue(mkRoomMember(room.roomId, "@alice:example.org"));
+        jest.spyOn(r.currentState, "mayClientSendStateEvent").mockReturnValue(true);
+        jest.spyOn(r, "getMember").mockReturnValue(mkRoomMember(r.roomId, "@alice:example.org"));
 
         DMRoomMap.setShared({
             getUserIdForRoomId: () => {
@@ -107,10 +108,9 @@ describe("RoomHeader", () => {
         // allow element calls
         jest.spyOn(room.currentState, "mayClientSendStateEvent").mockReturnValue(true);
         // activate the group and widget features
-        jest.spyOn(SettingsStore, "getValue").mockImplementation(
-            (feature) => feature === "feature_group_calls" || feature == UIFeature.Widgets,
-        );
-
+        jest.spyOn(SettingsStore, "getValue").mockImplementation((feature) => {
+            return feature === "feature_group_calls" || feature == UIFeature.Widgets || feature == UIFeature.Voip;
+        });
         mockedTchapRoomUtils.getTchapRoomType.mockImplementation(() => TchapRoomType.Private);
 
         DMRoomMap.setShared({
@@ -120,6 +120,7 @@ describe("RoomHeader", () => {
         jest.mocked(placeCall).mockImplementation(async (room, type, deviceOptions, startWithVideo) => {
             return Promise.resolve();
         });
+        jest.spyOn(ShieldUtils, "shieldStatusForRoom").mockResolvedValue(ShieldUtils.E2EStatus.Normal);
     });
 
     afterEach(() => {
@@ -155,12 +156,11 @@ describe("RoomHeader", () => {
 
     // For 1 to 1 video call
     it("display well the video button when feature is activated for 1v1 call and has permission to send state event", () => {
-        addHomeserverToMockConfig([homeserverName], featureVideoName);
+        addHomeserverToMockConfig([homeserverName], [featureVideoName]);
 
         mockDMRoom();
 
         const { container } = getComponent();
-        logRoles(container);
 
         expect(queryByLabelText(container, "Video call")).toBeInTheDocument();
     });
@@ -249,7 +249,7 @@ describe("RoomHeader", () => {
 
         const { container } = getComponent();
         const videoButton = getByLabelText(container, "Video call");
-
+        logRoles(container);
         // Click the video call button
         await videoButton.click();
         // placeCall to have been called with PlatformCallType.LegacyCall
