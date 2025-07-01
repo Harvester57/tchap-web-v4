@@ -114,8 +114,6 @@ async function start(): Promise<void> {
         registerExpiredAccountListener,
         saveAppVersionInLocalStorage,
         queueOverideUserSettings,
-        queueClearCacheAndReload,
-        needsRefreshForVersion4,
     } = await import(
         /* webpackChunkName: "initTchap" */
         /* webpackPreload: true */
@@ -152,10 +150,6 @@ async function start(): Promise<void> {
         await settled(rageshakePromise);
 
         const fragparts = parseQsFromFragment(window.location);
-        //:tchap: determine if a hard refresh is needed
-        const needRefreshForV4 = await needsRefreshForVersion4();
-        console.log(`:TCHAP: queue a hard clear cache and reload for this version? ${needRefreshForV4}`);
-        //:tchap: end
 
         // don't try to redirect to the native apps if we're
         // verifying a 3pid (but after we've loaded the config)
@@ -176,7 +170,7 @@ async function start(): Promise<void> {
 
         const loadOlmPromise = loadOlm();
         // set the platform for react sdk
-        preparePlatform();
+        await preparePlatform();
         // load config requires the platform to be ready
         const loadConfigPromise = loadConfig();
         await settled(loadConfigPromise); // wait for it to settle
@@ -187,6 +181,16 @@ async function start(): Promise<void> {
 
         // now that the config is ready, try to persist logs
         const persistLogsPromise = setupLogStorage();
+        
+        // :TCHAP: reput load module up, otherwise translations in the modules are not taken into account
+        // PR in element that did this change https://github.com/element-hq/element-web/pull/29934
+        // Load modules & plugins before language to ensure any custom translations are respected, and any app
+        // startup functionality is run
+        const loadModulesPromise = loadModules();
+        await settled(loadModulesPromise);
+        const loadPluginsPromise = loadPlugins();
+        await settled(loadPluginsPromise);
+        // end :TCHAP:
 
         // Load language after loading config.json so that settingsDefaults.language can be applied
         const loadLanguagePromise = loadLanguage();
@@ -194,11 +198,6 @@ async function start(): Promise<void> {
         const loadThemePromise = loadTheme();
         // await things settling so that any errors we have to render have features like i18n running
         await settled(loadThemePromise, loadLanguagePromise);
-
-        const loadModulesPromise = loadModules();
-        await settled(loadModulesPromise);
-        const loadPluginsPromise = loadPlugins();
-        await settled(loadPluginsPromise);
 
         let acceptBrowser = supportedBrowser;
         if (!acceptBrowser && window.localStorage) {
@@ -256,10 +255,6 @@ async function start(): Promise<void> {
 
         //:tchap attach handler
         queueOverideUserSettings();
-
-        if (needRefreshForV4) {
-            queueClearCacheAndReload();
-        }
 
         registerExpiredAccountListener();
         //end of :tchap:

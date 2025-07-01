@@ -1,7 +1,7 @@
 {
     "name": "element-web",
     "productName": "Tchap",
-    "version": "4.15.1",
+    "version": "4.15.2",
     "version-element-web": "1.11.104",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
@@ -111,6 +111,10 @@
         "@types/react-virtualized": "^9.21.30",
         "@vector-im/compound-design-tokens": "https://github.com/tchapgouv/compound-design-tokens.git#main",
         "@vector-im/matrix-wysiwyg": "2.38.3",
+        "@tauri-apps/api": "^2.2.0",
+        "@tauri-apps/plugin-process": "^2.2.0",
+        "@tauri-apps/plugin-stronghold": "^2.2.0",
+        "@tauri-apps/plugin-updater": "^2.6.0",
         "@zxcvbn-ts/core": "^3.0.4",
         "@zxcvbn-ts/language-common": "^3.0.4",
         "@zxcvbn-ts/language-en": "^3.0.2",
@@ -174,6 +178,14 @@
         "ua-parser-js": "^1.0.2",
         "uuid": "^11.0.0",
         "what-input": "^5.2.10"
+    },
+    "devDependencies-comments": {
+        "tchap-added": {
+            "@tauri-apps/api": "^2.2.0",
+            "@tauri-apps/plugin-stronghold": "^2.2.0",
+            "@tauri-apps/plugin-process": "^2.2.0",
+            "@tauri-apps/plugin-updater": "^2.6.0"
+        }
     },
     "devDependencies": {
         "@action-validator/cli": "^0.6.0",

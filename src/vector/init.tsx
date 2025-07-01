@@ -30,13 +30,24 @@ import PWAPlatform from "./platform/PWAPlatform";
 import WebPlatform from "./platform/WebPlatform";
 import { initRageshake, initRageshakeStore } from "./rageshakesetup";
 import ModuleApi from "../modules/Api.ts";
+import TauriPlatform from "./platform/tchap-desktop/TauriPlatform";
+import { TauriSecureStorage } from "./platform/tchap-desktop/TauriSecureStorage";
 
 export const rageshakePromise = initRageshake();
 
-export function preparePlatform(): void {
+export async function preparePlatform(): Promise<void> {
     if (window.electron) {
         logger.log("Using Electron platform");
         PlatformPeg.set(new ElectronPlatform());
+    // :TCHAP:
+    } else if (window.__TAURI__){
+        logger.info("Using Tauri platform");
+        // Inject Tauri Secure storage into platform
+        const tauriSecureStorage = new TauriSecureStorage(); 
+        await tauriSecureStorage.initStronghold();
+        const tauriPlatform = new TauriPlatform(tauriSecureStorage);
+        PlatformPeg.set(tauriPlatform);
+    // end :TCHAP:
     } else if (window.matchMedia("(display-mode: standalone)").matches) {
         logger.log("Using PWA platform");
         PlatformPeg.set(new PWAPlatform());

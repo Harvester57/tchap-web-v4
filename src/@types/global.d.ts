@@ -10,6 +10,8 @@ Please see LICENSE files in the repository root for full details.
 import "matrix-js-sdk/src/@types/global"; // load matrix-js-sdk's type extensions first
 import "@types/modernizr";
 
+import * as app from '@tauri-apps/api'; // :TCHAP:
+
 import type { ModuleLoader } from "@element-hq/element-web-module-api";
 import type { logger } from "matrix-js-sdk/src/logger";
 import type ContentMessages from "../ContentMessages";
@@ -47,6 +49,7 @@ import type MatrixChat from "../components/structures/MatrixChat";
 import { type InitialCryptoSetupStore } from "../stores/InitialCryptoSetupStore";
 import { type ModuleApiType } from "../modules/Api.ts";
 import type { RoomListStoreV3Class } from "../stores/room-list-v3/RoomListStoreV3.ts";
+
 
 /* eslint-disable @typescript-eslint/naming-convention */
 
@@ -125,6 +128,9 @@ declare global {
 
         // https://developer.mozilla.org/en-US/docs/Web/API/InstallTrigger
         InstallTrigger: any;
+
+        // :TCHAP: tauri only
+        __TAURI__: typeof app;
     }
 
     interface Electron {
