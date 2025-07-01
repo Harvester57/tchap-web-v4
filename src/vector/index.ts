@@ -169,7 +169,6 @@ async function start(): Promise<void> {
         const loadOlmPromise = loadOlm();
         // set the platform for react sdk
         await preparePlatform();
-        logger.info("------- Platform prepared -------");
         // load config requires the platform to be ready
         const loadConfigPromise = loadConfig();
         await settled(loadConfigPromise); // wait for it to settle
@@ -180,21 +179,16 @@ async function start(): Promise<void> {
 
         // now that the config is ready, try to persist logs
         const persistLogsPromise = setupLogStorage();
-        logger.info("------- Log storage prepared -------");
         // Load modules & plugins before language to ensure any custom translations are respected, and any app
         // startup functionality is run
         const loadModulesPromise = loadModules();
         await settled(loadModulesPromise);
-        logger.info("------- Modules loaded -------");
         const loadPluginsPromise = loadPlugins();
         await settled(loadPluginsPromise);
-        logger.info("------- Plugins loaded -------");
         // Load language after loading config.json so that settingsDefaults.language can be applied
         const loadLanguagePromise = loadLanguage();
-        logger.info("------- Language loaded -------");
         // as quickly as we possibly can, set a default theme...
         const loadThemePromise = loadTheme();
-        logger.info("------- Theme loaded -------");
 
         // await things settling so that any errors we have to render have features like i18n running
         await settled(loadThemePromise, loadLanguagePromise);
@@ -224,7 +218,6 @@ async function start(): Promise<void> {
         try {
             // await config here
             await loadConfigPromise;
-            logger.info("------- Config loaded -------");
         } catch (error) {
             // Now that we've loaded the theme (CSS), display the config syntax error if needed.
             if (error instanceof SyntaxError) {
@@ -244,15 +237,10 @@ async function start(): Promise<void> {
         // assert things started successfully
         // ##################################
         await loadOlmPromise;
-        logger.info("------- Olm loaded -------");
         await loadPluginsPromise;
-        logger.info("------- Plugins loaded -------");
         await loadModulesPromise;
-        logger.info("------- Modules loaded -------");
         await loadThemePromise;
-        logger.info("------- Theme loaded -------");
         await loadLanguagePromise;
-        logger.info("------- Language loaded -------");
 
         // We don't care if the log persistence made it through successfully, but we do want to
         // make sure it had a chance to load before we move on. It's prepared much higher up in
@@ -268,7 +256,6 @@ async function start(): Promise<void> {
         // Finally, load the app. All of the other react-sdk imports are in this file which causes the skinner to
         // run on the components.
         await loadApp(fragparts.params);
-        logger.info("------- App loaded -------");
     } catch (err) {
         logger.error(err);
         // Like the compatibility page, AWOOOOOGA at the user

@@ -184,7 +184,6 @@ interface ILoadSessionOpts {
  */
 export async function loadSession(opts: ILoadSessionOpts = {}): Promise<boolean> {
     try {
-        console.log("----- loadSession -----");
         let enableGuest = opts.enableGuest || false;
         const guestHsUrl = opts.guestHsUrl;
         const guestIsUrl = opts.guestIsUrl;
@@ -211,21 +210,17 @@ export async function loadSession(opts: ILoadSessionOpts = {}): Promise<boolean>
             );
             return true;
         }
-        console.log("----- restoreSessionFromStorage -----");
         const success = await restoreSessionFromStorage({
             ignoreGuest: Boolean(opts.ignoreGuest),
         });
         if (success) {
-            console.log("----- restoreSessionFromStorage success -----");
             return true;
         }
         if (sessionLockStolen) {
-            console.log("----- sessionLockStolen -----");
             return false;
         }
 
         if (enableGuest && guestHsUrl) {
-            console.log("----- registerAsGuest -----");
             return registerAsGuest(guestHsUrl, guestIsUrl, defaultDeviceDisplayName);
         }
 
@@ -613,7 +608,6 @@ async function abortLogin(): Promise<void> {
  *      localStorage (e.g. isGuest etc.)
  */
 export async function restoreSessionFromStorage(opts?: { ignoreGuest?: boolean }): Promise<boolean> {
-    console.log("----- restoreSessionFromStorage -----");
     const ignoreGuest = opts?.ignoreGuest;
 
     if (!localStorage) {
@@ -816,19 +810,14 @@ async function doSetLoggedIn(
             softLogout,
         " freshLogin: " + credentials.freshLogin,
     );
-    console.log("----- doSetLoggedIn -----");
     if (clearStorageEnabled) {
-        console.log("----- clearStorage enabled -----");
         await clearStorage();
     }
-    console.log("----- clearStorage disabled -----");
     const results = await StorageManager.checkConsistency();
     // If there's an inconsistency between account data in local storage and the
     // crypto store, we'll be generally confused when handling encrypted data.
     // Show a modal recommending a full reset of storage.
     if (results.dataInLocalStorage && results.cryptoInited && !results.dataInCryptoStore) {
-        console.log("----- abortLogin -----");
-        console.log("----- results -----", results);
         await abortLogin();
     }
 
