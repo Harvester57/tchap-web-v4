@@ -810,11 +810,9 @@ async function doSetLoggedIn(
             softLogout,
         " freshLogin: " + credentials.freshLogin,
     );
-
     if (clearStorageEnabled) {
         await clearStorage();
     }
-
     const results = await StorageManager.checkConsistency();
     // If there's an inconsistency between account data in local storage and the
     // crypto store, we'll be generally confused when handling encrypted data.
