@@ -38,17 +38,10 @@ export default class TchapUtils {
         const cli = MatrixClientPeg.safeGet();
         const baseDomain = cli.getDomain();
 
-        // Only show the federate switch to defense users : it's difficult to understand, so we avoid
-        // displaying it unless it's really necessary.
-        if (baseDomain === "agent.intradef.tchap.gouv.fr") {
-            return {
-                showForumFederationSwitch: true,
-                forumFederationSwitchDefaultValue: false,
-            };
-        }
-
+        // Show for all but default to false only for intradef
         return {
-            showForumFederationSwitch: false,
+            showForumFederationSwitch: true,
+            forumFederationSwitchDefaultValue: baseDomain !== "agent.intradef.tchap.gouv.fr",
         };
     }
 
