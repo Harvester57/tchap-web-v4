@@ -212,6 +212,8 @@
         "api_host": "https://posthogdev.tchap.incubateur.net"
     },
     "element_call": {
-        "url": "https://call.tchap.gouv.fr/"
+        "url": "https://call.tchap.gouv.fr/",
+        "participant_limit": 25,
+        "brand": "Appel de groupe"
     }
 }
