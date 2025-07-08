@@ -89,10 +89,6 @@
         "en": "Enter Recovery Code",
         "fr": "Saisir le Code de Récupération"
     },
-    "encryption|access_secret_storage_dialog|enter_phrase_or_key_prompt": {
-        "en": "Enter your Security Phrase or <button>use your Recovery Code</button> to continue.",
-        "fr": "Saisissez votre phrase de sécurité ou <button>utilisez votre Code de Récupération</button> pour continuer."
-    },
     "Export room members": { "en": "Export room members", "fr": "Exporter les membres du salon" },
     "External members cannot be re-invited. If you need to give access to externals, you will have to create a new room": {
         "en": "External members cannot be re-invited. If you need to give access to externals, you will have to create a new room.",
@@ -105,10 +101,6 @@
         "fr": "Récupération des messages depuis le serveur…"
     },
     "Finish": { "en": "Finish", "fr": "Terminer" },
-    "encryption|reset_all_button": {
-        "en": "You have lost your Recovery Code? <a>Create a new code</a>",
-        "fr": "Vous avez perdu votre Code de Récupération ? <a>Générer un nouveau code</a>"
-    },
     "Forum room": { "en": "Public room", "fr": "Forum" },
     "Frequently Asked Questions (FAQ)": { "en": "Frequently Asked Questions (FAQ)", "fr": "Foire Aux Questions (FAQ)" },
     "auth|logout_dialog|skip_key_backup": { "en": "Log out anyway", "fr": "Se déconnecter quand-même" },
@@ -268,10 +260,6 @@
     "Type of room": { "en": "Type of room", "fr": "Type de salon" },
     "Upgrade private room": { "en": "This room will be updated", "fr": "Ce salon va être mis à jour" },
     "Upgrade room": { "en": "Upgrade room", "fr": "Mettre à jour le salon" },
-    "encryption|access_secret_storage_dialog|use_security_key_prompt": {
-        "en": "Use your Recovery Code to continue.",
-        "fr": "Utilisez votre Code de Récupération pour continuer."
-    },
     "Verified!": { "en": "Verified!", "fr": "Vérifié !" },
     "Wait for at least %(wait)s seconds between two emails": {
         "en": "Wait for at least %(wait)s seconds between two emails",
@@ -389,10 +377,6 @@
         "en": "Activate message Secure Backup",
         "fr": "Activer la sauvegarde automatique des messages"
     },
-    "encryption|verification|after_new_login|reset_confirmation": {
-        "en": "Really reset Recovery Code?",
-        "fr": "Réinitialiser le Code de Récupération, c’est certain ?"
-    },
     "encryption|verification|after_new_login|unable_to_verify": {
         "en": "You are logging into a new device",
         "fr": "Vous vous connectez à un nouvel appareil"
@@ -402,20 +386,12 @@
         "fr": "Confirmez si les objets sont les mêmes sur vos 2 appareils."
     },
     "encryption|verification|verification_description": {
-        "en": "Verify your identity to access locked messages and prove your identity to others.",
-        "fr": "Vérifiez votre identité pour accéder aux messages verrouillés et prouver votre identité aux autres."
+        "en": "Verify your device to access locked messages and prove your identity to others.",
+        "fr": "Vérifiez votre appareil pour accéder aux messages verrouillés et prouver votre identité aux autres."
     },
     "encryption|verification|verification_success_with_backup": {
         "en": "Your new device is now verified. It has access to your encrypted messages, and other users will see it as trusted.",
         "fr": "Votre nouvel appareil est maintenant vérifié. Il a accès à vos messages chiffrés et les autres utilisateurs le verront comme fiable."
-    },
-    "encryption|verification|verify_reset_warning_1": {
-        "en": "Resetting your Recovery Code cannot be undone. After resetting, you will no longer have access to your previous locked messages.",
-        "fr": "La réinitialisation de votre Code de Récupération ne peut pas être annulée. Après la réinitialisation, vous n’aurez plus accès à vos anciens messages verrouillés."
-    },
-    "encryption|verification|verify_reset_warning_2": {
-        "en": "Please only proceed if you're sure you've lost all of your other devices and your Recovery Code.",
-        "fr": "Veuillez ne continuer que si vous êtes certain d’avoir perdu tous vos autres appareils et votre Code de Récupération."
     },
     "encryption|verification|verify_using_key": {
         "en": "Verify with Recovery Code",
@@ -572,8 +548,8 @@
     "settings|sessions|verified_session": { "en": "Verified device", "fr": "Appareil vérifié" },
     "settings|sessions|verified_sessions": { "en": "Verified devices", "fr": "Appareils vérifiés" },
     "settings|sessions|verified_sessions_explainer_1": {
-        "en": "Verified devices are anywhere you are using this account after entering your passphrase or confirming your identity with another verified device.",
-        "fr": "Les appareils vérifiés sont ceux qui utilisent ce compte après avoir saisi la phrase de sécurité ou confirmé votre identité à l’aide d’un autre appareil vérifié."
+        "en": "Verified devices are anywhere you are using this account after entering your recovery code or confirming your identity with another verified device.",
+        "fr": "Les appareils vérifiés sont ceux qui utilisent ce compte après avoir saisi le Code de Récupération ou confirmé votre identité à l’aide d’un autre appareil vérifié."
     },
     "settings|sessions|verified_sessions_explainer_2": {
         "en": "This means that you have all the keys needed to unlock your encrypted messages and confirm to other users that you trust this device.",
@@ -905,12 +881,12 @@
         "fr": "Saisissez le Code de Récupération affiché sur l'écran précédent pour terminer la configuration de la récupération."
     },
     "settings|encryption|recovery|description": {
-        "en": "Automatically back up your messages and retrieve them at any time using the Recovery Code.",
-        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération."
+        "en": "Recover historic messages with the recovery code if you lost all your verified account",
+        "fr": "Récupérez l'historique de vos messages à l'aide du Code de Récupération si vous n'avez aucun autre appareil vérifié."
     },
     "settings|encryption|recovery|set_up_recovery_secondary_description": {
         "en": "After clicking continue, we will generate a recovery code for you.",
-        "fr": "Après avoir cliqué sur continuer, nous allons générer un code de récupération pour vous."
+        "fr": "Après avoir cliqué sur continuer, nous allons générer un Code de Récupération pour vous."
     },
     "settings|encryption|recovery|change_recovery_confirm_button": {
         "en": "Confirm the new recovery code",
@@ -987,5 +963,29 @@
     "footer|code_source": {
         "en": "The code of Tchap is publicly available and based on the Matrix protocol. The development of the application benefits from the advances of the Matrix community, in terms of functional improvements and security.",
         "fr": "Le code de Tchap est consultable publiquement et se base sur le protocole Matrix. Le développement de l'application bénéficie ainsi des avancées de la communauté Matrix, en terme d'amélioration fonctionnelle et de sécurité."
+    },
+    "settings|encryption|advanced|reset_identity": {
+        "en": "Reset the security of all my devices",
+        "fr": "Réinitialiser la sécurité de tous mes appareils"
+    },
+    "encryption|access_secret_storage_dialog|alternatives": {
+        "en": "If your recovery code is not the latest,, it won't be reconized.",
+        "fr": "Si votre Code de Récupération n'est pas le plus récent, il sera incorrect."
+    },
+    "settings|encryption|key_storage|description": {
+        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération. Cela vous permettra de consulter l'historique de vos messages sur tous les nouveaux appareils. <a>En savoir plus</a>"
+    },
+    "settings|encryption|advanced|breadcrumb_title": {
+        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "fr": "Êtes-vous sûr de vouloir réinitialiser la sécurité de tous vos appareils?"
+    },
+    "settings|encryption|advanced|breadcrumb_title_sync_failed": {
+        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "fr": "Impossible de synchroniser le stockage des clés. Vous devez réinitialiser la sécurité de tous vos appareils."
+    },
+    "settings|encryption|advanced|breadcrumb_title_forgot": {
+        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "fr": "Vous avez oublié votre clé de récupération ? Vous devez réinitialiser la sécurité de tous vos appareils."
     }
 }

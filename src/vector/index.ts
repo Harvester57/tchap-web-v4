@@ -52,6 +52,8 @@ function checkBrowserFeatures(): boolean {
     window.Modernizr.addTest("promiseprototypefinally", () => typeof window.Promise?.prototype?.finally === "function");
     // ES2020: http://262.ecma-international.org/#sec-promise.allsettled
     window.Modernizr.addTest("promiseallsettled", () => typeof window.Promise?.allSettled === "function");
+    // ES2024: https://2ality.com/2024/05/proposal-promise-with-resolvers.html
+    window.Modernizr.addTest("promisewithresolvers", () => typeof window.Promise?.withResolvers === "function");
     // ES2018: https://262.ecma-international.org/9.0/#sec-get-regexp.prototype.dotAll
     window.Modernizr.addTest(
         "regexpdotall",
@@ -179,17 +181,21 @@ async function start(): Promise<void> {
 
         // now that the config is ready, try to persist logs
         const persistLogsPromise = setupLogStorage();
+        
+        // :TCHAP: reput load module up, otherwise translations in the modules are not taken into account
+        // PR in element that did this change https://github.com/element-hq/element-web/pull/29934
         // Load modules & plugins before language to ensure any custom translations are respected, and any app
         // startup functionality is run
         const loadModulesPromise = loadModules();
         await settled(loadModulesPromise);
         const loadPluginsPromise = loadPlugins();
         await settled(loadPluginsPromise);
+        // end :TCHAP:
+
         // Load language after loading config.json so that settingsDefaults.language can be applied
         const loadLanguagePromise = loadLanguage();
         // as quickly as we possibly can, set a default theme...
         const loadThemePromise = loadTheme();
-
         // await things settling so that any errors we have to render have features like i18n running
         await settled(loadThemePromise, loadLanguagePromise);
 

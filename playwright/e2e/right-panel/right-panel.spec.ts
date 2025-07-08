@@ -81,10 +81,12 @@ test.describe("RightPanel", () => {
             await expect(page.locator(".mx_RightPanel")).toMatchScreenshot("with-leave-room.png");
         });
 
-        test("should handle clicking add widgets", async ({ page, app }) => {
+        test("should handle clicking add widgets", { tag: "@screenshot" }, async ({ page, app }) => {
             await viewRoomSummaryByName(page, app, ROOM_NAME);
 
             await page.getByRole("menuitem", { name: "Extensions" }).click();
+            await expect(page.getByTestId("right-panel")).toMatchScreenshot("with-extensions.png");
+
             await page.getByRole("button", { name: "Add extensions" }).click();
             await expect(page.locator(".mx_IntegrationManager")).toBeVisible();
         });
@@ -157,7 +159,15 @@ test.describe("RightPanel", () => {
                 await expect(page.locator(".mx_UserInfo")).toBeVisible();
                 await expect(page.locator(".mx_UserInfo_profile").getByText(LONG_NAME)).toBeVisible();
 
-                await expect(page.locator(".mx_UserInfo")).toMatchScreenshot("with-long-name.png");
+                await expect(page.locator(".mx_UserInfo")).toMatchScreenshot("with-long-name.png", {
+                    mask: [page.locator(".mx_UserInfo_profile_mxid")],
+                    css: `
+                        /* Use monospace font for consistent mask width */
+                        .mx_UserInfo_profile_mxid {
+                            font-family: Inconsolata !important;
+                        }
+                    `,
+                });
             },
         );
 

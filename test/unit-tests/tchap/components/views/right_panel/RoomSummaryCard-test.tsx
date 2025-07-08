@@ -13,7 +13,7 @@ import { KnownMembership } from "matrix-js-sdk/src/types";
 import { mocked, type MockedObject } from "jest-mock";
 
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
-import RoomSummaryCard from "~tchap-web/src/components/views/right_panel/RoomSummaryCard";
+import RoomSummaryCard from "~tchap-web/src/components/views/right_panel/RoomSummaryCardView";
 import MatrixClientContext from "~tchap-web/src/contexts/MatrixClientContext";
 import defaultDispatcher from "~tchap-web/src/dispatcher/dispatcher";
 import * as settingsHooks from "~tchap-web/src/hooks/useSettings";
