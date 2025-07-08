@@ -71,18 +71,22 @@ export function RecoveryPanel({ onChangeRecoveryKeyClick }: RecoveryPanelProps):
     }
 
     return (
-        <SettingsSection
-            legacy={false}
-            heading={
-                <SettingsHeader
-                    hasRecommendedTag={isMissingRecoveryKey}
-                    label={_t("settings|encryption|recovery|title")}
-                />
-            }
-            subHeading={_t("settings|encryption|recovery|description")}
-            data-testid="recoveryPanel"
-        >
+        // :TCHAP: encryption-panel-recovery-code
+        // <SettingsSection
+        //     legacy={false}
+        //     heading={
+        //         <SettingsHeader
+        //             hasRecommendedTag={isMissingRecoveryKey}
+        //             label={_t("settings|encryption|recovery|title")}
+        //         />
+        //     }
+        //     subHeading={_t("settings|encryption|recovery|description")}
+        //     data-testid="recoveryPanel"
+        // >
+        //     {content}
+        // </SettingsSection>
+        <>
             {content}
-        </SettingsSection>
+        </>
     );
 }
