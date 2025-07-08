@@ -95,7 +95,9 @@ export function EncryptionUserSettingsTab({ initialState = "loading" }: Props): 
             content = (
                 <>
                     <KeyStoragePanel onKeyStorageDisableClick={() => setState("key_storage_delete")} />
-                    <Separator kind="section" />
+                    
+                    {/* :TCHAP: encryption-panel-recovery-code add separator because no more text for recovery code button */}
+                    {state !== "main" && <Separator kind="section" /> }
                     {/* We only show the "Recovery" panel if key storage is enabled.*/}
                     {state === "main" && (
                         <>
