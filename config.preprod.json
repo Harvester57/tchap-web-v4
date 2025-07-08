@@ -14,6 +14,10 @@
             "server_name": "Internes - preprod"
         },
         {
+            "base_url": "https://matrix.a.tchap.gouv.fr ",
+            "server_name": "Internes 2 - preprod"
+        },
+        {
             "base_url": "https://matrix.e.tchap.gouv.fr",
             "server_name": "Externes - preprod"
         }
@@ -42,7 +46,7 @@
     "default_federate": true,
     "default_theme": "light",
     "room_directory": {
-        "servers": ["i.tchap.gouv.fr", "e.tchap.gouv.fr"]
+        "servers": ["i.tchap.gouv.fr", "a.tchap.gouv.fr ", "e.tchap.gouv.fr"]
     },
     "enable_presence_by_hs_url": {
         "https://matrix.i.tchap.gouv.fr": false,
@@ -125,6 +129,8 @@
         "api_host": "https://posthogdev.tchap.incubateur.net"
     },
     "element_call": {
-        "url": "https://call.preprod.tchap.gouv.fr/"
+        "url": "https://call.preprod.tchap.gouv.fr/",
+        "participant_limit": 25,
+        "brand": "Appel de groupe"
     }
 }
