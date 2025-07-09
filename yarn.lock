@@ -3045,15 +3045,22 @@
     "@svgr/plugin-jsx" "8.1.0"
     "@svgr/plugin-svgo" "8.1.0"
 
-"@testcontainers/postgresql@^11.0.0":
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/@testcontainers/postgresql/-/postgresql-11.0.0.tgz#6590f2398fae2d9ad78a748e92b89053d2380f56"
-  integrity sha512-cw2vIz5MS1AjXkxcPmOQh0NRdh7p6frSLOkjsBFuR5lUo3qnV3LmvCfanyRzgXs5aHGJLwc0mlQNfXnKedBF6Q==
-
 "@tauri-apps/api@^2.0.0", "@tauri-apps/api@^2.2.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-2.5.0.tgz#f1c67b5505ba689621b549f9d0165389337586dc"
   integrity sha512-Ldux4ip+HGAcPUmuLT8EIkk6yafl5vK0P0c0byzAKzxJh7vxelVtdPONjfgTm96PbN24yjZNESY8CKo8qniluA==
+
+"@tauri-apps/api@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-2.6.0.tgz#efd873bf04b0d72cea81f9397e16218f5deafe0f"
+  integrity sha512-hRNcdercfgpzgFrMXWwNDBN0B7vNzOzRepy6ZAmhxi5mDLVPNrTpo9MGg2tN/F7JRugj4d2aF7E1rtPXAHaetg==
+
+"@tauri-apps/plugin-notification@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-notification/-/plugin-notification-2.3.0.tgz#714b971ed4efa020766efd921c2b03b66bcc5129"
+  integrity sha512-QDwXo9VzAlH97c0veuf19TZI6cRBPfJDl2O6hNEDvI66j60lOO9z+PL6MJrj8A6Y+t55r7mGhe3rQWLmOre2HA==
+  dependencies:
+    "@tauri-apps/api" "^2.6.0"
 
 "@tauri-apps/plugin-process@^2.2.0":
   version "2.2.1"
@@ -3075,6 +3082,13 @@
   integrity sha512-1OPqEY/z7NDVSeTEMIhD2ss/vXWdpfZ5Th2Mk0KtPR/RA6FKuOTDGZQhxoyYBk0pcZJ+nNZUbl/IujDCLBApjA==
   dependencies:
     "@tauri-apps/api" "^2.0.0"
+
+"@testcontainers/postgresql@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@testcontainers/postgresql/-/postgresql-11.0.0.tgz#6590f2398fae2d9ad78a748e92b89053d2380f56"
+  integrity sha512-cw2vIz5MS1AjXkxcPmOQh0NRdh7p6frSLOkjsBFuR5lUo3qnV3LmvCfanyRzgXs5aHGJLwc0mlQNfXnKedBF6Q==
+  dependencies:
+    testcontainers "^11.0.0"
 
 "@testing-library/dom@^10.4.0":
   version "10.4.0"

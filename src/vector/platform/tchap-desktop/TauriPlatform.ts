@@ -1,10 +1,12 @@
 // import { listen } from '@tauri-apps/api/event';
 import { getVersion } from '@tauri-apps/api/app';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import { logger } from 'matrix-js-sdk/src/logger';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
-import { type MatrixClient } from 'matrix-js-sdk/src/matrix';
+import { type MatrixEvent, type Room, type MatrixClient } from 'matrix-js-sdk/src/matrix';
+import { isPermissionGranted, requestPermission, sendNotification } from '@tauri-apps/plugin-notification';
 
 import BasePlatform from "../../../BasePlatform";
 import dis from "../../../dispatcher/dispatcher";
@@ -184,7 +186,6 @@ export default class TauriPlatform extends BasePlatform {
         fragmentAfterLogin: string,
         idpId?: string,
     ): void {
-        // this will get intercepted by electron-main will-navigate
         super.startSingleSignOn(mxClient, loginType, fragmentAfterLogin, idpId);
     }
 
@@ -201,7 +202,15 @@ export default class TauriPlatform extends BasePlatform {
         return "Tauri Platform"; // no translation required: only used for analytics
     }
 
-    public requestNotificationPermission(): Promise<string> {
+    public async requestNotificationPermission(): Promise<string> {
+
+        const permissionGranted = await isPermissionGranted();
+
+        if (!permissionGranted) {
+            const permission = await requestPermission();
+            return permission;
+        }
+
         return Promise.resolve("granted");
     }
 
@@ -217,4 +226,56 @@ export default class TauriPlatform extends BasePlatform {
     public reload(): void {
         window.location.reload();
     }
+
+
+    public setNotificationCount(count: number): void {
+        if (this.notificationCount === count) return;
+        
+        getCurrentWindow().setBadgeCount(count);
+        super.setNotificationCount(count);
+        
+    }
+
+    public supportsNotifications(): boolean {
+        return true;
+    }
+
+    public maySendNotifications(): boolean {
+        return true;
+    }
+
+    public displayNotification(
+        title: string,
+        msg: string,
+        avatarUrl: string,
+        room: Room,
+        ev?: MatrixEvent,
+    ): Notification {
+        // GNOME notification spec parses HTML tags for styling...
+        // Electron Docs state all supported linux notification systems follow this markup spec
+        // https://github.com/electron/electron/blob/master/docs/tutorial/desktop-environment-integration.md#linux
+        // maybe we should pass basic styling (italics, bold, underline) through from MD
+        // we only have to strip out < and > as the spec doesn't include anything about things like &amp;
+        // so we shouldn't assume that all implementations will treat those properly. Very basic tag parsing is done.
+        if (navigator.userAgent.includes("Linux")) {
+            msg = msg.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        const notification = super.displayNotification(title, msg, avatarUrl, room, ev);
+
+        const handler = notification.onclick as () => void;
+        notification.onclick = (): void => {
+            getCurrentWindow().show();
+            handler?.();
+        };
+        return notification;
+    }
+
+    public async loudNotification(ev: MatrixEvent, room: Room): Promise<void> {
+        const focused = await getCurrentWindow().isFocused();
+        if (!focused) {
+            getCurrentWindow().show();
+        }
+    }
+
 }
