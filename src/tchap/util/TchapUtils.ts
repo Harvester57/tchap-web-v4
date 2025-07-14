@@ -83,6 +83,11 @@ export default class TchapUtils {
     ): Promise<void | { base_url: string; server_name: string }> => {
         const randomHomeServer = this.randomHomeServer();
         const infoUrl = "/_matrix/identity/api/v1/info?medium=email&address=";
+        // TODO for dev only, to remove when mas is fixed with sydent
+        // return Promise.resolve({
+        //     base_url: "https://matrix.dev01.tchap.incubateur.net",
+        //     server_name: "Agents 1",
+        // })
         return fetch(randomHomeServer.base_url + infoUrl + email)
             .then((response) => {
                 if (!response.ok) {
