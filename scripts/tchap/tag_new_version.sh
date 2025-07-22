@@ -9,6 +9,34 @@ fi
 
 VERSION=$1
 
+# Check if we are in the directory containing package.json
+if [ ! -f "package.json" ]; then
+    echo "Error: package.json not found in the current directory."
+    echo "Please run this script from the root directory of the project."
+    exit 1
+fi
+
+# Check if the branch already exists and delete it if it does
+if git branch --list | grep -q "bump-to-${VERSION}"; then
+    echo "Branch bump-to-${VERSION} already exists."
+    
+    # Check if we are currently on this branch
+    if git branch --show-current | grep -q "bump-to-${VERSION}"; then
+        echo "Currently on this branch. Switching to develop_tchap first..."
+        git checkout develop_tchap
+    fi
+    
+    echo "Deleting branch bump-to-${VERSION}..."
+    git branch -D "bump-to-${VERSION}"
+fi
+
+# Check if the tag already exists
+if git tag -l | grep -q "tchap-${VERSION}"; then
+    echo "Error: Tag tchap-${VERSION} already exists."
+    echo "Please choose a different version number or delete the existing tag."
+    exit 1
+fi
+
 # Create a new branch from develop_tchap
 git checkout -b bump-to-${VERSION} develop_tchap
 
