@@ -988,6 +988,10 @@
         "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
         "fr": "Vous avez oublié votre clé de récupération ? Vous devez réinitialiser la sécurité de tous vos appareils."
     },
+    "action|sign_in_by_email": {
+        "en": "Login by email",
+        "fr": "Se connecter par email"
+    },
     "room_settings|security|title": {
         "en": "Privacy",
         "fr": "Vie privée"

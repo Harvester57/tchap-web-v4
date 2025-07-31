@@ -57,11 +57,18 @@ export default class TchapUIFeature {
     }
 
     // We separate from previous method, cause in this feature we cannot differenciate between homeserver since it is before the user connexion
-    public static isSSOFlowActive():boolean {
-        const ssoFlow : Record<string, boolean> = SdkConfig.get("tchap_sso_flow") as Record<string, boolean> ?? {isActive: false};
+    public static isMASFlowActive():boolean {
+        const masFlow : Record<string, boolean> = SdkConfig.get("tchap_mas_flow") as Record<string, boolean> ?? {isActive: false};
 
-        return ssoFlow.isActive;
+        return masFlow.isActive;
     }
 
+    //only used for MAS migratin
+    //code can be cleared after migration
+    public static isMASmigration():boolean {
+        const masFlow : Record<string, boolean> = SdkConfig.get("tchap_mas_flow") as Record<string, boolean> ?? {"temp_is_MAS_migration": false};
+
+        return masFlow.temp_is_MAS_migration;
+    }
 
 }

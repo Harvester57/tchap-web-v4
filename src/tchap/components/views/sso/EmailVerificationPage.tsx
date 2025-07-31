@@ -28,20 +28,35 @@ import PlatformPeg from "~tchap-web/src/PlatformPeg";
 
 import { ErrorMessage } from "~tchap-web/src/components/structures/ErrorMessage";
 import { SSOAction } from "matrix-js-sdk/src/matrix";
-import Login from "~tchap-web/src/Login";
+import Login, { OidcNativeFlow } from "~tchap-web/src/Login";
 import TchapUtils from "../../../util/TchapUtils";
 import { ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
 import * as Email from "~tchap-web/src/email";
 import "~tchap-web/res/css/views/sso/TchapSSO.pcss";
+import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
+import { startOidcLogin } from "../../../../utils/oidc/authorize";
 
-export default function EmailVerificationPage() {
+
+interface IProps {
+    //propagate the server config change
+    onServerConfigChange(config: ValidatedServerConfig): void;
+}
+
+//This page is map to EMAIL_PRECHECK_SSO
+//It aims at selecting the homeserver based on user email input, then it redirects to MAS
+export default function EmailVerificationPage(props: IProps) {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [email, setEmail] = useState<string>("");
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
     const [errorText, setErrorText] = useState<string>("");
 
-    const submitButtonChild = loading ? <Spinner w={16} h={16} /> : _t("auth|proconnect|continue");
+    const isMASFlow= TchapUIFeature.isMASFlowActive();
+    const isMASmigration= TchapUIFeature.isMASmigration();
+
+    const submitButtonLabel = isMASFlow ? _t("action|continue") : _t("auth|proconnect|continue");
+    const submitButtonChild = loading ? <Spinner w={16} h={16} /> : submitButtonLabel;
+
 
     const emailFieldRef = useRef<Field>(null);
 
@@ -90,16 +105,55 @@ export default function EmailVerificationPage() {
                 return;
             }
 
-            const login = new Login(hs.base_url, hs.base_url, null, {});
-
-            const matrixClient= login.createTemporaryClient();
-
             const validatedServerConfig = await setUpCurrentHs(hs);
-
             if (!validatedServerConfig) {
                 displayError(_t("auth|proconnect|error_homeserver"));
                 return
             }
+            /* use oidcNativeFlow */
+            if(isMASFlow){
+
+                const login = new Login(hs.base_url, hs.base_url, null, {
+                    delegatedAuthentication: validatedServerConfig.delegatedAuthentication,
+                });
+                
+                const loginFlows = await login.getFlows(false);
+
+                //only usefull during synapse + MAS migration
+                //when homeserver is not MAS ready
+                //propagate the serverConfig and switch to legacy login page
+                //activateLoginLegacyDuringMASMigration code can be cleared after MAS migration
+                if(isMASmigration && 
+                    loginFlows?.find((flow: Record<string, any>) => flow.type === "m.login.password")){
+                    //console.log("Synapse support lm.ogin.password, use legacy flows");
+                    props.onServerConfigChange(validatedServerConfig);
+                    onLoginByPasswordClick();
+                    return;
+                }
+
+                let oidcNativeFlow: OidcNativeFlow | undefined;
+                oidcNativeFlow = loginFlows.find((f) => f.type === "oidcNativeFlow") as OidcNativeFlow;
+                
+                await startOidcLogin(
+                    validatedServerConfig.delegatedAuthentication!,
+                    oidcNativeFlow.clientId,
+                    validatedServerConfig.hsUrl,
+                    validatedServerConfig.isUrl,
+                    false,
+                    email
+                );
+                
+                setLoading(false);
+
+                return;
+                
+            }
+
+            //MAS Flow is not active
+            //legacy sso code
+            const login = new Login(hs.base_url, hs.base_url, null, {});
+
+            const matrixClient= login.createTemporaryClient();
 
             // check if oidc is activated on HS
             const canSSO = await isSSOFlowActive(login);
@@ -129,12 +183,69 @@ export default function EmailVerificationPage() {
         window.location.assign("#/login"); 
     }
 
+    const getTitleLabel = () => {
+        if (isMASFlow) {
+            return _t("action|sign_in");
+        }
+        return _t("auth|proconnect|email_title");
+    }
+
+    const getButtonGroup = () => {
+        if (isMASFlow) {
+            return (
+                <AccessibleButton
+                        type="submit"
+                        data-testid="mas-submit"
+                        title={_t("action|continue")}
+                        className="tc_ButtonParent tc_ButtonProconnect"
+                        element="button"
+                        kind="link"
+                        disabled={buttonDisabled}
+                        onClick={(e: ButtonEvent) => {
+                            onSubmit(e);
+                        }}
+                    >
+                        {submitButtonChild}
+                </AccessibleButton>
+            )
+        }
+        return <>
+            <AccessibleButton
+                type="submit"
+                data-testid="proconnect-submit"
+                title={_t("auth|proconnect|continue")}
+                className="tc_ButtonParent tc_ButtonProconnect tc_Button_iconPC"
+                element="button"
+                kind="link"
+                disabled={buttonDisabled}
+                onClick={(e: ButtonEvent) => {
+                    onSubmit(e);
+                }}
+            >
+                {submitButtonChild}
+            </AccessibleButton>
+            <div className="mx_AuthBody_button-container tc_bottomButton">
+                <AccessibleButton
+                    className="mx_AuthBody_sign-in-instead-button"
+                    element="button"
+                    kind="link"
+                    onClick={(e: ButtonEvent) => {
+                        e.preventDefault();
+                        onLoginByPasswordClick();
+                    }}
+                >
+                    {_t("auth|proconnect|sign_in_password_instead")}
+                </AccessibleButton>
+            </div>
+        </>
+    }
+
     return (
         <AuthPage>
             <AuthHeader/>
             <AuthBody>
                 <h1>
-                    {_t("auth|proconnect|email_title")}
+                    {getTitleLabel()}
                 </h1>
                 <form onSubmit={onSubmit} className="tc_pronnect">
                     <fieldset disabled={loading} className="tc_login">
@@ -151,33 +262,7 @@ export default function EmailVerificationPage() {
                             />
                         </div>
                         {errorText && <ErrorMessage message={errorText} />}
-                        <AccessibleButton
-                                type="submit"
-                                data-testid="proconnect-submit"
-                                title={_t("auth|proconnect|continue")}
-                                className="tc_ButtonParent tc_ButtonProconnect tc_Button_iconPC"
-                                element="button"
-                                kind="link"
-                                disabled={buttonDisabled}
-                                onClick={(e: ButtonEvent) => {
-                                    onSubmit(e);
-                                }}
-                            >
-                                {submitButtonChild}
-                            </AccessibleButton>
-                        <div className="mx_AuthBody_button-container tc_bottomButton">
-                            <AccessibleButton
-                                className="mx_AuthBody_sign-in-instead-button"
-                                element="button"
-                                kind="link"
-                                onClick={(e: ButtonEvent) => {
-                                    e.preventDefault();
-                                    onLoginByPasswordClick();
-                                }}
-                            >
-                                {_t("auth|proconnect|sign_in_password_instead")}
-                            </AccessibleButton>
-                        </div>
+                        {getButtonGroup()}
                     </fieldset>
                 </form>
             </AuthBody>

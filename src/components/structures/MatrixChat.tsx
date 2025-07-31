@@ -2235,7 +2235,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             view = <SessionLockStolenView />;
         // :TCHAP: sso-agentconnect-flow
         } else if (this.state.view === Views.EMAIL_PRECHECK_SSO) {
-            view = <EmailVerificationPage />;
+            //propagate onServerConfigChange
+            view = <EmailVerificationPage onServerConfigChange={this.onServerConfigChange} />;
         // end :TCHAP:
         } else {
             logger.error(`Unknown view ${this.state.view}`);

@@ -120,8 +120,9 @@
         "feature_video_group_call": ["*"],
         "feature_screenshare_call": ["*"]
     },
-    "tchap_sso_flow": {
-        "isActive": true
+    "tchap_mas_flow": {
+        "isActive": false,
+        "temp_is_MAS_migration": false
     },
     "map_style_url": "https://openmaptiles.geo.data.gouv.fr/styles/osm-bright/style.json",
     "posthog": {
