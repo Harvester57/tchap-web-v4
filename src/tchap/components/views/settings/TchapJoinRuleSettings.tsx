@@ -15,16 +15,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { ReactNode, useState } from "react";
-import { IJoinRuleEventContent, JoinRule, RestrictedAllowType } from "matrix-js-sdk/src/@types/partials";
-import { Room } from "matrix-js-sdk/src/models/room";
-import { EventType } from "matrix-js-sdk/src/@types/event";
+import React, { JSX, ReactNode, useState } from "react";
+import { JoinRule, RestrictedAllowType, type Room, EventType } from "matrix-js-sdk/src/matrix";
 import StyledRadioGroup, { IDefinition } from "~tchap-web/src/components/views/elements/StyledRadioGroup";
 import { _t } from "~tchap-web/src/languageHandler";
 import AccessibleButton from "~tchap-web/src/components/views/elements/AccessibleButton";
 import SpaceStore from "~tchap-web/src/stores/spaces/SpaceStore";
 import RoomAvatar from "~tchap-web/src/components/views/avatars/RoomAvatar";
-import { MatrixClientPeg } from "~tchap-web/src/MatrixClientPeg";
 import Modal from "~tchap-web/src/Modal";
 import ManageRestrictedJoinRuleDialog from "~tchap-web/src/components/views/dialogs/ManageRestrictedJoinRuleDialog";
 import RoomUpgradeWarningDialog, {
@@ -34,7 +31,6 @@ import { upgradeRoom } from "~tchap-web/src/utils/RoomUpgrade";
 import { arrayHasDiff } from "~tchap-web/src/utils/arrays";
 import { useLocalEcho } from "~tchap-web/src/hooks/useLocalEcho";
 import dis from "~tchap-web/src/dispatcher/dispatcher";
-import { ROOM_SECURITY_TAB } from "~tchap-web/src/components/views/dialogs/RoomSettingsDialog";
 import { Action } from "~tchap-web/src/dispatcher/actions";
 import { ViewRoomPayload } from "~tchap-web/src/dispatcher/payloads/ViewRoomPayload";
 import { doesRoomVersionSupport, PreferredRoomVersions } from "~tchap-web/src/utils/PreferredRoomVersions";
@@ -45,17 +41,33 @@ import TchapUIFeature from "../../../util/TchapUIFeature";
 import { TchapRoomAccessRule, TchapIAccessRuleEventContent, TchapRoomAccessRulesEventId } from "../../../@types/tchap";
 import TchapRoomLinkAccess from "../rooms/TchapRoomLinkAccess";
 import TchapRoomUtils from "../../../util/TchapRoomUtils";
+import { RoomJoinRulesEventContent } from "matrix-js-sdk/src/types";
+import { RoomSettingsTab } from "~tchap-web/src/components/views/dialogs/RoomSettingsDialog";
 
-interface IProps {
+interface JoinRuleSettingsProps {
     room: Room;
     promptUpgrade?: boolean;
     closeSettingsFn(): void;
-    onError(error: Error): void;
+    onError(error: unknown): void;
     beforeChange?(joinRule: JoinRule): Promise<boolean>; // if returns false then aborts the change
     aliasWarning?: ReactNode;
+    disabledOptions?: Set<JoinRule>;
+    hiddenOptions?: Set<JoinRule>;
+    recommendedOption?: JoinRule;
 }
 
-const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeChange, closeSettingsFn }: IProps) => {
+
+const JoinRuleSettings : React.FC<JoinRuleSettingsProps> = ({
+    room,
+    promptUpgrade,
+    aliasWarning,
+    onError,
+    beforeChange,
+    closeSettingsFn,
+    disabledOptions,
+    hiddenOptions,
+    recommendedOption,
+}) => {
     const cli = room.client;
 
     // Used to hide join rule option if link is activated
@@ -67,7 +79,7 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
 
     const disabled = !room.currentState.mayClientSendStateEvent(EventType.RoomJoinRules, cli);
 
-    const [content, setContent] = useLocalEcho<IJoinRuleEventContent>(
+    const [content, setContent] = useLocalEcho<RoomJoinRulesEventContent | undefined, RoomJoinRulesEventContent>(
         () => room.currentState.getStateEvents(EventType.RoomJoinRules, "")?.getContent(),
         (content) => cli.sendStateEvent(room.roomId, EventType.RoomJoinRules, content, ""),
         onError,
@@ -75,7 +87,7 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
     const { join_rule: joinRule = JoinRule.Invite } = content || {};
     const restrictedAllowRoomIds =
         joinRule === JoinRule.Restricted
-            ? content.allow?.filter((o) => o.type === RestrictedAllowType.RoomMembership).map((o) => o.room_id)
+            ? content?.allow?.filter((o) => o.type === RestrictedAllowType.RoomMembership).map((o) => o.room_id)
             : undefined;
 
     const [contentTchapAccessRule, setTchapAccessRule] = useLocalEcho<TchapIAccessRuleEventContent>(
@@ -91,11 +103,9 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
             selected = [SpaceStore.instance.activeSpaceRoom.roomId];
         }
 
-        const matrixClient = MatrixClientPeg.get();
         const { finished } = Modal.createDialog(
             ManageRestrictedJoinRuleDialog,
             {
-                matrixClient,
                 room,
                 selected,
             },
@@ -104,6 +114,66 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
 
         const [roomIds] = await finished;
         return roomIds;
+    };
+
+    const upgradeRequiredDialog = (targetVersion: string, description?: ReactNode): void => {
+        Modal.createDialog(RoomUpgradeWarningDialog, {
+            roomId: room.roomId,
+            targetVersion,
+            description,
+            doUpgrade: async (
+                opts: IFinishedOpts,
+                fn: (progressText: string, progress: number, total: number) => void,
+            ): Promise<void> => {
+                const roomId = await upgradeRoom(room, targetVersion, opts.invite, true, true, true, (progress) => {
+                    const total = 2 + progress.updateSpacesTotal + progress.inviteUsersTotal;
+                    if (!progress.roomUpgraded) {
+                        fn(_t("room_settings|security|join_rule_upgrade_upgrading_room"), 0, total);
+                    } else if (!progress.roomSynced) {
+                        fn(_t("room_settings|security|join_rule_upgrade_awaiting_room"), 1, total);
+                    } else if (
+                        progress.inviteUsersProgress !== undefined &&
+                        progress.inviteUsersProgress < progress.inviteUsersTotal
+                    ) {
+                        fn(
+                            _t("room_settings|security|join_rule_upgrade_sending_invites", {
+                                progress: progress.inviteUsersProgress,
+                                count: progress.inviteUsersTotal,
+                            }),
+                            2 + progress.inviteUsersProgress,
+                            total,
+                        );
+                    } else if (
+                        progress.updateSpacesProgress !== undefined &&
+                        progress.updateSpacesProgress < progress.updateSpacesTotal
+                    ) {
+                        fn(
+                            _t("room_settings|security|join_rule_upgrade_updating_spaces", {
+                                progress: progress.updateSpacesProgress,
+                                count: progress.updateSpacesTotal,
+                            }),
+                            2 + (progress.inviteUsersProgress ?? 0) + progress.updateSpacesProgress,
+                            total,
+                        );
+                    }
+                });
+
+                closeSettingsFn?.();
+
+                // switch to the new room in the background
+                dis.dispatch<ViewRoomPayload>({
+                    action: Action.ViewRoom,
+                    room_id: roomId,
+                    metricsTrigger: undefined, // other
+                });
+
+                // open new settings on this tab
+                dis.dispatch({
+                    action: "open_room_settings",
+                    initial_tab_id: RoomSettingsTab.Security,
+                });
+            },
+        });
     };
 
     /* code from element web
@@ -132,18 +202,17 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
         if (accessRule) {
             const openedToExternalUsers = accessRule === TchapRoomAccessRule.Unrestricted;
             const onExternalAccessChange = async () => {
-                Modal.createDialog(QuestionDialog, {
+                const { finished } = Modal.createDialog(QuestionDialog, {
                     title: _t("Allow external users to join this room"),
                     description:
                         _t("This action is irreversible.") +
                         " " +
                         _t("Are you sure you want to allow the externals to join this room ?"),
                     button: _t("action|ok"),
-                    onFinished: (confirmed) => {
-                        if (!confirmed) return;
-                        setTchapAccessRule({ rule: TchapRoomAccessRule.Unrestricted });
-                    },
                 });
+                const [ confirmed ] = await finished;
+                if (!confirmed) return;
+                setTchapAccessRule({ rule: TchapRoomAccessRule.Unrestricted });
             };
             privateRoomDescription = (
                 <div>
@@ -198,7 +267,7 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
                 const shownSpaces = restrictedAllowRoomIds
                     .map((roomId) => cli.getRoom(roomId))
                     .filter((room) => room?.isSpaceRoom())
-                    .slice(0, 4);
+                    .slice(0, 4) as Room[];
 
                 let moreText;
                 if (shownSpaces.length < restrictedAllowRoomIds.length) {
@@ -267,7 +336,7 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
                             {shownSpaces.map((room) => {
                                 return (
                                     <span key={room.roomId}>
-                                        <RoomAvatar room={room} height={32} width={32} />
+                                        <RoomAvatar room={room} size="32px" />
                                         {room.name}
                                     </span>
                                 );
@@ -281,7 +350,7 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
                     "room_settings|security|join_rule_restricted_description_active_space",
                     {},
                     {
-                        spaceName: () => <b>{SpaceStore.instance.activeSpaceRoom.name}</b>,
+                        spaceName: () => <b>{SpaceStore.instance.activeSpaceRoom!.name}</b>,
                     },
                 );
             } else {
@@ -308,9 +377,9 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
     }
 
     const onChange = async (joinRule: JoinRule) => {
-        const beforeJoinRule = content.join_rule;
+        const beforeJoinRule = content?.join_rule;
 
-        let restrictedAllowRoomIds: string[];
+        let restrictedAllowRoomIds: string[] | undefined;
         if (joinRule === JoinRule.Restricted) {
             if (beforeJoinRule === JoinRule.Restricted || roomSupportsRestricted) {
                 // Have the user pick which spaces to allow joins from
@@ -320,8 +389,8 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
                 // Block this action on a room upgrade otherwise it'd make their room unjoinable
                 const targetVersion = preferredRestrictionVersion;
 
-                let warning: JSX.Element;
-                const userId = cli.getUserId();
+                let warning: JSX.Element | undefined;
+                const userId = cli.getUserId()!;
                 const unableToUpdateSomeParents = Array.from(SpaceStore.instance.getKnownParents(room.roomId)).some(
                     (roomId) => !cli.getRoom(roomId)?.currentState.maySendStateEvent(EventType.SpaceChild, userId),
                 );
@@ -333,75 +402,16 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
                     );
                 }
 
-                Modal.createDialog(RoomUpgradeWarningDialog, {
-                    roomId: room.roomId,
+                upgradeRequiredDialog(
                     targetVersion,
-                    description: (
-                        <>
-                            {_t("room_settings|security|join_rule_restricted_upgrade_description")}
-                            {warning}
-                        </>
-                    ),
-                    doUpgrade: async (
-                        opts: IFinishedOpts,
-                        fn: (progressText: string, progress: number, total: number) => void,
-                    ): Promise<void> => {
-                        const roomId = await upgradeRoom(
-                            room,
-                            targetVersion,
-                            opts.invite,
-                            true,
-                            true,
-                            true,
-                            (progress) => {
-                                const total = 2 + progress.updateSpacesTotal + progress.inviteUsersTotal;
-                                if (!progress.roomUpgraded) {
-                                    fn(_t("room_settings|security|join_rule_upgrade_upgrading_room"), 0, total);
-                                } else if (!progress.roomSynced) {
-                                    fn(_t("room_settings|security|join_rule_upgrade_awaiting_room"), 1, total);
-                                } else if (progress.inviteUsersProgress < progress.inviteUsersTotal) {
-                                    fn(
-                                        _t("room_settings|security|join_rule_upgrade_sending_invites", {
-                                            progress: progress.inviteUsersProgress,
-                                            count: progress.inviteUsersTotal,
-                                        }),
-                                        2 + progress.inviteUsersProgress,
-                                        total,
-                                    );
-                                } else if (progress.updateSpacesProgress < progress.updateSpacesTotal) {
-                                    fn(
-                                        _t("room_settings|security|join_rule_upgrade_sending_invites", {
-                                            progress: progress.updateSpacesProgress,
-                                            count: progress.updateSpacesTotal,
-                                        }),
-                                        2 + progress.inviteUsersProgress + progress.updateSpacesProgress,
-                                        total,
-                                    );
-                                }
-                            },
-                        );
-                        closeSettingsFn();
-
-                        // switch to the new room in the background
-                        dis.dispatch<ViewRoomPayload>({
-                            action: Action.ViewRoom,
-                            room_id: roomId,
-                            metricsTrigger: undefined, // other
-                        });
-
-                        // open new settings on this tab
-                        dis.dispatch({
-                            action: "open_room_settings",
-                            initial_tab_id: RoomSettingsTab.Security,
-                        });
-                    },
-                });
-
-                return;
+                    <>
+                        {_t("room_settings|security|join_rule_restricted_upgrade_description")}
+                        {warning}
+                    </>,
+                );
             }
-
             // when setting to 0 allowed rooms/spaces set to invite only instead as per the note
-            if (!restrictedAllowRoomIds.length) {
+            if (!restrictedAllowRoomIds?.length) {
                 joinRule = JoinRule.Invite;
             }
         }
@@ -409,13 +419,13 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
         if (beforeJoinRule === joinRule && !restrictedAllowRoomIds) return;
         if (beforeChange && !(await beforeChange(joinRule))) return;
 
-        const newContent: IJoinRuleEventContent = {
+        const newContent: RoomJoinRulesEventContent = {
             join_rule: joinRule,
         };
 
         // pre-set the accepted spaces with the currently viewed one as per the microcopy
         if (joinRule === JoinRule.Restricted) {
-            newContent.allow = restrictedAllowRoomIds.map((roomId) => ({
+            newContent.allow = restrictedAllowRoomIds?.map((roomId) => ({
                 type: RestrictedAllowType.RoomMembership,
                 room_id: roomId,
             }));
@@ -431,14 +441,12 @@ const JoinRuleSettings = ({ room, promptUpgrade, aliasWarning, onError, beforeCh
         setIsLinkSharingActivated(checked);
 
         // if its the initialisation phase we dont need to do anything more other than hide or not the join options 
-        if (init) {
-            return;
-        }
+        if (init) return;
 
         // deactivating the share link
         if (!checked) {
             const currentJoinRule = TchapRoomUtils.getRoomJoinRule(room);
-            setContent(currentJoinRule ? { join_rule: JoinRule.Invite } : {} as IJoinRuleEventContent);
+            setContent(currentJoinRule ? { join_rule: JoinRule.Invite } : {} as RoomJoinRulesEventContent);
         }
     }
 
