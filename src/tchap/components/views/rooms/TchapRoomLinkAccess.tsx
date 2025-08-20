@@ -1,6 +1,6 @@
-import { EventTimeline, EventType, GuestAccess, JoinRule, Room } from "matrix-js-sdk/src/matrix";
+import { EventType, GuestAccess, JoinRule, Room } from "matrix-js-sdk/src/matrix";
 
-import React, { useEffect, useState } from 'react';
+import React, { JSX, useEffect, useState } from 'react';
 import LabelledToggleSwitch from '~tchap-web/src/components/views/elements/LabelledToggleSwitch';
 import { _t } from '~tchap-web/src/languageHandler';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
@@ -12,7 +12,6 @@ import CopyableText from "~tchap-web/src/components/views/elements/CopyableText"
 import Modal from "~tchap-web/src/Modal";
 import QuestionDialog from "~tchap-web/src/components/views/dialogs/QuestionDialog";
 import ErrorDialog from "~tchap-web/src/components/views/dialogs/ErrorDialog";
-import MatrixToPermalinkConstructor from "~tchap-web/src/utils/permalinks/MatrixToPermalinkConstructor";
 import ElementPermalinkConstructor from "~tchap-web/src/utils/permalinks/ElementPermalinkConstructor";
 import SdkConfig from "~tchap-web/src/SdkConfig";
 import DMRoomMap from "~tchap-web/src/utils/DMRoomMap";
@@ -115,11 +114,12 @@ export default function TchapRoomLinkAccess({room, onUpdateParentView}: ITchapRo
             const activationIsConfirmed = await activateLinksharingModal();
     
             if (activationIsConfirmed) {
+                await _setUpRoomByLink();
                 // create link if we activate the sharing, otherwise change nothing
                 if (TchapRoomUtils.getRoomGuessAccessRule(room) === GuestAccess.CanJoin) {
                     await _setGuestAccessRules(GuestAccess.Forbidden)
                 }
-                await Promise.all([_setUpRoomByLink(), _setJoinRules(JoinRule.Public)]);
+                await _setJoinRules(JoinRule.Public);
                 setIsLinkSharingActivated(checked);
                 onUpdateParentView(checked, false);
             }
