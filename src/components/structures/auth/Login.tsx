@@ -509,10 +509,10 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
         */
         const activateLoginLegacyDuringMASMigration = TchapUIFeature.isMASmigration();
        
-        if (!this.isBusy() && !this.state.busyLoggingIn && !activateLoginLegacyDuringMASMigration) {
+        if (!this.isBusy() && !this.state.busyLoggingIn && activateLoginLegacyDuringMASMigration) {
             return <div style={{marginBottom: "25px", position: "relative", top: "-15px"}}>
                 <p style={{textAlign: "center", fontWeight: "bold"}}>{_t("auth|proconnect|or")}</p>
-                <ProconnectButton />
+                <ProconnectButton client={this.loginLogic.createTemporaryClient()} directSSO={sessionStorage.getItem("tc_direct_sso")} />
             </div>;
         }
         return <></>;

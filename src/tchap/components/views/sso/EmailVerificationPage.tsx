@@ -41,6 +41,7 @@ import "~tchap-web/res/css/views/sso/TchapSSO.pcss";
 interface IProps {
     //propagate the server config change
     onServerConfigChange(config: ValidatedServerConfig): void;
+    onLoginClick(): void;
 }
 
 //This page is map to EMAIL_PRECHECK_SSO
@@ -182,7 +183,11 @@ export default function EmailVerificationPage(props: IProps) {
     }
 
     const onLoginByPasswordClick = () => {
-        window.location.assign("#/login"); 
+        // propagate if needs direct connection to SSO without repassing by email verification check
+        // Used for mas migration only, where both legacy and mas login/register are available
+        // window.location.assign("#/login?mas_migration=true"); 
+        sessionStorage.setItem("tc_direct_sso", String(true));
+        props.onLoginClick();
     }
 
     const getTitleLabel = () => {

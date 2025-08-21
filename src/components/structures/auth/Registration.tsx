@@ -628,9 +628,9 @@ export default class Registration extends React.Component<IProps, IState> {
             //:TCHAP: activate only legacy login, deactivate SSO during MAS migration
             const activateLoginLegacyDuringMASMigration = TchapUIFeature.isMASmigration();
 
-            if (!this.props.mobileRegister && this.state.ssoFlow && !activateLoginLegacyDuringMASMigration) {    
+            if (!this.props.mobileRegister && this.state.ssoFlow && activateLoginLegacyDuringMASMigration) {
                 ssoSection = <>
-                    <ProconnectButton />
+                    <ProconnectButton directSSO={sessionStorage.getItem("tc_direct_sso")} client={this.state.matrixClient} />
                     <p style={{textAlign: "center", fontWeight: "bold"}}>{_t("auth|proconnect|or")}</p>
                 </>;
             }

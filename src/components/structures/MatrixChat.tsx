@@ -2241,7 +2241,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         // :TCHAP: sso-agentconnect-flow
         } else if (this.state.view === Views.EMAIL_PRECHECK_SSO) {
             //propagate onServerConfigChange
-            view = <EmailVerificationPage onServerConfigChange={this.onServerConfigChange} />;
+            view = <EmailVerificationPage onServerConfigChange={this.onServerConfigChange} onLoginClick={this.onLoginClick} />;
         // end :TCHAP:
         } else {
             logger.error(`Unknown view ${this.state.view}`);
