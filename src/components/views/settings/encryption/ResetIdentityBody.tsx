@@ -17,6 +17,8 @@ import { uiAuthCallback } from "../../../../CreateCrossSigning";
 import { EncryptionCardButtons } from "./EncryptionCardButtons";
 import { EncryptionCardEmphasisedContent } from "./EncryptionCardEmphasisedContent";
 import { useMatrixClientContext } from "../../../../contexts/MatrixClientContext";
+import ExternalLink from "../../elements/ExternalLink";
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
 
 interface ResetIdentityBodyProps {
     /**
@@ -71,7 +73,14 @@ export function ResetIdentityBody({ onCancelClick, onReset, variant }: ResetIden
                         {_t("settings|encryption|advanced|breadcrumb_first_description")}
                     </VisualListItem>
                     <VisualListItem Icon={InfoIcon}>
-                        {_t("settings|encryption|advanced|breadcrumb_second_description")}
+                        {/* :TCHAP: {_t("settings|encryption|advanced|breadcrumb_second_description")} */}
+                        {_t("settings|encryption|advanced|breadcrumb_second_description", {}, {
+                            a : (sub) => (
+                                <ExternalLink href={TchapUrls.helpReinitializeSC}>
+                                    {sub}
+                                </ExternalLink>)
+                            }
+                        )}
                     </VisualListItem>
                     <VisualListItem Icon={InfoIcon}>
                         {_t("settings|encryption|advanced|breadcrumb_third_description")}

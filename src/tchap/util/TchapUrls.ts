@@ -38,4 +38,6 @@ export default class TchapUrls {
     public static landingPage = "https://tchap.numerique.gouv.fr";
 
     public static helpPrivacyPolicy = `https://tchap.numerique.gouv.fr/politique-de-confidentialite/`;
+    
+    public static helpReinitializeSC = `${TchapUrls.helpBaseUrl}/fr/article/reinitialisation-de-la-securite-des-appareils-1p8tsp9`;
 }
