@@ -5,6 +5,9 @@ on:
     workflow_dispatch: # for running action manually
     pull_request: {}
 
+permissions:
+  contents: read
+
 jobs:
     cypress:
         name: Cypress
@@ -15,14 +18,14 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
             - name: Get Node Version
               id: node_version
               run: echo ::set-output name=node_version::$(node -e 'console.log(require("./package.json").engines.node)')
 
             - name: Setup node with yarn cache
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
               with:
                   cache: "yarn"
                   node-version: ${{ steps.node_version.outputs.node_version }}
@@ -40,7 +43,7 @@ jobs:
               run: "yarn build"
 
             - name: Run Cypress tests
-              uses: cypress-io/github-action@v6.5.0
+              uses: cypress-io/github-action@59810ebfa5a5ac6fcfdcfdf036d1cd4d083a88f2 # v6.5.0
               with:
                   install: false # disable the default install, we already installed and built.
 
