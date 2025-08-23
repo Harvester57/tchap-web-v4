@@ -19,7 +19,7 @@ RUN /src/scripts/docker-package.sh
 RUN cp /src/config.sample.json /src/webapp/config.json
 
 # App
-FROM nginxinc/nginx-unprivileged:alpine-slim@sha256:2acffd86b1bdefb8fa6b48b6e9aadf75430e8ab9c43c54c515ea7df77897f987
+FROM nginxinc/nginx-unprivileged:alpine-slim@sha256:08d9abede1bbaf8d76431e3899cacb5624fb066b0595f8ec9b078b8aff951fb9
 
 # Need root user to install packages & manipulate the usr directory
 USER root
