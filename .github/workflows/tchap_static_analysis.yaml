@@ -10,6 +10,9 @@ env:
     # These must be set for fetchdep.sh to get the right branch
     REPOSITORY: ${{ github.repository }}
     PR_NUMBER: ${{ github.event.pull_request.number }}
+permissions:
+  contents: read
+
 jobs:
     # Removing until we fix the crash :
     # Error: matrix-react-sdk/src/autocomplete/CommandProvider.tsx(38,24): error TS2589:
@@ -18,9 +21,9 @@ jobs:
         #name: "Typescript Syntax Check"
         #runs-on: ubuntu-latest
         #steps:
-        #    - uses: actions/checkout@v4
+        #    - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
-    #         - uses: actions/setup-node@v3
+    #         - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
     #           with:
     #               cache: "yarn"
 
@@ -39,11 +42,11 @@ jobs:
         name: "ESLint"
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
             - name: Get Node Version
               id: node_version
               run: echo ::set-output name=node_version::$(node -e 'console.log(require("./package.json").engines.node)')
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
               with:
                   cache: "yarn"
                   node-version: ${{ steps.node_version.outputs.node_version }}
@@ -59,11 +62,11 @@ jobs:
         name: "Style Lint"
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
             - name: Get Node Version
               id: node_version
               run: echo ::set-output name=node_version::$(node -e 'console.log(require("./package.json").engines.node)')
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
               with:
                   cache: "yarn"
                   node-version: ${{ steps.node_version.outputs.node_version }}
@@ -79,11 +82,11 @@ jobs:
         name: "i18n check"
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
             - name: Get Node Version
               id: node_version
               run: echo ::set-output name=node_version::$(node -e 'console.log(require("./package.json").engines.node)')
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
               with:
                   cache: "yarn"
                   node-version: ${{ steps.node_version.outputs.node_version }}
@@ -100,9 +103,9 @@ jobs:
     #    name: "Analyse Dead Code"
     #    runs-on: ubuntu-latest
     #    steps:
-    #        - uses: actions/checkout@v4
+    #        - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
     #
-    #        - uses: actions/setup-node@v3
+    #        - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
     #          with:
     #              cache: "yarn"
     #

@@ -70,7 +70,7 @@ jobs:
 
             - name: Publish to packages.element.io
               if: github.event.release.prerelease == false
-              uses: element-hq/packages.element.io@master
+              uses: element-hq/packages.element.io@5d127ef905f8b9bb762f1a585099245c600d8713 # master
               with:
                   file: element-web.deb
                   github-token: ${{ secrets.ELEMENT_BOT_TOKEN }}

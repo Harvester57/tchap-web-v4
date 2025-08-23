@@ -10,6 +10,9 @@ env:
     # These must be set for fetchdep.sh to get the right branch
     REPOSITORY: ${{ github.repository }}
     PR_NUMBER: ${{ github.event.pull_request.number }}
+permissions:
+  contents: read
+
 jobs:
     build:
         name: "Build"
@@ -19,11 +22,11 @@ jobs:
         if: github.event.pull_request.draft == true
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
             - name: Get Node Version
               id: node_version
               run: echo ::set-output name=node_version::$(node -e 'console.log(require("./package.json").engines.node)')
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
               with:
                   cache: "yarn"
                   node-version: ${{ steps.node_version.outputs.node_version }}
@@ -37,7 +40,7 @@ jobs:
               run: "yarn build"
 
             - name: Upload build in artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
               with:
                   name: devbuild # because we used the dev config file
                   path: webapp
