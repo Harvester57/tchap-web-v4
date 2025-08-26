@@ -1007,5 +1007,9 @@
     "settings|encryption|dialog_title": {
         "en": "<strong>Settings:</strong> Encrypted messages",
         "fr": "<strong>Paramètres : </strong> Messages chiffrés"
+    },
+    "settings|encryption|advanced|breadcrumb_second_description": {
+        "en": "You risk to lose your old messages : <a>more info</a>",
+        "fr": "Vous risquez de perdre vos anciens messages : <a>plus d'info</a>"
     }
 }
