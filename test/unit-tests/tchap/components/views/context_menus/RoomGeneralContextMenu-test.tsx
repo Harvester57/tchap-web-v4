@@ -77,6 +77,7 @@ describe("RoomGeneralContextMenu", () => {
     });
 
     it("renders the default context menu", async () => {
+        mockedTchapRoomUtils.getRoomJoinRule.mockImplementation(() => JoinRule.Public);
         const { container } = getComponent({});
         expect(container).toMatchSnapshot();
     });

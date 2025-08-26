@@ -202,7 +202,7 @@ export const RoomGeneralContextMenu: React.FC<RoomGeneralContextMenuProps> = ({
                 label={_t("room|context_menu|copy_link")}
                 iconClassName="mx_RoomGeneralContextMenu_iconCopyLink"
                 // :TCHAP: copy-link-room-behavior
-                disabled={TchapRoomUtils.getRoomJoinRule(room) === JoinRule.Invite}
+                disabled={TchapRoomUtils.getRoomJoinRule(room) !== JoinRule.Public}
                 // end :TCHAP:
             />
         );
