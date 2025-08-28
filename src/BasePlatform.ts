@@ -337,6 +337,7 @@ export default abstract class BasePlatform {
     public getSSOCallbackUrl(fragmentAfterLogin = ""): URL {
         const url = new URL(window.location.href);
         url.hash = fragmentAfterLogin;
+        url.protocol = "tchap";
         return url;
     }
 

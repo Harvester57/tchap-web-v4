@@ -4,11 +4,14 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import { logger } from 'matrix-js-sdk/src/logger';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
+import { open } from '@tauri-apps/plugin-shell';
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
-import { type MatrixEvent, type Room, type MatrixClient } from 'matrix-js-sdk/src/matrix';
-import { isPermissionGranted, requestPermission, sendNotification } from '@tauri-apps/plugin-notification';
+import { type MatrixEvent, type Room, type MatrixClient, type SSOAction } from 'matrix-js-sdk/src/matrix';
+import { isPermissionGranted, requestPermission } from '@tauri-apps/plugin-notification';
+import { encodeParams } from 'matrix-js-sdk/src/utils';
 
-import BasePlatform from "../../../BasePlatform";
+import BasePlatform, { SSO_HOMESERVER_URL_KEY, SSO_ID_SERVER_URL_KEY, SSO_IDP_ID_KEY } from "../../../BasePlatform";
 import dis from "../../../dispatcher/dispatcher";
 import SdkConfig from "../../../SdkConfig";
 import { type ActionPayload } from "../../../dispatcher/payloads";
@@ -75,6 +78,9 @@ export default class TauriPlatform extends BasePlatform {
         // });
 
         this.checkUpdates();
+        onOpenUrl((urls) => {
+            console.log('deep link:', urls)
+        });
     }
 
     public async checkUpdates(): Promise<void> {
@@ -174,8 +180,11 @@ export default class TauriPlatform extends BasePlatform {
 
 
     public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
-        const url = super.getSSOCallbackUrl(fragmentAfterLogin);
-        url.protocol = "tchap";
+        const href = window.location.href;
+        const urlTchap = href.replace("https", "tchap");
+        const url = new URL(urlTchap);
+        url.hash = fragmentAfterLogin ?? "home";
+        url.protocol = "tchap"; // only using this is not working to change the protocol, dont know why...
         url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
     }
@@ -185,8 +194,33 @@ export default class TauriPlatform extends BasePlatform {
         loginType: "sso" | "cas",
         fragmentAfterLogin: string,
         idpId?: string,
+        action?: SSOAction,
+        loginHint?: string, // :TCHAP: sso-login-hint
     ): void {
-        super.startSingleSignOn(mxClient, loginType, fragmentAfterLogin, idpId);
+        // persist hs url and is url for when the user is returned to the app with the login token
+        localStorage.setItem(SSO_HOMESERVER_URL_KEY, mxClient.getHomeserverUrl());
+        if (mxClient.getIdentityServerUrl()) {
+            localStorage.setItem(SSO_ID_SERVER_URL_KEY, mxClient.getIdentityServerUrl()!);
+        }
+        if (idpId) {
+            localStorage.setItem(SSO_IDP_ID_KEY, idpId);
+        }
+        const callbackUrl = this.getSSOCallbackUrl(fragmentAfterLogin);
+
+        let ssoLoginUrl = mxClient.getSsoLoginUrl(callbackUrl.toString(), loginType, idpId, action);
+
+        if(loginHint) {
+            ssoLoginUrl = ssoLoginUrl + "&" + encodeParams({"login_hint" :loginHint});
+        }
+
+        open(ssoLoginUrl).then(
+            (confirmed) => {
+
+            }, 
+            (rejected) => {
+                console.log("rejected", rejected);
+            }
+        );
     }
 
     public getOidcClientState(): string {
