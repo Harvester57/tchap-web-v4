@@ -239,6 +239,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private fontWatcher?: FontWatcher;
     private readonly stores: SdkContextClass;
     private loadSessionAbortController = new AbortController();
+    // :TCHAP: TODO https://github.com/element-hq/element-web/pull/30642
+    private sessionLoadStarted = false;
 
     public constructor(props: IProps) {
         super(props);
@@ -314,7 +316,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private async initSession(): Promise<void> {
         // The Rust Crypto SDK will break if two Element instances try to use the same datastore at once, so
         // make sure we are the only Element instance in town (on this browser/domain).
-        if (!(await getSessionLock(() => this.onSessionLockStolen()))) {
+        // :TCHAP: remove when https://github.com/element-hq/element-web/pull/30643 is merged
+        if (!(await PlatformPeg.get()?.getSessionLock(() => this.onSessionLockStolen()))) {
             // we failed to get the lock. onSessionLockStolen should already have been called, so nothing left to do.
             return;
         }
@@ -473,11 +476,19 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
 
         initSentry(SdkConfig.get("sentry"));
 
-        if (!checkSessionLockFree()) {
-            // another instance holds the lock; confirm its theft before proceeding
+
+        // Once we start loading the MatrixClient, we can't stop, even if MatrixChat gets unmounted (as it does
+        // in React's Strict Mode). So, start loading the session now, but only if this MatrixChat was not previously
+        // mounted.
+        // :TCHAP: remove when https://github.com/element-hq/element-web/pull/30642 is merged
+        if (!this.sessionLoadStarted) {
+            this.sessionLoadStarted = true;
+            if (!checkSessionLockFree()) {
+                // another instance holds the lock; confirm its theft before proceeding
             setTimeout(() => this.setState({ view: Views.CONFIRM_LOCK_THEFT }), 0);
-        } else {
-            this.startInitSession();
+            } else {
+                this.startInitSession();
+            }
         }
 
         window.addEventListener("resize", this.onWindowResized);

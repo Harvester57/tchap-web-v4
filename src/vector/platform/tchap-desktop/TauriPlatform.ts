@@ -1,4 +1,4 @@
-// import { listen } from '@tauri-apps/api/event';
+import { listen } from '@tauri-apps/api/event';
 import { getVersion } from '@tauri-apps/api/app';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { logger } from 'matrix-js-sdk/src/logger';
@@ -21,6 +21,9 @@ import { _t } from "../../../languageHandler";
 import { TauriSeshatIndexManager } from './TauriSeshatIndexManager';
 import { type TauriSecureStorage } from './TauriSecureStorage';
 import type BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexManager';
+
+import Modal from '~tchap-web/src/Modal';
+import Spinner from '~tchap-web/src/components/views/elements/Spinner';
 
 const SSO_ID_KEY = "tchap-desktop-ssoid";
 
@@ -69,17 +72,20 @@ export default class TauriPlatform extends BasePlatform {
 
         this.ipc.call("welcome");
 
-        // this.ipc.call("set_homeserver_url", MatrixClientPeg.get()?.getHomeserverUrl());
-        // getCurrentWindow().onCloseRequested(async (event) => {
-        //     logger.info("tchap-desktop closing", event);
-        //     // shutdown eventindex db 
-        //     this.eventIndexManager.closeEventIndex();
-        //     process.exit();
-        // });
-
         this.checkUpdates();
-        onOpenUrl((urls) => {
-            console.log('deep link:', urls)
+
+        this.checkDeepLinkOpen();
+    }
+
+    public async checkDeepLinkOpen(): Promise<void> {
+        await onOpenUrl((urls) => {
+            console.log('***** deep link:', urls)
+            if (urls[0]) {
+                const url = new URL(urls[0]);
+                const loginToken = url.searchParams.get("loginToken");
+                // callback return from sso connexion 
+                if (loginToken) window.location.replace(`/?loginToken=${loginToken}`);
+            }
         });
     }
 
@@ -181,9 +187,9 @@ export default class TauriPlatform extends BasePlatform {
 
     public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
         const href = window.location.href;
-        const urlTchap = href.replace("https", "tchap");
+        const urlTchap = href.replace(/^https?/, "tchap");
         const url = new URL(urlTchap);
-        url.hash = fragmentAfterLogin ?? "home";
+        url.hash = fragmentAfterLogin ?? "";
         url.protocol = "tchap"; // only using this is not working to change the protocol, dont know why...
         url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
@@ -214,8 +220,8 @@ export default class TauriPlatform extends BasePlatform {
         }
 
         open(ssoLoginUrl).then(
-            (confirmed) => {
-
+            () => {
+                Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});
             }, 
             (rejected) => {
                 console.log("rejected", rejected);
@@ -312,4 +318,11 @@ export default class TauriPlatform extends BasePlatform {
         }
     }
 
+    public async checkSessionLockFree(): Promise<boolean> {
+        return true;
+    }
+
+    public async getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean> {
+        return true;
+    }
 }

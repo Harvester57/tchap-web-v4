@@ -43,10 +43,18 @@ export async function preparePlatform(): Promise<void> {
     } else if (window.__TAURI__){
         logger.info("Using Tauri platform");
         // Inject Tauri Secure storage into platform
-        const tauriSecureStorage = new TauriSecureStorage(); 
-        await tauriSecureStorage.initStronghold();
-        const tauriPlatform = new TauriPlatform(tauriSecureStorage);
-        PlatformPeg.set(tauriPlatform);
+        if (window.tauriSecureStorage) {
+            logger.info("Tauri secure storage found");
+            const tauriPlatform = new TauriPlatform(window.tauriSecureStorage);
+            PlatformPeg.set(tauriPlatform);    
+        } else {
+            const tauriSecureStorage = new TauriSecureStorage(); 
+            await tauriSecureStorage.initStronghold();
+            // avoid loading the secure when it was already loaded;
+            window.tauriSecureStorage = tauriSecureStorage;
+            const tauriPlatform = new TauriPlatform(tauriSecureStorage);
+            PlatformPeg.set(tauriPlatform);
+        }
     // end :TCHAP:
     } else if (window.matchMedia("(display-mode: standalone)").matches) {
         logger.log("Using PWA platform");

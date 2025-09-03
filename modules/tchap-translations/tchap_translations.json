@@ -1011,5 +1011,9 @@
     "settings|encryption|advanced|breadcrumb_second_description": {
         "en": "You risk to lose your old messages : <a>more info</a>",
         "fr": "Vous risquez de perdre vos anciens messages : <a>plus d'info</a>"
+    },
+    "auth|desktop_waiting_sso": {
+        "en": "Finish the login on your default browser",
+        "fr": "Finaliser la connexion sur votre navigateur"
     }
 }
