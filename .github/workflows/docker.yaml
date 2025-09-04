@@ -129,10 +129,12 @@ jobs:
               run: |
                 echo "Generated tags: ${{ steps.meta.outputs.tags }}"
                 echo "Generated labels: ${{ steps.meta.outputs.labels }}"
-            - name: Debug - Test simple push
-              run: |
-                docker build -t ghcr.io/tchapgouv/tchap-web-v4:test-simple .
-                docker push ghcr.io/tchapgouv/tchap-web-v4:test-simple    
+            
+            # - name: Debug - Test simple push
+            #   run: |
+            #     docker build -t ghcr.io/tchapgouv/tchap-web-v4:test-simple .
+            #     docker push ghcr.io/tchapgouv/tchap-web-v4:test-simple
+            
             - name: Build and push
               id: build-and-push
               uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
