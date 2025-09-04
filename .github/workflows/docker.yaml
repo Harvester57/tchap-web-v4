@@ -52,6 +52,20 @@ jobs:
                   username: ${{ github.repository_owner }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
+            - name: Debug - Check token permissions
+              run: |
+                  echo "Repository: ${{ github.repository }}"
+                  echo "Repository owner: ${{ github.repository_owner }}"
+                  echo "Event name: ${{ github.event_name }}"
+                  echo "Ref name: ${{ github.ref_name }}"
+
+            - name: Debug - Test GHCR authentication
+              run: |
+                  echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+                  docker pull hello-world
+                  docker tag hello-world ghcr.io/${{ github.repository_owner }}/test-debug:latest
+                  docker push ghcr.io/${{ github.repository_owner }}/test-debug:latest || echo "Push failed as expected"
+            
             - name: Build and load
               id: test-build
               uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
@@ -111,6 +125,11 @@ jobs:
                   flavor: |
                       latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
 
+            - name: Debug - Show generated metadata
+              run: |
+                echo "Generated tags: ${{ steps.meta.outputs.tags }}"
+                echo "Generated labels: ${{ steps.meta.outputs.labels }}"
+                
             - name: Build and push
               id: build-and-push
               uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
