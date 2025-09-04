@@ -621,6 +621,9 @@ export async function restoreSessionFromStorage(opts?: { ignoreGuest?: boolean }
         await getStoredSessionVars();
 
     if (hasAccessToken && !accessToken) {
+        logger.warn(
+            "restoreSessionFromStorage: storage indicates we should have an access token, but we do not. Displaying StorageEvictedDialog",
+        );
         await abortLogin();
     }
 
@@ -657,7 +660,7 @@ export async function restoreSessionFromStorage(opts?: { ignoreGuest?: boolean }
                 freshLogin: freshLogin,
             },
             false,
-            false,
+            freshLogin,
         );
         return true;
     } else {
@@ -821,6 +824,7 @@ async function doSetLoggedIn(
     // crypto store, we'll be generally confused when handling encrypted data.
     // Show a modal recommending a full reset of storage.
     if (results.dataInLocalStorage && results.cryptoInited && !results.dataInCryptoStore) {
+        logger.warn("doSetLoggedIn: StorageManager consistency check failed; displaying StorageEvictedDialog.");
         await abortLogin();
     }
 

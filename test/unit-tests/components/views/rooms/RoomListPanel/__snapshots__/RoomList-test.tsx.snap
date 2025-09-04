@@ -23,16 +23,18 @@ exports[`<RoomList /> should render a room list 1`] = `
           style="width: auto; height: 480px; max-width: 1500px; max-height: 480px; overflow: hidden; position: relative;"
         >
           <button
+            aria-haspopup="menu"
             aria-label="Open room room0"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 0px; width: 100%;"
             tabindex="0"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -55,7 +57,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -67,24 +69,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room0
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room1"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 48px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -107,7 +108,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -119,24 +120,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room1
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room2"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 96px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -159,7 +159,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -171,24 +171,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room2
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room3"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 144px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -211,7 +210,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -223,24 +222,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room3
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room4"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 192px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -263,7 +261,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -275,24 +273,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room4
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room5"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 240px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -315,7 +312,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -327,24 +324,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room5
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room6"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 288px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -367,7 +363,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -379,24 +375,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room6
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room7"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 336px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -419,7 +414,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -431,24 +426,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room7
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room8"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 384px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -471,7 +465,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -483,24 +477,23 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room8
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>
           </button>
           <button
+            aria-haspopup="menu"
             aria-label="Open room room9"
             aria-selected="false"
             class="mx_RoomListItemView"
+            data-state="closed"
             role="gridcell"
             style="height: 48px; left: 0px; position: absolute; top: 432px; width: 100%;"
             tabindex="-1"
             type="button"
           >
             <div
-              class="mx_Flex mx_RoomListItemView_container"
+              class="flex mx_RoomListItemView_container"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
             >
               <span
@@ -523,7 +516,7 @@ exports[`<RoomList /> should render a room list 1`] = `
                 />
               </span>
               <div
-                class="mx_Flex mx_RoomListItemView_content"
+                class="flex mx_RoomListItemView_content"
                 style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: space-between; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
               >
                 <div
@@ -535,9 +528,6 @@ exports[`<RoomList /> should render a room list 1`] = `
                   >
                     room9
                   </div>
-                  <div
-                    class="mx_RoomListItemView_messagePreview"
-                  />
                 </div>
               </div>
             </div>

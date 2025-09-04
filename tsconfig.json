@@ -18,11 +18,17 @@
         "strict": true,
         /* :TCHAP: */
         "paths": {
+<<<<<<< HEAD
             "~tchap-web/*": ["./*"],
             "jest-matrix-react": ["./test/test-utils/jest-matrix-react"]
         },
         "types": ["node", "jest", "@testing-library/jest-dom"]
         /* end :TCHAP: */
+=======
+            "jest-matrix-react": ["./test/test-utils/jest-matrix-react"],
+            "rollup/parseAst": ["./node_modules/rollup/dist/parseAst"]
+        }
+>>>>>>> v1.11.110
     },
     "include": [
         "./node_modules/matrix-js-sdk/src/@types/*.d.ts",
@@ -30,7 +36,8 @@
         "./src/**/*.tsx",
         "./test/**/*.ts",
         "./test/**/*.tsx",
-        "./scripts/*.ts"
+        "./scripts/*.ts",
+        "./declaration.d.ts"
     ],
     "ts-node": {
         "files": true,

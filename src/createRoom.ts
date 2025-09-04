@@ -42,7 +42,11 @@ import { waitForMember } from "./utils/membership";
 import { PreferredRoomVersions } from "./utils/PreferredRoomVersions";
 import SettingsStore from "./settings/SettingsStore";
 import { MEGOLM_ENCRYPTION_ALGORITHM } from "./utils/crypto";
+<<<<<<< HEAD
 import ExternalAccountHandler from "./tchap/lib/ExternalAccountHandler";
+=======
+import { ElementCallEventType, ElementCallMemberEventType } from "./call-types";
+>>>>>>> v1.11.110
 
 // we define a number of interfaces which take their names from the js-sdk
 /* eslint-disable camelcase */
@@ -166,9 +170,13 @@ export default async function createRoom(client: MatrixClient, opts: IOpts): Pro
                 events: {
                     ...DEFAULT_EVENT_POWER_LEVELS,
                     // Allow all users to send call membership updates
-                    [ElementCall.MEMBER_EVENT_TYPE.name]: 0,
+                    [ElementCallMemberEventType.name]: 0,
                     // Make calls immutable, even to admins
+<<<<<<< HEAD
                     // [ElementCall.CALL_EVENT_TYPE.name]: 200, :TCHAP: (DEPRECATED)
+=======
+                    [ElementCallEventType.name]: 200,
+>>>>>>> v1.11.110
                 },
                 users: {
                     // Temporarily give ourselves the power to set up a call
@@ -181,9 +189,13 @@ export default async function createRoom(client: MatrixClient, opts: IOpts): Pro
             events: {
                 ...DEFAULT_EVENT_POWER_LEVELS,
                 // It should always (including non video rooms) be possible to join a group call.
-                [ElementCall.MEMBER_EVENT_TYPE.name]: 0,
+                [ElementCallMemberEventType.name]: 0,
                 // Make sure only admins can enable it (DEPRECATED)
+<<<<<<< HEAD
                 // [ElementCall.CALL_EVENT_TYPE.name]: 100, :TCHAP:
+=======
+                [ElementCallEventType.name]: 100,
+>>>>>>> v1.11.110
             },
         };
     }
