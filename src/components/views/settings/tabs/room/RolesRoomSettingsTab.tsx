@@ -63,13 +63,8 @@ const plEventsToShow: Record<string, IEventShowOpts> = {
     [EventType.RoomRedaction]: { isState: false, hideForSpace: true },
 
     // MSC3401: Native Group VoIP signaling
-<<<<<<< HEAD
-    // [ElementCall.CALL_EVENT_TYPE.name]: { isState: true, hideForSpace: true }, // :TCHAP: deprecated-call-event-permissions
-    [ElementCall.MEMBER_EVENT_TYPE.name]: { isState: true, hideForSpace: true },
-=======
-    [ElementCallEventType.name]: { isState: true, hideForSpace: true },
+    // [ElementCallEventType.name]: { isState: true, hideForSpace: true }, // :TCHAP: deprecated-call-event-permissions
     [ElementCallMemberEventType.name]: { isState: true, hideForSpace: true },
->>>>>>> v1.11.110
 
     // TODO: Enable support for m.widget event type (https://github.com/vector-im/element-web/issues/13111)
     "im.vector.modular.widgets": { isState: true, hideForSpace: true },
@@ -303,13 +298,8 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
 
         // MSC3401: Native Group VoIP signaling
         if (SettingsStore.getValue("feature_group_calls")) {
-<<<<<<< HEAD
-            // plEventsToLabels[ElementCall.CALL_EVENT_TYPE.name] = _td("room_settings|permissions|m.call"); // :TCHAP: deprecated-call-event-permissions
-            plEventsToLabels[ElementCall.MEMBER_EVENT_TYPE.name] = _td("room_settings|permissions|m.call.member");
-=======
-            plEventsToLabels[ElementCallEventType.name] = _td("room_settings|permissions|m.call");
+            // plEventsToLabels[ElementCallEventType.name] = _td("room_settings|permissions|m.call"); // :TCHAP: deprecated-call-event-permissions
             plEventsToLabels[ElementCallMemberEventType.name] = _td("room_settings|permissions|m.call.member");
->>>>>>> v1.11.110
         }
 
         const powerLevelDescriptors: Record<string, IPowerLevelDescriptor> = {

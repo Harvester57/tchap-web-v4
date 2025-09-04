@@ -1,16 +1,10 @@
 {
     "name": "element-web",
-<<<<<<< HEAD
     "productName": "Tchap",
     "version": "4.16.5",
-    "version-element-web": "1.11.104",
+    "version-element-web": "1.11.110",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
-=======
-    "version": "1.11.110",
-    "description": "Element: the future of secure communication",
-    "author": "New Vector Ltd.",
->>>>>>> v1.11.110
     "repository": {
         "type": "git",
         "url": "https://github.com/tchapgouv/tchap-web-v4"
@@ -86,16 +80,12 @@
         "patch-make": "node scripts/tchap/makePatch.ts",
         "analyse:webpack-bundles": "webpack-bundle-analyzer webpack-stats.json webapp",
         "update:jitsi": "curl -s https://meet.element.io/libs/external_api.min.js > ./res/jitsi_external_api.min.js",
-<<<<<<< HEAD
-        "postinstall": "./scripts/tchap/postinstall.sh"
-=======
-        "postinstall": "patch-package",
+        "postinstall": "./scripts/tchap/postinstall.sh",
         "storybook": "storybook dev -p 6007",
         "build-storybook": "storybook build",
         "test:storybook": "test-storybook --url http://localhost:6007/",
         "test:storybook:ci": "concurrently -k -s first -n \"SB,TEST\" \"yarn storybook --no-open\" \"wait-on tcp:6007 && yarn test-storybook --url http://localhost:6007/ --ci --maxWorkers=2\"",
         "test:storybook:update": "playwright-screenshots --entrypoint yarn --with-node-modules && playwright-screenshots --entrypoint /work/node_modules/.bin/test-storybook --with-node-modules --url http://host.docker.internal:6007/ --updateSnapshot"
->>>>>>> v1.11.110
     },
     "resolutions": {
         "**/pretty-format/react-is": "19.1.1",
@@ -121,8 +111,7 @@
         "@matrix-org/olm": "3.2.15",
         "@matrix-org/react-sdk-module-api": "^2.4.0",
         "@matrix-org/spec": "^1.7.0",
-<<<<<<< HEAD
-        "@sentry/browser": "^9.0.0",
+        "@sentry/browser": "^10.0.0",
         "@tauri-apps/api": "^2.2.0",
         "@tauri-apps/plugin-notification": "^2.3.0",
         "@tauri-apps/plugin-process": "^2.2.0",
@@ -131,15 +120,7 @@
         "@types/png-chunks-extract": "^1.0.2",
         "@types/react-virtualized": "^9.21.30",
         "@vector-im/compound-design-tokens": "https://github.com/tchapgouv/compound-design-tokens.git#main",
-        "@vector-im/matrix-wysiwyg": "2.38.3",
-=======
-        "@sentry/browser": "^10.0.0",
-        "@types/png-chunks-extract": "^1.0.2",
-        "@types/react-virtualized": "^9.21.30",
-        "@vector-im/compound-design-tokens": "^6.0.0",
-        "@vector-im/compound-web": "^8.1.2",
         "@vector-im/matrix-wysiwyg": "2.39.0",
->>>>>>> v1.11.110
         "@zxcvbn-ts/core": "^3.0.4",
         "@zxcvbn-ts/language-common": "^3.0.4",
         "@zxcvbn-ts/language-en": "^3.0.2",

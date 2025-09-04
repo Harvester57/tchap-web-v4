@@ -56,23 +56,13 @@ const ElementCallSwitch: React.FC<ElementCallSwitchProps> = ({ room }) => {
                 const userLevel = newContent.events[EventType.RoomMessage] ?? content.users_default ?? 0;
                 // const moderatorLevel = content.kick ?? 50; // :TCHAP: remove deprecated CALL_EVENT_TYPE
 
-<<<<<<< HEAD
-                // newContent.events[ElementCall.CALL_EVENT_TYPE.name] = isPublic ? moderatorLevel : userLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
-                newContent.events[ElementCall.MEMBER_EVENT_TYPE.name] = userLevel;
-            } else {
-                const adminLevel = newContent.events[EventType.RoomPowerLevels] ?? content.state_default ?? 100;
-
-                // newContent.events[ElementCall.CALL_EVENT_TYPE.name] = adminLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
-                newContent.events[ElementCall.MEMBER_EVENT_TYPE.name] = adminLevel;
-=======
-                newContent.events[ElementCallEventType.name] = isPublic ? moderatorLevel : userLevel;
+                // newContent.events[ElementCallEventType.name] = isPublic ? moderatorLevel : userLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
                 newContent.events[ElementCallMemberEventType.name] = userLevel;
             } else {
                 const adminLevel = newContent.events[EventType.RoomPowerLevels] ?? content.state_default ?? 100;
 
-                newContent.events[ElementCallEventType.name] = adminLevel;
+                // newContent.events[ElementCallEventType.name] = adminLevel; // :TCHAP: remove deprecated CALL_EVENT_TYPE
                 newContent.events[ElementCallMemberEventType.name] = adminLevel;
->>>>>>> v1.11.110
             }
 
             room.client.sendStateEvent(room.roomId, EventType.RoomPowerLevels, newContent);

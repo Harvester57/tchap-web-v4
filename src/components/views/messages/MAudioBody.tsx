@@ -14,13 +14,8 @@ import { type MediaEventContent } from "matrix-js-sdk/src/types";
 import { type Playback } from "../../../audio/Playback";
 import InlineSpinner from "../elements/InlineSpinner";
 import { _t } from "../../../languageHandler";
-<<<<<<< HEAD
-import AudioPlayer from "../audio_messages/AudioPlayer";
 import MFileBody from "~tchap-web/src/tchap/components/views/messages/OriginalFileBody"; // :TCHAP: content-scanner
 // import MFileBody from "./MFileBody";// :TCHAP: content-scanner
-=======
-import MFileBody from "./MFileBody";
->>>>>>> v1.11.110
 import { type IBodyProps } from "./IBodyProps";
 import { PlaybackManager } from "../../../audio/PlaybackManager";
 import { isVoiceMessage } from "../../../utils/EventUtils";
