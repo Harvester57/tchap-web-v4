@@ -3,7 +3,7 @@
 exports[`RoomHeader should render as expected 1`] = `
 <div>
   <header
-    class="mx_Flex mx_RoomHeader light-panel"
+    class="flex mx_RoomHeader light-panel"
     style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: center; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-3x); --mx-flex-wrap: nowrap;"
   >
     <div
@@ -38,7 +38,7 @@ exports[`RoomHeader should render as expected 1`] = `
       tabindex="0"
     >
       <div
-        class="mx_Box mx_RoomHeader_info mx_Box--flex"
+        class="mx_RoomHeader_info box-flex"
         style="--mx-box-flex: 1;"
       >
         <div

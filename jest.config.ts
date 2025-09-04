@@ -67,8 +67,6 @@ const config: Config = {
         // we use tchap own compound-web package
         "@vector-im/compound-web": "<rootDir>/node_modules/compound-web-tchap",
         // end :TCHAP:
-        // Requires ESM which is incompatible with our current Jest setup
-        "^@element-hq/element-web-module-api$": "<rootDir>/__mocks__/empty.js",
     },
     transformIgnorePatterns: ["/node_modules/(?!(mime|matrix-js-sdk)).+$"],
     collectCoverageFrom: [
