@@ -1,8 +1,8 @@
 diff --git a/node_modules/matrix-js-sdk/src/http-api/fetch.ts b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-index e6728fb..c506bbf 100644
+index d6d1b5a..a0b3f01 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/fetch.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/fetch.ts
-@@ -203,6 +203,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
+@@ -187,6 +187,12 @@ export class FetchHttpApi<O extends IHttpOpts> {
              } else if (error.errcode == "M_CONSENT_NOT_GIVEN") {
                  this.eventEmitter.emit(HttpApiEvent.NoConsent, error.message, error.data.consent_uri);
              }
@@ -16,10 +16,10 @@ index e6728fb..c506bbf 100644
              throw error;
          }
 diff --git a/node_modules/matrix-js-sdk/src/http-api/interface.ts b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-index 1b0df88..e7504d7 100644
+index 40100a5..7d655ea 100644
 --- a/node_modules/matrix-js-sdk/src/http-api/interface.ts
 +++ b/node_modules/matrix-js-sdk/src/http-api/interface.ts
-@@ -116,6 +116,10 @@ export interface IContentUri {
+@@ -150,6 +150,10 @@ export interface IContentUri {
  export enum HttpApiEvent {
      SessionLoggedOut = "Session.logged_out",
      NoConsent = "no_consent",
@@ -30,7 +30,7 @@ index 1b0df88..e7504d7 100644
  }
  
  export type HttpApiEventHandlerMap = {
-@@ -143,6 +147,9 @@ export type HttpApiEventHandlerMap = {
+@@ -177,6 +181,9 @@ export type HttpApiEventHandlerMap = {
       * ```
       */
      [HttpApiEvent.NoConsent]: (message: string, consentUri: string) => void;
@@ -41,10 +41,10 @@ index 1b0df88..e7504d7 100644
  
  export interface UploadProgress {
 diff --git a/node_modules/matrix-js-sdk/src/sync.ts b/node_modules/matrix-js-sdk/src/sync.ts
-index 3fdbb8a..00184f5 100644
+index 4509b69..b4bcc3d 100644
 --- a/node_modules/matrix-js-sdk/src/sync.ts
 +++ b/node_modules/matrix-js-sdk/src/sync.ts
-@@ -599,6 +599,14 @@ export class SyncApi {
+@@ -595,6 +595,14 @@ export class SyncApi {
              this.updateSyncState(SyncState.Error, { error });
              return true;
          }
