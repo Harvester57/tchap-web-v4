@@ -104,7 +104,7 @@ jobs:
                 #       vectorim/element-web
                 #       ghcr.io/element-hq/element-web
                   images: |
-                      ghcr.io/element-hq/element-web
+                      ghcr.io/tchapgouv/tchap-web-v4
                   tags: |
                       type=ref,event=branch
                       type=ref,event=tag
