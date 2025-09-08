@@ -50,7 +50,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: ${{ github.repository_owner }}
-                  password: ${{ secrets.GITHUB_TOKEN }}
+                  password: ${{ secrets.TCHAP_REGISTRY_BUILD_TOKEN }}
 
             - name: Debug - Check token permissions
               run: |
@@ -60,6 +60,7 @@ jobs:
                   echo "Ref name: ${{ github.ref_name }}"
 
             - name: Debug - Test GHCR authentication
+              if: false
               run: |
                   echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
                   docker pull hello-world
