@@ -211,5 +211,10 @@
     "posthog": {
         "project_api_key": "phc_gm2O25mu8NTQtKpozdoVwZCixWqdq7PUHLLjDNDzVIe",
         "api_host": "https://posthog.tchap.numerique.gouv.fr"
+    },
+    "element_call": {
+        "url": "https://call.tchap.gouv.fr/",
+        "participant_limit": 25,
+        "brand": "Appel de groupe"
     }
 }
