@@ -120,7 +120,7 @@ jobs:
                 #       vectorim/element-web
                 #       ghcr.io/element-hq/element-web
                   images: |
-                      ghcr.io/tchapgouv/tchap-web-v4
+                      ghcr.io/tchapgouv/test-debug
                   tags: |
                       type=ref,event=branch
                       type=ref,event=tag
