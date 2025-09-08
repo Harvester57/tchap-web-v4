@@ -518,4 +518,22 @@ export default abstract class BasePlatform {
      * Begin update polling, if applicable
      */
     public startUpdater(): void {}
+
+    // :TCHAP: TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
+
+    /**
+     * Checks if the current session is lock-free, i.e., no other instance is holding the session lock.
+     * Platforms that support session locking should override this method.
+     * @returns {Promise<boolean>} True if the session is lock-free, false otherwise.
+     */
+    public abstract checkSessionLockFree(): Promise<boolean>;
+    /**
+     * Attempts to acquire a session lock for this instance.
+     * If another instance is detected, calls the provided callback.
+     * Platforms that support session locking should override this method.
+     * @param _onNewInstance Callback to invoke if a new instance is detected.
+     * @returns {Promise<boolean>} True if the lock was acquired, false otherwise.
+     */
+    public abstract getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean>;
+
 }
