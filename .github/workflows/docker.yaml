@@ -60,9 +60,9 @@ jobs:
                   echo "Ref name: ${{ github.ref_name }}"
 
             - name: Debug - Test GHCR authentication
-              if: false
+              #if: false
               run: |
-                  echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+                  echo ${{ secrets.TCHAP_REGISTRY_BUILD_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
                   docker pull hello-world
                   docker tag hello-world ghcr.io/${{ github.repository_owner }}/test-debug:latest
                   docker push ghcr.io/${{ github.repository_owner }}/test-debug:latest || echo "Push failed as expected"
