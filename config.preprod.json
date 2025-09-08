@@ -14,7 +14,7 @@
             "server_name": "Internes - preprod"
         },
         {
-            "base_url": "https://matrix.a.tchap.gouv.fr ",
+            "base_url": "https://matrix.a.tchap.gouv.fr",
             "server_name": "Internes 2 - preprod"
         },
         {
