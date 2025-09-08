@@ -1114,7 +1114,7 @@ export async function onLoggedOut(): Promise<void> {
  * @param {object} opts Options for how to clear storage.
  * @returns {Promise} promise which resolves once the stores have been cleared
  */
-// :TCHAP: export async function clearStorage(opts?: { deleteEverything?: boolean }): Promise<void> {
+// :TCHAP: desktop-tauri-browser export async function clearStorage(opts?: { deleteEverything?: boolean }): Promise<void> {
 export async function clearStorage(opts?: { deleteEverything?: boolean, delegatedLoginSuccess?: boolean }): Promise<void> {
     logger.info(`Clearing storage, deleteEverything=${opts?.deleteEverything}`);
 
@@ -1126,7 +1126,8 @@ export async function clearStorage(opts?: { deleteEverything?: boolean, delegate
         const pendingInvites = ThreepidInviteStore.instance.getWireInvites();
         const registrationTime = window.localStorage.getItem("mx_registration_time");
 
-        // :TCHAP: try to save hs and idp for delegated auth in order to avoid error 
+        // :TCHAP: desktop-tauri-browser https://github.com/tchapgouv/tchap-desktop/issues/82 
+        // try to save hs and idp for delegated auth in order to avoid error 
         const hs = window.localStorage.getItem(SSO_HOMESERVER_URL_KEY);
         const idpServer = window.localStorage.getItem(SSO_ID_SERVER_URL_KEY);
         const idpId = window.localStorage.getItem(SSO_IDP_ID_KEY);
@@ -1155,7 +1156,8 @@ export async function clearStorage(opts?: { deleteEverything?: boolean, delegate
             }
         }
 
-        // :TCHAP: return from sso calback, set again the correct hs and ids to avoid sso_failed_missing_storage error
+        // :TCHAP: desktop-tauri-browser
+        // return from sso calback, set again the correct hs and ids to avoid sso_failed_missing_storage error
         if (opts?.delegatedLoginSuccess) {
             if(hs) window.localStorage.setItem(SSO_HOMESERVER_URL_KEY, hs);
             if (idpServer) window.localStorage.setItem(SSO_ID_SERVER_URL_KEY, idpServer);

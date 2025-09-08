@@ -14,6 +14,7 @@ import { type IdTokenClaims } from "oidc-client-ts";
 
 import { OidcClientError } from "./error";
 import PlatformPeg from "../../PlatformPeg";
+import type TauriPlatform from "~tchap-web/src/vector/platform/tchap-desktop/TauriPlatform";
 
 /**
  * Start OIDC authorization code flow
@@ -55,7 +56,14 @@ export const startOidcLogin = async (
         //:tchap: end
     });
 
-    window.location.href = authorizationUrl;
+    // :TCHAP: desktop-tauri-browser
+    // window.location.href = authorizationUrl;
+    if (window.__TAURI__) {
+        const tauriPlatform = PlatformPeg.get() as TauriPlatform;
+        tauriPlatform.openAuthorizationInBrowser(authorizationUrl);
+    } else {
+        window.location.href = authorizationUrl;
+    }
 };
 
 /**

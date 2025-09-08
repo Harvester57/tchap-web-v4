@@ -254,5 +254,14 @@
             "src/components/views/settings/tabs/user/EncryptionUserSettingsTab.tsx",
             "src/components/views/settings/encryption/RecoveryPanel.tsx"
         ]
+    },
+    "desktop-tauri-browser": {
+        "issue": "https://github.com/tchapgouv/tchap-desktop/issues/91",
+        "files": [
+            "src/Lifecycle.ts",
+            "src/utils/oidc/authorize.ts",
+            "src/BasePlatform.ts",
+            "src/components/structures/MatrixChat.tsx"
+        ]
     }
 }
