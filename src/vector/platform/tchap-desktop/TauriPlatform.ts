@@ -57,7 +57,8 @@ export default class TauriPlatform extends BasePlatform {
     private readonly ipc = new IPCManager();
     private readonly eventIndexManager: BaseEventIndexManager = new TauriSeshatIndexManager(this);
     protected tauriSecureStorage: TauriSecureStorage;
-    
+    private protocol!: string;
+
     // this is the opaque token we pass to the HS which when we get it in our callback we can resolve to a profile
     private readonly ssoID: string = secureRandomString(32);
     public constructor(tauriSecureStorage: TauriSecureStorage) {
@@ -66,6 +67,7 @@ export default class TauriPlatform extends BasePlatform {
         if (!window.__TAURI__) {
             throw new Error("Cannot instantiate TauriPlatform, window.__TAURI__ is not set");
         }
+        this.protocol = "tchap";
 
         dis.register(onAction);
         this.tauriSecureStorage = tauriSecureStorage;
@@ -82,9 +84,12 @@ export default class TauriPlatform extends BasePlatform {
             console.log('***** deep link:', urls)
             if (urls[0]) {
                 const url = new URL(urls[0]);
-                const loginToken = url.searchParams.get("loginToken");
+                const loginToken = url.searchParams.get("loginToken"); // for SSO
+                const code  = url.searchParams.get("code"); // for native OIDC
+                const state = url.searchParams.get("state"); // for native OIDC
                 // callback return from sso connexion 
                 if (loginToken) window.location.replace(`/?loginToken=${loginToken}`);
+                if (code && state) window.location.replace(`/?code=${code}&state=${state}`)
             }
         });
     }
@@ -187,10 +192,10 @@ export default class TauriPlatform extends BasePlatform {
 
     public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
         const href = window.location.href;
-        const urlTchap = href.replace(/^https?/, "tchap");
+        const urlTchap = href.replace(/^https?/, this.protocol);
         const url = new URL(urlTchap);
         url.hash = fragmentAfterLogin ?? "";
-        url.protocol = "tchap"; // only using this is not working to change the protocol, dont know why...
+        url.protocol = this.protocol; // only using this is not working to change the protocol, dont know why...
         url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
     }
@@ -219,20 +224,30 @@ export default class TauriPlatform extends BasePlatform {
             ssoLoginUrl = ssoLoginUrl + "&" + encodeParams({"login_hint" :loginHint});
         }
 
-        open(ssoLoginUrl).then(
-            () => {
-                Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});
-            }, 
-            (rejected) => {
-                console.log("rejected", rejected);
-            }
-        );
+        this.openAuthorizationInBrowser(ssoLoginUrl);
     }
 
     public getOidcClientState(): string {
         return `:${SSO_ID_KEY}:${this.ssoID}`;
     }
 
+    /**
+     * The URL to return to after a successful OIDC authentication
+     */
+    public getOidcCallbackUrl(): URL {
+        const href = window.location.href;
+        const urlTchap = href.replace(/^https?/, this.protocol);
+        const url = new URL(urlTchap);
+        // The redirect URL has to exactly match that registered at the OIDC server, so
+        // ensure that the fragment part of the URL is empty.
+        url.hash = "";
+        url.protocol = this.protocol;
+        // Trim the double slash into a single slash to comply with https://datatracker.ietf.org/doc/html/rfc8252#section-7.1
+        if (url.href.startsWith(`${url.protocol}//`)) {
+            url.href = url.href.replace("://", ":/");
+        }
+        return url;
+    }
 
     public async getAppVersion(): Promise<string> {
         return await getVersion();
@@ -324,5 +339,16 @@ export default class TauriPlatform extends BasePlatform {
 
     public async getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean> {
         return true;
+    }
+
+    public openAuthorizationInBrowser(authorizationUrl: string) {
+        open(authorizationUrl).then(
+            () => {
+                Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});
+            }, 
+            (rejected) => {
+                console.log("rejected", rejected);
+            }
+        );;
     }
 }

@@ -519,8 +519,7 @@ export default abstract class BasePlatform {
      */
     public startUpdater(): void {}
 
-    // :TCHAP: TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
-
+    // :TCHAP: desktop-tauri-browser TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
     /**
      * Checks if the current session is lock-free, i.e., no other instance is holding the session lock.
      * Platforms that support session locking should override this method.
