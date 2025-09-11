@@ -441,7 +441,7 @@ export default class RolesRoomSettingsTab extends React.Component<IProps, RolesR
 
         // :TCHAP: group-calls-settings-tab
         if (SettingsStore.getValue("feature_group_calls")) {
-            delete eventsLevels[ElementCall.CALL_EVENT_TYPE.name];
+            delete eventsLevels[ElementCallEventType.name];
         }
 
         const eventPowerSelectors = Object.keys(eventsLevels)
