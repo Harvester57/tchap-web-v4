@@ -149,7 +149,7 @@ export const Commands = [
         command: "upgraderoom",
         args: "<new_version>",
         description: _td("slash_command|upgraderoom"),
-        isEnabled: (cli) => !isCurrentLocalRoom(cli) && SettingsStore.getValue("developerMode"),
+        isEnabled: (cli) => !isCurrentLocalRoom(cli),
         runFn: function (cli, roomId, threadId, args) {
             if (args) {
                 const room = cli.getRoom(roomId);
@@ -675,7 +675,19 @@ export const Commands = [
                 if (matches) {
                     const deviceId = matches[1];
                     const fingerprint = matches[2];
-                    return success(manuallyVerifyDevice(cli, deviceId, fingerprint));
+
+                    const { finished } = Modal.createDialog(QuestionDialog, {
+                        title: _t("slash_command|manual_device_verification_confirm_title"),
+                        description: _t("slash_command|manual_device_verification_confirm_description"),
+                        button: _t("action|verify"),
+                        danger: true,
+                    });
+
+                    return success(
+                        finished.then(([confirmed]) => {
+                            if (confirmed) manuallyVerifyDevice(cli, deviceId, fingerprint);
+                        }),
+                    );
                 }
             }
             return reject(this.getUsage());

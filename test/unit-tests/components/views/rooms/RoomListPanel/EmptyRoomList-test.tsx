@@ -35,7 +35,7 @@ describe("<EmptyRoomList />", () => {
         expect(screen.getByText("No chats yet")).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        await user.click(screen.getByRole("button", { name: "New message" }));
+        await user.click(screen.getByRole("button", { name: "Start chat" }));
         expect(vm.createChatRoom).toHaveBeenCalled();
 
         await user.click(screen.getByRole("button", { name: "New room" }));
@@ -54,6 +54,7 @@ describe("<EmptyRoomList />", () => {
         { key: FilterKey.UnreadFilter, name: "unread", action: "Show all chats" },
         { key: FilterKey.MentionsFilter, name: "mention", action: "See all activity" },
         { key: FilterKey.InvitesFilter, name: "invite", action: "See all activity" },
+        { key: FilterKey.LowPriorityFilter, name: "low priority", action: "See all activity" },
     ])("should display the empty state for the $name filter", async ({ key, name, action }) => {
         const user = userEvent.setup();
         const activePrimaryFilter = {

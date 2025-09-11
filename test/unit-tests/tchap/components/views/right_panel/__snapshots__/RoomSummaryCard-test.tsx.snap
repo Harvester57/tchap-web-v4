@@ -18,7 +18,7 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
       <button
         aria-labelledby="«r0»"
         class="_icon-button_1pz9o_8"
-        data-kind="primary"
+        data-kind="secondary"
         data-testid="base-card-close-button"
         role="button"
         style="--cpd-icon-button-size: 28px;"
@@ -83,11 +83,11 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
           title=""
         />
         <section
-          class="mx_Flex mx_RoomSummaryCard_topic"
+          class="flex mx_RoomSummaryCard_topic"
           style="--mx-flex-display: flex; --mx-flex-direction: column; --mx-flex-align: start; --mx-flex-justify: center; --mx-flex-gap: var(--cpd-space-2x); --mx-flex-wrap: nowrap;"
         >
           <div
-            class="mx_Box mx_Box--flex"
+            class="mx_RoomSummaryCard_topic_box box-flex"
             style="--mx-box-flex: 1;"
           >
             <a

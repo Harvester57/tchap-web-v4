@@ -93,7 +93,6 @@
         "maximise": "Teljes méret",
         "mention": "Megemlítés",
         "minimise": "Lecsukás",
-        "new_message": "Új üzenet",
         "new_room": "Új szoba",
         "new_video_room": "Új videószoba",
         "next": "Következő",
@@ -240,8 +239,7 @@
             "setup_key_backup_title": "Elveszíti a hozzáférést a titkosított üzeneteihez",
             "setup_secure_backup_description_1": "A titkosított üzenetek végpontok közti titkosítással védettek. Csak Önnek és a címzetteknek lehet meg a kulcsuk az üzenet visszafejtéséhez.",
             "setup_secure_backup_description_2": "A kijelentkezéssel a kulcsok az eszközről törlődnek, ami azt jelenti, hogy ha nincsenek meg máshol a kulcsok, vagy nincsenek mentve a kiszolgálón, akkor a titkosított üzenetek olvashatatlanná válnak.",
-            "skip_key_backup": "Nincs szükségem a titkosított üzeneteimre",
-            "use_key_backup": "Kulcsmentés használatának megkezdése"
+            "skip_key_backup": "Nincs szükségem a titkosított üzeneteimre"
         },
         "misconfigured_body": "Kérje meg a(z) %(brand)s adminisztrátorát, hogy ellenőrizze a <a>beállításait</a>, hibás vagy duplikált bejegyzéseket keresve.",
         "misconfigured_title": "Az %(brand)s hibásan van beállítva",
@@ -644,12 +642,12 @@
         "mode_plain": "Formázás elrejtése",
         "mode_rich_text": "Formázás megjelenítése",
         "no_perms_notice": "Nincs joga üzenetet küldeni ebbe a szobába",
-        "placeholder": "Üzenet küldése…",
-        "placeholder_encrypted": "Titkosított üzenet küldése…",
-        "placeholder_reply": "Válasz küldése…",
-        "placeholder_reply_encrypted": "Titkosított válasz küldése…",
-        "placeholder_thread": "Válasz az üzenetszálra…",
-        "placeholder_thread_encrypted": "Válasz a titkosított üzenetszálra…",
+        "placeholder": "Titkosítatlan üzenet küldése…",
+        "placeholder_encrypted": "Üzenet küldése…",
+        "placeholder_reply": "Titkosítatlan válasz küldése…",
+        "placeholder_reply_encrypted": "Válasz küldése…",
+        "placeholder_thread": "Válasz titkosítatlan üzenetszálra…",
+        "placeholder_thread_encrypted": "Válasz az üzenetszálra…",
         "poll_button": "Szavazás",
         "poll_button_no_perms_description": "Nincs joga szavazást kezdeményezni ebben a szobában.",
         "poll_button_no_perms_title": "Jogosultság szükséges",
@@ -784,6 +782,7 @@
             "cross_signing_status": "Eszközök közti hitelesítés állapota:",
             "cross_signing_untrusted": "A fiókjához tartozik egy eszközök közti hitelesítési személyazonosság, de ez a munkamenet még nem jelölte megbízhatónak.",
             "crypto_not_available": "A kriptográfiai modul nem érhető el",
+            "device_id": "Eszközazonosító",
             "key_backup_active_version": "Aktív biztonsági mentés verziója:",
             "key_backup_active_version_none": "Nincs",
             "key_backup_inactive_warning": "A kulcsokról nem készül biztonsági mentés ebből a munkamenetből.",
@@ -796,6 +795,8 @@
             "secret_storage_ready": "kész",
             "secret_storage_status": "Titkos tároló:",
             "self_signing_private_key_cached_status": "Önaláíró titkos kulcs:",
+            "session": "Munkamenet",
+            "session_fingerprint": "Ujjlenyomat (munkamenetkulcs)",
             "title": "Végpontok közti titkosítás",
             "user_signing_private_key_cached_status": "Felhasználó aláírási titkos kulcsa:"
         },
@@ -821,6 +822,7 @@
         "low_bandwidth_mode": "Alacsony sávszélességű mód",
         "low_bandwidth_mode_description": "Kompatibilis Matrix-kiszolgálóra van szükség.",
         "main_timeline": "Fő idővonal",
+        "manual_device_verification": "Kézi eszközellenőrzés",
         "no_receipt_found": "Nincs visszajelzés",
         "notification_state": "Értesítés állapota: <strong>%(notificationState)s</strong>",
         "notifications_debug": "Értesítések hibakeresése",
@@ -857,6 +859,7 @@
             "elementCallUrl": "Element Call webcím"
         },
         "settings_explorer": "Beállításböngésző",
+        "show_empty_content_events": "Üres tartalmú események megjelenítése",
         "show_hidden_events": "Rejtett események megjelenítése az idővonalon",
         "spaces": {
             "<%(count)s szóköz>": "other",
@@ -908,16 +911,16 @@
     "empty_room_was_name": "Üres szoba (%(oldName)s volt)",
     "encryption": {
         "access_secret_storage_dialog": {
+            "alternatives": "Ha van biztonsági kulcsa vagy biztonsági jelmondata, akkor ez is fog működni.",
             "key_validation_text": {
                 "wrong_security_key": "A megadott helyreállítási kulcs helytelen."
             },
             "privacy_warning": "Győződjön meg arról, hogy senki sem látja ezt a képernyőt!",
             "restoring": "Kulcsok helyreállítása mentésből",
-            "security_key_title": "Helyreállítási kulcs"
+            "security_key_label": "Helyreállítási kulcs",
+            "security_key_title": "Adja meg a helyreállítási kulcsot"
         },
         "bootstrap_title": "Kulcsok beállítása",
-        "cancel_entering_passphrase_description": "Biztos, hogy megszakítja a jelmondat bevitelét?",
-        "cancel_entering_passphrase_title": "Megszakítja a jelmondat bevitelét?",
         "confirm_encryption_setup_body": "Az alábbi gomb megnyomásával erősítsd meg, hogy megadod a titkosítási beállításokat.",
         "confirm_encryption_setup_title": "Erősítse meg a titkosítási beállításokat",
         "cross_signing_room_normal": "Ez a szoba végpontok közti titkosítást használ",
@@ -928,6 +931,7 @@
         "cross_signing_user_warning": "Ez a felhasználó még nem ellenőrizte az összes munkamenetét.",
         "enter_recovery_key": "Adja meg a helyreállítási kulcsot",
         "event_shield_reason_authenticity_not_guaranteed": "A titkosított üzenetek valódiságát ezen az eszközön nem lehet garantálni.",
+        "event_shield_reason_mismatched_sender": "Az esemény feladója nem egyezik meg az eseményt küldő eszköz tulajdonosával.",
         "event_shield_reason_mismatched_sender_key": "Ellenőrizetlen munkamenet által titkosítva",
         "event_shield_reason_unknown_device": "Ismeretlen vagy törölt eszköz által titkosítva.",
         "event_shield_reason_unsigned_device": "A tulajdonos által nem ellenőrzött eszköz által titkosítva.",
@@ -962,9 +966,7 @@
         },
         "reset_all_button": "Elfelejtette vagy elveszett minden helyreállítási lehetőség? <a>Minden alaphelyzetbe állítása</a>",
         "set_up_recovery": "Helyreállítás beállítása",
-        "set_up_recovery_later": "Most nem",
         "set_up_recovery_toast_description": "Létrehozhat egy helyreállítási kulcsot, amellyel helyreállíthatja a titkosított üzenetelőzményeit, ha elveszíti a hozzáférést az eszközeihez.",
-        "set_up_toast_description": "Biztosíték a titkosított üzenetekhez és adatokhoz való hozzáférés elvesztése ellen",
         "set_up_toast_title": "Biztonsági mentés beállítása",
         "setup_secure_backup": {
             "explainer": "Mentse a kulcsait a kiszolgálóra kijelentkezés előtt, hogy ne veszítse el azokat."
@@ -1005,6 +1007,21 @@
             "incoming_sas_dialog_waiting": "Várakozás a partner megerősítésére…",
             "incoming_sas_user_dialog_text_1": "Ellenőrizze ezt a felhasználót, hogy megbízhatónak jelölje. A felhasználók megbízhatóságának megerősítése további biztonságot nyújt a végpontok közti titkosítással rendelkező üzenetek használatakor.",
             "incoming_sas_user_dialog_text_2": "A felhasználó ellenőrzése által az ő munkamenete megbízhatónak lesz jelölve, és a te munkameneted is megbízhatónak lesz jelölve nála.",
+            "manual": {
+                "already_verified": "Ez az eszköz már ellenőrzött",
+                "already_verified_and_wrong_fingerprint": "A megadott ujjlenyomat nem egyezik, de az eszköz már ellenőrizve van!",
+                "device_id": "Eszközazonosító",
+                "failure_description": "Nem sikerült ellenőrizni ezt: %(deviceId)s: %(error)s",
+                "failure_title": "Az ellenőrzés sikertelen",
+                "fingerprint": "Ujjlenyomat (munkamenetkulcs)",
+                "no_crypto": "Nem lehet ellenőrizni az eszközt – a titkosítás nincs engedélyezve",
+                "no_device": "Nem sikerült ellenőrizni az eszközt – a(z) „%(deviceId)s” eszköz nem található",
+                "no_userid": "Nem sikerült ellenőrizni az eszközt – nem található a felhasználói azonosító",
+                "success_description": "Az eszköz (%(deviceId)s) mostantól keresztaláírással rendelkezik.",
+                "success_title": "Az ellenőrzés sikeres",
+                "text": "Adja meg valamelyik saját eszköze azonosítóját és ujjlenyomatát annak ellenőrzéséhez. MEGJEGYZÉS: ez lehetővé teszi a másik eszköz számára, hogy az Ön nevében küldjön és fogadjon üzeneteket. HA VALAKI AZT MONDTA, HOGY ILLESSZEN BE IDE VALAMIT, VALÓSZÍNŰLEG ÁTVERIK!",
+                "wrong_fingerprint": "Nem sikerült ellenőrizni a(z) „%(deviceId)s” eszközt – a mellékelt „%(fingerprint)s” ujjlenyomat nem egyezik az eszköz ujjlenyomatával: „%(fprint)s”"
+            },
             "no_key_or_device": "Úgy tűnik, hogy nem rendelkezik helyreállítási kulccsal, vagy másik eszközzel, amellyel ellenőrizhetné. Ezzel az eszközzel nem fér majd hozzá a régi titkosított üzenetekhez. Ahhoz, hogy a személyazonosságát ezen az eszközön ellenőrizni lehessen, az ellenőrzési kulcsokat alaphelyzetbe kell állítania.",
             "no_support_qr_emoji": "Az ellenőrizni kívánt eszköz nem támogatja sem a QR-kód leolvasását, sem az emodzsis ellenőrzést, amelyeket az %(brand)s támogat. Próbálja meg egy másik klienssel.",
             "other_party_cancelled": "A másik fél megszakította az ellenőrzést.",
@@ -1427,6 +1444,7 @@
         "room_list_navigate_down": "Navigálás lefelé a szobalistában",
         "room_list_navigate_up": "Navigálás felfelé a szobalistában",
         "room_list_select_room": "Szoba kiválasztása a szobalistából",
+        "save": "Mentés",
         "scroll_down_timeline": "Görgetés lefelé az idővonalon",
         "scroll_up_timeline": "Görgetés felfelé az idővonalon",
         "search": "Keresés (engedélyezni kell)",
@@ -1508,6 +1526,9 @@
         "render_reaction_images_description": "Néha „egyéni emodzsiknak” nevezik.",
         "report_to_moderators": "Jelentés a moderátoroknak",
         "report_to_moderators_description": "A moderálást támogató szobákban a problémás tartalmat a „Jelentés” gombbal lehet a moderátorok felé jelezni.",
+        "share_history_on_invite": "Titkosított előzmények megosztása az új tagokkal",
+        "share_history_on_invite_description": "Ha egy felhasználót olyan titkosított szobába hív meg, amelynél az előzmények láthatósága „megosztott” beállításra van állítva, akkor a titkosított előzményeket megosztja azzal a felhasználóval, valamint elfogadja a titkosított előzményeket, ha ilyen szobába hívják meg.",
+        "share_history_on_invite_warning": "Ez a funkció KÍSÉRLETI JELLEGŰ, és nem minden biztonsági óvintézkedés van megvalósítva. Ne engedélyezze éles fiókokban.",
         "sliding_sync": "Csúszóablakos szinkronizálási mód",
         "sliding_sync_description": "Aktív fejlesztés alatt, nem kapcsolható ki.",
         "sliding_sync_disabled_notice": "A kikapcsoláshoz ki-, és bejelentkezés szükséges",
@@ -1628,8 +1649,8 @@
         "filter_placeholder": "Szoba tagság szűrése",
         "invite_button_no_perms_tooltip": "Nincs jogosultsága felhasználók meghívására",
         "invited_label": "Meghívott",
-        "no_matches": "Nincs egyezés",
-        "power_label": "%(userName)s (szint: %(powerLevelNumber)s)"
+        "list_title": "Tagok listája",
+        "no_matches": "Nincs egyezés"
     },
     "member_list_back_action_label": "Szobatagok",
     "message_edit_dialog_title": "Üzenetszerkesztések",
@@ -1731,6 +1752,7 @@
     },
     "power_level": {
         "admin": "Adminisztrátor",
+        "creator": "Tulajdonos",
         "custom": "Egyéni (%(level)s)",
         "custom_level": "Egyéni szint",
         "default": "Alapértelmezett",
@@ -1882,6 +1904,7 @@
         "thread_list": {
             "context_menu_label": "Üzenetszál beállításai"
         },
+        "title": "Jobb oldali panel",
         "video_room_chat": {
             "title": "Csevegés"
         }
@@ -1942,6 +1965,7 @@
         },
         "face_pile_tooltip_shortcut": "Beleértve: %(commaSeparatedMembers)s",
         "face_pile_tooltip_shortcut_joined": "Önt is beleértve, %(commaSeparatedMembers)s",
+        "failed_determine_user": "Nem lehet meghatározni, hogy melyik felhasználót kell figyelmen kívül hagyni, mivel az esemény megváltozott.",
         "failed_reject_invite": "A meghívót nem sikerült elutasítani",
         "forget_room": "Szoba elfelejtése",
         "forget_space": "Ennek a térnek az elfelejtése",
@@ -2033,6 +2057,8 @@
         "read_topic": "Kattintson a téma elolvasásához",
         "rejecting": "Meghívó elutasítása…",
         "rejoin_button": "Újra-csatlakozás",
+        "room_content": "Szoba tartalma",
+        "room_is_low_priority": "Ez egy alacsony prioritású szoba",
         "search": {
             "all_rooms_button": "Keresés az összes szobában",
             "placeholder": "Üzenetek keresése...",
@@ -2079,6 +2105,7 @@
         "add_space_label": "Tér hozzáadása",
         "breadcrumbs_empty": "Nincsenek nemrégiben meglátogatott szobák",
         "breadcrumbs_label": "Nemrég meglátogatott szobák",
+        "collapse_filters": "Szűrőlista összecsukása",
         "empty": {
             "no_chats": "Még nincsenek csevegések",
             "no_chats_description": "Kezdje azzal, hogy üzenetet küld valakinek, vagy létrehoz egy szobát",
@@ -2086,6 +2113,7 @@
             "no_favourites": "Még nincs kedvenc csevegése",
             "no_favourites_description": "A csevegési beállításokban adhat hozzá csevegést a kedvencekhez",
             "no_invites": "Nincs olvasatlan meghívója",
+            "no_lowpriority": "Nincs alacsony prioritású szobája",
             "no_mentions": "Nincs olvasatlan említése",
             "no_people": "Még nincs közvetlen csevegése senkivel",
             "no_people_description": "Kikapcsolhatja a szűrőket a többi csevegés megtekintéséhez",
@@ -2095,12 +2123,14 @@
             "show_activity": "Összes tevékenység megtekintése",
             "show_chats": "Összes csevegés megjelenítése"
         },
+        "expand_filters": "Szűrőlista kibontása",
         "failed_add_tag": "Nem sikerült hozzáadni a szobához ezt: %(tagName)s",
         "failed_remove_tag": "Nem sikerült a szobáról eltávolítani ezt: %(tagName)s",
         "failed_set_dm_tag": "Nem sikerült a közvetlen beszélgetés címkét beállítani",
         "filters": {
             "favourite": "Kedvencek",
             "invites": "Meghívók",
+            "low_priority": "Alacsony prioritás",
             "mentions": "Említések",
             "people": "Emberek",
             "rooms": "Szobák",
@@ -2664,13 +2694,11 @@
         "inline_url_previews_room": "Webcím-előnézetek alapértelmezett engedélyezése a szobatagok számára",
         "inline_url_previews_room_account": "Webcím-előnézetek engedélyezése ebben a szobában (csak Önt érinti)",
         "insert_trailing_colon_mentions": "Záró kettőspont beszúrása egy felhasználó üzenet elején való megemlítésekor",
+        "invite_controls": {
+            "default_label": "Felhasználók meghívhatják szobákba"
+        },
         "jump_to_bottom_on_send": "Üzenetküldés után az idővonal aljára ugrás",
         "key_backup": {
-            "backup_in_progress": "A kulcsaid mentése folyamatban van (az első mentés több percig is eltarthat).",
-            "backup_starting": "Mentés indul…",
-            "backup_success": "Sikeres!",
-            "cannot_create_backup": "Kulcsmentés sikertelen",
-            "create_title": "Kulcsmentés készítése",
             "setup_secure_backup": {
                 "backup_setup_success_description": "A kulcsai nem kerülnek elmentésre erről az eszközről.",
                 "backup_setup_success_title": "Biztonsági mentés sikeres",
@@ -2730,6 +2758,7 @@
             "show_in_private": "Privát szobákban",
             "show_media": "Megjelenítés mindig"
         },
+        "not_supported": "A kiszolgálója nem valósítja meg ezt a funkciót.",
         "notifications": {
             "default_setting_description": "Ez a beállítás alapértelmezés szerint az összes szobájára érvényes lesz.",
             "default_setting_section": "Szeretnék értesítést kapni az alábbiakról (Alapértelmezett beállítás)",
@@ -2787,6 +2816,7 @@
             "voip": "Hang- és videóhívások"
         },
         "preferences": {
+            "Electron.enableContentProtection": "Ablak tartalmának más alkalmazások általi rögzítésének megakadályozása",
             "Electron.enableHardwareAcceleration": "Hardveres gyorsítás engedélyezése (a(z) %(appName)s újraindítása szükséges az érvénybe lépéshez)",
             "always_show_menu_bar": "Ablak menüsávjának megjelenítése mindig",
             "autocomplete_delay": "Automatikus kiegészítés késleltetése (ms)",
@@ -2795,6 +2825,7 @@
             "composer_heading": "Szerkesztő",
             "default_timezone": "Böngésző alapértelmezése (%(timezone)s)",
             "dialog_title": "<strong>Beállítások:</strong> Beállítások",
+            "enable_content_protection": "Tartalomvédelem engedélyezése",
             "enable_hardware_acceleration": "Hardveres gyorsítás engedélyezése",
             "enable_tray_icon": "Tálcaikon megjelenítése és az ablak minimalizálása bezáráskor",
             "keyboard_heading": "Gyorsbillentyűk",
@@ -2828,7 +2859,6 @@
             "ignore_users_empty": "Nincsenek mellőzött felhasználók.",
             "ignore_users_section": "Mellőzött felhasználók",
             "key_backup_algorithm": "Algoritmus:",
-            "key_backup_connect": "Munkamenet csatlakoztatása a kulcsmentéshez",
             "message_search_disable_warning": "Ha nincs engedélyezve akkor a titkosított szobák üzenetei nem jelennek meg a keresések között.",
             "message_search_disabled": "A titkosított üzenetek biztonságos helyi gyorsítótárazása, hogy megjelenhessenek a keresési találatok között.",
             "message_search_enabled": {
@@ -2955,6 +2985,7 @@
         "show_chat_effects": "Csevegési effektek (például a konfetti animáció) megjelenítése",
         "show_displayname_changes": "Megjelenítendő nevek változásának megjelenítése",
         "show_join_leave": "Be- és kilépési üzenetek megjelenítése (a meghívók/kirúgások/kitiltások üzeneteit nem érinti)",
+        "show_message_previews": "Üzenetelőnézetek megjelenítése",
         "show_nsfw_content": "Felnőtt tartalmak megjelenítése",
         "show_read_receipts": "Mások által küldött olvasási visszajelzések megjelenítése",
         "show_redaction_placeholder": "Helykitöltő megjelenítése a törölt szövegek helyett",
@@ -3061,6 +3092,8 @@
         "jumptodate": "Az idővonalon megadott dátumra ugrás",
         "jumptodate_invalid_input": "A megadott dátum (%(inputDate)s) nem értelmezhető. Próbálja meg az ÉÉÉÉ-HH-NN formátum használatát.",
         "lenny": "Az egyszerű szöveges üzenet elé teszi ezt: ( ͡° ͜ʖ ͡°)",
+        "manual_device_verification_confirm_description": "Ez lehetővé teszi egy másik eszköz számára, hogy az Ön nevében üzeneteket küldjön és fogadjon. HA VALAKI AZT MONDTA, HOGY ILLESSZEN BE IDE VALAMIT, VALÓSZÍNŰLEG ÁTVERIK! Biztosan ellenőrizni szeretné ezt a másik eszközt?",
+        "manual_device_verification_confirm_title": "Vigyázat: kézi eszközellenőrzés",
         "me": "Megjeleníti a tevékenységet",
         "msg": "Üzenet küldése a megadott felhasználónak",
         "myavatar": "Az összes szobában módosítja a profilképét",
@@ -3101,6 +3134,7 @@
         "upgraderoom": "Új verzióra fejleszti a szobát",
         "upgraderoom_permission_error": "A parancs használatához nincs meg a megfelelő jogosultsága.",
         "usage": "Használat",
+        "verify": "Az egyik saját eszköz kézi ellenőrzése",
         "view": "Megadott címmel rendelkező szobák megjelenítése",
         "whois": "Információt jelenít meg a felhasználóról"
     },
@@ -3340,6 +3374,7 @@
             "unable_to_find": "Megpróbálta betölteni a szoba megadott időpontjának megfelelő adatait, de az nem található."
         },
         "m.audio": {
+            "audio_player": "Hanglejátszó",
             "error_downloading_audio": "Hiba a hang letöltésekor",
             "error_processing_audio": "Hiba a hangüzenet feldolgozásánál",
             "error_processing_voice_message": "Hiba a hangüzenet feldolgozásánál",
@@ -3901,7 +3936,6 @@
         "dialpad": "Tárcsázó",
         "disable_camera": "Kamera kikapcsolása",
         "disable_microphone": "Mikrofon némítása",
-        "disabled_no_one_here": "Itt nincs senki, akit fel lehetne hívni",
         "disabled_no_perms_start_video_call": "Nincs jogosultsága videóhívást indítani",
         "disabled_no_perms_start_voice_call": "Nincs jogosultsága hanghívást indítani",
         "disabled_ongoing_call": "Hívás folyamatban",

@@ -144,6 +144,7 @@ declare global {
         initialise(): Promise<{
             protocol: string;
             sessionId: string;
+            supportsBadgeOverlay: boolean;
             config: IConfigOptions;
             supportedSettings: Record<string, boolean>;
         }>;

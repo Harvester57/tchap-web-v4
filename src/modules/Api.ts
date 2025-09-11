@@ -6,8 +6,8 @@ Please see LICENSE files in the repository root for full details.
 */
 
 import { createRoot, type Root } from "react-dom/client";
+import { type Api, type RuntimeModuleConstructor } from "@element-hq/element-web-module-api";
 
-import type { Api, RuntimeModuleConstructor } from "@element-hq/element-web-module-api";
 import { ModuleRunner } from "./ModuleRunner.ts";
 import AliasCustomisations from "../customisations/Alias.ts";
 import { RoomListCustomisations } from "../customisations/RoomList.ts";
@@ -21,6 +21,11 @@ import { WidgetPermissionCustomisations } from "../customisations/WidgetPermissi
 import { WidgetVariableCustomisations } from "../customisations/WidgetVariables.ts";
 import { ConfigApi } from "./ConfigApi.ts";
 import { I18nApi } from "./I18nApi.ts";
+import { CustomComponentsApi } from "./customComponentApi";
+import { WatchableProfile } from "./Profile.ts";
+import { NavigationApi } from "./Navigation.ts";
+import { openDialog } from "./Dialog.tsx";
+import { overwriteAccountAuth } from "./Auth.ts";
 
 const legacyCustomisationsFactory = <T extends object>(baseCustomisations: T) => {
     let used = false;
@@ -56,8 +61,14 @@ class ModuleApi implements Api {
         legacyCustomisationsFactory(WidgetVariableCustomisations);
     /* eslint-enable @typescript-eslint/naming-convention */
 
+    public readonly navigation = new NavigationApi();
+    public readonly openDialog = openDialog;
+    public readonly overwriteAccountAuth = overwriteAccountAuth;
+    public readonly profile = new WatchableProfile();
+
     public readonly config = new ConfigApi();
     public readonly i18n = new I18nApi();
+    public readonly customComponents = new CustomComponentsApi();
     public readonly rootNode = document.getElementById("matrixchat")!;
 
     public createRoot(element: Element): Root {
