@@ -317,7 +317,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private async initSession(): Promise<void> {
         // The Rust Crypto SDK will break if two Element instances try to use the same datastore at once, so
         // make sure we are the only Element instance in town (on this browser/domain).
-        // :TCHAP: remove when https://github.com/element-hq/element-web/pull/30643 is merged
+        // :TCHAP: desktop-tauri-browser remove when https://github.com/element-hq/element-web/pull/30643 is merged
         if (!(await PlatformPeg.get()?.getSessionLock(() => this.onSessionLockStolen()))) {
             // we failed to get the lock. onSessionLockStolen should already have been called, so nothing left to do.
             return;
