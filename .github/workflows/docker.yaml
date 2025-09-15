@@ -108,7 +108,7 @@ jobs:
                 #       vectorim/element-web
                 #       ghcr.io/element-hq/element-web
                   images: |
-                      ghcr.io/${{ github.repository_owner }}/test-debug
+                      ghcr.io/${{ github.repository_owner }}/tchap-web-v4
                   tags: |
                       type=ref,event=branch
                       type=ref,event=tag
