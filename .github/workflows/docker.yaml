@@ -1,8 +1,12 @@
+#:tchap:
+#comment all part related to dockerhub
 name: Docker
 on:
     workflow_dispatch: {}
     push:
-        tags: [v*]
+        #:tchap:
+        tags: [tchap-*]
+        #:tchap:
     pull_request: {}
     schedule:
         # This job can take a while, and we have usage limits, so just publish develop only twice a day
@@ -52,21 +56,6 @@ jobs:
                   username: ${{ github.repository_owner }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Debug - Check token permissions
-              run: |
-                  echo "Repository: ${{ github.repository }}"
-                  echo "Repository owner: ${{ github.repository_owner }}"
-                  echo "Event name: ${{ github.event_name }}"
-                  echo "Ref name: ${{ github.ref_name }}"
-
-            - name: Debug - Test GHCR authentication
-              #if: false
-              run: |
-                  echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-                  docker pull hello-world
-                  docker tag hello-world ghcr.io/${{ github.repository_owner }}/test-debug:latest
-                  docker push ghcr.io/${{ github.repository_owner }}/test-debug:latest || echo "Push failed as expected"
-            
             - name: Build and load
               id: test-build
               uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
@@ -78,7 +67,6 @@ jobs:
               env:
                   IMAGEID: ${{ steps.test-build.outputs.imageid }}
               timeout-minutes: 2
-              if: false
               run: |
                   set -x
 
@@ -120,7 +108,7 @@ jobs:
                 #       vectorim/element-web
                 #       ghcr.io/element-hq/element-web
                   images: |
-                      ghcr.io/${{ github.repository_owner }}/test-debug
+                      ghcr.io/${{ github.repository_owner }}/${{ steps.meta.outputs.tags }}
                   tags: |
                       type=ref,event=branch
                       type=ref,event=tag
