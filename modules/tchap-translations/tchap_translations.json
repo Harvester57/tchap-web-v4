@@ -1015,5 +1015,17 @@
     "auth|desktop_waiting_sso": {
         "en": "Finish the login on your default browser",
         "fr": "Finaliser la connexion sur votre navigateur"
+    },
+    "action|copy_and_continue": {
+        "en": "Copy and continue",
+        "fr": "Copier et continuer"
+    },
+    "encryption|verification|modal_success_title": {
+        "en": "Recovery code configured",
+        "fr": "Code de Récupération configuré"
+    },
+    "encryption|verification|modal_success_description": {
+        "en": "Keep your recovery code in a safe place, it will allow you to verify your identity for every new connection and restore your message history.",
+        "fr": "Gardez votre Code de Récupération dans un endroit sûr, il vous permettra de vérifier votre identité lors de toute nouvelle connexion et à restaurer votre historique."
     }
 }

@@ -263,5 +263,11 @@
             "src/BasePlatform.ts",
             "src/components/structures/MatrixChat.tsx"
         ]
+    },
+    "recovery-code-flow-improve": {
+        "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1365",
+        "files": [
+            "src/components/views/settings/encryption/ChangeRecoveryKey.tsx"
+        ]
     }
 }
