@@ -20,7 +20,7 @@ import {
 import SettingsStore from "../settings/SettingsStore";
 import { haveRendererForEvent, JitsiEventFactory, JSONEventFactory, pickFactory } from "../events/EventTileFactory";
 import { getMessageModerationState, isLocationEvent, MessageModerationState } from "./EventUtils";
-import { ElementCall } from "../models/Call";
+import { ElementCallEventType, ElementCallMemberEventType } from "../call-types";
 
 const calcIsInfoMessage = (
     eventType: EventType | string,
@@ -83,9 +83,9 @@ export function getEventDisplayInfo(
         factory === JitsiEventFactory;
     // :TCHAP:
     // const isLeftAlignedBubbleMessage =
-    //     !isBubbleMessage && (eventType === EventType.CallInvite || ElementCall.CALL_EVENT_TYPE.matches(eventType));
+    //     !isBubbleMessage && (eventType === EventType.CallInvite || ElementCallEventType.matches(eventType));
     const isLeftAlignedBubbleMessage =
-        !isBubbleMessage && (eventType === EventType.CallInvite || ElementCall.MEMBER_EVENT_TYPE.matches(eventType));
+        !isBubbleMessage && (eventType === EventType.CallInvite || ElementCallMemberEventType.matches(eventType));
     // end :TCHAP:
     let isInfoMessage = calcIsInfoMessage(eventType, content, isBubbleMessage, isLeftAlignedBubbleMessage);
     // Some non-info messages want to be rendered in the appropriate bubble column but without the bubble background

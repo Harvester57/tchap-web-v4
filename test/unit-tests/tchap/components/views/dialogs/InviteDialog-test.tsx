@@ -61,6 +61,7 @@ describe("InviteDialog", () => {
     beforeEach(() => {
         mockClient = getMockClientWithEventEmitter({
             getUserId: jest.fn().mockReturnValue(bobId),
+            getDomain: jest.fn().mockReturnValue("tchap.gouv.fr"),
             getSafeUserId: jest.fn().mockReturnValue(bobId),
             isGuest: jest.fn().mockReturnValue(false),
             getVisibleRooms: jest.fn().mockReturnValue([]),

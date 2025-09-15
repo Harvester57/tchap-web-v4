@@ -452,7 +452,8 @@ async function loadOrCreatePickleKey(credentials: IMatrixClientCreds): Promise<s
  * @param credentials as returned from login
  */
 async function onSuccessfulDelegatedAuthLogin(credentials: IMatrixClientCreds): Promise<void> {
-    await clearStorage();
+    // :TCHAP: add delegatedLoginSuccess await clearStorage({ delegatedLoginSuccess: true });
+    await clearStorage({ delegatedLoginSuccess: true });
     // SSO does not go through setLoggedIn so we need to load/create the pickle key here too
     credentials.pickleKey = await loadOrCreatePickleKey(credentials);
     await persistCredentials(credentials);
@@ -621,6 +622,9 @@ export async function restoreSessionFromStorage(opts?: { ignoreGuest?: boolean }
         await getStoredSessionVars();
 
     if (hasAccessToken && !accessToken) {
+        logger.warn(
+            "restoreSessionFromStorage: storage indicates we should have an access token, but we do not. Displaying StorageEvictedDialog",
+        );
         await abortLogin();
     }
 
@@ -657,7 +661,7 @@ export async function restoreSessionFromStorage(opts?: { ignoreGuest?: boolean }
                 freshLogin: freshLogin,
             },
             false,
-            false,
+            freshLogin,
         );
         return true;
     } else {
@@ -821,6 +825,7 @@ async function doSetLoggedIn(
     // crypto store, we'll be generally confused when handling encrypted data.
     // Show a modal recommending a full reset of storage.
     if (results.dataInLocalStorage && results.cryptoInited && !results.dataInCryptoStore) {
+        logger.warn("doSetLoggedIn: StorageManager consistency check failed; displaying StorageEvictedDialog.");
         await abortLogin();
     }
 
@@ -1113,7 +1118,8 @@ export async function onLoggedOut(): Promise<void> {
  * @param {object} opts Options for how to clear storage.
  * @returns {Promise} promise which resolves once the stores have been cleared
  */
-export async function clearStorage(opts?: { deleteEverything?: boolean }): Promise<void> {
+// :TCHAP: desktop-tauri-browser export async function clearStorage(opts?: { deleteEverything?: boolean }): Promise<void> {
+export async function clearStorage(opts?: { deleteEverything?: boolean, delegatedLoginSuccess?: boolean }): Promise<void> {
     logger.info(`Clearing storage, deleteEverything=${opts?.deleteEverything}`);
 
     if (window.localStorage) {
@@ -1123,6 +1129,13 @@ export async function clearStorage(opts?: { deleteEverything?: boolean }): Promi
         // try to save any 3pid invites from being obliterated and registration time
         const pendingInvites = ThreepidInviteStore.instance.getWireInvites();
         const registrationTime = window.localStorage.getItem("mx_registration_time");
+
+        // :TCHAP: desktop-tauri-browser https://github.com/tchapgouv/tchap-desktop/issues/82 
+        // try to save hs and idp for delegated auth in order to avoid error 
+        const hs = window.localStorage.getItem(SSO_HOMESERVER_URL_KEY);
+        const idpServer = window.localStorage.getItem(SSO_ID_SERVER_URL_KEY);
+        const idpId = window.localStorage.getItem(SSO_IDP_ID_KEY);
+        // end :TCHAP: 
 
         window.localStorage.clear();
 
@@ -1146,6 +1159,15 @@ export async function clearStorage(opts?: { deleteEverything?: boolean }): Promi
                 window.localStorage.setItem("mx_registration_time", registrationTime);
             }
         }
+
+        // :TCHAP: desktop-tauri-browser
+        // return from sso calback, set again the correct hs and ids to avoid sso_failed_missing_storage error
+        if (opts?.delegatedLoginSuccess) {
+            if(hs) window.localStorage.setItem(SSO_HOMESERVER_URL_KEY, hs);
+            if (idpServer) window.localStorage.setItem(SSO_ID_SERVER_URL_KEY, idpServer);
+            if (idpId) window.localStorage.setItem(SSO_IDP_ID_KEY, idpId);
+        }
+        // end :TCHAP:
     }
 
     window.sessionStorage?.clear();

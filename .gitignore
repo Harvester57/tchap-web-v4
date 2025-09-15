@@ -52,3 +52,6 @@ electron/pub
 modules/tchap-translations/tmp/*
 # version file and tarball created by `npm pack` / `yarn pack`
 /git-revision.txt
+
+*storybook.log
+storybook-static

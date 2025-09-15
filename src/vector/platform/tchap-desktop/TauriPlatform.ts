@@ -1,14 +1,17 @@
-// import { listen } from '@tauri-apps/api/event';
+import { listen } from '@tauri-apps/api/event';
 import { getVersion } from '@tauri-apps/api/app';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { logger } from 'matrix-js-sdk/src/logger';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
+import { open } from '@tauri-apps/plugin-shell';
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
-import { type MatrixEvent, type Room, type MatrixClient } from 'matrix-js-sdk/src/matrix';
-import { isPermissionGranted, requestPermission, sendNotification } from '@tauri-apps/plugin-notification';
+import { type MatrixEvent, type Room, type MatrixClient, type SSOAction } from 'matrix-js-sdk/src/matrix';
+import { isPermissionGranted, requestPermission } from '@tauri-apps/plugin-notification';
+import { encodeParams } from 'matrix-js-sdk/src/utils';
 
-import BasePlatform from "../../../BasePlatform";
+import BasePlatform, { SSO_HOMESERVER_URL_KEY, SSO_ID_SERVER_URL_KEY, SSO_IDP_ID_KEY } from "../../../BasePlatform";
 import dis from "../../../dispatcher/dispatcher";
 import SdkConfig from "../../../SdkConfig";
 import { type ActionPayload } from "../../../dispatcher/payloads";
@@ -18,6 +21,9 @@ import { _t } from "../../../languageHandler";
 import { TauriSeshatIndexManager } from './TauriSeshatIndexManager';
 import { type TauriSecureStorage } from './TauriSecureStorage';
 import type BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexManager';
+
+import Modal from '~tchap-web/src/Modal';
+import Spinner from '~tchap-web/src/components/views/elements/Spinner';
 
 const SSO_ID_KEY = "tchap-desktop-ssoid";
 
@@ -51,7 +57,8 @@ export default class TauriPlatform extends BasePlatform {
     private readonly ipc = new IPCManager();
     private readonly eventIndexManager: BaseEventIndexManager = new TauriSeshatIndexManager(this);
     protected tauriSecureStorage: TauriSecureStorage;
-    
+    private protocol!: string;
+
     // this is the opaque token we pass to the HS which when we get it in our callback we can resolve to a profile
     private readonly ssoID: string = secureRandomString(32);
     public constructor(tauriSecureStorage: TauriSecureStorage) {
@@ -60,21 +67,31 @@ export default class TauriPlatform extends BasePlatform {
         if (!window.__TAURI__) {
             throw new Error("Cannot instantiate TauriPlatform, window.__TAURI__ is not set");
         }
+        this.protocol = "tchap";
 
         dis.register(onAction);
         this.tauriSecureStorage = tauriSecureStorage;
 
         this.ipc.call("welcome");
 
-        // this.ipc.call("set_homeserver_url", MatrixClientPeg.get()?.getHomeserverUrl());
-        // getCurrentWindow().onCloseRequested(async (event) => {
-        //     logger.info("tchap-desktop closing", event);
-        //     // shutdown eventindex db 
-        //     this.eventIndexManager.closeEventIndex();
-        //     process.exit();
-        // });
-
         this.checkUpdates();
+
+        this.checkDeepLinkOpen();
+    }
+
+    public async checkDeepLinkOpen(): Promise<void> {
+        await onOpenUrl((urls) => {
+            console.log('***** deep link:', urls)
+            if (urls[0]) {
+                const url = new URL(urls[0]);
+                const loginToken = url.searchParams.get("loginToken"); // for SSO
+                const code  = url.searchParams.get("code"); // for native OIDC
+                const state = url.searchParams.get("state"); // for native OIDC
+                // callback return from sso connexion 
+                if (loginToken) window.location.replace(`/?loginToken=${loginToken}`);
+                if (code && state) window.location.replace(`/?code=${code}&state=${state}`)
+            }
+        });
     }
 
     public async checkUpdates(): Promise<void> {
@@ -174,8 +191,11 @@ export default class TauriPlatform extends BasePlatform {
 
 
     public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
-        const url = super.getSSOCallbackUrl(fragmentAfterLogin);
-        url.protocol = "tchap";
+        const href = window.location.href;
+        const urlTchap = href.replace(/^https?/, this.protocol);
+        const url = new URL(urlTchap);
+        url.hash = fragmentAfterLogin ?? "";
+        url.protocol = this.protocol; // only using this is not working to change the protocol, dont know why...
         url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
     }
@@ -185,14 +205,49 @@ export default class TauriPlatform extends BasePlatform {
         loginType: "sso" | "cas",
         fragmentAfterLogin: string,
         idpId?: string,
+        action?: SSOAction,
+        loginHint?: string, // :TCHAP: sso-login-hint
     ): void {
-        super.startSingleSignOn(mxClient, loginType, fragmentAfterLogin, idpId);
+        // persist hs url and is url for when the user is returned to the app with the login token
+        localStorage.setItem(SSO_HOMESERVER_URL_KEY, mxClient.getHomeserverUrl());
+        if (mxClient.getIdentityServerUrl()) {
+            localStorage.setItem(SSO_ID_SERVER_URL_KEY, mxClient.getIdentityServerUrl()!);
+        }
+        if (idpId) {
+            localStorage.setItem(SSO_IDP_ID_KEY, idpId);
+        }
+        const callbackUrl = this.getSSOCallbackUrl(fragmentAfterLogin);
+
+        let ssoLoginUrl = mxClient.getSsoLoginUrl(callbackUrl.toString(), loginType, idpId, action);
+
+        if(loginHint) {
+            ssoLoginUrl = ssoLoginUrl + "&" + encodeParams({"login_hint" :loginHint});
+        }
+
+        this.openAuthorizationInBrowser(ssoLoginUrl);
     }
 
     public getOidcClientState(): string {
         return `:${SSO_ID_KEY}:${this.ssoID}`;
     }
 
+    /**
+     * The URL to return to after a successful OIDC authentication
+     */
+    public getOidcCallbackUrl(): URL {
+        const href = window.location.href;
+        const urlTchap = href.replace(/^https?/, this.protocol);
+        const url = new URL(urlTchap);
+        // The redirect URL has to exactly match that registered at the OIDC server, so
+        // ensure that the fragment part of the URL is empty.
+        url.hash = "";
+        url.protocol = this.protocol;
+        // Trim the double slash into a single slash to comply with https://datatracker.ietf.org/doc/html/rfc8252#section-7.1
+        if (url.href.startsWith(`${url.protocol}//`)) {
+            url.href = url.href.replace("://", ":/");
+        }
+        return url;
+    }
 
     public async getAppVersion(): Promise<string> {
         return await getVersion();
@@ -278,4 +333,22 @@ export default class TauriPlatform extends BasePlatform {
         }
     }
 
+    public async checkSessionLockFree(): Promise<boolean> {
+        return true;
+    }
+
+    public async getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean> {
+        return true;
+    }
+
+    public openAuthorizationInBrowser(authorizationUrl: string) {
+        open(authorizationUrl).then(
+            () => {
+                Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});
+            }, 
+            (rejected) => {
+                console.log("rejected", rejected);
+            }
+        );;
+    }
 }

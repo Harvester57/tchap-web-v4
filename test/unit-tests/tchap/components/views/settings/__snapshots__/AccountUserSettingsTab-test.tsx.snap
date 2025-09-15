@@ -99,7 +99,7 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
               </div>
             </div>
             <div
-              class="mx_Flex mx_UserProfileSettings_profile_buttons"
+              class="flex mx_UserProfileSettings_profile_buttons"
               style="--mx-flex-display: flex; --mx-flex-direction: row; --mx-flex-align: start; --mx-flex-justify: start; --mx-flex-gap: var(--cpd-space-4x); --mx-flex-wrap: nowrap;"
             >
               <div

@@ -486,6 +486,8 @@ export default abstract class BasePlatform {
         // The redirect URL has to exactly match that registered at the OIDC server, so
         // ensure that the fragment part of the URL is empty.
         url.hash = "";
+        // Set no_universal_links=true to prevent the callback being handled by Element X installed on macOS Apple Silicon
+        url.searchParams.set("no_universal_links", "true");
         return url;
     }
 
@@ -503,19 +505,33 @@ export default abstract class BasePlatform {
     }
 
     private updateFavicon(): void {
-        let bgColor = "#d00";
-        let notif: string | number = this.notificationCount;
+        const notif: string | number = this.notificationCount;
 
         if (this.errorDidOccur) {
-            notif = notif || "×";
-            bgColor = "#f00";
+            this.favicon.badge(notif || "×", { bgColor: "#f00" });
         }
-
-        this.favicon.badge(notif, { bgColor });
+        this.favicon.badge(notif);
     }
 
     /**
      * Begin update polling, if applicable
      */
     public startUpdater(): void {}
+
+    // :TCHAP: desktop-tauri-browser TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
+    /**
+     * Checks if the current session is lock-free, i.e., no other instance is holding the session lock.
+     * Platforms that support session locking should override this method.
+     * @returns {Promise<boolean>} True if the session is lock-free, false otherwise.
+     */
+    public abstract checkSessionLockFree(): Promise<boolean>;
+    /**
+     * Attempts to acquire a session lock for this instance.
+     * If another instance is detected, calls the provided callback.
+     * Platforms that support session locking should override this method.
+     * @param _onNewInstance Callback to invoke if a new instance is detected.
+     * @returns {Promise<boolean>} True if the lock was acquired, false otherwise.
+     */
+    public abstract getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean>;
+
 }

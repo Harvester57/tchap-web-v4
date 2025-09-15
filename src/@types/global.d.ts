@@ -49,6 +49,7 @@ import type MatrixChat from "../components/structures/MatrixChat";
 import { type InitialCryptoSetupStore } from "../stores/InitialCryptoSetupStore";
 import { type ModuleApiType } from "../modules/Api.ts";
 import type { RoomListStoreV3Class } from "../stores/room-list-v3/RoomListStoreV3.ts";
+import { type TauriSecureStorage } from "../vector/platform/tchap-desktop/TauriSecureStorage.ts"; // :TCHAP:
 
 
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -131,6 +132,8 @@ declare global {
 
         // :TCHAP: tauri only
         __TAURI__: typeof app;
+        tauriSecureStorage: TauriSecureStorage;
+        // end :TCHAP:
     }
 
     interface Electron {
@@ -141,6 +144,7 @@ declare global {
         initialise(): Promise<{
             protocol: string;
             sessionId: string;
+            supportsBadgeOverlay: boolean;
             config: IConfigOptions;
             supportedSettings: Record<string, boolean>;
         }>;

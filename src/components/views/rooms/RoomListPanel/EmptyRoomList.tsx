@@ -7,11 +7,11 @@
 
 import React, { type JSX, type PropsWithChildren } from "react";
 import { Button } from "@vector-im/compound-web";
-import UserAddIcon from "@vector-im/compound-design-tokens/assets/web/icons/user-add";
+import ChatIcon from "@vector-im/compound-design-tokens/assets/web/icons/chat";
 import RoomIcon from "@vector-im/compound-design-tokens/assets/web/icons/room";
 
 import type { RoomListViewState } from "../../../viewmodels/roomlist/RoomListViewModel";
-import { Flex } from "../../../utils/Flex";
+import { Flex } from "../../../../shared-components/utils/Flex";
 import { _t } from "../../../../languageHandler";
 import { FilterKey } from "../../../../stores/room-list-v3/skip-list/filters";
 import { type PrimaryFilter } from "../../../viewmodels/roomlist/useFilteredRooms";
@@ -72,6 +72,14 @@ export function EmptyRoomList({ vm }: EmptyRoomListProps): JSX.Element | undefin
             return (
                 <ActionPlaceholder
                     title={_t("room_list|empty|no_mentions")}
+                    action={_t("room_list|empty|show_activity")}
+                    filter={vm.activePrimaryFilter}
+                />
+            );
+        case FilterKey.LowPriorityFilter:
+            return (
+                <ActionPlaceholder
+                    title={_t("room_list|empty|no_lowpriority")}
                     action={_t("room_list|empty|show_activity")}
                     filter={vm.activePrimaryFilter}
                 />
@@ -140,8 +148,8 @@ function DefaultPlaceholder({ vm }: DefaultPlaceholderProps): JSX.Element {
                 direction="column"
                 gap="var(--cpd-space-4x)"
             >
-                <Button size="sm" kind="secondary" Icon={UserAddIcon} onClick={vm.createChatRoom}>
-                    {_t("action|new_message")}
+                <Button size="sm" kind="secondary" Icon={ChatIcon} onClick={vm.createChatRoom}>
+                    {_t("action|start_chat")}
                 </Button>
                 {vm.canCreateRoom && (
                     <Button size="sm" kind="secondary" Icon={RoomIcon} onClick={vm.createRoom}>
