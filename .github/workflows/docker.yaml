@@ -1,5 +1,5 @@
 #:tchap:
-#comment all part related to dockerhub
+#deactivate all part related to dockerhub
 name: Docker
 on:
     workflow_dispatch: {}
@@ -42,14 +42,14 @@ jobs:
               with:
                   install: true
 
-            #:tchap:
-            # do not use docker hub    
-            # - name: Login to Docker Hub
-            #   uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
-            #   if: false && github.event_name != 'pull_request'
-            #   with:
-            #       username: ${{ secrets.DOCKERHUB_USERNAME }}
-            #       password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: Login to Docker Hub
+              uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
+              #:tchap: deactivate docker hub
+              if: false
+              #if: github.event_name != 'pull_request'
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Login to GitHub Container Registry
               uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
@@ -142,13 +142,13 @@ jobs:
                   done
                   cosign sign --yes ${images}
 
-            #:tchap:
-            # do not use docker hub    
-            # - name: Update repo description
-            #   uses: peter-evans/dockerhub-description@432a30c9e07499fd01da9f8a49f0faf9e0ca5b77 # v4
-            #   if: github.event_name != 'pull_request'
-            #   continue-on-error: true
-            #   with:
-            #       username: ${{ secrets.DOCKERHUB_USERNAME }}
-            #       password: ${{ secrets.DOCKERHUB_TOKEN }}
-            #       repository: vectorim/element-web
+            - name: Update repo description
+              uses: peter-evans/dockerhub-description@432a30c9e07499fd01da9f8a49f0faf9e0ca5b77 # v4
+              #:tchap:
+              #if: github.event_name != 'pull_request'
+              if: false
+              continue-on-error: true
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+                  repository: vectorim/element-web
