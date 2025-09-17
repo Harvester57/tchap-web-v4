@@ -1015,5 +1015,13 @@
     "auth|desktop_waiting_sso": {
         "en": "Finish the login on your default browser",
         "fr": "Finaliser la connexion sur votre navigateur"
+    },
+    "voip|modal_confirmation_title": {
+        "en": "Start a group call",
+        "fr": "Démarrer un appel de groupe"
+    },
+    "voip|modal_confirmation_description": {
+        "en": "You are going to start a group call. Do you wish to continue ?",
+        "fr": "Vous êtes sur le point de démarrer un appel de groupe. Souhaitez-vous continuer ?"
     }
 }
