@@ -30,6 +30,10 @@ import { withSecretStorageKeyCache } from "../../../../SecurityManager";
 import { EncryptionCardButtons } from "./EncryptionCardButtons";
 import { logErrorAndShowErrorDialog } from "../../../../utils/ErrorUtils.tsx";
 import { RECOVERY_ACCOUNT_DATA_KEY } from "../../../../DeviceListener";
+import Spinner from "../../elements/Spinner.tsx";
+
+import Modal from "~tchap-web/src/Modal.tsx"; // :TCHAP:
+import TchapRecoveryCodeSuccessDialog from "~tchap-web/src/tchap/components/views/dialogs/TchapRecoveryCodeSuccessDialog.tsx"; // :TCHAP:
 
 /**
  * The possible states of the component.
@@ -99,12 +103,16 @@ export function ChangeRecoveryKey({
                 <KeyPanel
                     // encodedPrivateKey is always defined, the optional typing is incorrect
                     recoveryKey={recoveryKey.encodedPrivateKey!}
-                    onConfirmClick={() =>
-                        setState((currentState) =>
-                            currentState === "save_key_change_flow"
-                                ? "confirm_key_change_flow"
-                                : "confirm_key_setup_flow",
-                        )
+                    onConfirmClick={() => {
+                            // :TCHAP: recovery-code-flow-improve
+                            copyPlaintext(recoveryKey.encodedPrivateKey!);
+                            // end :TCHAP:
+                            setState((currentState) =>
+                                currentState === "save_key_change_flow"
+                                    ? "confirm_key_change_flow"
+                                    : "confirm_key_setup_flow",
+                            )
+                        }
                     }
                     onCancelClick={onCancelClick}
                 />
@@ -122,7 +130,11 @@ export function ChangeRecoveryKey({
                         const crypto = matrixClient.getCrypto();
                         if (!crypto) return onFinish();
 
+                        // :TCHAP: :TCHAP: recovery-code-flow-improve 
+                        const spinner = Modal.createDialog(Spinner, undefined, "mx_Dialog_spinner");
+                        // end :TCHAP:
                         try {
+
                             // We need to enable the cache to avoid to prompt the user to enter the new key
                             // when we will try to access the secret storage during the bootstrap
                             await withSecretStorageKeyCache(async () => {
@@ -135,9 +147,17 @@ export function ChangeRecoveryKey({
 
                             // Record the fact that the user explicitly enabled recovery.
                             await matrixClient.setAccountData(RECOVERY_ACCOUNT_DATA_KEY, { enabled: true });
-
-                            onFinish();
+                            
+                            // :TCHAP: recovery-code-flow-improve - onFinish()
+                            spinner.close();
+                            const { finished } = Modal.createDialog(TchapRecoveryCodeSuccessDialog);
+                            finished.then(() => onFinish());
+                            // end :TCHAP:
+                            
                         } catch (e) {
+                            // :TCHAP: recovery-code-flow-improve
+                            spinner.close();
+                            // end :TCHAP:
                             logErrorAndShowErrorDialog("Failed to set up secret storage", e);
                         }
                     }}
@@ -293,7 +313,8 @@ function KeyPanel({ recoveryKey, onConfirmClick, onCancelClick }: KeyPanelProps)
                 </IconButton>
             </div>
             <EncryptionCardButtons>
-                <Button onClick={onConfirmClick}>{_t("action|continue")}</Button>
+                {/* :TCHAP: <Button onClick={onConfirmClick}>{_t("action|continue")}</Button> */}
+                <Button onClick={onConfirmClick}>{_t("action|copy_and_continue")}</Button>
                 <Button kind="tertiary" onClick={onCancelClick}>
                     {_t("action|cancel")}
                 </Button>
