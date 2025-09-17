@@ -17,6 +17,8 @@ import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
 import { placeCall } from "~tchap-web/src/utils/room/placeCall";
 import { PlatformCallType } from "~tchap-web/src/hooks/room/useRoomCall";
 import * as ShieldUtils from "~tchap-web/src/utils/ShieldUtils";
+import Modal from "~tchap-web/src/Modal";
+import QuestionDialog from "~tchap-web/src/components/views/dialogs/QuestionDialog";
 
 jest.mock("~tchap-web/src/utils/ShieldUtils");
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
@@ -121,6 +123,11 @@ describe("RoomHeader", () => {
             return Promise.resolve();
         });
         jest.spyOn(ShieldUtils, "shieldStatusForRoom").mockResolvedValue(ShieldUtils.E2EStatus.Normal);
+
+        jest.spyOn(Modal, "createDialog").mockReturnValue({
+            finished: Promise.resolve([true]),
+            close: jest.fn(),
+        });
     });
 
     afterEach(() => {
@@ -239,6 +246,18 @@ describe("RoomHeader", () => {
 
         // Click the video call button
         await videoButton.click();
+
+        // confirmation Modal should display
+        expect(Modal.createDialog).toHaveBeenCalledWith(QuestionDialog, {
+            button: "Continue",
+            cancelButton: "Cancel",
+            description: (
+                <div>
+                    <p>voip</p>
+                </div>
+            ),
+            title: "voip",
+        });
         // placeCall to have been called with PlatformCallType.LegacyCall
         expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
     });
@@ -252,6 +271,17 @@ describe("RoomHeader", () => {
         logRoles(container);
         // Click the video call button
         await videoButton.click();
+        // confirmation Modal should display
+        expect(Modal.createDialog).toHaveBeenCalledWith(QuestionDialog, {
+            button: "Continue",
+            cancelButton: "Cancel",
+            description: (
+                <div>
+                    <p>voip</p>
+                </div>
+            ),
+            title: "voip",
+        });
         // placeCall to have been called with PlatformCallType.LegacyCall
         expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
     });
@@ -265,6 +295,17 @@ describe("RoomHeader", () => {
 
         // Click the video call button
         await videoButton.click();
+        // confirmation Modal should display
+        expect(Modal.createDialog).toHaveBeenCalledWith(QuestionDialog, {
+            button: "Continue",
+            cancelButton: "Cancel",
+            description: (
+                <div>
+                    <p>voip</p>
+                </div>
+            ),
+            title: "voip",
+        });
         // placeCall to have been called with PlatformCallType.ElementCall
         expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
     });

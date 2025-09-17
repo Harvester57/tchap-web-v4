@@ -264,6 +264,12 @@
             "src/components/structures/MatrixChat.tsx"
         ]
     },
+    "group-call-modal-confirmation": {
+        "isuue": "https://github.com/tchapgouv/tchap-web-v4/issues/1394",
+        "files": [
+            "src/components/views/rooms/RoomHeader/RoomHeader.tsx"
+        ]
+    },
     "recovery-code-flow-improve": {
         "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1365",
         "files": [

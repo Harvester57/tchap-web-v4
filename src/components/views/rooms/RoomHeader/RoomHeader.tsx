@@ -61,6 +61,8 @@ import TchapExternalRoomHeader from "~tchap-web/src/tchap/components/views/rooms
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils.ts";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap.ts";
 import WithTchapIndicator from "~tchap-web/src/tchap/components/views/avatars/WithTchapIndicator.tsx";
+import Modal from "~tchap-web/src/Modal.tsx";
+import QuestionDialog from "../../dialogs/QuestionDialog.tsx";
 
 
 
@@ -115,10 +117,31 @@ export default function RoomHeader({
 
     const askToJoinEnabled = useFeatureEnabled("feature_ask_to_join");
 
+    // :TCHAP: group-call-modal-confirmation
+    // const videoClick = useCallback(
+    //      (ev: React.MouseEvent) => videoCallClick(ev, callOptions[0]),
+    //      [callOptions, videoCallClick],
+    // );
     const videoClick = useCallback(
-        (ev: React.MouseEvent) => videoCallClick(ev, callOptions[0]),
+        async (ev: React.MouseEvent) => {
+            const { finished } = Modal.createDialog(QuestionDialog, {
+                title: _t("voip|modal_confirmation_title"),
+                description: (
+                    <div>
+                        <p>{_t(_t("voip|modal_confirmation_description"))}</p>
+                    </div>
+                ),
+                button: _t("action|continue"),
+                cancelButton: _t("action|cancel"),
+            });
+            const [confirmed] = await finished;
+            if (confirmed) {
+                videoCallClick(ev, callOptions[0])
+            }
+        },
         [callOptions, videoCallClick],
     );
+    // end :TCHAP:
 
     const toggleCallButton = (
         <Tooltip label={isViewingCall ? _t("voip|minimise_call") : _t("voip|maximise_call")}>
