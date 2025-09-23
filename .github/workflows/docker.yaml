@@ -116,9 +116,12 @@ jobs:
                       ghcr.io/${{ github.repository_owner }}/tchap-web-v4
                   tags: |
                       type=ref,event=branch
-                      type=ref,event=tag
-                  flavor: |
-                      latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
+                      type=raw,value=unstable,enable=${{ github.ref_name == 'tchap_develop' }}
+                      type=raw,value=latest,enable=${{ startsWith(github.ref_name, 'tchap_') }}
+                  #:tchap:
+#                     type=ref,event=tag
+                  #flavor: |
+                  #    latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
 
             - name: Build and push
               id: build-and-push
