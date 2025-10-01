@@ -123,7 +123,12 @@ export default function RoomHeader({
     //      [callOptions, videoCallClick],
     // );
     const videoClick = useCallback(
-        async (ev: React.MouseEvent) => {
+        async (ev: React.MouseEvent, isJoin: boolean = false) => {
+            // directly start call if join click
+            if (isJoin) {
+                videoCallClick(ev, callOptions[0]);
+                return;
+            }
             const { finished } = Modal.createDialog(QuestionDialog, {
                 title: _t("voip|modal_confirmation_title"),
                 description: (
@@ -155,7 +160,9 @@ export default function RoomHeader({
         <Tooltip label={videoCallDisabledReason ?? _t("voip|video_call")}>
             <Button
                 size="sm"
-                onClick={videoClick}
+                // :TCHAP: add distinction between join click and start click
+                // onClick={videoClick}
+                onClick={(ev: React.MouseEvent) => videoClick(ev, true)}
                 Icon={VideoCallIcon}
                 className="mx_RoomHeader_join_button"
                 disabled={!!videoCallDisabledReason}
