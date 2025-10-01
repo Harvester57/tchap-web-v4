@@ -19,6 +19,7 @@ import { PlatformCallType } from "~tchap-web/src/hooks/room/useRoomCall";
 import * as ShieldUtils from "~tchap-web/src/utils/ShieldUtils";
 import Modal from "~tchap-web/src/Modal";
 import QuestionDialog from "~tchap-web/src/components/views/dialogs/QuestionDialog";
+import * as hooks from "~tchap-web/src/hooks/useCall.ts";
 
 jest.mock("~tchap-web/src/utils/ShieldUtils");
 jest.mock("~tchap-web/src/tchap/util/TchapRoomUtils");
@@ -306,6 +307,24 @@ describe("RoomHeader", () => {
             ),
             title: "voip",
         });
+        // placeCall to have been called with PlatformCallType.ElementCall
+        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
+    });
+
+    it("should not display modal if the call has been started and it is a join state", async () => {
+        // mock call already started with participant
+        jest.spyOn(hooks, "useParticipantCount").mockReturnValue(2);
+
+        addHomeserverToMockConfig([homeserverName], featureVideoGroupName);
+        mockRoomMembers(room, 4);
+
+        const { container } = getComponent();
+        const videoJoinButton = getByLabelText(container, "Join");
+
+        // Click the video  joincall button
+        await videoJoinButton.click();
+        // confirmation Modal should not display on join call
+        expect(Modal.createDialog).not.toHaveBeenCalled();
         // placeCall to have been called with PlatformCallType.ElementCall
         expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
     });
