@@ -176,6 +176,21 @@ const JoinRuleSettings : React.FC<JoinRuleSettingsProps> = ({
         });
     };
 
+    const openedToExternalUsers = accessRule === TchapRoomAccessRule.Unrestricted;
+    const onExternalAccessChange = async () => {
+        const { finished } = Modal.createDialog(QuestionDialog, {
+            title: _t("Allow external users to join this room"),
+            description:
+                _t("This action is irreversible.") +
+                " " +
+                _t("Are you sure you want to allow the externals to join this room ?"),
+            button: _t("action|ok"),
+        });
+        const [ confirmed ] = await finished;
+        if (!confirmed) return;
+        setTchapAccessRule({ rule: TchapRoomAccessRule.Unrestricted });
+    };
+
     /* code from element web
     const definitions: IDefinition<JoinRule>[] = [{
         value: JoinRule.Invite,
@@ -200,20 +215,6 @@ const JoinRuleSettings : React.FC<JoinRuleSettingsProps> = ({
         // :TCHAP: We could add functions in 'TchapUtils' to determine the type of room and rely on this logic to display components as we did in Android :
         // :TCHAP: https://github.com/tchapgouv/tchap-android/blob/develop/vector/src/main/java/fr/gouv/tchap/core/utils/RoomUtils.kt#L31
         if (accessRule) {
-            const openedToExternalUsers = accessRule === TchapRoomAccessRule.Unrestricted;
-            const onExternalAccessChange = async () => {
-                const { finished } = Modal.createDialog(QuestionDialog, {
-                    title: _t("Allow external users to join this room"),
-                    description:
-                        _t("This action is irreversible.") +
-                        " " +
-                        _t("Are you sure you want to allow the externals to join this room ?"),
-                    button: _t("action|ok"),
-                });
-                const [ confirmed ] = await finished;
-                if (!confirmed) return;
-                setTchapAccessRule({ rule: TchapRoomAccessRule.Unrestricted });
-            };
             privateRoomDescription = (
                 <div>
                     <div>{_t("room_settings|security|join_rule_invite_description")}</div>
@@ -454,6 +455,22 @@ const JoinRuleSettings : React.FC<JoinRuleSettingsProps> = ({
         return <TchapRoomLinkAccess room={room} onUpdateParentView={activateLinkSharingChange}></TchapRoomLinkAccess>
     }
 
+    const renderStandaloneExternalButton = () => {
+        // show the toggle only on share link activated
+        if (isShareLinkActivated) {
+            return (
+                <LabelledToggleSwitch 
+                    className="tc_JoinRuleSettings_externs_switch"
+                    value={openedToExternalUsers}
+                    onChange={onExternalAccessChange}
+                    label={_t("Allow external users to join this room")}
+                    disabled={disabled || openedToExternalUsers}
+                    data-testid="standalone_external_switch"/>
+            );
+        }
+        return null;
+    }
+
     return (
         <>
             {!isShareLinkActivated && <StyledRadioGroup
@@ -464,6 +481,7 @@ const JoinRuleSettings : React.FC<JoinRuleSettingsProps> = ({
                 disabled={disabled}
                 className="mx_JoinRuleSettings_radioButton"
             />}
+            { renderStandaloneExternalButton() }
             { renderLinkSharing() }
         </>
     );

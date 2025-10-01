@@ -59,7 +59,7 @@ export default class TchapRoomUtils {
      */
     static isUserAdmin(room: Room) : boolean {
         const userId = room.client.getSafeUserId();
-        return room.getMember(userId)?.powerLevelNorm == 100
+        return room.getMember(userId)?.powerLevel == 100
     }
 
     static getRoomJoinRule(room: Room): JoinRule|undefined {

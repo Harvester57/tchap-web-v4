@@ -295,47 +295,6 @@ describe("Tests sso and oidc native flow", () => {
         });
     });
 
-    /* Unit Test does not work, tested by hand
-    it("should redirect to login when m.login.password is detected (during MAS migration)", async () => {
-        
-        const config: ConfigOptions = 
-            { tchap_mas_flow:{ 
-                isActive: true , 
-                isMASmigration: true 
-            } 
-        };
-        SdkConfig.put(config);
-        
-         mockedLogin.mockImplementation(() => ({
-            hsUrl: defaultHsUrl,
-            createTemporaryClient: jest.fn().mockReturnValue(mockedClient),
-            getFlows: jest.fn().mockResolvedValue([{ type: "m.login.pasword" }]),
-        }));
-
-        renderEmailVerificationPage();
-
-        // Mock the implementation without error, what we want is to be sure they are called with the correct parameters
-        mockedFetchHomeserverFromEmail(defaultHsUrl);
-        mockedValidatedServerConfig(false, defaultHsUrl);
-        mockedPlatformPegStartSSO(false);
-
-        // Put text in email field
-        const emailField = screen.getByRole("textbox");
-        fireEvent.focus(emailField);
-        fireEvent.change(emailField, { target: { value: userEmail } });
-
-        await flushPromises();
-
-        // click on proconnect button
-        const proconnectButton = screen.getByTestId("mas-submit");
-        await act(async () => {
-            await fireEvent.click(proconnectButton);
-        });
-        
-        expect(onServerConfigChangeMock).toHaveBeenCalled();
-    });
-    */
-
     it("should call start oidc native flow with login_hint", async () => {
         const config: ConfigOptions = {
             tchap_mas_flow: {
