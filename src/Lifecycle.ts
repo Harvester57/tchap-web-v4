@@ -942,10 +942,12 @@ let _isLoggingOut = false;
  */
 async function doLogout(client: MatrixClient, oidcClientStore?: OidcClientStore): Promise<void> {
     if (oidcClientStore?.isUserAuthenticatedWithOidc) {
-        const accessToken = client.getAccessToken() ?? undefined;
-        const refreshToken = client.getRefreshToken() ?? undefined;
-
-        await oidcClientStore.revokeTokens(accessToken, refreshToken);
+        // :TCHAP: logout from MAS
+        const signoutRequest = (await oidcClientStore.createSignoutRequest()).url;
+        if (signoutRequest) {
+            window.location.href = signoutRequest;
+        }
+        // end :TCHAP: 
     } else {
         await client.logout(true);
     }

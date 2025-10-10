@@ -8,7 +8,7 @@ Please see LICENSE files in the repository root for full details.
 
 import { type MatrixClient, discoverAndValidateOIDCIssuerWellKnown } from "matrix-js-sdk/src/matrix";
 import { logger } from "matrix-js-sdk/src/logger";
-import { OidcClient } from "oidc-client-ts";
+import { OidcClient, type SignoutRequest } from "oidc-client-ts";
 
 import {
     getStoredOidcTokenIssuer,
@@ -102,6 +102,22 @@ export class OidcClientStore {
             throw new Error("Failed to revoke tokens");
         }
     }
+    
+    // :TCHAP: logout from MAS
+    public async createSignoutRequest(accessToken?: string, refreshToken?: string): Promise<SignoutRequest> {
+        const client = await this.getOidcClient();
+        const idToken = getStoredOidcIdToken();
+
+        if (!client) {
+            throw new Error("No OIDC client");
+        }
+        
+        return client.createSignoutRequest({
+            id_token_hint: idToken,
+            post_logout_redirect_uri: PlatformPeg.get()!.getOidcCallbackUrl().href
+        })
+    }
+    // end :TCHAP: 
 
     /**
      * Try to revoke a given token
