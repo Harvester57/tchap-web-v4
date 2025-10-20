@@ -40,4 +40,12 @@ export default class TchapUrls {
     public static helpPrivacyPolicy = `https://tchap.numerique.gouv.fr/politique-de-confidentialite/`;
     
     public static helpReinitializeSC = `${TchapUrls.helpBaseUrl}/fr/article/reinitialisation-de-la-securite-des-appareils-1p8tsp9`;
+
+    public static helpPopupSC = `${TchapUrls.helpBaseUrl}/fr/article/popup-persistante-demandant-le-code-de-recuperation-169ogzh/`;
+}
+
+export enum TCHAP_AVAILABLE_LINK {
+    PRIVACY_POLICY = "helpPrivacyPolicy",
+    HELP_INIT_SC = "helpReinitializeSC",
+    HELP_POPUP_PERSISTENT = "helpPopupSC"
 }

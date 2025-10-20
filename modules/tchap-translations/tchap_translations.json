@@ -1051,5 +1051,21 @@
     "settings|security|message_search_indexed_messages": {
         "en": "Number of messages processed:",
         "fr": "Nombres de messages traités :"
+    },
+    "encryption|key_storage_out_of_sync": {
+        "en": "Automatic messages backup is not in sync",
+        "fr": "La sauvegarde automatique n'est pas synchronisé"
+    },
+    "encryption|key_storage_out_of_sync_description": {
+        "en": "Confirm your Recovery Code to be in sync. If this persist, you can try to deactivate and reactivate the automatic messages backup, and then reconfigure your Recovery Code. <a> Learn more </a>",
+        "fr": "Confirmez votre Code de Récupération pour vous synchroniser. Si cette action persiste, vous pouvez essayer de désactiver et réactiver la sauvegarde automatique, puis reconfigurer votre Code de Récupération. <a> En savoir plus </a>"
+    },
+    "encryption|enter_recovery_key": {
+        "en": "Enter Recovery Code",
+        "fr": "Saisir le Code de Récupération"
+    },
+    "encryption|forgot_recovery_key": {
+        "en": "Forgot recovery code ?",
+        "fr": "Code de Récupération oublié?"
     }
 }
