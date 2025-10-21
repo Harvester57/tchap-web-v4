@@ -25,8 +25,9 @@ import DialogButtons from "../elements/DialogButtons";
 import { sendSentryReport } from "../../../sentry";
 import defaultDispatcher from "../../../dispatcher/dispatcher";
 import { Action } from "../../../dispatcher/actions";
-import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils"; // :TCHAP:
 import { getBrowserSupport } from "../../../SupportedBrowser";
+
+import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils"; // :TCHAP:
 
 export interface BugReportDialogProps {
     onFinished: (success: boolean) => void;
@@ -279,7 +280,7 @@ export default class BugReportDialog extends React.Component<BugReportDialogProp
             <BaseDialog
             className="mx_BugReportDialog"
             onFinished={this.onCancel}
-            title={_t('Submit debug logs to Tchap support team')}
+            title={_t('bug_reporting|title')}
             contentId="mx_Dialog_content"
         >
             <div className="mx_Dialog_content" id="mx_Dialog_content">
@@ -298,7 +299,7 @@ export default class BugReportDialog extends React.Component<BugReportDialogProp
                 {error}
                 <div className="mx_BugReportDialog_send_logs">
                     <DialogButtons
-                        primaryButton={_t("bug_reporting|send_logs")}
+                        primaryButton={_t("action|upload")}
                         onPrimaryButtonClick={this.onSubmit}
                         focus={true}
                         hasCancel={false}
@@ -307,17 +308,11 @@ export default class BugReportDialog extends React.Component<BugReportDialogProp
                 </div>
 
                 <div className="mx_BugReportDialog_download">
-                    <p>
-                        { _t("Just want to get your own logs, without sharing them with the Tchap team?") }
-                    </p>
-                    <DialogButtons
-                        primaryButton={_t("bug_reporting|download_logs")}
-                        onPrimaryButtonClick={this.onDownload}
-                        focus={true}
-                        hasCancel={false}
-                        disabled={this.state.downloadBusy}
-                    />
-                    {this.state.downloadProgress && <span>{this.state.downloadProgress} ...</span>}
+                        {_t("bug_reporting|download_left")} &nbsp;
+                        <AccessibleButton onClick={this.onDownload} kind="link" disabled={this.state.downloadBusy}>
+                            {_t("bug_reporting|download_right")}
+                        </AccessibleButton>
+                        {this.state.downloadProgress && <span>{this.state.downloadProgress} ...</span>}
                 </div>
             </div>
         </BaseDialog>
