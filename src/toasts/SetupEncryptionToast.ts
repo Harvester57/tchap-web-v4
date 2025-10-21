@@ -7,7 +7,7 @@ Please see LICENSE files in the repository root for full details.
 */
 
 import KeyIcon from "@vector-im/compound-design-tokens/assets/web/icons/key";
-import { type ComponentType } from "react";
+import { type ReactNode, type ComponentType } from "react";
 
 import type React from "react";
 import Modal from "../Modal";
@@ -25,6 +25,8 @@ import { Action } from "../dispatcher/actions";
 import { UserTab } from "../components/views/dialogs/UserTab";
 import defaultDispatcher from "../dispatcher/dispatcher";
 import ConfirmKeyStorageOffDialog from "../components/views/dialogs/ConfirmKeyStorageOffDialog";
+import Tchapi18nUtils from "../tchap/i18n/Tchapi18nUtils";
+import { TCHAP_AVAILABLE_LINK } from "../tchap/util/TchapUrls";
 
 const TOAST_KEY = "setupencryption";
 
@@ -101,7 +103,8 @@ const getSecondaryButtonLabel = (kind: Kind): string => {
     }
 };
 
-const getDescription = (kind: Kind): string => {
+// :TCHAP: added ReactNode return type const getDescription = (kind: Kind): string  => {
+const getDescription = (kind: Kind): string | ReactNode => {
     switch (kind) {
         case Kind.SET_UP_RECOVERY:
             return _t("encryption|set_up_recovery_toast_description");
@@ -109,7 +112,11 @@ const getDescription = (kind: Kind): string => {
             return _t("encryption|verify_toast_description");
         case Kind.KEY_STORAGE_OUT_OF_SYNC:
         case Kind.KEY_STORAGE_OUT_OF_SYNC_STORE:
-            return _t("encryption|key_storage_out_of_sync_description");
+            // :TCHAP: return _t("encryption|key_storage_out_of_sync_description")
+            return _t("encryption|key_storage_out_of_sync_description", {},
+            {
+                a: (sub) => Tchapi18nUtils.simpleLink(sub, TCHAP_AVAILABLE_LINK.HELP_POPUP_PERSISTENT)
+            });
         case Kind.TURN_ON_KEY_STORAGE:
             return _t("encryption|turn_on_key_storage_description");
     }

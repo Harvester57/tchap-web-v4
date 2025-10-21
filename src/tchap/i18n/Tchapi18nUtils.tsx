@@ -1,6 +1,6 @@
 import React from "react";
 import { _t } from "~tchap-web/src/languageHandler";
-import TchapUrls from "../util/TchapUrls";
+import TchapUrls, { TCHAP_AVAILABLE_LINK } from "../util/TchapUrls";
 
 
 export default class Tchapi18nUtils {
@@ -16,6 +16,14 @@ export default class Tchapi18nUtils {
                     </a>
                 ),
             },
+        )
+    }
+
+    public static simpleLink(sub: string, link: TCHAP_AVAILABLE_LINK) {
+        return (
+            <a href={TchapUrls[link]} rel="noreferrer noopener" target="_blank">
+                {sub}
+            </a>
         )
     }
 }
