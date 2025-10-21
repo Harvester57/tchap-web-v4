@@ -1,13 +1,16 @@
 
-import React from 'react'
+import React, { JSX } from 'react'
+
+import "../../../../../res/css/common/_TchapLeftPanel.pcss";
 
 import { ChevronFace, alwaysAboveRightOf, useContextMenu } from '~tchap-web/src/components/structures/ContextMenu';
 import AccessibleButton from '~tchap-web/src/components/views/elements/AccessibleButton';
 import classNames from 'classnames';
 import { _t } from '../../../../languageHandler';
-import "../../../../../res/css/common/_TchapLeftPanel.pcss";
 import IconizedContextMenu, { IconizedContextMenuOption, IconizedContextMenuOptionList } from '~tchap-web/src/components/views/context_menus/IconizedContextMenu';
 import TchapUrls from '../../../util/TchapUrls';
+import Modal from '~tchap-web/src/Modal';
+import BugReportDialog from '~tchap-web/src/components/views/dialogs/BugReportDialog';
 
 const QuickFaqButton: React.FC<{
     isPanelCollapsed: boolean;
@@ -45,6 +48,17 @@ const QuickFaqButton: React.FC<{
                         label={_t("quick_faq|guides")}
                         onClick={(e) => {
                             window.open(TchapUrls.helpUserOnboarding, '_blank')
+                        }}
+                    />
+                    <IconizedContextMenuOption
+                        iconClassName="mx_UserMenu_iconBug"
+                        label={_t("quick_faq|bug")}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                    
+                            Modal.createDialog(BugReportDialog);
+                            closeMenu(e);
                         }}
                     />
                 </IconizedContextMenuOptionList>

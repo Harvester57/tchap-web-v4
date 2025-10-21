@@ -139,10 +139,6 @@
         "en": "Invite someone using their name, email address, username (like <userId/>) or <a>share this space</a>. It is possible to invite multiple people by copy-pasting an email list separated by a comma (prenom1.nom1@beta.gouv.fr, prenom2.nom2@beta.gouv.fr, prenom3.nom3@beta.gouv.fr) or separated by a line break.",
         "fr": "Invitez quelqu’un grâce à son nom, adresse mail, nom d’utilisateur (tel que <userId/>) ou <a>partagez cet espace</a>. Il est possible d'inviter en masse en copiant et collant une liste de mails séparés par une virgule (prenom1.nom1@beta.gouv.fr, prenom2.nom2@beta.gouv.fr, prenom3.nom3@beta.gouv.fr) ou séparés par un saut à la ligne."
     },
-    "Just want to get your own logs, without sharing them with the Tchap team?": {
-        "en": "Just want to get your own logs, without sharing them with the Tchap team?",
-        "fr": "Vous voulez juste obtenir vos journaux sans les partager avec l'équipe Tchap ?"
-    },
     "restore_key_backup_dialog|keys_restored_title": { "en": "Messages restored", "fr": "Messages récupérés" },
     "Known issues": { "en": "Known issues", "fr": "Problèmes connus" },
     "One of your devices <b>wants to check your Tchap Keys</b> to unlock your messages.": {
@@ -199,10 +195,22 @@
     },
     "Set up": { "en": "Activate", "fr": "Activer" },
     "auth|logout_dialog|use_key_backup": { "en": "Use automatic Backup", "fr": "Utiliser la sauvegarde automatique" },
-    "Submit debug logs to Tchap support team": {
+    "bug_reporting|title": {
         "comment": "The title of BugReportDialog is unclear, specify it",
-        "en": "Submit debug logs to Tchap support team",
-        "fr": "Envoyez les journaux de débogage à l'équipe support de Tchap"
+        "en": "Report a bug and send debug logs",
+        "fr": "Signalez un bug et envoyez les journaux de débogage"
+    },
+    "bug_reporting|download_left": {
+        "en": "You can also consult the logs by",
+        "fr": "Vous pouvez aussi consulter les journaux en les"
+    },
+    "bug_reporting|download_right": {
+        "en": "downloading them locally",
+        "fr": "téléchargeant localement"
+    },
+    "bug_reporting|description": {
+        "en": "The debug logs can contain sensitive data related to your application usage, such as your username, id or alias of room you visited, recent elements of the interface and username of other users. It does not contain messages or file shared.",
+        "fr": "Les journaux de débogage contiennent certaines données relatives à votre utilisation de l'application telles que votre nom d'utilisateur, les identifiants ou alias de salons que vous avez visités, les éléments récents de l’interface utilisés et les noms d’utilisateur d’autres personnes. Ils ne contiennent aucun message ni contenu échangé."
     },
     "restore_key_backup_dialog|count_of_successfully_restored_keys": {
         "en": "%(sessionCount)s messages have been successfully restored.",
@@ -659,6 +667,10 @@
     "quick_faq|guides": {
         "en": "Get started",
         "fr": "Prise en main"
+    },
+    "quick_faq|bug": {
+        "en": "Report a bug",
+        "fr": "Signaler un bug"
     },
     "create_space|add_details_prompt": {
         "en": "A space is a dedicated folder in which you can organize your discussions by themes.",

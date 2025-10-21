@@ -65,6 +65,7 @@
         "UIFeature.identityServer": true,
         "UIFeature.advancedEncryption": false,
         "UIFeature.locationSharing": true,
+        "UIFeature.feedback": false,
         "MessageComposerInput.showPollsButton": true,
         "RoomList.orderAlphabetically": false,
         "Spaces.allRoomsInHome": true,

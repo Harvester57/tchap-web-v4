@@ -60,5 +60,6 @@
     "settings|security|key_backup_connect",
     "encryption|set_up_toast_description",
     "auth|logout_dialog|use_key_backup",
-    "settings|security|message_search_space_used"
+    "settings|security|message_search_space_used",
+    "bug_reporting|download_logs"
 ]

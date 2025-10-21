@@ -24,7 +24,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
             class="mx_Heading_h3 mx_Dialog_title"
             id="mx_BaseDialog_title"
           >
-            Submit debug logs to Tchap support team
+            Bug reporting
           </h1>
         </div>
         <div
@@ -71,7 +71,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
                   data-testid="dialog-primary-button"
                   type="button"
                 >
-                  Send logs
+                  Upload
                 </button>
               </span>
             </div>
@@ -79,23 +79,14 @@ exports[`<BugReportDialog> should render as expected 1`] = `
           <div
             class="mx_BugReportDialog_download"
           >
-            <p>
-              Just want to get your own logs, without sharing them with the Tchap team?
-            </p>
+            bug_reporting
+              
             <div
-              class="mx_Dialog_buttons"
+              class="mx_AccessibleButton mx_AccessibleButton_hasKind mx_AccessibleButton_kind_link"
+              role="button"
+              tabindex="0"
             >
-              <span
-                class="mx_Dialog_buttons_row"
-              >
-                <button
-                  class="mx_Dialog_primary"
-                  data-testid="dialog-primary-button"
-                  type="button"
-                >
-                  Download logs
-                </button>
-              </span>
+              bug_reporting
             </div>
           </div>
         </div>
@@ -133,7 +124,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
           class="mx_Heading_h3 mx_Dialog_title"
           id="mx_BaseDialog_title"
         >
-          Submit debug logs to Tchap support team
+          Bug reporting
         </h1>
       </div>
       <div
@@ -180,7 +171,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
                 data-testid="dialog-primary-button"
                 type="button"
               >
-                Send logs
+                Upload
               </button>
             </span>
           </div>
@@ -188,23 +179,14 @@ exports[`<BugReportDialog> should render as expected 1`] = `
         <div
           class="mx_BugReportDialog_download"
         >
-          <p>
-            Just want to get your own logs, without sharing them with the Tchap team?
-          </p>
+          bug_reporting
+            
           <div
-            class="mx_Dialog_buttons"
+            class="mx_AccessibleButton mx_AccessibleButton_hasKind mx_AccessibleButton_kind_link"
+            role="button"
+            tabindex="0"
           >
-            <span
-              class="mx_Dialog_buttons_row"
-            >
-              <button
-                class="mx_Dialog_primary"
-                data-testid="dialog-primary-button"
-                type="button"
-              >
-                Download logs
-              </button>
-            </span>
+            bug_reporting
           </div>
         </div>
       </div>
