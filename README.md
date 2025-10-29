@@ -21,7 +21,6 @@ Tchap is a web app that allows you to chat through the matrix protocol for the F
 
 ## Config variables
 
-<<<<<<< HEAD
 - tchap_features : Object containing the feature that can be activated by homeserver
     - "feature_email_notification": Email notification
     - "feature_space": Creation of spaces
@@ -32,30 +31,6 @@ Tchap is a web app that allows you to chat through the matrix protocol for the F
     - "feature_screenshare_call": Activate 1 to 1 screenshare
 - "tchap_sso_flow"
     - "isActive": Activate ProConnect SSO flow
-=======
-- Supported
-    - Definition:
-        - Issues **actively triaged**, regressions **block** the release
-    - Last 2 major versions of Chrome, Firefox, and Edge on desktop OSes
-    - Last 2 versions of Safari
-    - Latest release of official Element Desktop app on desktop OSes
-    - Desktop OSes means macOS, Windows, and Linux versions for desktop devices
-      that are actively supported by the OS vendor and receive security updates
-- Best effort
-    - Definition:
-        - Issues **accepted**, regressions **do not block** the release
-        - The wider Element Products (including Element Call and the Enterprise Server Suite) do still not officially support these browsers.
-        - The element web project and its contributors should keep the client functioning and gracefully degrade where other sibling features (E.g. Element Call) may not function.
-    - Last major release of Firefox ESR and Chrome/Edge Extended Stable
-- Community Supported
-    - Definition:
-        - Issues **accepted**, regressions **do not block** the release
-        - Community contributions are welcome to support these issues
-    - Mobile web for current stable version of Chrome, Firefox, and Safari on Android, iOS, and iPadOS
-- Not supported
-    - Definition: Issues only affecting unsupported environments are **closed**
-    - Everything else
->>>>>>> v1.12.2
 
 ## File structures
 

@@ -29,8 +29,6 @@
     "encryption|verification|incoming_sas_user_dialog_text_2",
     "encryption|verification|no_key_or_device",
     "encryption|verification|successful_device",
-    "encryption|verification|verification_dialog_title_device",
-    "encryption|verification|verification_dialog_title_user",
     "error|connection",
     "error|mixed_content",
     "error|tls",
@@ -61,5 +59,7 @@
     "encryption|set_up_toast_description",
     "auth|logout_dialog|use_key_backup",
     "settings|security|message_search_space_used",
-    "bug_reporting|download_logs"
+    "bug_reporting|download_logs",
+    "create_space|private_only_heading",
+    "room_settings|security|join_rule_world_readable_description"
 ]
