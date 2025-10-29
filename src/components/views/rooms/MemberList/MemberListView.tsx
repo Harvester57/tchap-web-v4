@@ -8,7 +8,7 @@ Please see LICENSE files in the repository root for full details.
 import { Form } from "@vector-im/compound-web";
 import React, { type JSX, useCallback } from "react";
 
-import { Flex } from "../../../../shared-components/utils/Flex";
+import { Flex } from "../../../../../packages/shared-components/src/utils/Flex";
 import {
     type MemberWithSeparator,
     SEPARATOR,
@@ -28,7 +28,7 @@ interface IProps {
 
 const MemberListView: React.FC<IProps> = (props: IProps) => {
     const vm = useMemberListViewModel(props.roomId);
-    const { isPresenceEnabled, onClickMember, memberCount } = vm;
+    const { isPresenceEnabled, memberCount } = vm;
 
     const getItemKey = useCallback((item: MemberWithSeparator): string => {
         if (item === SEPARATOR) {
@@ -80,19 +80,6 @@ const MemberListView: React.FC<IProps> = (props: IProps) => {
         [isPresenceEnabled, getItemKey, memberCount],
     );
 
-    const handleSelectItem = useCallback(
-        (item: MemberWithSeparator): void => {
-            if (item !== SEPARATOR) {
-                if (item.member) {
-                    onClickMember(item.member);
-                } else {
-                    onClickMember(item.threePidInvite);
-                }
-            }
-        },
-        [onClickMember],
-    );
-
     const isItemFocusable = useCallback((item: MemberWithSeparator): boolean => {
         return item !== SEPARATOR;
     }, []);
@@ -112,7 +99,6 @@ const MemberListView: React.FC<IProps> = (props: IProps) => {
                 </Form.Root>
                 <ListView
                     items={vm.members}
-                    onSelectItem={handleSelectItem}
                     getItemComponent={getItemComponent}
                     getItemKey={getItemKey}
                     isItemFocusable={isItemFocusable}

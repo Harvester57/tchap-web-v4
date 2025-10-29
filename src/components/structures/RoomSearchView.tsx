@@ -21,7 +21,6 @@ import { _t } from "../../languageHandler";
 import { haveRendererForEvent } from "../../events/EventTileFactory";
 import SearchResultTile from "../views/rooms/SearchResultTile";
 import { searchPagination, SearchScope } from "../../Searching";
-import type ResizeNotifier from "../../utils/ResizeNotifier";
 import MatrixClientContext from "../../contexts/MatrixClientContext";
 import { RoomPermalinkCreator } from "../../utils/permalinks/Permalinks";
 import { useScopedRoomContext } from "../../contexts/ScopedRoomContext.tsx";
@@ -45,7 +44,6 @@ interface Props {
     inProgress: boolean;
     promise: Promise<ISearchResults>;
     abortController?: AbortController;
-    resizeNotifier: ResizeNotifier;
     className: string;
     onUpdate(inProgress: boolean, results: ISearchResults | null, error: Error | null): void;
     ref?: Ref<ScrollPanel>;
@@ -58,7 +56,6 @@ export const RoomSearchView = ({
     scope,
     promise,
     abortController,
-    resizeNotifier,
     className,
     onUpdate,
     inProgress,
@@ -318,7 +315,6 @@ export const RoomSearchView = ({
             ref={onRef}
             className={"mx_RoomView_searchResultsPanel " + className}
             onFillRequest={onSearchResultsFillRequest}
-            resizeNotifier={resizeNotifier}
         >
             <li className="mx_RoomView_scrollheader" />
             {ret}

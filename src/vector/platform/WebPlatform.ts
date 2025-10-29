@@ -270,8 +270,12 @@ export default class WebPlatform extends BasePlatform {
         window.location.reload();
     }
 
+<<<<<<< HEAD
     // :TCHAP: TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
     public async checkSessionLockFree(): Promise<boolean> {
+=======
+    public checkSessionLockFree(): boolean {
+>>>>>>> v1.12.2
         return SessionLock.checkSessionLockFree();
     }
 

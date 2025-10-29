@@ -18,7 +18,7 @@ import { LegacyCallEventGrouperEvent } from "../../structures/LegacyCallEventGro
 import AccessibleButton from "../elements/AccessibleButton";
 import InfoTooltip, { InfoTooltipKind } from "../elements/InfoTooltip";
 import { formatPreciseDuration } from "../../../DateUtils";
-import { Clock } from "../../../shared-components/audio/Clock";
+import { Clock } from "../../../../packages/shared-components/src/audio/Clock";
 
 import Modal from "~tchap-web/src/Modal"; // :TCHAP: bug-reporting
 import BugReportDialog from "~tchap-web/src/components/views/dialogs/BugReportDialog"; // :TCHAP: bug-reporting

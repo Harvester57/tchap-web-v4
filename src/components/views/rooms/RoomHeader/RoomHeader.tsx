@@ -25,8 +25,8 @@ import { RightPanelPhases } from "../../../../stores/right-panel/RightPanelStore
 import { useMatrixClientContext } from "../../../../contexts/MatrixClientContext.tsx";
 import { useRoomMemberCount, useRoomMembers } from "../../../../hooks/useRoomMembers.ts";
 import { _t } from "../../../../languageHandler.tsx";
-import { Flex } from "../../../../shared-components/utils/Flex";
-import { Box } from "../../../../shared-components/utils/Box";
+import { Flex } from "../../../../../packages/shared-components/src/utils/Flex";
+import { Box } from "../../../../../packages/shared-components/src/utils/Box";
 import { getPlatformCallTypeProps, useRoomCall } from "../../../../hooks/room/useRoomCall.tsx";
 import { useRoomThreadNotifications } from "../../../../hooks/room/useRoomThreadNotifications.ts";
 import { useGlobalNotificationState } from "../../../../hooks/useGlobalNotificationState.ts";
@@ -54,6 +54,7 @@ import { RoomSettingsTab } from "../../dialogs/RoomSettingsDialog.tsx";
 import { useScopedRoomContext } from "../../../../contexts/ScopedRoomContext.tsx";
 import { ToggleableIcon } from "./toggle/ToggleableIcon.tsx";
 import { CurrentRightPanelPhaseContextProvider } from "../../../../contexts/CurrentRightPanelPhaseContext.tsx";
+<<<<<<< HEAD
 import DecoratedRoomAvatar from "../../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
 
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: customize-room-header-bar
@@ -65,13 +66,16 @@ import Modal from "~tchap-web/src/Modal.tsx";
 import QuestionDialog from "../../dialogs/QuestionDialog.tsx";
 
 
+=======
+import { type LocalRoom } from "../../../../models/LocalRoom.ts";
+>>>>>>> v1.12.2
 
 export default function RoomHeader({
     room,
     additionalButtons,
     oobData,
 }: {
-    room: Room;
+    room: Room | LocalRoom;
     additionalButtons?: ViewRoomOpts["buttons"];
     oobData?: IOOBData;
 }): JSX.Element {
@@ -81,7 +85,7 @@ export default function RoomHeader({
     const joinRule = useRoomState(room, (state) => state.getJoinRule());
 
     const members = useRoomMembers(room, 2500);
-    const memberCount = useRoomMemberCount(room, { throttleWait: 2500 });
+    const memberCount = useRoomMemberCount(room, { throttleWait: 2500, includeInvited: true });
 
     const {
         voiceCallDisabledReason,
@@ -168,6 +172,7 @@ export default function RoomHeader({
                 disabled={!!videoCallDisabledReason}
                 color="primary"
                 aria-label={videoCallDisabledReason ?? _t("action|join")}
+                data-testId="join-call-button"
             >
                 {_t("action|join")}
             </Button>

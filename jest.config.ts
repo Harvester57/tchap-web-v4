@@ -68,7 +68,9 @@ const config: Config = {
         "@vector-im/compound-web": "<rootDir>/node_modules/compound-web-tchap",
         // end :TCHAP:
     },
-    transformIgnorePatterns: ["/node_modules/(?!(mime|matrix-js-sdk)).+$"],
+    transformIgnorePatterns: [
+        "/node_modules/(?!(mime|matrix-js-sdk|uuid|p-retry|is-network-error|react-merge-refs)).+$",
+    ],
     collectCoverageFrom: [
         "<rootDir>/src/**/*.{js,ts,tsx}",
         // getSessionLock is piped into a different JS context via stringification, and the coverage functionality is

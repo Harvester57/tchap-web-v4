@@ -1,6 +1,8 @@
 {
     "a11y": {
+        "emoji_picker": "Trình chọn biểu tượng cảm xúc",
         "jump_first_invite": "Chuyển đến lời mời đầu tiên.",
+        "message_composer": "Trình soạn tin nhắn",
         "n_unread_messages": {
             "one": "1 tin chưa đọc.",
             "other": "%(count)s tin nhắn chưa đọc."
@@ -145,6 +147,7 @@
         "enable_prompt": "Giúp cải thiện %(analyticsOwner)s",
         "learn_more": "Chia sẻ dữ liệu ẩn danh giúp chúng tôi xác định các sự cố. Không có thông tin cá nhân. Không có bên thứ ba. <LearnMoreLink>Tìm hiểu thêm</LearnMoreLink>",
         "privacy_policy": "Bạn có thể đọc tất cả các điều khoản của chúng tôi <PrivacyPolicyUrl>ở đây</PrivacyPolicyUrl>",
+        "pseudonymous_usage_data": "Giúp chúng tôi xác định các vấn đề và cải thiện%(analyticsOwner)s bằng cách chia sẻ dữ liệu sử dụng ẩn danh. Để hiểu cách mọi người sử dụng nhiều thiết bị, chúng tôi sẽ tạo một mã định danh ngẫu nhiên, được chia sẻ bởi các thiết bị của bạn.",
         "shared_data_heading": "Bất kỳ dữ liệu nào sau đây đều có thể được chia sẻ:"
     },
     "auth": {
@@ -383,6 +386,7 @@
         "beta": "Thử nghiệm",
         "camera": "Máy ảnh",
         "cameras": "Máy quay",
+        "capabilities": "Khả năng",
         "copied": "Đã sao chép!",
         "credits": "Ghi công",
         "dark": "Tối",
@@ -490,7 +494,6 @@
         "user": "Người dùng",
         "user_avatar": "Ảnh đại diện",
         "username": "Tên đăng nhập",
-        "verification_cancelled": "Đã hủy xác thực",
         "verified": "Đã xác thực",
         "version": "Phiên bản",
         "video": "Truyền hình",
@@ -640,6 +643,7 @@
         "developer_mode": "Chế độ nhà phát triển",
         "developer_tools": "Những công cụ phát triển",
         "edit_setting": "Chỉnh sửa cài đặt",
+        "edit_values": "Chỉnh sửa giá trị",
         "empty_string": "<chuỗi rỗng>",
         "event_content": "Nội dung sự kiện",
         "event_id": "Định danh (ID) sự kiện: %(eventId)s",
@@ -649,19 +653,36 @@
         "explore_room_account_data": "Xem thông tin tài khoản trong phòng",
         "explore_room_state": "Xem trạng thái phòng",
         "failed_to_find_widget": "Đã xảy ra lỗi khi tìm tiện ích widget này.",
+        "failed_to_load": "Không tải được.",
+        "failed_to_save": "Lưu cài đặt thất bại",
         "failed_to_send": "Không thể gửi sự kiện!",
+        "id": "ID: ",
         "invalid_json": "Không giống mã JSON hợp lệ.",
         "level": "Cấp độ",
         "low_bandwidth_mode": "Chế độ băng thông thấp",
         "low_bandwidth_mode_description": "Cần máy chủ nhà tương thích.",
+        "main_timeline": "Dòng thời gian chính",
+        "no_receipt_found": "Không tìm thấy biên lai",
+        "notification_state": "Trạng thái thông báo là <strong> %(notificationState)s </strong>",
         "notifications_debug": "Gỡ lỗi thông báo",
         "number_of_users": "Số người dùng",
         "original_event_source": "Nguồn sự kiện ban đầu",
         "room_encrypted": "Phòng <strong>được mã hóa ✅</strong>",
         "room_id": "Định danh phòng: %(roomId)s",
         "room_not_encrypted": "Phòng <strong>không được mã hóa 🚨</strong>",
+        "room_notifications_dot": "Dấu chấm: ",
+        "room_notifications_highlight": "Nổi bật: ",
+        "room_notifications_last_event": "Sự kiện cuối:",
+        "room_notifications_sender": "Người gửi: ",
+        "room_notifications_thread_id": "ID luồng: ",
+        "room_notifications_total": "Tổng: ",
+        "room_notifications_type": "Loại: ",
         "room_status": "Trạng thái phòng",
+        "room_unread_status_count": {
+            "other": "Trạng thái phòng chưa đọc: <strong>%(status)s</strong>, số lượng: <strong>%(count)s</strong>"
+        },
         "save_setting_values": "Lưu các giá trị cài đặt",
+        "see_history": "Xem lịch sử",
         "send_custom_account_data_event": "Gửi sự kiện tài khoản tùy chỉnh",
         "send_custom_room_account_data_event": "Gửi sự kiện tài khoản tùy chỉnh trong phòng",
         "send_custom_state_event": "Gửi sự kiện trạng thái tùy chỉnh",
@@ -676,10 +697,16 @@
         "settings_explorer": "Xem cài đặt",
         "show_hidden_events": "Hiện các sự kiện ẩn trong dòng thời gian",
         "state_key": "Chìa khóa trạng thái",
+        "thread_root_id": "ID luồng gốc: %(threadRootId)s",
+        "threads_timeline": "Dòng thời gian luồng",
         "title": "Công cụ phát triển",
         "toggle_event": "chuyển đổi sự kiện",
         "toolbox": "Hộp công cụ",
         "use_at_own_risk": "Giao diện người dùng này KHÔNG kiểm tra các loại giá trị. Sử dụng và hãy biết nguy cơ.",
+        "user_read_up_to": "Người dùng đọc lên tới: ",
+        "user_read_up_to_ignore_synthetic": "Người dùng đọc đến (ignoreSynthetic): ",
+        "user_read_up_to_private": "Người dùng đọc lên tới (m.read.private): ",
+        "user_read_up_to_private_ignore_synthetic": "Người dùng đọc lên tới (m.read.private; IgnoreSynthetic): ",
         "value": "Giá trị",
         "value_colon": "Giá trị:",
         "value_in_this_room": "Giá trị trong phòng này",
@@ -755,7 +782,6 @@
             "title": "Phương thức Khôi phục đã bị xóa",
             "warning": "Nếu bạn không xóa phương pháp khôi phục, kẻ tấn công có thể đang cố truy cập vào tài khoản của bạn. Thay đổi mật khẩu tài khoản của bạn và đặt phương pháp khôi phục mới ngay lập tức trong Cài đặt."
         },
-        "reset_all_button": "Quên hoặc mất tất cả các phương pháp khôi phục? Đặt lại tất cả <a>Reset all</a>",
         "set_up_toast_title": "Thiết lập Sao lưu Bảo mật",
         "setup_secure_backup": {
             "explainer": "Sao lưu chìa khóa của bạn trước khi đăng xuất để tránh mất chúng."
@@ -774,12 +800,8 @@
             "after_new_login": {
                 "device_verified": "Thiết bị được xác thực",
                 "skip_verification": "Bỏ qua xác thực ngay bây giờ",
-                "unable_to_verify": "Không thể xác thực thiết bị này",
                 "verify_this_device": "Xác thực thiết bị này"
             },
-            "cancelled": "Bạn đã hủy xác thực.",
-            "cancelled_self": "Bạn đã hủy xác thực trên thiết bị khác của bạn.",
-            "cancelled_user": "%(displayName)s đã hủy xác thực.",
             "cancelling": "Đang hủy…",
             "complete_action": "Hiểu rồi",
             "complete_description": "Bạn đã xác thực thành công người dùng này.",
@@ -794,45 +816,32 @@
             "incoming_sas_dialog_waiting": "Đang đợi bên kia xác nhận…",
             "incoming_sas_user_dialog_text_1": "Xác thực người dùng này để đánh dấu họ là đáng tin cậy. Người dùng đáng tin cậy giúp bạn yên tâm hơn khi sử dụng các tin nhắn được mã hóa end-to-end.",
             "incoming_sas_user_dialog_text_2": "Việc xác thực người dùng này sẽ đánh dấu phiên của họ là đáng tin cậy và cũng đánh dấu phiên của bạn là đáng tin cậy đối với họ.",
-            "no_key_or_device": "Có vẻ như bạn không có Khóa Bảo mật hoặc bất kỳ thiết bị nào bạn có thể xác thực. Thiết bị này sẽ không thể truy cập vào các tin nhắn mã hóa cũ. Để  xác minh danh tính của bạn trên thiết bị này, bạn sẽ cần đặt lại các khóa xác thực của mình.",
             "no_support_qr_emoji": "Thiết bị bạn đang cố xác thực không hỗ trợ quét mã QR hoặc xác minh biểu tượng cảm xúc, đó là những gì %(brand)s hỗ trợ. Hãy thử với một thiết bị đầu cuối khác.",
             "other_party_cancelled": "Người kia đã hủy xác thực.",
             "prompt_encrypted": "Xác thực tất cả người dùng trong một phòng để đảm bảo phòng đó an toàn.",
-            "prompt_self": "Bắt đầu xác thực lại từ thông báo.",
             "prompt_unencrypted": "Trong các phòng mã hóa, xác thực tất cả người dùng để đảm bảo an toàn.",
-            "prompt_user": "Bắt đầu xác thực lại từ hồ sơ của họ.",
             "qr_or_sas": "%(qrCode)s hay %(emojiCompare)s",
-            "qr_or_sas_header": "Xác thực thiết bị này bằng việc hoàn tất một trong các điều sau:",
             "qr_prompt": "Quét mã duy nhất này",
-            "qr_reciprocate_same_shield_device": "Sắp xong rồi! Có phải thiết bị khác của bạn hiển thị cùng một lá chắn không?",
             "qr_reciprocate_same_shield_user": "Sắp xong rồi! %(displayName)s có hiển thị cùng một lá chắn không?",
-            "request_toast_accept": "Xác thực phiên",
             "request_toast_decline_counter": "Ẩn (%(counter)s)",
             "request_toast_detail": "%(deviceId)s từ %(ip)s",
-            "reset_proceed_prompt": "Tiến hành đặt lại",
             "sas_caption_self": "Xác thực thiết bị này bằng việc xác nhận số sau đây xuất hiện trên màn hình của nó.",
             "sas_caption_user": "Xác thực người dùng này bằng cách xác nhận số xuất hiện trên màn hình của họ.",
             "sas_description": "So sánh một bộ biểu tượng cảm xúc độc đáo nếu bạn không có camera trên một trong hai thiết bị",
-            "sas_emoji_caption_self": "Xác nhận biểu tượng cảm xúc bên dưới được hiển thị trên cả hai thiết bị, theo cùng một thứ tự:",
             "sas_emoji_caption_user": "Xác thực người dùng này bằng cách xác nhận biểu tượng cảm xúc sau xuất hiện trên màn hình của họ.",
             "sas_match": "Chúng phù hợp",
             "sas_no_match": "Chúng không phù hợp",
             "sas_prompt": "So sánh biểu tượng cảm xúc độc đáo",
             "scan_qr": "Xác thực bằng cách quét",
             "scan_qr_explainer": "Yêu cầu %(displayName)s quét mã của bạn:",
-            "self_verification_hint": "Để tiến hành, vui lòng chấp nhận yêu cầu xác thực trên thiết bị khác của bạn.",
             "start_button": "Bắt đầu xác thực",
-            "successful_device": "Bạn đã xác minh thành công %(deviceName)s (%(deviceId)s)!",
-            "successful_own_device": "Bạn đã xác minh thành công thiết bị của mình!",
             "successful_user": "Bạn đã xác thực thành công %(displayName)s!",
-            "timed_out": "Đã hết thời gian xác thực.",
             "unsupported_method": "Không thấy phương pháp xác thực nào được hỗ trợ.",
             "unverified_session_toast_accept": "Đó là tôi",
             "unverified_session_toast_title": "Đăng nhập mới. Đây có phải là bạn không?",
             "unverified_sessions_toast_description": "Xem lại để đảm bảo tài khoản của bạn an toàn",
             "unverified_sessions_toast_reject": "Để sau",
             "unverified_sessions_toast_title": "Bạn có các phiên chưa được xác thực",
-            "verification_description": "Xác thực danh tính của bạn để truy cập các tin nhắn được mã hóa và chứng minh danh tính của bạn với người khác.",
             "verification_dialog_title_device": "Xác thực thiết bị khác",
             "verification_dialog_title_user": "Yêu cầu xác thực",
             "verification_skip_warning": "Nếu không xác thực, bạn sẽ không thể truy cập vào tất cả tin nhắn của bạn và có thể hiển thị là không đáng tin cậy với những người khác.",
@@ -842,9 +851,6 @@
             "verify_emoji_prompt": "Xác thực bằng cách so sánh biểu tượng cảm xúc độc đáo.",
             "verify_emoji_prompt_qr": "Nếu bạn không thể quét mã ở trên, hãy xác thực bằng cách so sánh biểu tượng cảm xúc duy nhất.",
             "verify_later": "Tôi sẽ xác thực sau",
-            "verify_using_device": "Xác thực bằng thiết bị khác",
-            "verify_using_key": "Xác thực bằng Khóa Bảo mật",
-            "verify_using_key_or_phrase": "Xác thực bằng Khóa hoặc Chuỗi Bảo mật",
             "waiting_for_user_accept": "Đang chờ %(displayName)s chấp nhận…",
             "waiting_other_device": "Đang chờ bạn xác thực trên thiết bị khác của bạn…",
             "waiting_other_device_details": "Đang chờ bạn xác thực trên thiết bị khác của bạn, %(deviceName)s (%(deviceId)s)…",
@@ -919,10 +925,13 @@
             "user": "%(senderName)s đã bắt đầu một cuộc gọi",
             "you": "Bạn bắt đầu một cuộc gọi"
         },
+        "m.emote": "* %(senderName)s %(emote)s",
         "m.reaction": {
             "user": "%(sender)s phản ứng %(reaction)s với %(message)s",
             "you": "Bạn phản ứng %(reaction)s với %(message)s"
-        }
+        },
+        "m.sticker": "%(senderName)s: %(stickerName)s",
+        "m.text": "%(senderName)s: %(message)s"
     },
     "export_chat": {
         "cancelled": "Đã hủy trích xuất",
@@ -958,6 +967,7 @@
         "format": "Định dạng",
         "from_the_beginning": "Ngày từ đầu",
         "generating_zip": "Tạo ZIP",
+        "html": "HTML",
         "html_title": "Dữ liệu được trích xuất",
         "include_attachments": "Bao gồm các đính kèm",
         "json": "JSON",
@@ -1576,8 +1586,6 @@
             "send_message_start_dm": "Gửi tin nhắn đầu tiên để mời <displayName/> vào cuộc trò chuyện",
             "start_of_dm_history": "Đây là phần bắt đầu của lịch sử tin nhắn trực tiếp của bạn với <displayName/>.",
             "start_of_room": "Đây là phần bắt đầu của <roomName/>.",
-            "topic": "Chủ đề: %(topic)s ",
-            "topic_edit": "Chủ đề: %(topic)s (<a>edit</a>)",
             "unencrypted_warning": "Mã hóa đầu-cuối chưa được bật",
             "user_created": "%(displayName)s đã tạo phòng này.",
             "you_created": "Bạn đã tạo phòng này."
@@ -2024,7 +2032,9 @@
             "deactivate_confirm_content_3": "Không ai có thể dùng lại tên người dùng của bạn (MXID), kể cả bạn: tên người dùng này sẽ trở thành không có sẵn",
             "deactivate_confirm_content_4": "Bạn sẽ rời tất cả phòng và tin nhắn trực tiếp mà bạn đã tham gia",
             "deactivate_confirm_content_5": "Bạn sẽ bị xóa khỏi máy chủ định danh: bạn bè của bạn sẽ không tìm thấy bạn bằng địa chỉ thư điện tử hay số điện thoại",
+            "deactivate_confirm_content_6": "Tin nhắn cũ của bạn vẫn sẽ hiển thị với những người đã nhận được chúng, giống như email bạn đã gửi trước đây. Bạn có muốn ẩn tin nhắn đã gửi của mình khỏi những người tham gia phòng trong tương lai không?",
             "deactivate_confirm_continue": "Xác nhận việc hủy kích hoạt tài khoản",
+            "deactivate_confirm_erase_label": "Ẩn tin nhắn của tôi với những người tham gia sau",
             "deactivate_section": "Hủy kích hoạt Tài khoản",
             "deactivate_warning": "Vô hiệu hóa tài khoản của bạn là vĩnh viễn — hãy cẩn trọng!",
             "discovery_email_empty": "Tùy chọn khám phá sẽ xuất hiện khi nào bạn đã thêm địa chỉ thư điện tử.",
@@ -2115,6 +2125,9 @@
         },
         "notifications": {
             "default_setting_description": "Cài đặt này sẽ được áp dụng theo mặc định cho các tất cả các phòng của bạn.",
+            "email_description": "Nhận email tóm tắt các thông báo bị bỏ lỡ",
+            "email_section": "Tóm tắt email",
+            "email_select": "Chọn email bạn muốn gửi tóm tắt đến. Quản lý email của bạn trong<button> Tổng quan</button> .",
             "enable_audible_notifications_session": "Bật thông báo âm thanh cho phiên này",
             "enable_desktop_notifications_session": "Bật thông báo trên màn hình cho phiên này",
             "enable_email_notifications": "Bật thông báo qua thư điện tử cho %(email)s",
@@ -2324,7 +2337,6 @@
             "metaspaces_subsection": "Space để hiển thị",
             "title": "Thanh bên"
         },
-        "start_automatically": "Tự động khởi động sau khi đăng nhập hệ thống",
         "use_12_hour_format": "Hiển thị thời gian theo mẫu 12 giờ (ví dụ 2:30pm)",
         "use_command_enter_send_message": "Sử dụng Command + Enter để gửi tin nhắn",
         "use_command_f_search": "Sử dụng Command + F để tìm kiếm dòng thời gian",
@@ -2605,9 +2617,13 @@
         "n_hours_ago": "%(num)s giờ trước",
         "n_minutes_ago": "%(num)s phút trước",
         "seconds_left": "Còn %(seconds)s giây",
+        "short_days": "%(value)sngày",
         "short_days_hours_minutes_seconds": "%(days)s ngày %(hours)s giờ %(minutes)s phút %(seconds)s giây",
+        "short_hours": "%(value)sgiờ",
         "short_hours_minutes_seconds": "%(hours)s giờ %(minutes)s phút %(seconds)s giây",
-        "short_minutes_seconds": "%(minutes)s phút %(seconds)s giây"
+        "short_minutes": "%(value)sphút",
+        "short_minutes_seconds": "%(minutes)s phút %(seconds)s giây",
+        "short_seconds": "%(value)sgiây"
     },
     "timeline": {
         "context_menu": {
@@ -2884,6 +2900,9 @@
                 "one": "đã bị cấm",
                 "other": "đã bị cấm %(count)s lần"
             },
+            "changed_avatar": {
+                "other": "%(oneUser)sđã thay đổi ảnh đại diện của họ%(count)s lần"
+            },
             "changed_name": {
                 "one": "%(oneUser)s đã thay đổi tên của họ",
                 "other": "%(oneUser)s đã thay đổi tên của họ %(count)s lần"
@@ -2892,6 +2911,7 @@
                 "one": "%(severalUsers)s đã thay đổi tên của họ",
                 "other": "%(severalUsers)s đã thay đổi tên của họ %(count)s lần"
             },
+            "format": "%(nameList)s%(transitionList)s",
             "hidden_event": {
                 "other": "%(oneUser)sgửi %(count)s tin nhắn ẩn",
                 "one": "%(oneUser)sgửi một tin nhắn ẩn"

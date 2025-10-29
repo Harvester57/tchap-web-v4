@@ -13,7 +13,11 @@ import { SettingsSection } from "../shared/SettingsSection";
 import { _t } from "../../../../languageHandler";
 import { SettingsHeader } from "../SettingsHeader";
 import { useKeyStoragePanelViewModel } from "../../../viewmodels/settings/encryption/KeyStoragePanelViewModel";
+<<<<<<< HEAD
 import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
+=======
+import SdkConfig from "../../../../SdkConfig";
+>>>>>>> v1.12.2
 
 interface Props {
     /**
@@ -62,7 +66,11 @@ export const KeyStoragePanel: React.FC<Props> = ({ onKeyStorageDisableClick }) =
                 //     </a>
                 // ),
                 a: (sub) => (
+<<<<<<< HEAD
                     <a href={TchapUrls.helpSecureStorage} target="_blank" rel="noreferrer noopener">
+=======
+                    <a href={SdkConfig.get("help_encryption_url")} target="_blank" rel="noreferrer noopener">
+>>>>>>> v1.12.2
                         {sub}
                     </a>
                 ),

@@ -51,6 +51,10 @@ interface IProps {
     onMouseDownOnHeader?: (event: React.MouseEvent<Element, MouseEvent>) => void;
 
     showApps?: boolean;
+
+    sidebarShown: boolean;
+
+    setSidebarShown?: (sidebarShown: boolean) => void;
 }
 
 interface IState {
@@ -63,7 +67,6 @@ interface IState {
     primaryFeed?: CallFeed;
     secondaryFeed?: CallFeed;
     sidebarFeeds: Array<CallFeed>;
-    sidebarShown: boolean;
 }
 
 function getFullScreenElement(): Element | null {
@@ -98,7 +101,6 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
             primaryFeed: primary,
             secondaryFeed: secondary,
             sidebarFeeds: sidebar,
-            sidebarShown: true,
         };
     }
 
@@ -270,8 +272,9 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
             isScreensharing = await this.props.call.setScreensharingEnabled(true);
         }
 
+        this.props.setSidebarShown?.(true);
+
         this.setState({
-            sidebarShown: true,
             screensharing: isScreensharing,
         });
     };
@@ -321,12 +324,12 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
     };
 
     private onToggleSidebar = (): void => {
-        this.setState({ sidebarShown: !this.state.sidebarShown });
+        this.props.setSidebarShown?.(!this.props.sidebarShown);
     };
 
     private renderCallControls(): JSX.Element {
-        const { call, pipMode } = this.props;
-        const { callState, micMuted, vidMuted, screensharing, sidebarShown, secondaryFeed, sidebarFeeds } = this.state;
+        const { call, pipMode, sidebarShown } = this.props;
+        const { callState, micMuted, vidMuted, screensharing, secondaryFeed, sidebarFeeds } = this.state;
 
         // If SDPStreamMetadata isn't supported don't show video mute button in voice calls
         /** :TCHAP: hide-video-button-on-call-screen */ 
@@ -353,7 +356,8 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
         };
         /** end :TCHAP: */
         // Show the sidebar button only if there is something to hide/show
-        const sidebarButtonShown = (secondaryFeed && !secondaryFeed.isVideoMuted()) || sidebarFeeds.length > 0;
+        const sidebarButtonShown =
+            !pipMode && ((secondaryFeed && !secondaryFeed.isVideoMuted()) || sidebarFeeds.length > 0);
         // The dial pad & 'more' button actions are only relevant in a connected call
         const contextMenuButtonShown = callState === CallState.Connected;
         const dialpadButtonShown = callState === CallState.Connected && call.opponentSupportsDTMF();
@@ -388,7 +392,7 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
     }
 
     private renderToast(): JSX.Element | null {
-        const { call } = this.props;
+        const { call, sidebarShown } = this.props;
         const someoneIsScreensharing = call.getFeeds().some((feed) => {
             return feed.purpose === SDPStreamMetadataPurpose.Screenshare;
         });
@@ -396,7 +400,7 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
         if (!someoneIsScreensharing) return null;
 
         const isScreensharing = call.isScreensharing();
-        const { primaryFeed, sidebarShown } = this.state;
+        const { primaryFeed } = this.state;
         const sharerName = primaryFeed?.getMember()?.name;
         if (!sharerName) return null;
 
@@ -409,8 +413,8 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
     }
 
     private renderContent(): JSX.Element {
-        const { pipMode, call, onResize } = this.props;
-        const { isLocalOnHold, isRemoteOnHold, sidebarShown, primaryFeed, secondaryFeed, sidebarFeeds } = this.state;
+        const { pipMode, call, onResize, sidebarShown } = this.props;
+        const { isLocalOnHold, isRemoteOnHold, primaryFeed, secondaryFeed, sidebarFeeds } = this.state;
 
         const callRoomId = LegacyCallHandler.instance.roomIdForCall(call);
         const callRoom = (callRoomId ? MatrixClientPeg.safeGet().getRoom(callRoomId) : undefined) ?? undefined;
@@ -553,8 +557,8 @@ export default class LegacyCallView extends React.Component<IProps, IState> {
     }
 
     public render(): React.ReactNode {
-        const { call, secondaryCall, pipMode, showApps, onMouseDownOnHeader } = this.props;
-        const { sidebarShown, sidebarFeeds } = this.state;
+        const { call, secondaryCall, pipMode, showApps, onMouseDownOnHeader, sidebarShown } = this.props;
+        const { sidebarFeeds } = this.state;
 
         const client = MatrixClientPeg.safeGet();
         const callRoomId = LegacyCallHandler.instance.roomIdForCall(call);

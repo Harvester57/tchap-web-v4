@@ -908,23 +908,37 @@ test.describe("Timeline", () => {
             });
         });
 
-        test("should be able to hide an image", { tag: "@screenshot" }, async ({ page, app, room, context }) => {
-            await app.viewRoomById(room.roomId);
-            await sendImage(app.client, room.roomId, NEW_AVATAR);
-            await app.timeline.scrollToBottom();
-            const imgTile = page.locator(".mx_MImageBody").first();
-            await expect(imgTile).toBeVisible();
-            await imgTile.hover();
-            await page.getByRole("button", { name: "Hide" }).click();
+        test(
+            "should be able to hide an image",
+            { tag: "@screenshot" },
+            async ({ page, app, homeserver, room, context }) => {
+                await app.viewRoomById(room.roomId);
 
-            // Check that the image is now hidden.
-            await expect(page.getByRole("button", { name: "Show image" })).toBeVisible();
-        });
+                const bot = new Bot(page, homeserver, {});
+                await bot.prepareClient();
+                await app.client.inviteUser(room.roomId, bot.credentials.userId);
 
-        test("should be able to hide a video", async ({ page, app, room, context }) => {
+                await sendImage(bot, room.roomId, NEW_AVATAR);
+                await app.timeline.scrollToBottom();
+                const imgTile = page.locator(".mx_MImageBody").first();
+                await expect(imgTile).toBeVisible();
+                await imgTile.hover();
+                await page.getByRole("button", { name: "Hide" }).click();
+
+                // Check that the image is now hidden.
+                await expect(page.getByRole("button", { name: "Show image" })).toBeVisible();
+            },
+        );
+
+        test("should be able to hide a video", async ({ page, app, homeserver, room, context }) => {
             await app.viewRoomById(room.roomId);
-            const upload = await app.client.uploadContent(VIDEO_FILE, { name: "bbb.webm", type: "video/webm" });
-            await app.client.sendEvent(room.roomId, null, "m.room.message" as EventType, {
+
+            const bot = new Bot(page, homeserver, {});
+            await bot.prepareClient();
+            await app.client.inviteUser(room.roomId, bot.credentials.userId);
+
+            const upload = await bot.uploadContent(VIDEO_FILE, { name: "bbb.webm", type: "video/webm" });
+            await bot.sendEvent(room.roomId, null, "m.room.message" as EventType, {
                 msgtype: "m.video" as MsgType,
                 body: "bbb.webm",
                 url: upload.content_uri,
@@ -947,7 +961,7 @@ test.describe("Timeline", () => {
         const reply = "Reply";
         const viewRoomSendMessageAndSetupReply = async (page: Page, app: ElementAppPage, roomId: string) => {
             // View room
-            await page.goto(`/#/room/${roomId}`);
+            await app.viewRoomById(roomId);
 
             // Send a message
             const composer = app.getComposerField();
@@ -977,6 +991,24 @@ test.describe("Timeline", () => {
             const eventTileLine = page.locator(".mx_RoomView_body .mx_EventTile_last .mx_EventTile_line");
             await expect(eventTileLine.locator(".mx_ReplyTile .mx_MTextBody").getByText(MESSAGE)).toBeVisible();
             await expect(eventTileLine.getByText(reply)).toHaveCount(1);
+        });
+
+        test("can send a voice message", { tag: "@screenshot" }, async ({ page, app, room, context }) => {
+            await app.viewRoomById(room.roomId);
+
+            const composerOptions = await app.openMessageComposerOptions();
+            await composerOptions.getByRole("menuitem", { name: "Voice Message" }).click();
+
+            // Record an empty message
+            await page.waitForTimeout(3000);
+
+            const roomViewBody = page.locator(".mx_RoomView_body");
+            await roomViewBody
+                .locator(".mx_MessageComposer")
+                .getByRole("button", { name: "Send voice message" })
+                .click();
+
+            await expect(roomViewBody.locator(".mx_MVoiceMessageBody")).toMatchScreenshot("voice-message.png");
         });
 
         test("can reply with a voice message", async ({ page, app, room, context }) => {
