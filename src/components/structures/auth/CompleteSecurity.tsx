@@ -65,19 +65,7 @@ export default class CompleteSecurity extends React.Component<IProps, IState> {
         if (phase === Phase.Loading) {
             return null;
         } else if (phase === Phase.Intro) {
-<<<<<<< HEAD
-            if (lostKeys) {
-                /* :tchap: cross-signing-uihide anxious icon of warning
-                icon = <span className="mx_CompleteSecurity_headerIcon mx_E2EIcon_warning" />;
-                end :tchap: */
-                title = _t("encryption|verification|after_new_login|unable_to_verify");
-            } else {
-                icon = <span className="mx_CompleteSecurity_headerIcon mx_E2EIcon_warning" />;
-                title = _t("encryption|verification|after_new_login|verify_this_device");
-            }
-=======
             // We don't specify an icon nor title since `SetupEncryptionBody` provides its own
->>>>>>> v1.12.2
         } else if (phase === Phase.Done) {
             icon = <span className="mx_CompleteSecurity_headerIcon mx_E2EIcon_verified" />;
             title = _t("encryption|verification|after_new_login|device_verified");

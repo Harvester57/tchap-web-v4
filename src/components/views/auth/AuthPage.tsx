@@ -11,14 +11,10 @@ import React from "react";
 import classNames from "classnames";
 
 import SdkConfig from "../../../SdkConfig";
-import AuthFooter from "./AuthFooter";
 
-<<<<<<< HEAD
 import { TchapHeader } from "~tchap-web/src/tchap/components/views/common/TchapHeader";
 import TchapFooter from "~tchap-web/src/tchap/components/views/common/TchapFooter";
 
-export default class AuthPage extends React.PureComponent<React.PropsWithChildren> {
-=======
 interface IProps {
     /**
      * Whether to add a blurred shadow around the modal.
@@ -30,7 +26,6 @@ interface IProps {
 }
 
 export default class AuthPage extends React.PureComponent<React.PropsWithChildren<IProps>> {
->>>>>>> v1.12.2
     private static welcomeBackgroundUrl?: string;
 
     // cache the url as a static to prevent it changing without refreshing
@@ -94,16 +89,11 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
 
         return (
             <div className="mx_AuthPage" style={pageStyle}>
-<<<<<<< HEAD
                 {/* :TCHAP: lasuite-header*/}
                 <TchapHeader />
                 {/* end :TCHAP: */}
-                <div className="mx_AuthPage_modal" style={modalStyle}>
-                    <div className="mx_AuthPage_modalBlur" style={blurStyle} />
-=======
                 <div className={modalClasses} style={modalStyle}>
                     {modalBlur}
->>>>>>> v1.12.2
                     <div className="mx_AuthPage_modalContent" style={modalContentStyle}>
                         {this.props.children}
                     </div>

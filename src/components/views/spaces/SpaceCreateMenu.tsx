@@ -45,13 +45,11 @@ import defaultDispatcher from "../../../dispatcher/dispatcher";
 import { Action } from "../../../dispatcher/actions";
 import { Filter } from "../dialogs/spotlight/Filter";
 import { type OpenSpotlightPayload } from "../../../dispatcher/payloads/OpenSpotlightPayload.ts";
-<<<<<<< HEAD
-import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: space-remove-public-and-subspace
-import ExternalAccountHandler from "~tchap-web/src/tchap/lib/ExternalAccountHandler.ts";
-=======
 import { useSettingValue } from "../../../hooks/useSettings.ts";
 import { UIFeature } from "../../../settings/UIFeature.ts";
->>>>>>> v1.12.2
+
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: space-remove-public-and-subspace
+import ExternalAccountHandler from "~tchap-web/src/tchap/lib/ExternalAccountHandler.ts";
 
 export const createSpace = async (
     client: MatrixClient,
@@ -310,7 +308,6 @@ const SpaceCreateMenu: React.FC<{
     //                 onClick={() => setVisibility(Visibility.Private)}
     //             />
 
-<<<<<<< HEAD
     //             {supportsSpaceFiltering && (
     //                 <AccessibleButton kind="primary_outline" onClick={onSearchClick}>
     //                     {_t("create_space|search_public_button")}
@@ -321,50 +318,24 @@ const SpaceCreateMenu: React.FC<{
     // } else {
     //     body = (
     //         <React.Fragment>
-    //             <AccessibleButton
-    //                 className="mx_SpaceCreateMenu_back"
-    //                 onClick={() => setVisibility(null)}
-    //                 title={_t("action|go_back")}
-    //             />
+    //             {settingAllowPublicSpaces && (
+    //                 <AccessibleButton
+    //                     className="mx_SpaceCreateMenu_back"
+    //                     onClick={() => setVisibility(null)}
+    //                     title={_t("action|go_back")}
+    //                 />
+    //             )}
 
     //             <h2>
     //                 {visibility === Visibility.Public
     //                     ? _t("create_space|public_heading")
-    //                     : _t("create_space|private_heading")}
+    //                     : settingAllowPublicSpaces
+    //                       ? _t("create_space|private_heading")
+    //                       : _t("create_space|private_only_heading")}
     //             </h2>
     //             <p>
     //                 {_t("create_space|add_details_prompt")} {_t("create_space|add_details_prompt_2")}
     //             </p>
-=======
-                {supportsSpaceFiltering && (
-                    <AccessibleButton kind="primary_outline" onClick={onSearchClick}>
-                        {_t("create_space|search_public_button")}
-                    </AccessibleButton>
-                )}
-            </React.Fragment>
-        );
-    } else {
-        body = (
-            <React.Fragment>
-                {settingAllowPublicSpaces && (
-                    <AccessibleButton
-                        className="mx_SpaceCreateMenu_back"
-                        onClick={() => setVisibility(null)}
-                        title={_t("action|go_back")}
-                    />
-                )}
-
-                <h2>
-                    {visibility === Visibility.Public
-                        ? _t("create_space|public_heading")
-                        : settingAllowPublicSpaces
-                          ? _t("create_space|private_heading")
-                          : _t("create_space|private_only_heading")}
-                </h2>
-                <p>
-                    {_t("create_space|add_details_prompt")} {_t("create_space|add_details_prompt_2")}
-                </p>
->>>>>>> v1.12.2
 
     //             <SpaceCreateForm
     //                 busy={busy}

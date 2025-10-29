@@ -109,18 +109,6 @@ async function start(): Promise<void> {
         await import(/* webpackChunkName: "intl-segmenter-polyfill" */ "@formatjs/intl-segmenter/polyfill-force");
     }
 
-      // :TCHAP: load initTchap.ts async so that its code is not executed immediately and we can catch any exceptions
-    const {
-        registerExpiredAccountListener,
-        saveAppVersionInLocalStorage,
-        queueOverideUserSettings,
-    } = await import(
-        /* webpackChunkName: "initTchap" */
-        /* webpackPreload: true */
-        "../tchap/app/initTchap"
-    );
-    // end :TCHAP:
-    
     // load init.ts async so that its code is not executed immediately and we can catch any exceptions
     const {
         rageshakePromise,
@@ -137,12 +125,17 @@ async function start(): Promise<void> {
         showIncompatibleBrowser,
         _t,
         extractErrorMessageFromError,
+        // :TCHAP: load initTchap.ts async so that its code is not executed immediately and we can catch any exceptions
+        registerExpiredAccountListener,
+        saveAppVersionInLocalStorage,
+        queueOverideUserSettings,
+        // end :TCHAP:
     } = await import(
         /* webpackChunkName: "init" */
         /* webpackPreload: true */
         "./init"
     );
-
+    
     // Now perform the next stage of initialisation. This has its own try/catch in which we render
     // a react error page on failure.
     try {
@@ -175,9 +168,6 @@ async function start(): Promise<void> {
         const loadConfigPromise = loadConfig();
         await settled(loadConfigPromise); // wait for it to settle
 
-        //:tchap: save app in local storage
-        saveAppVersionInLocalStorage();
-        //:tchap end
 
         // now that the config is ready, try to persist logs
         const persistLogsPromise = setupLogStorage();
@@ -255,6 +245,10 @@ async function start(): Promise<void> {
 
         //:tchap attach handler
         queueOverideUserSettings();
+
+        //:tchap: save app in local storage
+        saveAppVersionInLocalStorage();
+        //:tchap end
 
         registerExpiredAccountListener();
         //end of :tchap:

@@ -315,13 +315,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private async initSession(): Promise<void> {
         // The Rust Crypto SDK will break if two Element instances try to use the same datastore at once, so
         // make sure we are the only Element instance in town (on this browser/domain).
-<<<<<<< HEAD
-        // :TCHAP: desktop-tauri-browser remove when https://github.com/element-hq/element-web/pull/30643 is merged
-        if (!(await PlatformPeg.get()?.getSessionLock(() => this.onSessionLockStolen()))) {
-=======
         const platform = PlatformPeg.get();
         if (platform && !(await platform.getSessionLock(() => this.onSessionLockStolen()))) {
->>>>>>> v1.12.2
             // we failed to get the lock. onSessionLockStolen should already have been called, so nothing left to do.
             return;
         }
@@ -479,25 +474,6 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         this.fontWatcher.start();
 
         initSentry(SdkConfig.get("sentry"));
-<<<<<<< HEAD
-
-
-        // Once we start loading the MatrixClient, we can't stop, even if MatrixChat gets unmounted (as it does
-        // in React's Strict Mode). So, start loading the session now, but only if this MatrixChat was not previously
-        // mounted.
-        // :TCHAP: remove when https://github.com/element-hq/element-web/pull/30642 is merged
-        if (!this.sessionLoadStarted) {
-            this.sessionLoadStarted = true;
-            if (!checkSessionLockFree()) {
-                // another instance holds the lock; confirm its theft before proceeding
-            setTimeout(() => this.setState({ view: Views.CONFIRM_LOCK_THEFT }), 0);
-            } else {
-                this.startInitSession();
-            }
-        }
-
-=======
->>>>>>> v1.12.2
         window.addEventListener("resize", this.onWindowResized);
 
         // Once we start loading the MatrixClient, we can't stop, even if MatrixChat gets unmounted (as it does

@@ -519,22 +519,12 @@ export default abstract class BasePlatform {
      */
     public startUpdater(): void {}
 
-<<<<<<< HEAD
-    // :TCHAP: desktop-tauri-browser TODO remove when https://github.com/element-hq/element-web/pull/30643 is merged
-    /**
-     * Checks if the current session is lock-free, i.e., no other instance is holding the session lock.
-     * Platforms that support session locking should override this method.
-     * @returns {Promise<boolean>} True if the session is lock-free, false otherwise.
-     */
-    public abstract checkSessionLockFree(): Promise<boolean>;
-=======
     /**
      * Checks if the current session is lock-free, i.e., no other instance is holding the session lock.
      * Platforms that support session locking should override this method.
      * @returns {boolean} True if the session is lock-free, false otherwise.
      */
     public abstract checkSessionLockFree(): boolean;
->>>>>>> v1.12.2
     /**
      * Attempts to acquire a session lock for this instance.
      * If another instance is detected, calls the provided callback.
@@ -543,8 +533,4 @@ export default abstract class BasePlatform {
      * @returns {Promise<boolean>} True if the lock was acquired, false otherwise.
      */
     public abstract getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean>;
-<<<<<<< HEAD
-
-=======
->>>>>>> v1.12.2
 }

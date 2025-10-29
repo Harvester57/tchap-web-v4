@@ -1079,5 +1079,9 @@
     "encryption|forgot_recovery_key": {
         "en": "Forgot recovery code ?",
         "fr": "Code de Récupération oublié?"
+    },
+    "encryption|verification|confirm_identity_description": {
+        "en": "Verify your device to access locked messages and prove your identity to others.",
+        "fr": "Vérifiez votre appareil pour accéder aux messages verrouillés et prouver votre identité aux autres."
     }
 }

@@ -251,23 +251,8 @@ export default class SecurityRoomSettingsTab extends React.Component<IProps, ISt
 
     private renderJoinRule(): JSX.Element {
         const room = this.props.room;
-<<<<<<< HEAD
 
-        let aliasWarning: JSX.Element | undefined;
         /* :TCHAP: disable-access-options - remove
-        if (room.getJoinRule() === JoinRule.Public && !this.state.hasAliases) {
-            aliasWarning = (
-                <div className="mx_SecurityRoomSettingsTab_warning">
-                    <WarningIcon width={15} height={15} />
-                    <span>{_t("room_settings|security|public_without_alias_warning")}</span>
-                </div>
-            );
-        }
-        end :TCHAP: */
-        const description = _t("room_settings|security|join_rule_description", {
-            roomName: room.name,
-        });
-=======
         const isPublic = room.getJoinRule() === JoinRule.Public;
         const description = (
             <>
@@ -290,7 +275,10 @@ export default class SecurityRoomSettingsTab extends React.Component<IProps, ISt
                 )}
             </>
         );
->>>>>>> v1.12.2
+        end :TCHAP: */
+        const description = _t("room_settings|security|join_rule_description", {
+            roomName: room.name,
+        });
 
         let advanced: JSX.Element | undefined;
         if (false) { // :TCHAP: disable-access-options - no guest access - if(room.getJoinRule() === JoinRule.Public) {

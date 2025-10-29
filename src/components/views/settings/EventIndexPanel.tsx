@@ -197,16 +197,12 @@ export default class EventIndexPanel extends React.Component<EmptyObject, IState
                         },
                         {
                             desktopLink: (sub) => (
-<<<<<<< HEAD
                                 <ExternalLink
                                     href={TchapUrls.helpBaseUrl} // :TCHAP:
-                                    // href="https://element.io/get-started"
+                                    // href={desktopBuilds.url}
                                     target="_blank"
                                     rel="noreferrer noopener"
                                 >
-=======
-                                <ExternalLink href={desktopBuilds.url} target="_blank" rel="noreferrer noopener">
->>>>>>> v1.12.2
                                     {sub}
                                 </ExternalLink>
                             ),

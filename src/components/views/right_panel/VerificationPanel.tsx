@@ -276,25 +276,7 @@ export default class VerificationPanel extends React.PureComponent<IProps, IStat
 
         let description: string;
         if (request.isSelfVerification) {
-<<<<<<< HEAD
-            const device = this.state.otherDeviceDetails;
-            if (!device) {
-                // This can happen if the device is logged out while we're still showing verification
-                // UI for it.
-                logger.warn("Verified device we don't know about: " + this.props.request.otherDeviceId);
-                description = _t("encryption|verification|successful_own_device");
-            } else {
-                description = _t("The sharing of your Tchap Keys has succeeded. Your messages will be unlocked."); // :TCHAP:
-                /* :TCHAP: simplify-exchange-key-message
-                description = _t("encryption|verification|successful_device", {
-                    deviceName: device.displayName,
-                    deviceId: device.deviceId,
-                });
-                end :TCHAP: */
-            }
-=======
             description = _t("encryption|verification|now_you_can");
->>>>>>> v1.12.2
         } else {
             description = _t("encryption|verification|successful_user", {
                 displayName: (member as User).displayName || (member as RoomMember).name || member.userId,

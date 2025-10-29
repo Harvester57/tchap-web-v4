@@ -51,7 +51,6 @@ import IconizedContextMenu, {
 import SettingsStore from "../../../settings/SettingsStore";
 import { SettingLevel } from "../../../settings/SettingLevel";
 import UIStore from "../../../stores/UIStore";
-import QuickSettingsButton from "./QuickSettingsButton";
 import { useSettingValue } from "../../../hooks/useSettings";
 import UserMenu from "../../structures/UserMenu";
 import IndicatorScrollbar from "../../structures/IndicatorScrollbar";
@@ -66,12 +65,13 @@ import { shouldShowComponent } from "../../../customisations/helpers/UIComponent
 import { UIComponent } from "../../../settings/UIFeature";
 import { ThreadsActivityCentre } from "./threads-activity-centre/";
 import AccessibleButton from "../elements/AccessibleButton";
-import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: extend-remove-thread-buttons
-import TchapGaufre from "~tchap-web/src/tchap/components/views/common/Gaufre";
-import QuickFaqButton from "~tchap-web/src/tchap/components/views/common/QuickFaq"; // :TCHAP: improve-faq-visibility
 import { Landmark, LandmarkNavigation } from "../../../accessibility/LandmarkNavigation";
 import { KeyboardShortcut } from "../settings/KeyboardShortcut";
 import { ReleaseAnnouncement } from "../../structures/ReleaseAnnouncement";
+
+import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: extend-remove-thread-buttons
+import TchapGaufre from "~tchap-web/src/tchap/components/views/common/Gaufre";
+import QuickFaqButton from "~tchap-web/src/tchap/components/views/common/QuickFaq"; // :TCHAP: improve-faq-visibility
 
 const useSpaces = (): [Room[], MetaSpace[], Room[], SpaceKey] => {
     const invites = useEventEmitterState<Room[]>(SpaceStore.instance, UPDATE_INVITED_SPACES, () => {
@@ -444,25 +444,18 @@ const SpacePanel: React.FC = () => {
                                 )}
                             </Droppable>
 
-<<<<<<< HEAD
-                        {/* :TCHAP: extend-remove-thread-buttons <ThreadsActivityCentre displayButtonLabel={!isPanelCollapsed} /> */}
-                        {TchapUIFeature.isFeatureActiveForHomeserver("feature_thread") ? <ThreadsActivityCentre displayButtonLabel={!isPanelCollapsed} /> : null}
-                        {/** end :TCHAP: */}
-                        
-                        {/* :TCHAP: improve-faq-visibility <QuickSettingsButton isPanelCollapsed={isPanelCollapsed} /> */}
-                        <QuickFaqButton isPanelCollapsed={isPanelCollapsed}></QuickFaqButton>
-                        {/* end :TCHAP: */}
-                        {/* :TCHAP: lasuite-gaufre-integration */}
-                        <TchapGaufre isPanelCollapsed={isPanelCollapsed}></TchapGaufre>
-                        {/* end :TCHAP: */}
-                    </nav>
-=======
-                            <ThreadsActivityCentre displayButtonLabel={!isPanelCollapsed} />
-
-                            <QuickSettingsButton isPanelCollapsed={isPanelCollapsed} />
+                            {/* :TCHAP: extend-remove-thread-buttons <ThreadsActivityCentre displayButtonLabel={!isPanelCollapsed} /> */}
+                            {TchapUIFeature.isFeatureActiveForHomeserver("feature_thread") ? <ThreadsActivityCentre displayButtonLabel={!isPanelCollapsed} /> : null}
+                            {/** end :TCHAP: */}
+                            
+                            {/* :TCHAP: improve-faq-visibility <QuickSettingsButton isPanelCollapsed={isPanelCollapsed} /> */}
+                            <QuickFaqButton isPanelCollapsed={isPanelCollapsed} />
+                            {/* end :TCHAP: */}
+                            {/* :TCHAP: lasuite-gaufre-integration */}
+                            <TchapGaufre isPanelCollapsed={isPanelCollapsed} />
+                            {/* end :TCHAP: */}
                         </nav>
                     </ReleaseAnnouncement>
->>>>>>> v1.12.2
                 </DragDropContext>
             )}
         </RovingTabIndexProvider>

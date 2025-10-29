@@ -1,16 +1,10 @@
 {
     "name": "element-web",
-<<<<<<< HEAD
     "productName": "Tchap",
     "version": "4.17.2",
-    "version-element-web": "1.11.110",
+    "version-element-web": "1.12.2",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
-=======
-    "version": "1.12.2",
-    "description": "Element: the future of secure communication",
-    "author": "New Vector Ltd.",
->>>>>>> v1.12.2
     "repository": {
         "type": "git",
         "url": "https://github.com/tchapgouv/tchap-web-v4"
@@ -40,12 +34,8 @@
         "UserFriendlyError"
     ],
     "scripts": {
-<<<<<<< HEAD
         "i18n-tchap": "./scripts/tchap/translations/check-translations.sh",
-        "i18n": "matrix-gen-i18n && yarn i18n:sort && yarn i18n:lint",
-=======
         "i18n": "matrix-gen-i18n src res packages/shared-components && yarn i18n:sort && yarn i18n:lint",
->>>>>>> v1.12.2
         "i18n:sort": "jq --sort-keys '.' src/i18n/strings/en_EN.json > src/i18n/strings/en_EN.json.tmp && mv src/i18n/strings/en_EN.json.tmp src/i18n/strings/en_EN.json",
         "i18n:lint": "matrix-i18n-lint && prettier --log-level=silent --write src/i18n/strings/ --ignore-path /dev/null",
         "i18n:diff": "cp src/i18n/strings/en_EN.json src/i18n/strings/en_EN_orig.json && yarn i18n && matrix-compare-i18n-files src/i18n/strings/en_EN_orig.json src/i18n/strings/en_EN.json",
@@ -90,16 +80,7 @@
         "patch-make": "node scripts/tchap/makePatch.ts",
         "analyse:webpack-bundles": "webpack-bundle-analyzer webpack-stats.json webapp",
         "update:jitsi": "curl -s https://meet.element.io/libs/external_api.min.js > ./res/jitsi_external_api.min.js",
-<<<<<<< HEAD
-        "postinstall": "./scripts/tchap/postinstall.sh",
-        "storybook": "storybook dev -p 6007",
-        "build-storybook": "storybook build",
-        "test:storybook": "test-storybook --url http://localhost:6007/",
-        "test:storybook:ci": "concurrently -k -s first -n \"SB,TEST\" \"yarn storybook --no-open\" \"wait-on tcp:6007 && yarn test-storybook --url http://localhost:6007/ --ci --maxWorkers=2\"",
-        "test:storybook:update": "playwright-screenshots --entrypoint yarn --with-node-modules && playwright-screenshots --entrypoint /work/node_modules/.bin/test-storybook --with-node-modules --url http://host.docker.internal:6007/ --updateSnapshot"
-=======
-        "postinstall": "patch-package"
->>>>>>> v1.12.2
+        "postinstall": "./scripts/tchap/postinstall.sh"
     },
     "resolutions": {
         "**/pretty-format/react-is": "19.1.1",
@@ -134,15 +115,8 @@
         "@tauri-apps/plugin-stronghold": "^2.2.0",
         "@tauri-apps/plugin-updater": "^2.6.0",
         "@types/png-chunks-extract": "^1.0.2",
-<<<<<<< HEAD
-        "@types/react-virtualized": "^9.21.30",
         "@vector-im/compound-design-tokens": "https://github.com/tchapgouv/compound-design-tokens.git#main",
-        "@vector-im/matrix-wysiwyg": "2.39.0",
-=======
-        "@vector-im/compound-design-tokens": "^6.0.0",
-        "@vector-im/compound-web": "^8.1.2",
         "@vector-im/matrix-wysiwyg": "2.40.0",
->>>>>>> v1.12.2
         "@zxcvbn-ts/core": "^3.0.4",
         "@zxcvbn-ts/language-common": "^3.0.4",
         "@zxcvbn-ts/language-en": "^3.0.2",

@@ -72,33 +72,3 @@ export function getEmbeddedPagesWellKnown(matrixClient: MatrixClient | undefined
 export function embeddedPagesFromWellKnown(clientWellKnown?: IClientWellKnown): IEmbeddedPagesWellKnown {
     return clientWellKnown?.[EMBEDDED_PAGES_WK_PROPERTY];
 }
-<<<<<<< HEAD
-
-export function isSecureBackupRequired(matrixClient: MatrixClient): boolean {
-    return getE2EEWellKnown(matrixClient)?.["secure_backup_required"] === true;
-}
-
-export enum SecureBackupSetupMethod {
-    Key = "key",
-    Passphrase = "passphrase",
-}
-
-export function getSecureBackupSetupMethods(matrixClient: MatrixClient): SecureBackupSetupMethod[] {
-    const wellKnown = getE2EEWellKnown(matrixClient);
-    if (
-        !wellKnown ||
-        !wellKnown["secure_backup_setup_methods"] ||
-        !wellKnown["secure_backup_setup_methods"].length ||
-        !(
-            wellKnown["secure_backup_setup_methods"].includes(SecureBackupSetupMethod.Key) ||
-            wellKnown["secure_backup_setup_methods"].includes(SecureBackupSetupMethod.Passphrase)
-        )
-    ) {
-        // :TCHAP: remove-passphrase-4S - return [SecureBackupSetupMethod.Key, SecureBackupSetupMethod.Passphrase];
-        return [SecureBackupSetupMethod.Key];
-        // end :TCHAP:
-    }
-    return wellKnown["secure_backup_setup_methods"];
-}
-=======
->>>>>>> v1.12.2

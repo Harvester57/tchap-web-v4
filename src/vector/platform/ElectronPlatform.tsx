@@ -561,11 +561,7 @@ export default class ElectronPlatform extends BasePlatform {
         return url;
     }
 
-<<<<<<< HEAD
-    public async checkSessionLockFree(): Promise<boolean> {
-=======
     public checkSessionLockFree(): boolean {
->>>>>>> v1.12.2
         return true;
     }
 
