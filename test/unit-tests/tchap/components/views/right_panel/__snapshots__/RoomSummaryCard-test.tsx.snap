@@ -10,7 +10,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
   >
     <div
       class="mx_BaseCard_header"
-      data-floating-ui-inert=""
     >
       <div
         class="mx_BaseCard_header_spacer"
@@ -48,7 +47,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
     >
       <header
         class="mx_RoomSummaryCard_container"
-        data-floating-ui-inert=""
       >
         <div
           class="mx_DecoratedRoomAvatar"
@@ -107,7 +105,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
       </header>
       <div
         class="_separator_7ckbw_8"
-        data-floating-ui-inert=""
         data-kind="primary"
         data-orientation="horizontal"
         role="separator"
@@ -119,7 +116,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         <div
           aria-checked="false"
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitemcheckbox"
         >
@@ -157,7 +153,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </div>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -195,14 +190,12 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <div
           class="_separator_7ckbw_8"
-          data-floating-ui-inert=""
           data-kind="primary"
           data-orientation="horizontal"
           role="separator"
         />
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -246,7 +239,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -285,86 +277,52 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
             />
           </svg>
         </button>
-        <div
-          aria-controls="«r8»"
-          aria-describedby="«r8»"
-          aria-expanded="true"
-          aria-haspopup="dialog"
-          data-floating-ui-inert=""
-        >
-          <button
-            class="_item_dyt4i_8 _interactive_dyt4i_26"
-            data-kind="primary"
-            role="menuitem"
-          >
-            <svg
-              aria-hidden="true"
-              class="_icon_dyt4i_50"
-              fill="currentColor"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M6.119 2a.5.5 0 0 0-.35.857L7.85 4.9a.5.5 0 0 1 .15.357v4.487a.5.5 0 0 1-.15.356l-3.7 3.644A.5.5 0 0 0 4 14.1v1.4a.5.5 0 0 0 .5.5H11v6a1 1 0 1 0 2 0v-6h6.5a.5.5 0 0 0 .5-.5v-1.4a.5.5 0 0 0-.15-.356l-3.7-3.644a.5.5 0 0 1-.15-.356V5.257a.5.5 0 0 1 .15-.357l2.081-2.043a.5.5 0 0 0-.35-.857zM10 4h4v5.744a2.5 2.5 0 0 0 .746 1.781L17.26 14H6.74l2.514-2.475A2.5 2.5 0 0 0 10 9.744z"
-                fill-rule="evenodd"
-              />
-            </svg>
-            <span
-              class="_typography_6v6n8_153 _font-body-md-medium_6v6n8_60 _label_dyt4i_34"
-            >
-              Pinned messages
-            </span>
-            <svg
-              aria-hidden="true"
-              class="_nav-hint_dyt4i_59"
-              fill="currentColor"
-              height="24"
-              viewBox="8 0 8 24"
-              width="8"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.7 17.3a.95.95 0 0 1-.275-.7q0-.425.275-.7l3.9-3.9-3.9-3.9a.95.95 0 0 1-.275-.7q0-.425.275-.7a.95.95 0 0 1 .7-.275q.425 0 .7.275l4.6 4.6q.15.15.213.325.062.175.062.375t-.062.375a.9.9 0 0 1-.213.325l-4.6 4.6a.95.95 0 0 1-.7.275.95.95 0 0 1-.7-.275"
-              />
-            </svg>
-            <span
-              class="_typography_6v6n8_153 _font-body-sm-regular_6v6n8_31"
-            >
-              0
-            </span>
-          </button>
-        </div>
-        <span
-          aria-hidden="true"
-          data-floating-ui-inert=""
-          style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-          tabindex="-1"
-        />
-        <span
-          data-floating-ui-focus-guard=""
-          data-type="outside"
-          role="button"
-          style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-          tabindex="0"
-        />
-        <span
-          aria-owns="«ra»"
-          data-floating-ui-inert=""
-          style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-        />
-        <span
-          data-floating-ui-focus-guard=""
-          data-type="outside"
-          role="button"
-          style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-          tabindex="0"
-        />
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
+          data-kind="primary"
+          role="menuitem"
+        >
+          <svg
+            aria-hidden="true"
+            class="_icon_dyt4i_50"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M6.119 2a.5.5 0 0 0-.35.857L7.85 4.9a.5.5 0 0 1 .15.357v4.487a.5.5 0 0 1-.15.356l-3.7 3.644A.5.5 0 0 0 4 14.1v1.4a.5.5 0 0 0 .5.5H11v6a1 1 0 1 0 2 0v-6h6.5a.5.5 0 0 0 .5-.5v-1.4a.5.5 0 0 0-.15-.356l-3.7-3.644a.5.5 0 0 1-.15-.356V5.257a.5.5 0 0 1 .15-.357l2.081-2.043a.5.5 0 0 0-.35-.857zM10 4h4v5.744a2.5 2.5 0 0 0 .746 1.781L17.26 14H6.74l2.514-2.475A2.5 2.5 0 0 0 10 9.744z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <span
+            class="_typography_6v6n8_153 _font-body-md-medium_6v6n8_60 _label_dyt4i_34"
+          >
+            Pinned messages
+          </span>
+          <svg
+            aria-hidden="true"
+            class="_nav-hint_dyt4i_59"
+            fill="currentColor"
+            height="24"
+            viewBox="8 0 8 24"
+            width="8"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.7 17.3a.95.95 0 0 1-.275-.7q0-.425.275-.7l3.9-3.9-3.9-3.9a.95.95 0 0 1-.275-.7q0-.425.275-.7a.95.95 0 0 1 .7-.275q.425 0 .7.275l4.6 4.6q.15.15.213.325.062.175.062.375t-.062.375a.9.9 0 0 1-.213.325l-4.6 4.6a.95.95 0 0 1-.7.275.95.95 0 0 1-.7-.275"
+            />
+          </svg>
+          <span
+            class="_typography_6v6n8_153 _font-body-sm-regular_6v6n8_31"
+          >
+            0
+          </span>
+        </button>
+        <button
+          class="_item_dyt4i_8 _interactive_dyt4i_26"
           data-kind="primary"
           role="menuitem"
         >
@@ -402,7 +360,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -440,14 +397,12 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <div
           class="_separator_7ckbw_8"
-          data-floating-ui-inert=""
           data-kind="primary"
           data-orientation="horizontal"
           role="separator"
         />
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -485,7 +440,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -523,7 +477,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -561,7 +514,6 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <button
           class="_item_dyt4i_8 _interactive_dyt4i_26"
-          data-floating-ui-inert=""
           data-kind="primary"
           role="menuitem"
         >
@@ -602,14 +554,12 @@ exports[`<RoomSummaryCard /> renders the room summary 1`] = `
         </button>
         <div
           class="_separator_7ckbw_8"
-          data-floating-ui-inert=""
           data-kind="primary"
           data-orientation="horizontal"
           role="separator"
         />
         <div
           class="mx_RoomSummaryCard_bottomOptions"
-          data-floating-ui-inert=""
         >
           <button
             class="_item_dyt4i_8 _interactive_dyt4i_26"

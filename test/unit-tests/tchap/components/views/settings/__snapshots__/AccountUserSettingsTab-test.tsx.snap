@@ -37,7 +37,7 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
                   class="mx_AccessibleButton mx_AvatarSetting_avatarPlaceholder mx_AvatarSetting_avatarDisplay mx_AccessibleButton_disabled"
                   disabled=""
                   role="button"
-                  tabindex="-1"
+                  tabindex="0"
                 >
                   <span
                     class="_avatar_1qbcf_8 mx_BaseAvatar _avatar-imageless_1qbcf_52"
@@ -57,7 +57,7 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
                 >
                   <label
                     class="_label_19upo_59"
-                    for="radix-«r1»"
+                    for="radix-«r0»"
                   >
                     Display Name
                   </label>
@@ -67,7 +67,7 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
                     <input
                       class="_control_sqdq4_10"
                       disabled=""
-                      id="radix-«r1»"
+                      id="radix-«r0»"
                       name="input"
                       title=""
                       value=""
@@ -81,12 +81,12 @@ exports[`<AccountUserSettingsTab /> common view snapshot should render section w
             >
               <div
                 class="mx_UserProfileSettings_profile_controls_userId_label"
-                id="«r2»"
+                id="«r1»"
               >
                 Username
               </div>
               <div
-                aria-labelledby="«r2»"
+                aria-labelledby="«r1»"
                 class="mx_CopyableText mx_CopyableText_border"
               >
                 @alice:server.org

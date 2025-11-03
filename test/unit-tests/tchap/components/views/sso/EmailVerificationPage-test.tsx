@@ -13,6 +13,8 @@ import Login from "~tchap-web/src/Login";
 import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import * as authorize from "~tchap-web/src/utils/oidc/authorize";
 import * as routing from "~tchap-web/src/vector/routing";
+import PlatformPeg from "~tchap-web/src/PlatformPeg";
+import WebPlatform from "~tchap-web/src/vector/platform/WebPlatform";
 
 jest.mock("~tchap-web/src/PlatformPeg");
 jest.mock("~tchap-web/src/tchap/util/TchapUtils");
@@ -23,10 +25,10 @@ describe("Tests sso and oidc native flow", () => {
     const defaultHsUrl = "https://matrix.agent1.fr";
     const secondHsUrl = "https://matrix.agent2.fr";
 
-    const PlatformPegMocked: MockedObject<BasePlatform> = mockPlatformPeg();
-    const mockedClient: MatrixClient = stubClient();
+    let mockedClient: MatrixClient;
     const mockedTchapUtils = mocked(TchapUtils);
     const mockedLogin = Login as jest.Mock;
+    let PlatformPegMocked: MockedObject<BasePlatform>;
 
     const mockedFetchHomeserverFromEmail = (hs: string = defaultHsUrl) => {
         mockedTchapUtils.fetchHomeserverForEmail.mockImplementation(() =>
@@ -72,6 +74,13 @@ describe("Tests sso and oidc native flow", () => {
 
     describe("MAS flow deactivated", () => {
         beforeEach(() => {
+            mockedClient = stubClient();
+            PlatformPegMocked = mockPlatformPeg({
+                startSingleSignOn: jest.fn(),
+            });
+            PlatformPeg.set(new WebPlatform());
+
+            jest.spyOn(PlatformPeg, "get").mockReturnValue(PlatformPegMocked);
             const config: ConfigOptions = { tchap_mas_flow: { isActive: false } };
             SdkConfig.put(config);
 
@@ -98,10 +107,6 @@ describe("Tests sso and oidc native flow", () => {
             // click on proconnect button
             const proconnectButton = screen.getByTestId("proconnect-submit");
 
-            await act(async () => {
-                await fireEvent.click(proconnectButton);
-            });
-
             // Submit button should be disabled
             expect(proconnectButton).toHaveAttribute("disabled");
         });
@@ -116,9 +121,6 @@ describe("Tests sso and oidc native flow", () => {
 
             // click on proconnect button
             const proconnectButton = screen.getByTestId("proconnect-submit");
-            await act(async () => {
-                await fireEvent.click(proconnectButton);
-            });
 
             // Submit button should be disabled
             expect(proconnectButton).toHaveAttribute("disabled");

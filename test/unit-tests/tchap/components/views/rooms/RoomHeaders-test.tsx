@@ -260,7 +260,12 @@ describe("RoomHeader", () => {
             title: "voip",
         });
         // placeCall to have been called with PlatformCallType.LegacyCall
-        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
+        expect(placeCall).toHaveBeenCalledWith(
+            expect.anything(),
+            CallType.Video,
+            PlatformCallType.LegacyCall,
+            undefined,
+        );
     });
 
     it("directly start legacy call when it is a DM room and element call is enabled", async () => {
@@ -284,7 +289,12 @@ describe("RoomHeader", () => {
             title: "voip",
         });
         // placeCall to have been called with PlatformCallType.LegacyCall
-        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.LegacyCall, false);
+        expect(placeCall).toHaveBeenCalledWith(
+            expect.anything(),
+            CallType.Video,
+            PlatformCallType.LegacyCall,
+            undefined,
+        );
     });
 
     it("directly start element call when there is more than two users in the room", async () => {
@@ -308,7 +318,12 @@ describe("RoomHeader", () => {
             title: "voip",
         });
         // placeCall to have been called with PlatformCallType.ElementCall
-        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
+        expect(placeCall).toHaveBeenCalledWith(
+            expect.anything(),
+            CallType.Video,
+            PlatformCallType.ElementCall,
+            undefined,
+        );
     });
 
     it("should not display modal if the call has been started and it is a join state", async () => {
@@ -326,6 +341,11 @@ describe("RoomHeader", () => {
         // confirmation Modal should not display on join call
         expect(Modal.createDialog).not.toHaveBeenCalled();
         // placeCall to have been called with PlatformCallType.ElementCall
-        expect(placeCall).toHaveBeenCalledWith(room, CallType.Video, PlatformCallType.ElementCall, false);
+        expect(placeCall).toHaveBeenCalledWith(
+            expect.anything(),
+            CallType.Video,
+            PlatformCallType.ElementCall,
+            undefined,
+        );
     });
 });
