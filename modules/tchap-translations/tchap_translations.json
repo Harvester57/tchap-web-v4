@@ -16,8 +16,8 @@
         "fr": "Accès possible uniquement sur invitation d'un membre du salon."
     },
     "restore_key_backup_dialog|enter_key_description": {
-        "en": "Access your secure message history and set up secure messaging by entering your Recovery Code.",
-        "fr": "Accédez à votre historique de messages chiffrés et mettez en place la messagerie sécurisée en entrant votre Code de Récupération."
+        "en": "Access your secure message history and set up secure messaging by entering your verification code.",
+        "fr": "Accédez à votre historique de messages chiffrés et mettez en place la messagerie sécurisée en entrant votre code de vérification."
     },
     "Accessible to all users and to external guests by invitation of an administrator.": {
         "en": "Accessible to all users and to external guests by invitation of an administrator.",
@@ -48,8 +48,8 @@
         "fr": "Voulez-vous vraiment autoriser l’accès aux externes à ce salon ?"
     },
     "restore_key_backup_dialog|recovery_key_mismatch_description": {
-        "en": "Please try again with your recovery code.",
-        "fr": "Merci d'essayer à nouveau avec votre code de récupération."
+        "en": "Please try again with your verification code.",
+        "fr": "Merci d'essayer à nouveau avec votre code de vérification."
     },
     "Confirm your Tchap Key password": {
         "en": "Confirm your Tchap Key password",
@@ -86,8 +86,8 @@
     },
     "common|email_address": { "en": "Email address", "fr": "Adresse mail" },
     "restore_key_backup_dialog|enter_key_title": {
-        "en": "Enter Recovery Code",
-        "fr": "Saisir le Code de Récupération"
+        "en": "Enter verification code",
+        "fr": "Saisir le code de vérification"
     },
     "Export room members": { "en": "Export room members", "fr": "Exporter les membres du salon" },
     "External members cannot be re-invited. If you need to give access to externals, you will have to create a new room": {
@@ -115,12 +115,12 @@
         "fr": "Si vous rencontrez des difficultés dans votre utilisation de Tchap, contactez-nous par email à <b>%(supportEmail)s</b>"
     },
     "restore_key_backup_dialog|key_forgotten_text": {
-        "en": "If you've forgotten your Recovery Code you can <button>set up new recovery options</button>",
-        "fr": "Si vous avez oublié votre Code de Récupération, vous pouvez <button>définir de nouvelles options de récupération</button>"
+        "en": "If you've forgotten your verification code you can <button>set up new recovery options</button>",
+        "fr": "Si vous avez oublié votre code de vérification, vous pouvez <button>définir de nouvelles options de récupération</button>"
     },
     "restore_key_backup_dialog|phrase_forgotten_text": {
-        "en": "If you've forgotten your Security Phrase you can <button1>use your Recovery Code</button1> or <button2>set up new recovery options</button2>",
-        "fr": "Si vous avez oublié votre phrase secrète vous pouvez <button1>utiliser votre Code de Récupération</button1> ou <button2>définir de nouvelles options de récupération</button2>"
+        "en": "If you've forgotten your Security Phrase you can <button1>use your verification code</button1> or <button2>set up new recovery options</button2>",
+        "fr": "Si vous avez oublié votre phrase secrète vous pouvez <button1>utiliser votre code de vérification</button1> ou <button2>définir de nouvelles options de récupération</button2>"
     },
     "If you've submitted a bug to the Tchap team (via support or GitHub), debug logs can help us track down the problem.": {
         "en": "If you've submitted a bug to the Tchap team (via support or GitHub), debug logs can help us track down the problem.",
@@ -128,8 +128,8 @@
     },
     "Incoming Verification Request": { "en": "Incoming Verification Request", "fr": "Partage de vos Clés Tchap" },
     "restore_key_backup_dialog|incorrect_security_phrase_title": {
-        "en": "Recovery code not recognized",
-        "fr": "Code de récupération non reconnu"
+        "en": "Verification code not recognized",
+        "fr": "Code de vérification non reconnu"
     },
     "invite|name_email_mxid_share_room": {
         "en": "Invite someone using their name, email or username (like <userId/>) or <a>share this room</a>. It is possible to invite multiple people by copy-pasting an email list separated by a comma (prenom1.nom1@beta.gouv.fr, prenom2.nom2@beta.gouv.fr, prenom3.nom3@beta.gouv.fr) or separated by a line break.",
@@ -190,8 +190,8 @@
     "Scan unavailable": { "en": "Scan unavailable", "fr": "Scan unavailable" },
     "Scanning": { "en": "Scanning", "fr": "Scanning" },
     "encryption|access_secret_storage_dialog|security_key_title": {
-        "en": "Recovery Code",
-        "fr": "Code de Récupération"
+        "en": "Verification Code",
+        "fr": "Code de vérification"
     },
     "Set up": { "en": "Activate", "fr": "Activer" },
     "auth|logout_dialog|use_key_backup": { "en": "Use automatic Backup", "fr": "Utiliser la sauvegarde automatique" },
@@ -283,8 +283,8 @@
     },
     "Welcome to Tchap": { "en": "Welcome to Tchap", "fr": "Bienvenue sur Tchap" },
     "encryption|access_secret_storage_dialog|key_validation_text|wrong_security_key": {
-        "en": "The Recovery Code is not valid. Check that it is the latest one.",
-        "fr": "Le Code de Récupération n’est pas valide. Vérifier que c’est le plus récent."
+        "en": "The verification code is not valid. Check that it is the latest one.",
+        "fr": "Le code de vérification n’est pas valide. Vérifier que c’est le plus récent."
     },
     "Your Tchap Key password": { "en": "Your Tchap Key password", "fr": "Votre mot de passe Clés Tchap" },
     "Your Tchap Keys (encryption keys) have been successful saved in the <b>tchap-keys.txt</b> file. You can import them when you login again to unlock your messages (<a>find out more</a>).": {
@@ -366,20 +366,20 @@
         "fr": "La connexion à Tchap n'est pas possible pour le moment (err:04). Voir l'état du service: https://status.tchap.numerique.gouv.fr"
     },
     "encryption|bootstrap_title": {
-        "en": "Setting up your Recovery Code",
-        "fr": "Configuration du Code de Récupération"
+        "en": "Setting up your verification code",
+        "fr": "Configuration du code de vérification"
     },
     "encryption|new_recovery_method_detected|description_1": {
-        "en": "A new Recovery Code for Secure Messages has been detected.",
-        "fr": "Un nouveau Code de Récupération pour les messages sécurisés a été détecté."
+        "en": "A new verification code for Secure Messages has been detected.",
+        "fr": "Un nouveau code de vérification pour les messages sécurisés a été détecté."
     },
     "encryption|recovery_method_removed|description_1": {
         "en": "This session has detected that your Security Phrase and code for Secure Messages have been removed.",
-        "fr": "Cette session a détecté que votre phrase secrète et Code de Récupération pour les messages sécurisés ont été supprimés."
+        "fr": "Cette session a détecté que votre phrase secrète et code de vérification pour les messages sécurisés ont été supprimés."
     },
     "encryption|set_up_toast_description": {
-        "en": "Activate your Recovery Code to never lose your messages",
-        "fr": "Activez votre Code de Récupération pour ne jamais perdre vos messages"
+        "en": "Activate your verification code to never lose your messages",
+        "fr": "Activez votre code de vérification pour ne jamais perdre vos messages"
     },
     "encryption|set_up_toast_title": {
         "en": "Activate message Secure Backup",
@@ -402,12 +402,12 @@
         "fr": "Votre nouvel appareil est maintenant vérifié. Il a accès à vos messages chiffrés et les autres utilisateurs le verront comme fiable."
     },
     "encryption|verification|verify_using_key": {
-        "en": "Verify with Recovery Code",
-        "fr": "Vérifier avec un Code de Récupération"
+        "en": "Verify with verification code",
+        "fr": "Vérifier avec un code de vérification"
     },
     "encryption|verification|verify_using_key_or_phrase": {
-        "en": "Verify with Recovery Code or Phrase",
-        "fr": "Vérifier avec un Code de Récupération ou une phrase"
+        "en": "Verify with verification code or Phrase",
+        "fr": "Vérifier avec un code de vérification ou une phrase"
     },
     "encryption|verify_toast_description": {
         "en": "You may not be able to recover your messages.",
@@ -464,12 +464,12 @@
         "fr": "Sauvegarde automatique activée avec succès"
     },
     "settings|key_backup|setup_secure_backup|generate_security_key_description": {
-        "en": "We'll generate your unique Recovery Code for you to store somewhere safe, like a password manager or a safe.",
-        "fr": "Nous génèrerons votre Code de Récupération unique que vous devrez stocker dans un endroit sûr, comme un gestionnaire de mots de passe ou un coffre."
+        "en": "We'll generate your unique verification code for you to store somewhere safe, like a password manager or a safe.",
+        "fr": "Nous génèrerons votre code de vérification unique que vous devrez stocker dans un endroit sûr, comme un gestionnaire de mots de passe ou un coffre."
     },
     "settings|key_backup|setup_secure_backup|generate_security_key_title": {
-        "en": "Generate a Recovery Code",
-        "fr": "Générer un Code de Récupération"
+        "en": "Generate a verification code",
+        "fr": "Générer un code de vérification"
     },
     "settings|key_backup|setup_secure_backup|security_key_safety_reminder": {
         "en": "Keep it in a safe place, such as your password manager or a protected document on your computer. You will need to copy/paste it to retrieve your messages, so avoid taking screenshots.",
@@ -480,12 +480,12 @@
         "fr": "Vous pouvez aussi configurer la sauvegarde automatique des messages et gérer vos clés depuis les paramètres."
     },
     "settings|key_backup|setup_secure_backup|title_save_key": {
-        "en": "Write down your Recovery Code",
-        "fr": "Notez votre Code de Récupération"
+        "en": "Write down your verification code",
+        "fr": "Notez votre code de vérification"
     },
     "settings|key_backup|setup_secure_backup|use_phrase_only_you_know": {
-        "en": "Use a secret phrase only you know, and optionally save a Recovery Code to use for backup.",
-        "fr": "Utilisez une phrase secrète que vous êtes seul à connaître et enregistrez éventuellement un Code de Récupération à utiliser pour la sauvegarde."
+        "en": "Use a secret phrase only you know, and optionally save a verification code to use for backup.",
+        "fr": "Utilisez une phrase secrète que vous êtes seul à connaître et enregistrez éventuellement un code de vérification à utiliser pour la sauvegarde."
     },
     "settings|encryption|advanced|title": { "en": "Tchap keys", "fr": "Clés Tchap" },
     "settings|security|ignore_users_section": { "en": "Ignored users", "fr": "Membres ignorés" },
@@ -546,8 +546,8 @@
     "settings|sessions|unverified_session": { "en": "Unverified device", "fr": "Appareil non vérifié" },
     "settings|sessions|unverified_sessions": { "en": "Unverified devices", "fr": "Appareils non vérifiés" },
     "settings|sessions|unverified_sessions_explainer_1": {
-        "en": "Unverified devices are devices that have logged in with your credentials but have not been cross-verified (emoji exchange or ou Recovery Code).",
-        "fr": "Les appareils non vérifiés sont identifiés avec vos identifiants mais n’ont pas fait de vérification croisée (échange d'emojis ou Code de Récupération)."
+        "en": "Unverified devices are devices that have logged in with your credentials but have not been cross-verified (emoji exchange or ou verification code).",
+        "fr": "Les appareils non vérifiés sont identifiés avec vos identifiants mais n’ont pas fait de vérification croisée (échange d'emojis ou code de vérification)."
     },
     "settings|sessions|unverified_sessions_explainer_2": {
         "en": "You should make especially certain that you recognise these devices as they could represent an unauthorised use of your account.",
@@ -556,8 +556,8 @@
     "settings|sessions|verified_session": { "en": "Verified device", "fr": "Appareil vérifié" },
     "settings|sessions|verified_sessions": { "en": "Verified devices", "fr": "Appareils vérifiés" },
     "settings|sessions|verified_sessions_explainer_1": {
-        "en": "Verified devices are anywhere you are using this account after entering your recovery code or confirming your identity with another verified device.",
-        "fr": "Les appareils vérifiés sont ceux qui utilisent ce compte après avoir saisi le Code de Récupération ou confirmé votre identité à l’aide d’un autre appareil vérifié."
+        "en": "Verified devices are anywhere you are using this account after entering your verification code or confirming your identity with another verified device.",
+        "fr": "Les appareils vérifiés sont ceux qui utilisent ce compte après avoir saisi le code de vérification ou confirmé votre identité à l’aide d’un autre appareil vérifié."
     },
     "settings|sessions|verified_sessions_explainer_2": {
         "en": "This means that you have all the keys needed to unlock your encrypted messages and confirm to other users that you trust this device.",
@@ -861,64 +861,64 @@
         "fr": "Copie-collez le bloc suivant dans l'éditeur de signature de votre client mail. <a> Plus d'info dans notre FAQ </a>"
     },
     "settings|encryption|recovery|change_recovery_key_title": {
-        "en": "Change the recovery code ?",
-        "fr": "Changer le Code de Récupération?"
+        "en": "Change the verification code ?",
+        "fr": "Changer le code de vérification?"
     },
     "settings|encryption|recovery|change_recovery_key": {
-        "en": "Change the recovery code",
-        "fr": "Changer le Code de Récupération"
+        "en": "Change the verification code",
+        "fr": "Changer le code de vérification"
     },
     "settings|encryption|recovery|change_recovery_key_description": {
         "en": "Keep it in a safe place, such as your password manager or a protected document on your computer. You will need to copy/paste it to retrieve your messages, so avoid taking screenshots. Then click on Continue to confirm the modification",
         "fr": "Conservez-le dans un endroit sûr, comme votre gestionnaire de mot de passe ou un document protégé sur votre ordinateur. Vous aurez à le copier / coller pour récupérer vos messages, donc évitez la capture d’écran. Cliquez ensuite sur Continuer pour confirmer la modification."
     },
     "settings|encryption|recovery|enter_recovery_key": {
-        "en": "Enter the recovery code",
-        "fr": "Saisir le Code de Récupération"
+        "en": "Enter the verification code",
+        "fr": "Saisir le code de vérification"
     },
     "settings|encryption|recovery|forgot_recovery_key": {
-        "en": "Forgot recovery code ?",
-        "fr": "Code de Récupération oublié?"
+        "en": "Forgot verification code ?",
+        "fr": "Code de vérification oublié?"
     },
     "settings|encryption|recovery|save_key_title": {
-        "en": "Recovery code",
-        "fr": "Code de Récupération"
+        "en": "Verification code",
+        "fr": "Code de vérification"
     },
     "settings|encryption|recovery|set_up_recovery_confirm_title": {
-        "en": "Enter your recovery code to confirm",
-        "fr": "Saisissez votre Code de Récupération pour confirmer"
+        "en": "Enter your verification code to confirm",
+        "fr": "Saisissez votre code de vérification pour confirmer"
     },
     "settings|encryption|recovery|set_up_recovery_confirm_description": {
-        "en": "Enter the recovery code displayed on the previous screen to finish the recovery setup.",
-        "fr": "Saisissez le Code de Récupération affiché sur l'écran précédent pour terminer la configuration de la récupération."
+        "en": "Enter the verification code displayed on the previous screen to finish the recovery setup.",
+        "fr": "Saisissez le code de vérification affiché sur l'écran précédent pour terminer la configuration de la récupération."
     },
     "settings|encryption|recovery|description": {
-        "en": "Recover historic messages with the recovery code if you lost all your verified account",
-        "fr": "Récupérez l'historique de vos messages à l'aide du Code de Récupération si vous n'avez aucun autre appareil vérifié."
+        "en": "Recover historic messages with the verification code if you lost all your verified account",
+        "fr": "Récupérez l'historique de vos messages à l'aide du code de vérification si vous n'avez aucun autre appareil vérifié."
     },
     "settings|encryption|recovery|set_up_recovery_secondary_description": {
-        "en": "After clicking continue, we will generate a recovery code for you.",
-        "fr": "Après avoir cliqué sur continuer, nous allons générer un Code de Récupération pour vous."
+        "en": "After clicking continue, we will generate a verification code for you.",
+        "fr": "Après avoir cliqué sur continuer, nous allons générer un code de vérification pour vous."
     },
     "settings|encryption|recovery|change_recovery_confirm_button": {
-        "en": "Confirm the new recovery code",
-        "fr": "Confirmer le nouveau Code de Récupération"
+        "en": "Confirm the new verification code",
+        "fr": "Confirmer le nouveau code de vérification"
     },
     "settings|encryption|recovery|change_recovery_confirm_description": {
-        "en": "Enter the new recovery code below to finish. Your old code will no longer work.",
-        "fr": "Saisissez votre nouveau Code de Récupération ci-dessous pour terminer. Votre ancien code ne fonctionnera plus."
+        "en": "Enter the new verification code below to finish. Your old code will no longer work.",
+        "fr": "Saisissez votre nouveau code de vérification ci-dessous pour terminer. Votre ancien code ne fonctionnera plus."
     },
     "settings|encryption|recovery|change_recovery_confirm_title": {
-        "en": "Enter the new recovery code",
-        "fr": "Saisir votre nouveau Code de Récupération"
+        "en": "Enter the new verification code",
+        "fr": "Saisir votre nouveau code de vérification"
     },
     "settings|encryption|recovery|enter_key_error": {
-        "en": "The recovery code you entered is incorrect.",
-        "fr": "Le code de récupération que vous avez saisie est incorrect."
+        "en": "The verification code you entered is incorrect.",
+        "fr": "Le code de vérification que vous avez saisie est incorrect."
     },
     "settings|encryption|recovery|set_up_recovery_description": {
-        "en": "The storage of your keys is protected by a recovery code. If you need a new recovery code after creation, you can create it by selecting \"%(changeRecoveryKeyButton)s\".",
-        "fr": "Le stockage de vos clés est protégé par un code de récupération. Si vous avez besoin d'un nouveau code de récupération après la création, vous pouvez le recréer en sélectionnant « %(changeRecoveryKeyButton)s »."
+        "en": "The storage of your keys is protected by a verification code. If you need a new verification code after creation, you can create it by selecting \"%(changeRecoveryKeyButton)s\".",
+        "fr": "Le stockage de vos clés est protégé par un code de vérification. Si vous avez besoin d'un nouveau code de vérification après la création, vous pouvez le recréer en sélectionnant « %(changeRecoveryKeyButton)s »."
     },
     "slash_command|visio": {
         "en": "Create a link to Visio with a message",
@@ -961,12 +961,12 @@
         "fr": "Activer la Sauvegarde automatique des messages"
     },
     "settings|encryption|recovery|set_up_recovery_save_key_title": {
-        "en": "Save your recovery code somewhere safe",
-        "fr": "Sauvegardez votre Code de Récupération dans un endroit sûr"
+        "en": "Save your verification code somewhere safe",
+        "fr": "Sauvegardez votre code de vérification dans un endroit sûr"
     },
     "settings|encryption|recovery|set_up_recovery_save_key_description": {
-        "en": "Write down this recovery code somewhere safe, like a password manager, encrypted note, or a physical safe.",
-        "fr": "Recopier ce Code de Récupération dans un endroit sûr, comme un gestionnaire de mots de passe, une note chiffrée ou un coffre-fort physique."
+        "en": "Write down this verification code somewhere safe, like a password manager, encrypted note, or a physical safe.",
+        "fr": "Recopier ce code de vérification dans un endroit sûr, comme un gestionnaire de mots de passe, une note chiffrée ou un coffre-fort physique."
     },
     "auth|logout_dialog|description": {
         "en": "Are you sure you want to sign out? <div>Keep at least one connected device in order to not lose any messages during your leave.</div><a>Learn more</a>",
@@ -981,12 +981,12 @@
         "fr": "Réinitialiser la sécurité de tous mes appareils"
     },
     "encryption|access_secret_storage_dialog|alternatives": {
-        "en": "If your recovery code is not the latest,, it won't be reconized.",
-        "fr": "Si votre Code de Récupération n'est pas le plus récent, il sera incorrect."
+        "en": "If your verification code is not the latest,, it won't be reconized.",
+        "fr": "Si votre code de vérification n'est pas le plus récent, il sera incorrect."
     },
     "settings|encryption|key_storage|description": {
-        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
-        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du Code de Récupération. Cela vous permettra de consulter l'historique de vos messages sur tous les nouveaux appareils. <a>En savoir plus</a>"
+        "en": "Automatically save your messages and recover them at any time with the verification code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du code de vérification. Cela vous permettra de consulter l'historique de vos messages sur tous les nouveaux appareils. <a>En savoir plus</a>"
     },
     "settings|encryption|advanced|breadcrumb_title": {
         "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
@@ -1041,12 +1041,12 @@
         "fr": "Copier et continuer"
     },
     "encryption|verification|modal_success_title": {
-        "en": "Recovery code configured",
-        "fr": "Code de Récupération configuré"
+        "en": "Verification code configured",
+        "fr": "Code de vérification configuré"
     },
     "encryption|verification|modal_success_description": {
-        "en": "Keep your recovery code in a safe place, it will allow you to verify your identity for every new connection and restore your message history.",
-        "fr": "Gardez votre Code de Récupération dans un endroit sûr, il vous permettra de vérifier votre identité lors de toute nouvelle connexion et à restaurer votre historique."
+        "en": "Keep your verification code in a safe place, it will allow you to verify your identity for every new connection and restore your message history.",
+        "fr": "Gardez votre code de vérification dans un endroit sûr, il vous permettra de vérifier votre identité lors de toute nouvelle connexion et à restaurer votre historique."
     },
     "settings|security|message_search_indexed_rooms": {
         "en": "Processed rooms:",
@@ -1069,15 +1069,15 @@
         "fr": "La sauvegarde automatique n'est pas synchronisé"
     },
     "encryption|key_storage_out_of_sync_description": {
-        "en": "Confirm your Recovery Code to be in sync. If this persist, you can try to deactivate and reactivate the automatic messages backup, and then reconfigure your Recovery Code. <a> Learn more </a>",
-        "fr": "Confirmez votre Code de Récupération pour vous synchroniser. Si cette action persiste, vous pouvez essayer de désactiver et réactiver la sauvegarde automatique, puis reconfigurer votre Code de Récupération. <a> En savoir plus </a>"
+        "en": "Confirm your verification code to be in sync. If this persist, you can try to deactivate and reactivate the automatic messages backup, and then reconfigure your Recovery Code. <a> Learn more </a>",
+        "fr": "Confirmez votre code de vérification pour vous synchroniser. Si cette action persiste, vous pouvez essayer de désactiver et réactiver la sauvegarde automatique, puis reconfigurer votre Code de Récupération. <a> En savoir plus </a>"
     },
     "encryption|enter_recovery_key": {
-        "en": "Enter Recovery Code",
-        "fr": "Saisir le Code de Récupération"
+        "en": "Enter verification code",
+        "fr": "Saisir le code de vérification"
     },
     "encryption|forgot_recovery_key": {
-        "en": "Forgot recovery code ?",
-        "fr": "Code de Récupération oublié?"
+        "en": "Forgot verification code ?",
+        "fr": "Code de vérification oublié?"
     }
 }
