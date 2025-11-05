@@ -166,3 +166,61 @@
     max-width: 500px;
 }
 
+// Using legacy roomList and left panel, we need to add border for the new design UI
+.mx_LeftPanel {
+    background-color: var(--cpd-color-bg-canvas-default);
+    height: 100%;
+    border-right: 1px solid var(--cpd-color-bg-subtle-primary);
+}
+// add border on search room in left panel
+.mx_RoomSearch {
+    border: 1px solid var(--cpd-color-border-interactive-secondary);
+}
+
+.mx_LeftPanel_exploreButton {
+    border: 1px solid var(--cpd-color-border-interactive-secondary);
+}
+
+.mx_SpacePanel {
+    background-color: var(--cpd-color-bg-canvas-default);
+    border-right: 1px solid var(--cpd-color-bg-subtle-primary);
+}
+
+.mx_RoomTile {
+    border-bottom: var(--cpd-border-width-0-5) solid var(--cpd-color-bg-subtle-secondary);
+}
+
+.tc_sidebar_tchap {
+    flex: 0 0 auto;
+    border-radius: 8px;
+    position: relative;
+    margin: 12px auto;
+    color: $secondary-content;
+    min-width: 32px;
+    min-height: 32px;
+    line-height: 32px;
+    font-weight: bold;
+    color: var(--main-title-color);
+
+    &.expanded {
+        margin-left: 20px;
+        padding-left: 44px; /* align with toggle collapse button text */
+        padding-right: 8px;
+        background-position: left;
+    }
+
+    &:not(.expanded):hover {
+        background-color: $quaternary-content;
+
+        &::before {
+            background-color: $primary-content;
+        }
+    }
+}
+
+.tc_sidebar_tchap_icon {
+    background-image: url("$(res)/themes/tchap/img/logos/tchap-logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

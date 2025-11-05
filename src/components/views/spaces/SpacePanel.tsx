@@ -71,6 +71,8 @@ import TchapGaufre from "~tchap-web/src/tchap/components/views/common/Gaufre";
 import QuickFaqButton from "~tchap-web/src/tchap/components/views/common/QuickFaq"; // :TCHAP: improve-faq-visibility
 import { Landmark, LandmarkNavigation } from "../../../accessibility/LandmarkNavigation";
 import { KeyboardShortcut } from "../settings/KeyboardShortcut";
+import { IconButton } from "compound-web-tchap";
+import SpacePanelTchap from "~tchap-web/src/tchap/components/views/common/SpacePanelTchap";
 
 const useSpaces = (): [Room[], MetaSpace[], Room[], SpaceKey] => {
     const invites = useEventEmitterState<Room[]>(SpaceStore.instance, UPDATE_INVITED_SPACES, () => {
@@ -406,6 +408,9 @@ const SpacePanel: React.FC = () => {
                         ref={ref}
                         aria-label={_t("common|spaces")}
                     >
+                        {/* :TCHAP: */}
+                        <SpacePanelTchap isPanelCollapsed={isPanelCollapsed}/>
+                        {/* end :TCHAP: */}
                         <UserMenu isPanelCollapsed={isPanelCollapsed}>
                             <AccessibleButton
                                 className={classNames("mx_SpacePanel_toggleCollapse", { expanded: !isPanelCollapsed })}
