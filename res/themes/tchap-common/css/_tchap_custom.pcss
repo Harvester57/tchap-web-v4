@@ -186,9 +186,10 @@
     border-right: 1px solid var(--cpd-color-bg-subtle-primary);
 }
 
-.mx_RoomTile {
+/* Separator in the room list */
+/* .mx_RoomTile {
     border-bottom: var(--cpd-border-width-0-5) solid var(--cpd-color-bg-subtle-secondary);
-}
+} */
 
 .tc_sidebar_tchap {
     flex: 0 0 auto;
@@ -196,9 +197,9 @@
     position: relative;
     margin: 12px auto;
     color: $secondary-content;
-    min-width: 32px;
-    min-height: 32px;
-    line-height: 32px;
+    line-height: 40px;
+    min-height: 40px;
+    min-width: 40px;
     font-weight: bold;
     color: var(--main-title-color);
 
@@ -223,4 +224,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.mx_LeftPanel .mx_LeftPanel_roomListContainer .mx_LeftPanel_filterContainer {
+    margin: 0;
+    padding: 16px 012px 15px;
 }

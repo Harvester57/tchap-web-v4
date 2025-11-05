@@ -12,7 +12,7 @@ $color_1: #2e2f32;
 $color_2: white;
 $color_3: #68707d;
 $hover: #f4f6fa;
-$background-color_1: #000091;
+$background-color_1: #3E5DE7;
 $background-color_2: transparent;
 $background-color_3: rgba(125, 125, 150, 0.65);
 $background-color_4: #c7d5e4;
@@ -91,9 +91,9 @@ $e2e-verified-color: var(--confirmation-color);
 .mx_BaseAvatar.mx_RoomAvatar_isSpaceRoom .mx_BaseAvatar_image, .mx_BaseAvatar.mx_RoomAvatar_isSpaceRoom.mx_BaseAvatar_image, .mx_SpaceButton_avatarWrapper .mx_BaseAvatar span.mx_BaseAvatar_initial, .mx_SpaceButton_icon {
     border: 1px solid #c1c9d6;
 }
-.mx_AccessibleButton.mx_NotificationBadge.mx_NotificationBadge_visible.mx_NotificationBadge_dot {
+/* .mx_AccessibleButton.mx_NotificationBadge.mx_NotificationBadge_visible.mx_NotificationBadge_dot {
     background: $color_2;
-}
+} */
 .mx_SpaceRoomView_landing .mx_SpaceHierarchy_list li.mx_SpaceHierarchy_roomTileWrapper .mx_SpaceHierarchy_roomTile:focus-within, .mx_SpaceRoomView_landing .mx_SpaceHierarchy_list li.mx_SpaceHierarchy_roomTileWrapper .mx_SpaceHierarchy_roomTile:hover {
     background-color: $hover;
 }
@@ -105,4 +105,14 @@ $e2e-verified-color: var(--confirmation-color);
 /* Dialog encryption secure storage back buttton no background color*/
 .mx_AccessSecretStorageDialog .mx_Dialog_buttons button.warning {
     background-color: transparent !important;
+}
+
+.mx_QuickSettingsButton {
+    &::before {
+        background: $background-color_1;
+    }
+}
+
+.mx_ThreadsActivityCentreButton .mx_ThreadsActivityCentreButton_Icon {
+    fill: $background-color_1;
 }
