@@ -47,7 +47,7 @@ function onHashChange(): void {
 
     //only for migration
     const activateLoginLegacyDuringMASMigration= TchapUIFeature.isMASmigration();
-    
+
     if (TchapUIFeature.isMASFlowActive() && !activateLoginLegacyDuringMASMigration) {
         if (["#/login", "#/register"].includes(window.location.hash)) {
             window.location.replace("#/email-precheck-sso");
