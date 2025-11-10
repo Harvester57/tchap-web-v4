@@ -1,7 +1,7 @@
 {
     "name": "element-web",
     "productName": "Tchap",
-    "version": "4.17.2",
+    "version": "4.17.3",
     "version-element-web": "1.12.2",
     "description": "A feature-rich client for Matrix.org",
     "author": "DINUM",
@@ -126,7 +126,7 @@
         "browserslist": "^4.23.2",
         "classnames": "^2.2.6",
         "commonmark": "^0.31.0",
-        "compound-web-tchap": "^1.0.2",
+        "compound-web-tchap": "1.0.3",
         "counterpart": "^0.18.6",
         "css-tree": "^3.0.0",
         "diff-dom": "^5.0.0",
@@ -343,7 +343,7 @@
         "relativePaths": true
     },
     "engines": {
-        "node": ">=20.0.0"
+        "node": "^22.0.0"
     },
     "engines-comment": {
         "2022-11-07": "matrix-js-sdk requires >=16.0.0. SSL librairies do not work with 18 and 19. 17 has incompatibilities with some deps.",

@@ -72,6 +72,7 @@ import { ReleaseAnnouncement } from "../../structures/ReleaseAnnouncement";
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: extend-remove-thread-buttons
 import TchapGaufre from "~tchap-web/src/tchap/components/views/common/Gaufre";
 import QuickFaqButton from "~tchap-web/src/tchap/components/views/common/QuickFaq"; // :TCHAP: improve-faq-visibility
+import SpacePanelTchap from "~tchap-web/src/tchap/components/views/common/SpacePanelTchap";
 
 const useSpaces = (): [Room[], MetaSpace[], Room[], SpaceKey] => {
     const invites = useEventEmitterState<Room[]>(SpaceStore.instance, UPDATE_INVITED_SPACES, () => {
@@ -415,6 +416,10 @@ const SpacePanel: React.FC = () => {
                             ref={ref}
                             aria-label={_t("common|spaces")}
                         >
+                            {/* :TCHAP: */}
+                            <SpacePanelTchap isPanelCollapsed={isPanelCollapsed}/>
+                            {/* end :TCHAP: */}
+
                             <UserMenu isPanelCollapsed={isPanelCollapsed}>
                                 <AccessibleButton
                                     className={classNames("mx_SpacePanel_toggleCollapse", {

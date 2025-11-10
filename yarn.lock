@@ -3978,8 +3978,8 @@
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
 "@vector-im/compound-design-tokens@https://github.com/tchapgouv/compound-design-tokens.git#main":
-  version "4.0.4"
-  resolved "https://github.com/tchapgouv/compound-design-tokens.git#3d218b2fe64614467f296b8a8c975f59db8c2914"
+  version "6.0.0"
+  resolved "https://github.com/tchapgouv/compound-design-tokens.git#d51f40fddf8fb247347dfdbd0509a16a544e7835"
 
 "@vector-im/matrix-wysiwyg-wasm@link:../../.cache/yarn/v6/npm-@vector-im-matrix-wysiwyg-2.40.0-53c9ca5ea907d91e4515da64f20a82e5586b882c-integrity/node_modules/bindings/wysiwyg-wasm":
   version "0.0.0"
@@ -5319,10 +5319,10 @@ commonmark@^0.31.0:
     mdurl "~1.0.1"
     minimist "~1.2.8"
 
-compound-web-tchap@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/compound-web-tchap/-/compound-web-tchap-1.0.2.tgz#8671a62e3085b28bdb02fbdb6a8c6efa89a9da04"
-  integrity sha512-C4q5um1nhbMYdmf4IhXj58N9zt7l0zNUP2Tu4/JGc28g0ZqkiaDIhGIpe9p3cZcvaNRFVQIVjVVWK4stQPMJBw==
+compound-web-tchap@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/compound-web-tchap/-/compound-web-tchap-1.0.3.tgz#15e1baecf23dacfb4681e80f652263e4ac635257"
+  integrity sha512-cWHtv5rFvvkzN8F2pKPOCNVotsarWQFHYW+1Jzl5QyUBbxatlHjFEfkSa3538JSuw3CqhJsVZzLdSFMcHESkqQ==
   dependencies:
     "@floating-ui/react" "^0.27.0"
     "@radix-ui/react-context-menu" "^2.2.1"
@@ -12598,9 +12598,9 @@ symbol-tree@^3.2.4:
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
 tabbable@^6.0.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.2.0.tgz#732fb62bc0175cfcec257330be187dcfba1f3b97"
-  integrity sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.3.0.tgz#2e0e6163935387cdeacd44e9334616ca0115a8d3"
+  integrity sha512-EIHvdY5bPLuWForiR/AN2Bxngzpuwn1is4asboytXtpTgsArc+WmSJKVLlhdh71u7jFcryDqB2A8lQvj78MkyQ==
 
 table@^6.9.0:
   version "6.9.0"

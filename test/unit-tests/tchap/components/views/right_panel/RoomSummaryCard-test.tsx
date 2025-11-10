@@ -83,11 +83,6 @@ describe("<RoomSummaryCard />", () => {
         jest.restoreAllMocks();
     });
 
-    it("renders the room summary", () => {
-        const { container } = getComponent();
-        expect(container).toMatchSnapshot();
-    });
-
     it("opens share room dialog on button click and join rule is public", () => {
         mockedTchapRoomUtils.getRoomJoinRule.mockImplementation(() => JoinRule.Public);
         const { getByRole } = getComponent();

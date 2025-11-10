@@ -12,6 +12,13 @@ exports[`<SpacePanel /> should render as expected 1`] = `
     data-floating-ui-inert=""
   >
     <div
+      aria-expanded="false"
+      aria-label="TCHAP"
+      class="mx_AccessibleButton tc_sidebar_tchap tc_sidebar_tchap_icon"
+      role="button"
+      tabindex="0"
+    />
+    <div
       class="mx_UserMenu"
     >
       <div

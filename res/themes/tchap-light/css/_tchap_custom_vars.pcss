@@ -9,22 +9,17 @@ body {
     --private-color: #eb5757;
     --external-color: #f07a12;
     --forum-color: #27ae60;
-    --sidebar-color: #222777;
-    --sidebar-color-50pct: #030c1b4d; /* used by the modal backdrop */
-    --sidebar-button-color: var(--cpd-color-text-secondary);
-    --roomlist-background-color: #edf1f7;
-    --roomlist-background-color-0pct: #edf1f700;
-    --roomlist-text-color: #2e2f32;
-    --roomlist-text-secondary-color: #61708b;
-    --roomlist-highlights-color: #ffffff;
-    --roomlist-separator-color: #e3e8f0;
+    --sidebar-color-50pct: #030c1b4d; /* for modal backdrop*/
+    --roomlist-highlights-color: var(--cpd-color-bg-action-secondary-pressed);
+    --roomlist-separator-color: var(--cpd-color-gray-300);
+    --roomlist-text-secondary-color: #61708B;
     --timeline-background-color: #ffffff;
     --timeline-text-color: #2e2f32;
     --timeline-text-color-50pct: #2e2f3280;
     --timeline-text-secondary-color: #61708b;
     --timeline-highlights-color: #f3f8fd;
     --togglesw-off-color: #c1c9d6;
-    --eventbubble-self-bg: #e4e4f3;
+    --eventbubble-self-bg: #DDE5FF;
     --eventbubble-others-bg: #f4f4f4;
     --username-colors_0: #000091;
     --username-colors_1: #5656de;
@@ -35,21 +30,6 @@ body {
     --username-colors_6: #3f81e3;
     --username-colors_7: #000091;
 
-    /* Compound colors. Compound is a dependency for matrix-react-sdk, which manages colors (and maybe other style things ?) */
-    /* --cpd-color-bg-accent-rest: var(--accent);
-    --cpd-color-bg-action-primary-rest: var(--accent);
-    --cpd-color-text-on-solid-primary: #ffffff;
-    --cpd-color-icon-accent-tertiary: var(--accent); */
-
-    /* use for badge level color, we use red in tchap instead of element's green */
-    /* --cpd-color-icon-success-primary: var(--warning-color); */
-
-    /* TODO default avatar colors are broken because of the switch to use Compound to manage colors.
-    Try something like this:
-    --cpd-color-bg-decorative-2: #7989a8;
-    --cpd-color-text-decorative-2: #ffffff;
-    Not sure if --avatar-background-colors_X and --username-colors_X are still useful, try removing them ?
-    */
     /* if using  getComputedStyle(document.body).getPropertyValue it's better to leave no space */
     /* stylelint-disable-next-line declaration-colon-space-after */
     --avatar-background-colors_0: #7989a8;
@@ -58,7 +38,7 @@ body {
     /* stylelint-disable-next-line declaration-colon-space-after */
     --avatar-background-colors_2: #7989a8;
 
-    /* element green to tchap blue */
-    /* --cpd-color-icon-accent-primary: var(--accent);
-    --cpd-color-text-action-accent: var(--accent); */
+    --main-title-color: #2845C1;
+
+    --cpd-color-icon-tertiary: #3E5DE7;
 }
