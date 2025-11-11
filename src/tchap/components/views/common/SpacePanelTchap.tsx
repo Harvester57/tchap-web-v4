@@ -13,7 +13,7 @@ const SpacePanelTchap: React.FC<{
         <>
             <AccessibleButton
                 className={classNames(["tc_sidebar_tchap", { expanded: !isPanelCollapsed }, "tc_sidebar_tchap_icon"])}
-                onClick={() => {}}
+                onClick={() => window.location.assign("#/home")}
                 aria-label="TCHAP"
                 title={isPanelCollapsed ? "TCHAP": undefined}
                 aria-expanded={!isPanelCollapsed}
