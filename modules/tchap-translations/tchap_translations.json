@@ -384,14 +384,6 @@
         "en": "Your new device is now verified. It has access to your encrypted messages, and other users will see it as trusted.",
         "fr": "Votre nouvel appareil est maintenant vérifié. Il a accès à vos messages chiffrés et les autres utilisateurs le verront comme fiable."
     },
-    "encryption|verification|verify_using_key": {
-        "en": "Verify with verification code",
-        "fr": "Vérifier avec un code de vérification"
-    },
-    "encryption|verification|verify_using_key_or_phrase": {
-        "en": "Verify with verification code or Phrase",
-        "fr": "Vérifier avec un code de vérification ou une phrase"
-    },
     "encryption|verify_toast_description": {
         "en": "You may not be able to recover your messages.",
         "fr": "Vous risquez de ne pas pouvoir récupérer vos messages."

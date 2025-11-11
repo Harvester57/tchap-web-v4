@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup, fireEvent, screen, act } from "jest-matrix-react";
+import { render, fireEvent, screen, act } from "jest-matrix-react";
 import { mocked, type MockedObject } from "jest-mock";
 import { SSOAction, type MatrixClient } from "matrix-js-sdk/src/matrix";
 
