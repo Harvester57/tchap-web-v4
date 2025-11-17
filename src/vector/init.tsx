@@ -227,3 +227,9 @@ export async function loadPlugins(): Promise<void> {
 export { _t } from "../languageHandler";
 
 export { extractErrorMessageFromError } from "../components/views/dialogs/ErrorDialog";
+
+
+export { registerExpiredAccountListener,
+    saveAppVersionInLocalStorage,
+    queueOverideUserSettings
+} from "../tchap/app/initTchap.ts"

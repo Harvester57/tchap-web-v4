@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup, fireEvent, screen, act } from "jest-matrix-react";
+import { render, fireEvent, screen, act } from "jest-matrix-react";
 import { mocked, type MockedObject } from "jest-mock";
 import { SSOAction, type MatrixClient } from "matrix-js-sdk/src/matrix";
 
@@ -8,13 +8,12 @@ import type BasePlatform from "~tchap-web/src/BasePlatform";
 import EmailVerificationPage from "~tchap-web/src/tchap/components/views/sso/EmailVerificationPage";
 import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils";
 import { type ValidatedServerConfig } from "~tchap-web/src/utils/ValidatedServerConfig";
-import { flushPromises, mockPlatformPeg, stubClient } from "~tchap-web/test/test-utils";
+import { flushPromises, mockPlatformPeg, stubClient, unmockPlatformPeg } from "~tchap-web/test/test-utils";
 import Login from "~tchap-web/src/Login";
 import SdkConfig, { type ConfigOptions } from "~tchap-web/src/SdkConfig";
 import * as authorize from "~tchap-web/src/utils/oidc/authorize";
 import * as routing from "~tchap-web/src/vector/routing";
 
-jest.mock("~tchap-web/src/PlatformPeg");
 jest.mock("~tchap-web/src/tchap/util/TchapUtils");
 jest.mock("~tchap-web/src/Login");
 
@@ -23,10 +22,10 @@ describe("Tests sso and oidc native flow", () => {
     const defaultHsUrl = "https://matrix.agent1.fr";
     const secondHsUrl = "https://matrix.agent2.fr";
 
-    const PlatformPegMocked: MockedObject<BasePlatform> = mockPlatformPeg();
-    const mockedClient: MatrixClient = stubClient();
+    let mockedClient: MatrixClient;
     const mockedTchapUtils = mocked(TchapUtils);
     const mockedLogin = Login as jest.Mock;
+    let PlatformPegMocked: MockedObject<BasePlatform>;
 
     const mockedFetchHomeserverFromEmail = (hs: string = defaultHsUrl) => {
         mockedTchapUtils.fetchHomeserverForEmail.mockImplementation(() =>
@@ -72,7 +71,18 @@ describe("Tests sso and oidc native flow", () => {
 
     describe("MAS flow deactivated", () => {
         beforeEach(() => {
-            const config: ConfigOptions = { tchap_mas_flow: { isActive: false } };
+            mockedClient = stubClient();
+            PlatformPegMocked = mockPlatformPeg({
+                startSingleSignOn: jest.fn(),
+            });
+
+            // jest.spyOn(PlatformPeg, "get").mockReturnValue(PlatformPegMocked);
+            const config: ConfigOptions = {
+                tchap_mas_flow: {
+                    isActive: false,
+                    temp_is_MAS_migration: true,
+                },
+            };
             SdkConfig.put(config);
 
             mockedLogin.mockImplementation(() => ({
@@ -83,8 +93,9 @@ describe("Tests sso and oidc native flow", () => {
         });
 
         afterEach(() => {
-            cleanup();
             jest.restoreAllMocks();
+            SdkConfig.reset(); // we touch the config, so clean up
+            unmockPlatformPeg();
         });
 
         it("returns error when empty email", async () => {
@@ -97,10 +108,6 @@ describe("Tests sso and oidc native flow", () => {
 
             // click on proconnect button
             const proconnectButton = screen.getByTestId("proconnect-submit");
-
-            await act(async () => {
-                await fireEvent.click(proconnectButton);
-            });
 
             // Submit button should be disabled
             expect(proconnectButton).toHaveAttribute("disabled");
@@ -116,9 +123,6 @@ describe("Tests sso and oidc native flow", () => {
 
             // click on proconnect button
             const proconnectButton = screen.getByTestId("proconnect-submit");
-            await act(async () => {
-                await fireEvent.click(proconnectButton);
-            });
 
             // Submit button should be disabled
             expect(proconnectButton).toHaveAttribute("disabled");
@@ -130,7 +134,6 @@ describe("Tests sso and oidc native flow", () => {
             // mock server returns an errorn, we dont need to mock the other implementation
             // since the code should throw an error before accessing them
             mockedValidatedServerConfig(true);
-
             // Put text in email field
             const emailField = screen.getByRole("textbox");
             fireEvent.focus(emailField);

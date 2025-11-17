@@ -12,11 +12,20 @@ import InlineSpinner from "../elements/InlineSpinner";
 import { _t } from "../../../languageHandler";
 import RecordingPlayback from "../audio_messages/RecordingPlayback";
 import MediaProcessingError from "./shared/MediaProcessingError";
+import { isVoiceMessage } from "../../../utils/EventUtils";
+import { PlaybackQueue } from "../../../audio/PlaybackQueue";
+import { type Playback } from "../../../audio/Playback";
 
 import MAudioBody from "~tchap-web/src/tchap/components/views/messages/OriginalAudioBody"; // :TCHAP: content-scanner
 import MFileBody from "~tchap-web/src/tchap/components/views/messages/OriginalFileBody"; // :TCHAP: content-scanner
 
 export default class MVoiceMessageBody extends MAudioBody {
+    protected onMount(playback: Playback): void {
+        if (isVoiceMessage(this.props.mxEvent)) {
+            PlaybackQueue.forRoom(this.props.mxEvent.getRoomId()!).unsortedEnqueue(this.props.mxEvent, playback);
+        }
+    }
+
     // A voice message is an audio file but rendered in a special way.
     public render(): React.ReactNode {
         if (this.state.error) {

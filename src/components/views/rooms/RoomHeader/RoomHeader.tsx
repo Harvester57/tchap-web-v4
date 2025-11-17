@@ -7,17 +7,14 @@ Please see LICENSE files in the repository root for full details.
 */
 
 import React, { type JSX, useCallback, useMemo, useState } from "react";
-import { Body as BodyText, Button, IconButton, Menu, MenuItem, Tooltip } from "@vector-im/compound-web";
+import { Body as BodyText, Button, IconButton, Tooltip } from "@vector-im/compound-web";
 import VideoCallIcon from "@vector-im/compound-design-tokens/assets/web/icons/video-call-solid";
 import VoiceCallIcon from "@vector-im/compound-design-tokens/assets/web/icons/voice-call-solid";
 import CloseCallIcon from "@vector-im/compound-design-tokens/assets/web/icons/close";
 import ThreadsIcon from "@vector-im/compound-design-tokens/assets/web/icons/threads-solid";
 import RoomInfoIcon from "@vector-im/compound-design-tokens/assets/web/icons/info-solid";
 import NotificationsIcon from "@vector-im/compound-design-tokens/assets/web/icons/notifications-solid";
-import VerifiedIcon from "@vector-im/compound-design-tokens/assets/web/icons/verified";
-import ErrorIcon from "@vector-im/compound-design-tokens/assets/web/icons/error-solid";
-import PublicIcon from "@vector-im/compound-design-tokens/assets/web/icons/public";
-import { JoinRule, type Room } from "matrix-js-sdk/src/matrix";
+import { type Room } from "matrix-js-sdk/src/matrix";
 import { type ViewRoomOpts } from "@matrix-org/react-sdk-module-api/lib/lifecycles/RoomViewLifecycle";
 
 import { useRoomName } from "../../../../hooks/useRoomName.ts";
@@ -25,15 +22,14 @@ import { RightPanelPhases } from "../../../../stores/right-panel/RightPanelStore
 import { useMatrixClientContext } from "../../../../contexts/MatrixClientContext.tsx";
 import { useRoomMemberCount, useRoomMembers } from "../../../../hooks/useRoomMembers.ts";
 import { _t } from "../../../../languageHandler.tsx";
-import { Flex } from "../../../../shared-components/utils/Flex";
-import { Box } from "../../../../shared-components/utils/Box";
-import { getPlatformCallTypeProps, useRoomCall } from "../../../../hooks/room/useRoomCall.tsx";
+import { Flex } from "../../../../../packages/shared-components/src/utils/Flex";
+import { Box } from "../../../../../packages/shared-components/src/utils/Box";
+import { useRoomCall } from "../../../../hooks/room/useRoomCall.tsx";
 import { useRoomThreadNotifications } from "../../../../hooks/room/useRoomThreadNotifications.ts";
 import { useGlobalNotificationState } from "../../../../hooks/useGlobalNotificationState.ts";
 import SdkConfig from "../../../../SdkConfig.ts";
 import { useFeatureEnabled } from "../../../../hooks/useSettings.ts";
 import { useEncryptionStatus } from "../../../../hooks/useEncryptionStatus.ts";
-import { E2EStatus } from "../../../../utils/ShieldUtils.ts";
 import FacePile from "../../elements/FacePile.tsx";
 import { useRoomState } from "../../../../hooks/useRoomState.ts";
 import RoomAvatar from "../../avatars/RoomAvatar.tsx";
@@ -46,7 +42,7 @@ import { isVideoRoom as calcIsVideoRoom } from "../../../../utils/video-rooms.ts
 import { notificationLevelToIndicator } from "../../../../utils/notifications.ts";
 import { CallGuestLinkButton } from "./CallGuestLinkButton.tsx";
 import { type ButtonEvent } from "../../elements/AccessibleButton.tsx";
-import WithPresenceIndicator, { useDmMember } from "../../avatars/WithPresenceIndicator.tsx";
+import { useDmMember } from "../../avatars/WithPresenceIndicator.tsx";
 import { type IOOBData } from "../../../../stores/ThreepidInviteStore.ts";
 import { MainSplitContentType } from "../../../structures/RoomView.tsx";
 import defaultDispatcher from "../../../../dispatcher/dispatcher.ts";
@@ -54,7 +50,8 @@ import { RoomSettingsTab } from "../../dialogs/RoomSettingsDialog.tsx";
 import { useScopedRoomContext } from "../../../../contexts/ScopedRoomContext.tsx";
 import { ToggleableIcon } from "./toggle/ToggleableIcon.tsx";
 import { CurrentRightPanelPhaseContextProvider } from "../../../../contexts/CurrentRightPanelPhaseContext.tsx";
-import DecoratedRoomAvatar from "../../avatars/DecoratedRoomAvatar"; // :TCHAP: customize-room-header-bar
+import { type LocalRoom } from "../../../../models/LocalRoom.ts";
+import QuestionDialog from "../../dialogs/QuestionDialog.tsx";
 
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature"; // :TCHAP: customize-room-header-bar
 import TchapExternalRoomHeader from "~tchap-web/src/tchap/components/views/rooms/TchapExternalRoomHeader"; // :TCHAP: customize-room-header-bar
@@ -62,7 +59,6 @@ import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils.ts";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap.ts";
 import WithTchapIndicator from "~tchap-web/src/tchap/components/views/avatars/WithTchapIndicator.tsx";
 import Modal from "~tchap-web/src/Modal.tsx";
-import QuestionDialog from "../../dialogs/QuestionDialog.tsx";
 
 
 
@@ -71,7 +67,7 @@ export default function RoomHeader({
     additionalButtons,
     oobData,
 }: {
-    room: Room;
+    room: Room | LocalRoom;
     additionalButtons?: ViewRoomOpts["buttons"];
     oobData?: IOOBData;
 }): JSX.Element {
@@ -81,7 +77,7 @@ export default function RoomHeader({
     const joinRule = useRoomState(room, (state) => state.getJoinRule());
 
     const members = useRoomMembers(room, 2500);
-    const memberCount = useRoomMemberCount(room, { throttleWait: 2500 });
+    const memberCount = useRoomMemberCount(room, { throttleWait: 2500, includeInvited: true });
 
     const {
         voiceCallDisabledReason,
@@ -168,6 +164,7 @@ export default function RoomHeader({
                 disabled={!!videoCallDisabledReason}
                 color="primary"
                 aria-label={videoCallDisabledReason ?? _t("action|join")}
+                data-testId="join-call-button"
             >
                 {_t("action|join")}
             </Button>

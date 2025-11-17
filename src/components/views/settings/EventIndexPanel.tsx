@@ -133,7 +133,7 @@ export default class EventIndexPanel extends React.Component<EmptyObject, IState
 
     public render(): React.ReactNode {
         let eventIndexingSettings: JSX.Element | undefined;
-        const brand = SdkConfig.get().brand;
+        const { brand, desktop_builds: desktopBuilds } = SdkConfig.get();
 
         if (EventIndexPeg.get() !== null) {
             eventIndexingSettings = (
@@ -199,7 +199,7 @@ export default class EventIndexPanel extends React.Component<EmptyObject, IState
                             desktopLink: (sub) => (
                                 <ExternalLink
                                     href={TchapUrls.helpBaseUrl} // :TCHAP:
-                                    // href="https://element.io/get-started"
+                                    // href={desktopBuilds.url}
                                     target="_blank"
                                     rel="noreferrer noopener"
                                 >

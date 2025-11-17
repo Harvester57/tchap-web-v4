@@ -46,10 +46,9 @@ import RoomAvatar from "../avatars/RoomAvatar.tsx";
 import { E2EStatus } from "../../../utils/ShieldUtils.ts";
 import { type RoomPermalinkCreator } from "../../../utils/permalinks/Permalinks.ts";
 import RoomName from "../elements/RoomName.tsx";
-import { Flex } from "../../../shared-components/utils/Flex";
+import { Flex } from "../../../../packages/shared-components/src/utils/Flex";
 import { Linkify, topicToHtml } from "../../../HtmlUtils.tsx";
-import { Box } from "../../../shared-components/utils/Box";
-import { ReleaseAnnouncement } from "../../structures/ReleaseAnnouncement.tsx";
+import { Box } from "../../../../packages/shared-components/src/utils/Box";
 import { useRoomSummaryCardViewModel } from "../../viewmodels/right_panel/RoomSummaryCardViewModel.tsx";
 import { useRoomTopicViewModel } from "../../viewmodels/right_panel/RoomSummaryCardTopicViewModel.tsx";
 
@@ -262,25 +261,15 @@ const RoomSummaryCardView: React.FC<IProps> = ({
                 <MenuItem Icon={ThreadsIcon} label={_t("common|threads")} onSelect={vm.onRoomThreadsClick} />
                 {!vm.isVideoRoom && (
                     <>
-                        <ReleaseAnnouncement
-                            feature="pinningMessageList"
-                            header={_t("right_panel|pinned_messages|release_announcement|title")}
-                            description={_t("right_panel|pinned_messages|release_announcement|description")}
-                            closeLabel={_t("right_panel|pinned_messages|release_announcement|close")}
-                            placement="top"
+                        <MenuItem
+                            Icon={PinIcon}
+                            label={_t("right_panel|pinned_messages_button")}
+                            onSelect={vm.onRoomPinsClick}
                         >
-                            <div>
-                                <MenuItem
-                                    Icon={PinIcon}
-                                    label={_t("right_panel|pinned_messages_button")}
-                                    onSelect={vm.onRoomPinsClick}
-                                >
-                                    <Text as="span" size="sm">
-                                        {vm.pinCount}
-                                    </Text>
-                                </MenuItem>
-                            </div>
-                        </ReleaseAnnouncement>
+                            <Text as="span" size="sm">
+                                {vm.pinCount}
+                            </Text>
+                        </MenuItem>
                         <MenuItem
                             Icon={FilesIcon}
                             label={_t("right_panel|files_button")}

@@ -333,7 +333,7 @@ export default class TauriPlatform extends BasePlatform {
         }
     }
 
-    public async checkSessionLockFree(): Promise<boolean> {
+    public checkSessionLockFree(): boolean {
         return true;
     }
 
@@ -341,7 +341,7 @@ export default class TauriPlatform extends BasePlatform {
         return true;
     }
 
-    public openAuthorizationInBrowser(authorizationUrl: string) {
+    public openAuthorizationInBrowser(authorizationUrl: string): void {
         open(authorizationUrl).then(
             () => {
                 Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});

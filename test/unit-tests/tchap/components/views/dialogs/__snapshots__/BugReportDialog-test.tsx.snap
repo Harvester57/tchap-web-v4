@@ -16,6 +16,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
         class="mx_BugReportDialog mx_Dialog_fixedWidth"
         data-focus-lock-disabled="false"
         role="dialog"
+        tabindex="-1"
       >
         <div
           class="mx_Dialog_header"
@@ -116,6 +117,7 @@ exports[`<BugReportDialog> should render as expected 1`] = `
       class="mx_BugReportDialog mx_Dialog_fixedWidth"
       data-focus-lock-disabled="false"
       role="dialog"
+      tabindex="-1"
     >
       <div
         class="mx_Dialog_header"

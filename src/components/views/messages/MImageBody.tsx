@@ -312,10 +312,7 @@ export class MImageBodyInner extends React.Component<IProps, IState> {
                     // then we need to check if the image is animated by downloading it.
                     if (
                         content.info?.["org.matrix.msc4230.is_animated"] === false ||
-                        !(await blobIsAnimated(
-                            content.info?.mimetype,
-                            await this.props.mediaEventHelper!.sourceBlob.value,
-                        ))
+                        (await blobIsAnimated(await this.props.mediaEventHelper!.sourceBlob.value)) === false
                     ) {
                         isAnimated = false;
                     }
@@ -687,7 +684,7 @@ export class MImageBodyInner extends React.Component<IProps, IState> {
 
 // Wrap MImageBody component so we can use a hook here.
 const MImageBody: React.FC<IBodyProps> = (props) => {
-    const [mediaVisible, setVisible] = useMediaVisible(props.mxEvent.getId(), props.mxEvent.getRoomId());
+    const [mediaVisible, setVisible] = useMediaVisible(props.mxEvent);
     return <MImageBodyInner mediaVisible={mediaVisible} setMediaVisible={setVisible} {...props} />;
 };
 

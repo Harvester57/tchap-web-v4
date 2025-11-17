@@ -49,9 +49,8 @@ import { _t, _td } from "../../languageHandler";
 import SettingsStore from "../../settings/SettingsStore";
 import ThemeController from "../../settings/controllers/ThemeController";
 import { startAnyRegistrationFlow } from "../../Registration";
-import ResizeNotifier from "../../utils/ResizeNotifier";
 import AutoDiscoveryUtils from "../../utils/AutoDiscoveryUtils";
-import { makeRoomPermalink } from "../../utils/permalinks/Permalinks";
+import { calculateRoomVia, makeRoomPermalink } from "../../utils/permalinks/Permalinks";
 import ThemeWatcher, { ThemeWatcherEvent } from "../../settings/watchers/ThemeWatcher";
 import { FontWatcher } from "../../settings/watchers/FontWatcher";
 import { storeRoomAliasInCache } from "../../RoomAliasCache";
@@ -130,7 +129,6 @@ import { NotificationLevel } from "../../stores/notifications/NotificationLevel"
 import { type UserTab } from "../views/dialogs/UserTab";
 import { shouldSkipSetupEncryption } from "../../utils/crypto/shouldSkipSetupEncryption";
 import { Filter } from "../views/dialogs/spotlight/Filter";
-import { checkSessionLockFree, getSessionLock } from "../../utils/SessionLock";
 import { SessionLockStolenView } from "./auth/SessionLockStolenView";
 import { ConfirmSessionLockTheftView } from "./auth/ConfirmSessionLockTheftView";
 import { LoginSplashView } from "./auth/LoginSplashView";
@@ -205,7 +203,6 @@ interface IState {
     // and disable it when there are no dialogs
     hideToSRUsers: boolean;
     syncError: Error | null;
-    resizeNotifier: ResizeNotifier;
     serverConfig?: ValidatedServerConfig;
     ready: boolean;
     threepidInvite?: IThreepidInvite;
@@ -245,6 +242,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     // :TCHAP: TODO https://github.com/element-hq/element-web/pull/30642
     private sessionLoadStarted = false;
 
+    private sessionLoadStarted = false;
+
     public constructor(props: IProps) {
         super(props);
         this.stores = SdkContextClass.instance;
@@ -260,7 +259,6 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             isMobileRegistration: false,
 
             syncError: null, // If the current syncing status is ERROR, the error object, otherwise null.
-            resizeNotifier: new ResizeNotifier(),
             ready: false,
         };
 
@@ -319,8 +317,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
     private async initSession(): Promise<void> {
         // The Rust Crypto SDK will break if two Element instances try to use the same datastore at once, so
         // make sure we are the only Element instance in town (on this browser/domain).
-        // :TCHAP: desktop-tauri-browser remove when https://github.com/element-hq/element-web/pull/30643 is merged
-        if (!(await PlatformPeg.get()?.getSessionLock(() => this.onSessionLockStolen()))) {
+        const platform = PlatformPeg.get();
+        if (platform && !(await platform.getSessionLock(() => this.onSessionLockStolen()))) {
             // we failed to get the lock. onSessionLockStolen should already have been called, so nothing left to do.
             return;
         }
@@ -465,7 +463,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         UIStore.instance.on(UI_EVENTS.Resize, this.handleResize);
 
         // For PersistentElement
-        this.state.resizeNotifier.on("middlePanelResized", this.dispatchTimelineResize);
+        this.stores.resizeNotifier.on("middlePanelResized", this.dispatchTimelineResize);
 
         RoomNotificationStateStore.instance.on(UPDATE_STATUS_INDICATOR, this.onUpdateStatusIndicator);
 
@@ -478,23 +476,21 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         this.fontWatcher.start();
 
         initSentry(SdkConfig.get("sentry"));
-
+        window.addEventListener("resize", this.onWindowResized);
 
         // Once we start loading the MatrixClient, we can't stop, even if MatrixChat gets unmounted (as it does
         // in React's Strict Mode). So, start loading the session now, but only if this MatrixChat was not previously
         // mounted.
-        // :TCHAP: remove when https://github.com/element-hq/element-web/pull/30642 is merged
         if (!this.sessionLoadStarted) {
             this.sessionLoadStarted = true;
-            if (!checkSessionLockFree()) {
+            const platform = PlatformPeg.get();
+            if (platform && !platform.checkSessionLockFree()) {
                 // another instance holds the lock; confirm its theft before proceeding
-            setTimeout(() => this.setState({ view: Views.CONFIRM_LOCK_THEFT }), 0);
+                setTimeout(() => this.setState({ view: Views.CONFIRM_LOCK_THEFT }), 0);
             } else {
                 this.startInitSession();
             }
         }
-
-        window.addEventListener("resize", this.onWindowResized);
     }
 
     public componentDidUpdate(prevProps: IProps, prevState: IState): void {
@@ -519,7 +515,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         this.themeWatcher?.stop();
         this.fontWatcher?.stop();
         UIStore.destroy();
-        this.state.resizeNotifier.removeListener("middlePanelResized", this.dispatchTimelineResize);
+        this.stores.resizeNotifier.removeListener("middlePanelResized", this.dispatchTimelineResize);
         window.removeEventListener("resize", this.onWindowResized);
     }
 
@@ -836,7 +832,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
                         collapseLhs: true,
                     },
                     () => {
-                        this.state.resizeNotifier.notifyLeftHandleResized();
+                        this.stores.resizeNotifier.notifyLeftHandleResized();
                     },
                 );
                 break;
@@ -846,7 +842,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
                         collapseLhs: false,
                     },
                     () => {
-                        this.state.resizeNotifier.notifyLeftHandleResized();
+                        this.stores.resizeNotifier.notifyLeftHandleResized();
                     },
                 );
                 break;
@@ -1044,7 +1040,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
                 presentedId = theAlias;
                 // Store display alias of the presented room in cache to speed future
                 // navigation.
-                storeRoomAliasInCache(theAlias, room.roomId);
+                storeRoomAliasInCache(theAlias, room.roomId, calculateRoomVia(room));
             }
 
             // Store this as the ID of the last room accessed. This is so that we can
@@ -2009,7 +2005,7 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
         }
 
         this.prevWindowWidth = width;
-        this.state.resizeNotifier.notifyWindowResized();
+        this.stores.resizeNotifier.notifyWindowResized();
     };
 
     private dispatchTimelineResize(): void {

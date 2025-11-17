@@ -4,7 +4,6 @@
 /key.pem
 /lib
 /node_modules
-/packages/
 /webapp
 /.npmrc
 /*.log
@@ -55,3 +54,6 @@ modules/tchap-translations/tmp/*
 
 *storybook.log
 storybook-static
+
+/packages/shared-components/node_modules
+/packages/shared-components/dist

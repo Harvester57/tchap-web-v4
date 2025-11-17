@@ -11,10 +11,10 @@ import { logger } from "matrix-js-sdk/src/logger";
 import {
     type AudioPlayerViewSnapshot,
     type AudioPlayerViewModel as AudioPlayerViewModelInterface,
-} from "../../shared-components/audio/AudioPlayerView";
+} from "../../../packages/shared-components/src/audio/AudioPlayerView";
 import { type Playback } from "../../audio/Playback";
 import { UPDATE_EVENT } from "../../stores/AsyncStore";
-import { percentageOf } from "../../shared-components/utils/numbers";
+import { percentageOf } from "../../../packages/shared-components/src/utils/numbers";
 import { getKeyBindingsManager } from "../../KeyBindingsManager";
 import { KeyBindingAction } from "../../accessibility/KeyboardShortcuts";
 import { BaseViewModel } from "../base/BaseViewModel";
@@ -77,6 +77,9 @@ export class AudioPlayerViewModel
 
     public constructor(props: Props) {
         super(props, AudioPlayerViewModel.computeSnapshot(props.playback, props.mediaName));
+        this.disposables.trackListener(props.playback, UPDATE_EVENT, this.setSnapshot);
+        // There is no unsubscribe method in SimpleObservable
+        this.props.playback.clockInfo.liveData.onUpdate(this.setSnapshot);
 
         // Don't wait for the promise to complete - it will emit a progress update when it
         // is done, and it's not meant to take long anyhow.
@@ -95,15 +98,6 @@ export class AudioPlayerViewModel
             this.error = true;
             this.setSnapshot();
         }
-    }
-
-    protected addDownstreamSubscription(): void {
-        this.props.playback.on(UPDATE_EVENT, this.setSnapshot);
-        // There is no unsubscribe method in SimpleObservable
-        this.props.playback.clockInfo.liveData.onUpdate(this.setSnapshot);
-    }
-    protected removeDownstreamSubscription(): void {
-        this.props.playback.off(UPDATE_EVENT, this.setSnapshot);
     }
 
     /**

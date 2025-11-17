@@ -8,11 +8,11 @@ Please see LICENSE files in the repository root for full details.
 */
 
 import React, { type ReactNode } from "react";
-import { UNSTABLE_MSC4133_EXTENDED_PROFILES } from "matrix-js-sdk/src/matrix";
+import { STABLE_MSC4133_EXTENDED_PROFILES, UNSTABLE_MSC4133_EXTENDED_PROFILES } from "matrix-js-sdk/src/matrix";
 
 import { type MediaPreviewConfig } from "../@types/media_preview.ts";
 // Import i18n.tsx instead of languageHandler to avoid circular deps
-import { _t, _td, type TranslationKey } from "../shared-components/utils/i18n";
+import { _t, _td, type TranslationKey } from "../../packages/shared-components/src/utils/i18n";
 import DeviceIsolationModeController from "./controllers/DeviceIsolationModeController.ts";
 import {
     NotificationBodyEnabledController,
@@ -179,6 +179,14 @@ export interface IBaseSetting<T extends SettingValueType = SettingValueType> {
      * Whether the setting should be exported in a rageshake report.
      */
     shouldExportToRageshake?: boolean;
+
+    /**
+     * Options array for a setting controlled by a dropdown.
+     */
+    options?: {
+        value: T;
+        label: TranslationKey;
+    }[];
 }
 
 export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
@@ -353,7 +361,7 @@ export interface Settings {
     "videoInputMuted": IBaseSetting<boolean>;
     "activeCallRoomIds": IBaseSetting<string[]>;
     "releaseAnnouncementData": IBaseSetting<ReleaseAnnouncementData>;
-    "Electron.autoLaunch": IBaseSetting<boolean>;
+    "Electron.autoLaunch": IBaseSetting<"enabled" | "minimised" | "disabled">;
     "Electron.warnBeforeExit": IBaseSetting<boolean>;
     "Electron.alwaysShowMenuBar": IBaseSetting<boolean>;
     "Electron.showTrayIcon": IBaseSetting<boolean>;
@@ -690,7 +698,7 @@ export const SETTINGS: Settings = {
         displayName: _td("labs|new_room_list"),
         description: _td("labs|under_active_development"),
         isFeature: true,
-        default: false,
+        default: true,
         controller: new ReloadOnChangeController(),
     },
     /**
@@ -844,7 +852,7 @@ export const SETTINGS: Settings = {
         controller: new ServerSupportUnstableFeatureController(
             "userTimezonePublish",
             defaultWatchManager,
-            [[UNSTABLE_MSC4133_EXTENDED_PROFILES]],
+            [[UNSTABLE_MSC4133_EXTENDED_PROFILES], [STABLE_MSC4133_EXTENDED_PROFILES]],
             undefined,
             _td("labs|extended_profiles_msc_support"),
         ),
@@ -1425,13 +1433,26 @@ export const SETTINGS: Settings = {
         supportedLevels: LEVELS_UI_FEATURE,
         default: true,
     },
+    [UIFeature.AllowCreatingPublicSpaces]: {
+        supportedLevels: LEVELS_UI_FEATURE,
+        default: true,
+    },
+    [UIFeature.AllowCreatingPublicRooms]: {
+        supportedLevels: LEVELS_UI_FEATURE,
+        default: true,
+    },
 
     // Electron-specific settings, they are stored by Electron and set/read over an IPC.
     // We store them over there are they are necessary to know before the renderer process launches.
     "Electron.autoLaunch": {
         supportedLevels: [SettingLevel.PLATFORM],
-        displayName: _td("settings|start_automatically"),
-        default: false,
+        displayName: _td("settings|start_automatically|label"),
+        options: [
+            { value: "enabled", label: _td("settings|start_automatically|enabled") },
+            { value: "disabled", label: _td("settings|start_automatically|disabled") },
+            { value: "minimised", label: _td("settings|start_automatically|minimised") },
+        ],
+        default: "disabled",
     },
     "Electron.warnBeforeExit": {
         supportedLevels: [SettingLevel.PLATFORM],

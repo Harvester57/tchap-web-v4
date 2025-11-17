@@ -9,7 +9,9 @@ Please see LICENSE files in the repository root for full details.
 import React, { type JSX } from "react";
 import { type KeyBackupInfo, type VerificationRequest } from "matrix-js-sdk/src/crypto-api";
 import { logger } from "matrix-js-sdk/src/logger";
-import { type SecretStorageKeyDescription } from "matrix-js-sdk/src/secret-storage";
+import DevicesIcon from "@vector-im/compound-design-tokens/assets/web/icons/devices";
+import LockIcon from "@vector-im/compound-design-tokens/assets/web/icons/lock-solid";
+import { Button } from "@vector-im/compound-web";
 
 import { _t } from "../../../languageHandler";
 import { MatrixClientPeg } from "../../../MatrixClientPeg";
@@ -17,26 +19,40 @@ import Modal from "../../../Modal";
 import VerificationRequestDialog from "../../views/dialogs/VerificationRequestDialog";
 import { SetupEncryptionStore, Phase } from "../../../stores/SetupEncryptionStore";
 import EncryptionPanel from "../../views/right_panel/EncryptionPanel";
-import AccessibleButton, { type ButtonEvent } from "../../views/elements/AccessibleButton";
+import AccessibleButton from "../../views/elements/AccessibleButton";
 import Spinner from "../../views/elements/Spinner";
-import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: help-access-verify-device
 import { ResetIdentityDialog } from "../../views/dialogs/ResetIdentityDialog";
+import { EncryptionCard } from "../../views/settings/encryption/EncryptionCard";
+import { EncryptionCardButtons } from "../../views/settings/encryption/EncryptionCardButtons";
+import { EncryptionCardEmphasisedContent } from "../../views/settings/encryption/EncryptionCardEmphasisedContent";
+import ExternalLink from "../../views/elements/ExternalLink";
+import dispatcher from "../../../dispatcher/dispatcher";
 
-function keyHasPassphrase(keyInfo: SecretStorageKeyDescription): boolean {
-    return Boolean(keyInfo.passphrase && keyInfo.passphrase.salt && keyInfo.passphrase.iterations);
-}
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP: help-access-verify-device
 
 interface IProps {
     onFinished: () => void;
+    /**
+     * Offer the user an option to log out, instead of setting up encryption.
+     *
+     * This is used when this component is shown when the user is initially
+     * prompted to set up encryption, before the user is shown the main chat
+     * interface.
+     *
+     * Defaults to `false` if omitted.
+     */
+    allowLogout?: boolean;
 }
 
 interface IState {
     phase?: Phase;
     verificationRequest: VerificationRequest | null;
     backupInfo: KeyBackupInfo | null;
-    lostKeys: boolean;
 }
 
+/**
+ * Component to set up encryption by verifying the current device.
+ */
 export default class SetupEncryptionBody extends React.Component<IProps, IState> {
     public constructor(props: IProps) {
         super(props);
@@ -49,7 +65,6 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
             // Because of the latter, it lives in the state.
             verificationRequest: store.verificationRequest,
             backupInfo: store.backupInfo,
-            lostKeys: store.lostKeys(),
         };
     }
 
@@ -68,7 +83,6 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
             phase: store.phase,
             verificationRequest: store.verificationRequest,
             backupInfo: store.backupInfo,
-            lostKeys: store.lostKeys(),
         });
     };
 
@@ -113,8 +127,8 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
         store.returnAfterSkip();
     };
 
-    private onResetClick = (ev: ButtonEvent): void => {
-        ev.preventDefault();
+    private onCantConfirmClick = (): void => {
+        const store = SetupEncryptionStore.sharedInstance();
         Modal.createDialog(ResetIdentityDialog, {
             onReset: () => {
                 // The user completed the reset process - close this dialog
@@ -122,8 +136,12 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
                 const store = SetupEncryptionStore.sharedInstance();
                 store.done();
             },
-            variant: "confirm",
+            variant: store.lostKeys() ? "no_verification_method" : "confirm",
         });
+    };
+
+    private onSignOutClick = (): void => {
+        dispatcher.dispatch({ action: "logout" });
     };
 
     private onDoneClick = (): void => {
@@ -137,7 +155,7 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
 
     public render(): React.ReactNode {
         const cli = MatrixClientPeg.safeGet();
-        const { phase, lostKeys } = this.state;
+        const { phase } = this.state;
 
         if (this.state.verificationRequest && cli.getUser(this.state.verificationRequest.otherUserId)) {
             return (
@@ -150,101 +168,66 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
                 />
             );
         } else if (phase === Phase.Intro) {
-            if (lostKeys) {
-                return (
-                    <div>
-                        { /*:TCHAP: cross-signing-ui - change <p>{_t("encryption|verification|no_key_or_device")}</p> */ }
-                        <p>
-                            {_t(
-                                "<p>The Tchap team is working on the deployment of a new feature to "+
-                                "prevent encryption key loss.</p>"+
-                                "<p> You can access it in the section :</p><p>Security and privacy > Secure Backup</p>",
-                                 {}, { 'p': (sub) => <p>{sub}</p>}
-                            )}
-                        </p>
-                        {/* end :TCHAP: */}
+            const store = SetupEncryptionStore.sharedInstance();
 
-                        <div className="mx_CompleteSecurity_actionRow">
-                            <AccessibleButton kind="primary" onClick={this.onResetClick}>
-                                {/* :TCHAP: cross-signing-ui - _t("encryption|verification|reset_proceed_prompt") */}
-                                {_t("Set up")}
-                                {/* end :TCHAP: */}
-                            </AccessibleButton>
-                        </div>
-                    </div>
-                );
-            } else {
-                const store = SetupEncryptionStore.sharedInstance();
-                let recoveryKeyPrompt;
-                if (store.keyInfo && keyHasPassphrase(store.keyInfo)) {
-                    recoveryKeyPrompt = _t("encryption|verification|verify_using_key_or_phrase");
-                } else if (store.keyInfo) {
-                    recoveryKeyPrompt = _t("encryption|verification|verify_using_key");
-                }
-
-                let useRecoveryKeyButton;
-                if (recoveryKeyPrompt) {
-                    useRecoveryKeyButton = (
-                        <AccessibleButton kind="primary" onClick={this.onUsePassphraseClick}>
-                            {recoveryKeyPrompt}
-                        </AccessibleButton>
-                    );
-                }
-
-                let verifyButton;
-                if (store.hasDevicesToVerifyAgainst) {
-                    verifyButton = (
-                        <AccessibleButton kind="primary" onClick={this.onVerifyClick}>
-                            {_t("encryption|verification|verify_using_device")}
-                        </AccessibleButton>
-                    );
-                }
-
-                // :TCHAP:
-                const translationHelpLink =  (sub) => (
-                    <AccessibleButton kind="link_inline" onClick={() => {
-                        window.open(TchapUrls.helpVerifyDevicesPage,"_blank")
-                    }}>
-                        {sub}
-                    </AccessibleButton>
-                )
-                const tchapHelpButton = (
-                    <AccessibleButton kind="primary_outline" onClick={() => { window.open(TchapUrls.helpVerifyDevicesPage,"_blank") }}>
-                            {_t("common|help")}
-                    </AccessibleButton>
-                )
-                // end :TCHAP: 
-                return (
-                    <div>
-                        {/*:TCHAP: help-access-verify-device - <p>{_t("encryption|verification|verification_description")} */}
-                        <p>{_t("encryption|verification|verification_description")} {_t("encryption|verification|help_link",  {}, {
-                             a: translationHelpLink,
-                            })}
-                        </p>
-                        {/* end :TCHAP: */}
-                        <div className="mx_CompleteSecurity_actionRow">
-                            {verifyButton}
-                            {useRecoveryKeyButton}
-                            {/* :TCHAP: help-access-verify-device */}
-                            {tchapHelpButton}
-                            {/* end :TCHAP: */}
-                        </div>
-                        <div className="mx_SetupEncryptionBody_reset">
-                            {_t("encryption|reset_all_button", undefined, {
-                                a: (sub) => (
-                                    <AccessibleButton
-                                        kind="link_inline"
-                                        className="mx_SetupEncryptionBody_reset_link"
-                                        onClick={this.onResetClick}
-                                    >
-                                        {sub}
-                                    </AccessibleButton>
-                                ),
-                            })}
-                        </div>
-                    </div>
+            let verifyButton;
+            if (store.hasDevicesToVerifyAgainst) {
+                verifyButton = (
+                    <Button kind="primary" onClick={this.onVerifyClick}>
+                        <DevicesIcon /> {_t("encryption|verification|use_another_device")}
+                    </Button>
                 );
             }
+
+            let useRecoveryKeyButton;
+            if (store.keyInfo) {
+                useRecoveryKeyButton = (
+                    <Button kind="primary" onClick={this.onUsePassphraseClick}>
+                        {_t("encryption|verification|use_recovery_key")}
+                    </Button>
+                );
+            }
+
+            let signOutButton;
+            if (this.props.allowLogout) {
+                signOutButton = (
+                    <Button kind="tertiary" onClick={this.onSignOutClick}>
+                        {_t("action|sign_out")}
+                    </Button>
+                );
+            }
+
+            const tchapHelpButton = (
+                <AccessibleButton kind="primary_outline" onClick={() => { window.open(TchapUrls.helpVerifyDevicesPage,"_blank") }}>
+                        {_t("common|help")}
+                </AccessibleButton>
+            )
+            
+            return (
+                <EncryptionCard
+                    title={_t("encryption|verification|confirm_identity_title")}
+                    Icon={LockIcon}
+                    className="mx_EncryptionCard_noBorder mx_SetupEncryptionBody"
+                >
+                    <EncryptionCardEmphasisedContent>
+                        <span>{_t("encryption|verification|confirm_identity_description")}</span>
+                        <span>
+                            {/* :TCHAP: <ExternalLink href="https://element.io/help#encryption-device-verification"> */}
+                        </span>
+                    </EncryptionCardEmphasisedContent>
+                    <EncryptionCardButtons>
+                        {verifyButton}
+                        {useRecoveryKeyButton}
+                        {/* :TCHAP: help-access-verify-device */}
+                        {tchapHelpButton}
+                            {/* end :TCHAP: */}
+                        <Button kind="secondary" onClick={this.onCantConfirmClick}>
+                            {_t("encryption|verification|cant_confirm")}
+                        </Button>
+                        {signOutButton}
+                    </EncryptionCardButtons>
+                </EncryptionCard>
+            );
         } else if (phase === Phase.Done) {
             let message: JSX.Element;
             if (this.state.backupInfo) {

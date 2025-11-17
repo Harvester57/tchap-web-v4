@@ -3,10 +3,6 @@
         "en": "<b>A new version of this room will be created</b>. All current messages will remain accessible in this room. All members will be invited back.",
         "fr": "<b>Une nouvelle version de ce salon va être créée</b>. Tous les messages actuels resteront accessibles dans ce salon. Tous les membres vont être réinvités."
     },
-    "<p>The Tchap team is working on the deployment of a new feature to prevent encryption key loss.</p><p> You can access it in the section :</p><p>Security and privacy > Secure Backup</p>": {
-        "en": "<p>This device is not verified.</p><p>To ensure this device is always verified and you can always retrieve your messages, turn on Automatic Message Backup</p>",
-        "fr": "<p>Cet appareil n'est pas vérifié.</p><p>Pour que cet appareil soit toujours vérifié et que vous puissiez toujours récupérer vos messages, activez la Sauvegarde Automatique des messages.</p>"
-    },
     "A new email has been sent": {
         "en": "A new email has been sent",
         "fr": "Un nouvel email de renouvellement vous a été adressé"
@@ -193,7 +189,6 @@
         "en": "Verification Code",
         "fr": "Code de vérification"
     },
-    "Set up": { "en": "Activate", "fr": "Activer" },
     "auth|logout_dialog|use_key_backup": { "en": "Use automatic Backup", "fr": "Utiliser la sauvegarde automatique" },
     "bug_reporting|title": {
         "comment": "The title of BugReportDialog is unclear, specify it",
@@ -385,29 +380,9 @@
         "en": "Activate message Secure Backup",
         "fr": "Activer la sauvegarde automatique des messages"
     },
-    "encryption|verification|after_new_login|unable_to_verify": {
-        "en": "You are logging into a new device",
-        "fr": "Vous vous connectez à un nouvel appareil"
-    },
-    "encryption|verification|sas_emoji_caption_self": {
-        "en": "Confirm the emoji below are displayed on both devices, in the same order:",
-        "fr": "Confirmez si les objets sont les mêmes sur vos 2 appareils."
-    },
-    "encryption|verification|verification_description": {
-        "en": "Verify your device to access locked messages and prove your identity to others.",
-        "fr": "Vérifiez votre appareil pour accéder aux messages verrouillés et prouver votre identité aux autres."
-    },
     "encryption|verification|verification_success_with_backup": {
         "en": "Your new device is now verified. It has access to your encrypted messages, and other users will see it as trusted.",
         "fr": "Votre nouvel appareil est maintenant vérifié. Il a accès à vos messages chiffrés et les autres utilisateurs le verront comme fiable."
-    },
-    "encryption|verification|verify_using_key": {
-        "en": "Verify with verification code",
-        "fr": "Vérifier avec un code de vérification"
-    },
-    "encryption|verification|verify_using_key_or_phrase": {
-        "en": "Verify with verification code or Phrase",
-        "fr": "Vérifier avec un code de vérification ou une phrase"
     },
     "encryption|verify_toast_description": {
         "en": "You may not be able to recover your messages.",
@@ -792,10 +767,6 @@
         "en": "Red List",
         "fr": "Liste rouge"
     },
-    "encryption|verification|help_link": {
-        "en": "<a>Learn more and get help</a>",
-        "fr": "<a>En savoir plus et obtenir de l'aide </a>"
-    },
     "room_settings|security|link_sharing_modal_confirmation": {
         "en": "<p>If you activate the access by link, everyone having the link will be able to share it and join the room without invitation.</p> <p>External users will still have to be invited manually to the room.</p>",
         "fr": "<p>L'activation de l'accès au salon par lien permettra à n'importe qui en sa possession, de le partager et de rejoindre le salon sans invitation.</p> <p>Les personnes externes à la fonction publique devront tout de même être invitées manuellement.</p>"
@@ -998,7 +969,7 @@
     },
     "settings|encryption|advanced|breadcrumb_title_forgot": {
         "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
-        "fr": "Vous avez oublié votre clé de récupération ? Vous devez réinitialiser la sécurité de tous vos appareils."
+        "fr": "Vous avez oublié votre code de vérification? Vous devez réinitialiser la sécurité de tous vos appareils."
     },
     "action|sign_in_by_email": {
         "en": "Login by email",
@@ -1077,7 +1048,15 @@
         "fr": "Saisir le code de vérification"
     },
     "encryption|forgot_recovery_key": {
-        "en": "Forgot verification code ?",
-        "fr": "Code de vérification oublié?"
+        "en": "Forgot recovery code ?",
+        "fr": "Code de Récupération oublié?"
+    },
+    "encryption|verification|confirm_identity_description": {
+        "en": "Verify your device to access locked messages and prove your identity to others.",
+        "fr": "Vérifiez votre appareil pour accéder aux messages verrouillés et prouver votre identité aux autres."
+    },
+    "encryption|set_up_recovery_toast_description": {
+        "en": "Generate a verification code that can be used to restore your encrypted message history in case you lose access to your devices.",
+        "fr": "Générez un code de vérification qui peut être utilisée pour restaurer l'historique de vos messages chiffrés au cas où vous perdriez l'accès à vos appareils."
     }
 }

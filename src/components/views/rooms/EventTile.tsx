@@ -34,6 +34,7 @@ import {
     type UserVerificationStatus,
 } from "matrix-js-sdk/src/crypto-api";
 import { Tooltip } from "@vector-im/compound-web";
+import { uniqueId } from "lodash";
 
 import ReplyChain from "../elements/ReplyChain";
 import { _t } from "../../../languageHandler";
@@ -918,6 +919,8 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
     public render(): ReactNode {
         const msgtype = this.props.mxEvent.getContent().msgtype;
         const eventType = this.props.mxEvent.getType();
+        const id = uniqueId();
+
         const {
             hasRenderer,
             isBubbleMessage,
@@ -1143,7 +1146,7 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
 
         let pinnedMessageBadge: JSX.Element | undefined;
         if (PinningUtils.isPinned(MatrixClientPeg.safeGet(), this.props.mxEvent)) {
-            pinnedMessageBadge = <PinnedMessageBadge />;
+            pinnedMessageBadge = <PinnedMessageBadge aria-describedby={id} tabIndex={0} />;
         }
 
         let reactionsRow: JSX.Element | undefined;
@@ -1238,7 +1241,7 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
                             {avatar}
                             {sender}
                         </div>,
-                        <div className={lineClasses} key="mx_EventTile_line" onContextMenu={this.onContextMenu}>
+                        <div id={id} className={lineClasses} key="mx_EventTile_line" onContextMenu={this.onContextMenu}>
                             {this.renderContextMenu()}
                             {replyChain}
                             {renderTile(TimelineRenderingType.Thread, {
@@ -1426,7 +1429,7 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
                         {sender}
                         {ircPadlock}
                         {avatar}
-                        <div className={lineClasses} key="mx_EventTile_line" onContextMenu={this.onContextMenu}>
+                        <div id={id} className={lineClasses} key="mx_EventTile_line" onContextMenu={this.onContextMenu}>
                             {this.renderContextMenu()}
                             {groupTimestamp}
                             {groupPadlock}
