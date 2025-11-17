@@ -281,5 +281,11 @@
         "files": [
             "src/async-components/views/dialogs/eventindex/ManageEventIndexDialog.tsx"
         ]
+    },
+    "keybackup-out-of-sync-hide-toast": {
+        "issue": "",
+        "files": [
+            "src/toasts/SetupEncryptionToast.ts"
+        ]
     }
 }
