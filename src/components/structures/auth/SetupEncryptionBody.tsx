@@ -213,9 +213,6 @@ export default class SetupEncryptionBody extends React.Component<IProps, IState>
                         <span>{_t("encryption|verification|confirm_identity_description")}</span>
                         <span>
                             {/* :TCHAP: <ExternalLink href="https://element.io/help#encryption-device-verification"> */}
-                            <ExternalLink href={TchapUrls.helpVerifyDevicesPage}>
-                                {_t("action|learn_more")}
-                            </ExternalLink>
                         </span>
                     </EncryptionCardEmphasisedContent>
                     <EncryptionCardButtons>
