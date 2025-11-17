@@ -969,7 +969,7 @@
     },
     "settings|encryption|advanced|breadcrumb_title_forgot": {
         "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
-        "fr": "Vous avez oublié votre clé de récupération ? Vous devez réinitialiser la sécurité de tous vos appareils."
+        "fr": "Vous avez oublié votre code de vérification? Vous devez réinitialiser la sécurité de tous vos appareils."
     },
     "action|sign_in_by_email": {
         "en": "Login by email",
@@ -1054,5 +1054,9 @@
     "encryption|verification|confirm_identity_description": {
         "en": "Verify your device to access locked messages and prove your identity to others.",
         "fr": "Vérifiez votre appareil pour accéder aux messages verrouillés et prouver votre identité aux autres."
+    },
+    "encryption|set_up_recovery_toast_description": {
+        "en":"Generate a verification code that can be used to restore your encrypted message history in case you lose access to your devices.",
+        "fr": "Générez un code de vérification qui peut être utilisée pour restaurer l'historique de vos messages chiffrés au cas où vous perdriez l'accès à vos appareils."
     }
 }
