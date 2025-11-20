@@ -16,6 +16,7 @@ const serverSupportMap: {
     };
 } = {};
 
+// TODO : this doesnt work, so the token was added directly to contentscanner file
 const isTchapMediaUri = (url: URL) : boolean => url.pathname.startsWith("/_matrix/media_proxy/unstable/thumbnail") ||
     url.pathname.startsWith("/_matrix/media_proxy/unstable/download") ||
     url.pathname.startsWith("/_matrix/media_proxy/unstable/download_encrypted") ||
@@ -53,9 +54,9 @@ global.addEventListener("fetch", (event: FetchEvent) => {
     // the control of the application, and appear to be choices made at a higher level than us.
     if (
         !url.pathname.startsWith("/_matrix/media/v3/download") &&
-        !url.pathname.startsWith("/_matrix/media/v3/thumbnail") && 
+        !url.pathname.startsWith("/_matrix/media/v3/thumbnail")
         // :TCHAP: add path to include content scanner
-        !isTchapMediaUri(url)
+        // !isTchapMediaUri(url)
         // end :TCHAP:
     ) {
         return; // not a URL we care about
