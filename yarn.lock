@@ -3979,7 +3979,7 @@
 
 "@vector-im/compound-design-tokens@https://github.com/tchapgouv/compound-design-tokens.git#main":
   version "6.0.0"
-  resolved "https://github.com/tchapgouv/compound-design-tokens.git#d51f40fddf8fb247347dfdbd0509a16a544e7835"
+  resolved "https://github.com/tchapgouv/compound-design-tokens.git#687c9956e922ab2360f739c2abac00a0a19022e3"
 
 "@vector-im/matrix-wysiwyg-wasm@link:../../.cache/yarn/v6/npm-@vector-im-matrix-wysiwyg-2.40.0-53c9ca5ea907d91e4515da64f20a82e5586b882c-integrity/node_modules/bindings/wysiwyg-wasm":
   version "0.0.0"
@@ -5319,10 +5319,10 @@ commonmark@^0.31.0:
     mdurl "~1.0.1"
     minimist "~1.2.8"
 
-compound-web-tchap@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/compound-web-tchap/-/compound-web-tchap-1.0.3.tgz#15e1baecf23dacfb4681e80f652263e4ac635257"
-  integrity sha512-cWHtv5rFvvkzN8F2pKPOCNVotsarWQFHYW+1Jzl5QyUBbxatlHjFEfkSa3538JSuw3CqhJsVZzLdSFMcHESkqQ==
+compound-web-tchap@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/compound-web-tchap/-/compound-web-tchap-1.0.4.tgz#322c8e68480f2398b39748be7ef7792f80ed2330"
+  integrity sha512-x7uGKld7d2klhO3kn3Q/smXOFhx9msqx2/XYntwsd09slI42Oi5BujnP2Mi/fvGeJh57A4Ck7MPbJJDR73sfxw==
   dependencies:
     "@floating-ui/react" "^0.27.0"
     "@radix-ui/react-context-menu" "^2.2.1"
