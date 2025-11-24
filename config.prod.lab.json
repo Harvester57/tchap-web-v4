@@ -205,7 +205,8 @@
         "feature_video_group_call": [
             "agent.dinum.tchap.gouv.fr",
             "agent.ssi.tchap.gouv.fr",
-            "agent.culture.tchap.gouv.fr"
+            "agent.culture.tchap.gouv.fr",
+            "agent.agriculture.tchap.gouv.fr"
         ],
         "feature_screenshare_call": ["*"]
     },
