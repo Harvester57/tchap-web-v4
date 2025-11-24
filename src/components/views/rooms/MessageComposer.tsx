@@ -536,7 +536,8 @@ export class MessageComposer extends React.Component<IProps, IState> {
                                 aria-label={_t("composer|room_unencrypted")}
                                 width={12}
                                 height={12}
-                                color="var(--cpd-color-icon-info-primary)"
+                                // :TCHAP: color="var(--cpd-color-icon-info-primary)"
+                                color="var(--forum-color)"
                                 className="mx_E2EIcon mx_MessageComposer_e2eIcon"
                             />
                         </Tooltip>

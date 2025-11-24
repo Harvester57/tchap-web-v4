@@ -1058,5 +1058,9 @@
     "encryption|set_up_recovery_toast_description": {
         "en": "Generate a verification code that can be used to restore your encrypted message history in case you lose access to your devices.",
         "fr": "Générez un code de vérification qui peut être utilisée pour restaurer l'historique de vos messages chiffrés au cas où vous perdriez l'accès à vos appareils."
+    },
+    "encryption|set_up_recovery": {
+        "en": "Configure the verification",
+        "fr": "Configurer la récupération"
     }
 }
