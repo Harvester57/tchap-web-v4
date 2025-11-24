@@ -16,13 +16,11 @@ import Views from "./Views";
 import { PosthogAnalytics } from "./PosthogAnalytics";
 
 export type ScreenName = ScreenEvent["$current_url"];
-export type InteractionName = InteractionEvent["name"];
-
-// :TCHAP: mail-signature
-// Extend the interface using declaration merging
-export type TchapInteractionName = 
-  | "WebTchapMailSignatureButton" 
-  | InteractionEvent['name'];
+// :TCHAP: mail-signature - export type InteractionName = InteractionEvent["name"] ;
+export type InteractionName = 
+  | "WebTchapMailSignatureButton"
+  | "WebTchapVisioCommand"
+  | InteractionEvent["name"] ;
 
 export type TchapScreenName = "EmailPrecheckSso" | ScreenName;
 // end :TCHAP:

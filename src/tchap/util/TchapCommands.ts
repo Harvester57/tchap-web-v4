@@ -1,3 +1,5 @@
+import PosthogTrackers, { InteractionName } from "~tchap-web/src/PosthogTrackers";
+
 const LASUITE_VISIO_URL = "https://visio.numerique.gouv.fr/";
 const ROOM_ID_ALLOWED_CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
 
@@ -11,6 +13,7 @@ const generateSegment = (length: number): string => {
 };
 
 const visioCommand = (): string => {
+    PosthogTrackers.trackInteraction("WebTchapVisioCommand" as InteractionName);
     return `${LASUITE_VISIO_URL}${generateSegment(3)}-${generateSegment(4)}-${generateSegment(3)}`;
 };
 

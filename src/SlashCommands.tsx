@@ -218,39 +218,41 @@ export const Commands = [
         },
         category: CommandCategories.actions,
     }),
-    new Command({
-        command: "nick",
-        args: "<display_name>",
-        description: _td("slash_command|nick"),
-        runFn: function (cli, roomId, threadId, args) {
-            if (args) {
-                return success(cli.setDisplayName(args));
-            }
-            return reject(this.getUsage());
-        },
-        category: CommandCategories.actions,
-        renderingTypes: [TimelineRenderingType.Room],
-    }),
-    new Command({
-        command: "myroomnick",
-        aliases: ["roomnick"],
-        args: "<display_name>",
-        description: _td("slash_command|myroomnick"),
-        isEnabled: (cli) => !isCurrentLocalRoom(cli),
-        runFn: function (cli, roomId, threadId, args) {
-            if (args) {
-                const ev = cli.getRoom(roomId)?.currentState.getStateEvents(EventType.RoomMember, cli.getSafeUserId());
-                const content: RoomMemberEventContent = {
-                    ...(ev ? ev.getContent() : { membership: KnownMembership.Join }),
-                    displayname: args,
-                };
-                return success(cli.sendStateEvent(roomId, EventType.RoomMember, content, cli.getSafeUserId()));
-            }
-            return reject(this.getUsage());
-        },
-        category: CommandCategories.actions,
-        renderingTypes: [TimelineRenderingType.Room],
-    }),
+    // :TCHAP:
+    // new Command({
+    //     command: "nick",
+    //     args: "<display_name>",
+    //     description: _td("slash_command|nick"),
+    //     runFn: function (cli, roomId, threadId, args) {
+    //         if (args) {
+    //             return success(cli.setDisplayName(args));
+    //         }
+    //         return reject(this.getUsage());
+    //     },
+    //     category: CommandCategories.actions,
+    //     renderingTypes: [TimelineRenderingType.Room],
+    // }),
+    // new Command({
+    //     command: "myroomnick",
+    //     aliases: ["roomnick"],
+    //     args: "<display_name>",
+    //     description: _td("slash_command|myroomnick"),
+    //     isEnabled: (cli) => !isCurrentLocalRoom(cli),
+    //     runFn: function (cli, roomId, threadId, args) {
+    //         if (args) {
+    //             const ev = cli.getRoom(roomId)?.currentState.getStateEvents(EventType.RoomMember, cli.getSafeUserId());
+    //             const content: RoomMemberEventContent = {
+    //                 ...(ev ? ev.getContent() : { membership: KnownMembership.Join }),
+    //                 displayname: args,
+    //             };
+    //             return success(cli.sendStateEvent(roomId, EventType.RoomMember, content, cli.getSafeUserId()));
+    //         }
+    //         return reject(this.getUsage());
+    //     },
+    //     category: CommandCategories.actions,
+    //     renderingTypes: [TimelineRenderingType.Room],
+    // }),
+    // end :TCHAP:
     new Command({
         command: "roomavatar",
         args: "[<mxc_url>]",
@@ -845,36 +847,38 @@ export const Commands = [
         },
         category: CommandCategories.actions,
     }),
-    new Command({
-        command: "holdcall",
-        description: _td("slash_command|holdcall"),
-        category: CommandCategories.other,
-        isEnabled: (cli) => !isCurrentLocalRoom(cli),
-        runFn: function (cli, roomId, threadId, args) {
-            const call = LegacyCallHandler.instance.getCallForRoom(roomId);
-            if (!call) {
-                return reject(new UserFriendlyError("slash_command|no_active_call"));
-            }
-            call.setRemoteOnHold(true);
-            return success();
-        },
-        renderingTypes: [TimelineRenderingType.Room],
-    }),
-    new Command({
-        command: "unholdcall",
-        description: _td("slash_command|unholdcall"),
-        category: CommandCategories.other,
-        isEnabled: (cli) => !isCurrentLocalRoom(cli),
-        runFn: function (cli, roomId, threadId, args) {
-            const call = LegacyCallHandler.instance.getCallForRoom(roomId);
-            if (!call) {
-                return reject(new UserFriendlyError("slash_command|no_active_call"));
-            }
-            call.setRemoteOnHold(false);
-            return success();
-        },
-        renderingTypes: [TimelineRenderingType.Room],
-    }),
+    // :TCHAP:
+    // new Command({
+    //     command: "holdcall",
+    //     description: _td("slash_command|holdcall"),
+    //     category: CommandCategories.other,
+    //     isEnabled: (cli) => !isCurrentLocalRoom(cli),
+    //     runFn: function (cli, roomId, threadId, args) {
+    //         const call = LegacyCallHandler.instance.getCallForRoom(roomId);
+    //         if (!call) {
+    //             return reject(new UserFriendlyError("slash_command|no_active_call"));
+    //         }
+    //         call.setRemoteOnHold(true);
+    //         return success();
+    //     },
+    //     renderingTypes: [TimelineRenderingType.Room],
+    // }),
+    // new Command({
+    //     command: "unholdcall",
+    //     description: _td("slash_command|unholdcall"),
+    //     category: CommandCategories.other,
+    //     isEnabled: (cli) => !isCurrentLocalRoom(cli),
+    //     runFn: function (cli, roomId, threadId, args) {
+    //         const call = LegacyCallHandler.instance.getCallForRoom(roomId);
+    //         if (!call) {
+    //             return reject(new UserFriendlyError("slash_command|no_active_call"));
+    //         }
+    //         call.setRemoteOnHold(false);
+    //         return success();
+    //     },
+    //     renderingTypes: [TimelineRenderingType.Room],
+    // }),
+    // end :TCHAP:
     new Command({
         command: "converttodm",
         description: _td("slash_command|converttodm"),
