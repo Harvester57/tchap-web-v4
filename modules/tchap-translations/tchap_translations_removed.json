@@ -61,5 +61,10 @@
     "settings|security|message_search_space_used",
     "bug_reporting|download_logs",
     "create_space|private_only_heading",
-    "room_settings|security|join_rule_world_readable_description"
+    "room_settings|security|join_rule_world_readable_description",
+    "slash_command|no_active_call",
+    "slash_command|holdcall",
+    "slash_command|unholdcall",
+    "slash_command|myroomnick",
+    "slash_command|nick"
 ]
