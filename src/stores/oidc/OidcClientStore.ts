@@ -103,7 +103,7 @@ export class OidcClientStore {
         }
     }
     
-    // :TCHAP: logout from MAS
+    // :TCHAP: oidc-logout - logout from MAS
     public async createSignoutRequest(accessToken?: string, refreshToken?: string): Promise<SignoutRequest> {
         const client = await this.getOidcClient();
         const idToken = getStoredOidcIdToken();

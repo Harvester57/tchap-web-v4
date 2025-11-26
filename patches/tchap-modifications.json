@@ -287,5 +287,11 @@
         "files": [
             "src/toasts/SetupEncryptionToast.ts"
         ]
+    },
+    "oidc-logout": {
+        "issue": "",
+        "files": [
+            "src/stores/oidc/OidcClientStore.ts"
+        ]
     }
 }
