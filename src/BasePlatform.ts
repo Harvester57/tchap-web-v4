@@ -533,4 +533,10 @@ export default abstract class BasePlatform {
      * @returns {Promise<boolean>} True if the lock was acquired, false otherwise.
      */
     public abstract getSessionLock(_onNewInstance: () => Promise<void>): Promise<boolean>;
+
+    // :TCHAP:
+    public openUrl(uri: string) : void {
+        window.open(uri, "_blank");
+    };
+    // end :TCHAP:
 }

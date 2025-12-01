@@ -33,21 +33,21 @@ const QuickFaqButton: React.FC<{
                         iconClassName="mx_UserMenu_iconInfo"
                         label={_t("quick_faq|faq")}
                         onClick={(e) => {
-                            window.open("https://www.tchap.gouv.fr/faq", '_blank')
+                            TchapUrls.openHelper("https://www.tchap.gouv.fr/faq")
                         }}
                     />
                     <IconizedContextMenuOption
                         iconClassName="mx_UserMenu_iconMessage"
                         label={_t("quick_faq|contact")}
                         onClick={(e) => {
-                            window.open("mailto:support@tchap.beta.gouv.fr", '_blank')
+                            TchapUrls.openHelper("mailto:support@tchap.beta.gouv.fr")
                         }}
                     />
                     <IconizedContextMenuOption
                         iconClassName="mx_UserMenu_iconHome"
                         label={_t("quick_faq|guides")}
                         onClick={(e) => {
-                            window.open(TchapUrls.helpUserOnboarding, '_blank')
+                            TchapUrls.openHelper(TchapUrls.helpUserOnboarding)
                         }}
                     />
                     <IconizedContextMenuOption

@@ -47,7 +47,7 @@ import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls"; // :TCHAP:
 //     dis.dispatch({ action: Action.CreateRoom });
 // };
 const onClickFAQ = (ev: ButtonEvent): void => {
-    window.open(TchapUrls.helpBaseUrl, "_blank");
+    TchapUrls.openHelper(TchapUrls.helpBaseUrl);
 };
 
 const onClickActivateSecureStorage = (ev: ButtonEvent): void => {
@@ -55,7 +55,7 @@ const onClickActivateSecureStorage = (ev: ButtonEvent): void => {
 };
 
 const onClickDownloadApps = (ev: ButtonEvent): void => {
-    window.open(TchapUrls.landingPage, "_blank");
+    TchapUrls.openHelper(TchapUrls.landingPage);
 };
 // end :TCHAP:
 

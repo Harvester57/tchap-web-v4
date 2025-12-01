@@ -367,7 +367,7 @@ const SpaceCreateMenu: React.FC<{
                 {_t("create_space|add_details_prompt")} {_t("create_space|add_details_prompt_2", {}, {
                     a: (sub) => (
                             <AccessibleButton kind="link_inline" onClick={() => {
-                                window.open(TchapUrls.helpCreateSpace, "_blank")
+                                TchapUrls.openHelper(TchapUrls.helpCreateSpace)
                             }}>
                                 {sub}
                             </AccessibleButton>

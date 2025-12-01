@@ -351,4 +351,8 @@ export default class TauriPlatform extends BasePlatform {
             }
         );;
     }
+
+    public openUrl(uri: string): void {
+        open(uri);
+    }
 }
