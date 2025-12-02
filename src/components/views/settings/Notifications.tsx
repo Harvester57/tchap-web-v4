@@ -701,7 +701,7 @@ export default class Notifications extends React.PureComponent<EmptyObject, ISta
                         {},
                         {
                             a: (sub) => (
-                                <AccessibleButton kind="link_inline" onClick={() => {window.open(TchapUrls.helpEmailNotification, "_blank")}}>
+                                <AccessibleButton kind="link_inline" onClick={() => {TchapUrls.openHelper(TchapUrls.helpEmailNotification)}}>
                                     {sub}
                                 </AccessibleButton>
                             ),

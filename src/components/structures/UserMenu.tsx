@@ -43,6 +43,7 @@ import { type ViewHomePagePayload } from "../../dispatcher/payloads/ViewHomePage
 import { SDKContext } from "../../contexts/SDKContext";
 import { shouldShowFeedback } from "../../utils/Feedback";
 import DarkLightModeSvg from "../../../res/img/element-icons/roomlist/dark-light-mode.svg";
+import TchapUrls from "~tchap-web/src/tchap/util/TchapUrls";
 
 interface IProps {
     isPanelCollapsed: boolean;
@@ -221,7 +222,7 @@ export default class UserMenu extends React.Component<IProps, IState> {
 
     // :TCHAP: user-menu
     private onOpenFAQPage = () => {
-        window.open("https://www.tchap.gouv.fr/faq", '_blank');
+        TchapUrls.openHelper("https://www.tchap.gouv.fr/faq");
     };
 
     private onProvideFeedback = (ev: ButtonEvent): void => {

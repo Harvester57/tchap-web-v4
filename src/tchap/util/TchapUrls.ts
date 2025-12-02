@@ -1,3 +1,5 @@
+import PlatformPeg from "~tchap-web/src/PlatformPeg";
+
 export default class TchapUrls {
     //url to request the opening of a new domain on Tchap
     public static requestDomainUrl = "https://www.demarches-simplifiees.fr/commencer/utiliser-tchap";
@@ -42,6 +44,15 @@ export default class TchapUrls {
     public static helpReinitializeSC = `${TchapUrls.helpBaseUrl}/fr/article/reinitialisation-de-la-securite-des-appareils-1p8tsp9`;
 
     public static helpPopupSC = `${TchapUrls.helpBaseUrl}/fr/article/popup-persistante-demandant-le-code-de-recuperation-169ogzh/`;
+
+    public static openHelper = (uri: string) => {
+        const platform = PlatformPeg.get();
+        if (platform) {
+            platform.openUrl(uri);
+        } else {
+            window.open(uri, "_blank");
+        }
+    }
 }
 
 export enum TCHAP_AVAILABLE_LINK {
