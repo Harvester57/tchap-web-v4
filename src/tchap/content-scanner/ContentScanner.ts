@@ -59,12 +59,19 @@ export class ContentScanner {
 
     constructor(private scannerUrl: string) {}
 
+    public getAuthHeaders() {
+        const cli = MatrixClientPeg.safeGet();
+        const accessToken = cli.getAccessToken()
+        return { Authorization : `Bearer ${accessToken}` };
+    }
+
     public urlForMxc(mxc: string, width?: number, height?: number, method?: ResizeMethod): string {
         const matrixUrl = getHttpUriForMxc(this.scannerUrl, mxc, width, height, method);
         return matrixUrl.replace(/media\/r0/, "media_proxy/unstable");
     }
 
     public async download(mxc: string, file?: IEncryptedFile): Promise<Response> {
+        const authHeaders = this.getAuthHeaders();
         if (!file) {
             return fetch(this.urlForMxc(mxc));
         }
@@ -80,6 +87,7 @@ export class ContentScanner {
             }),
             headers: {
                 "Content-Type": "application/json",
+                ...authHeaders
             },
         });
     }
@@ -98,6 +106,7 @@ export class ContentScanner {
 
     private async doScan(mxc: string, file?: IEncryptedFile): Promise<boolean> {
         let response: Response;
+        const authHeaders = this.getAuthHeaders();
 
         if (file) {
             if (!this.hasKey) {
@@ -111,11 +120,15 @@ export class ContentScanner {
                 }),
                 headers: {
                     "Content-Type": "application/json",
+                    ...authHeaders
                 },
             });
         } else {
             const url = this.scannerUrl + `/_matrix/media_proxy/unstable/scan/${mxc.substring("mxc://".length)}`;
-            response = await fetch(url);
+            response = await fetch(url, {
+                method: "GET",
+                headers: authHeaders
+            });
         }
 
         const responseJson: ScanResult = await response.json();
@@ -149,3 +162,4 @@ export class ContentScanner {
         );
     }
 }
+

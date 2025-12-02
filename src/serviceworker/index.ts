@@ -16,6 +16,13 @@ const serverSupportMap: {
     };
 } = {};
 
+// TODO : this doesnt work, so the token was added directly to contentscanner file
+const isTchapMediaUri = (url: URL) : boolean => url.pathname.startsWith("/_matrix/media_proxy/unstable/thumbnail") ||
+    url.pathname.startsWith("/_matrix/media_proxy/unstable/download") ||
+    url.pathname.startsWith("/_matrix/media_proxy/unstable/download_encrypted") ||
+    url.pathname.startsWith("/_matrix/media_proxy/unstable/scan") ||
+    url.pathname.startsWith("/_matrix/media_proxy/unstable/scan_encrypted")
+
 global.addEventListener("install", (event) => {
     // We skipWaiting() to update the service worker more frequently, particularly in development environments.
     // @ts-expect-error - service worker types are not available. See 'fetch' event handler.
@@ -48,6 +55,9 @@ global.addEventListener("fetch", (event: FetchEvent) => {
     if (
         !url.pathname.startsWith("/_matrix/media/v3/download") &&
         !url.pathname.startsWith("/_matrix/media/v3/thumbnail")
+        // :TCHAP: add path to include content scanner
+        // !isTchapMediaUri(url)
+        // end :TCHAP:
     ) {
         return; // not a URL we care about
     }
