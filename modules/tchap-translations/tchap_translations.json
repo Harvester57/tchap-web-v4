@@ -1062,5 +1062,9 @@
     "encryption|set_up_recovery": {
         "en": "Configure the verification",
         "fr": "Configurer la récupération"
+    },
+    "encryption|access_secret_storage_dialog|security_key_label": {
+        "en": "Verification code",
+        "fr": "Code de vérification"
     }
 }
