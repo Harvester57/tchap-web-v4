@@ -1066,5 +1066,33 @@
     "encryption|access_secret_storage_dialog|security_key_label": {
         "en": "Verification code",
         "fr": "Code de vérification"
+    },
+    "room|kicked_from_room_by": {
+        "en": "You were removed from %(roomName)s by %(memberName)s",
+        "fr": "Vous avez été retiré(e) de %(roomName)s par %(memberName)s"
+    },
+    "timeline|m.room.member|kick": {
+        "en": "%(senderName)s removed %(targetName)s",
+        "fr": "%(senderName)s a retiré %(targetName)s"
+    },
+    "timeline|m.room.member|kick_reason": {
+        "en": "%(senderName)s removed %(targetName)s: %(reason)s",
+        "fr": "%(senderName)s a retiré %(targetName)s : %(reason)s"
+    },
+    "timeline|summary|kicked_multiple|other": {
+        "en": "were removed %(count)s times",
+        "fr": "ont été retiré(e)s %(count)s fois"
+    },
+    "timeline|summary|kicked_multiple|one": {
+        "en": "were removed",
+        "fr": "ont été retiré(e)s"
+    },
+    "timeline|summary|kicked|other": {
+        "en": "was removed %(count)s times",
+        "fr": "a été retiré(e) %(count)s fois"
+    },
+    "timeline|summary|kicked|one": {
+        "en": "was removed",
+        "fr": "a été retiré(e)"
     }
 }
