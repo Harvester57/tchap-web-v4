@@ -224,5 +224,6 @@
         "url": "https://call.tchap.gouv.fr/",
         "participant_limit": 25,
         "brand": "Appel de groupe"
-    }
+    },
+    "logout_redirect_url": "#/welcome"
 }
