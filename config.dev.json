@@ -68,6 +68,7 @@
         "UIFeature.locationSharing": true,
         "UIFeature.feedback": false,
         "MessageComposerInput.showPollsButton": true,
+        "MessageComposerInput.showStickersButton": false,
         "RoomList.orderAlphabetically": false,
         "Spaces.allRoomsInHome": true,
         "layout": "bubble",
