@@ -17,7 +17,7 @@ const TchapFooter = (): ReactElement => {
 
 
     for (const linkEntry of links) {
-        if (["CGU", "FAQ"].includes(linkEntry.text)) {
+        if (["Modalités d'utilisation", "FAQ"].includes(linkEntry.text)) {
             authFooterBottomLinks.push(
                 <li className="fr-footer__bottom-item">
                     <a className="fr-footer__bottom-link" target="_blank" rel="noreferrer external" title={linkEntry.text} href={linkEntry.url}>{linkEntry.text}</a>
