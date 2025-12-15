@@ -726,7 +726,8 @@ const UserInfo: React.FC<IProps> = ({ user, room, onClose, phase = RightPanelPha
     const header = (
         <>
             <UserInfoHeaderView
-                hideVerificationSection={phase === RightPanelPhases.EncryptionPanel}
+                // :TCHAP: we always hide the verification button - hideVerificationSection={phase === RightPanelPhases.EncryptionPanel}
+                hideVerificationSection={true}
                 member={member}
                 devices={devices}
                 roomId={room?.roomId}
