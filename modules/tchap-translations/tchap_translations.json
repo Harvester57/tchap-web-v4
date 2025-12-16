@@ -1106,5 +1106,9 @@
     "settings|encryption|delete_key_storage|description": {
         "en": "Deleting the automatic backup will delete your actual verification code and message keys from the server and turn off the following security features:",
         "fr": "Désactiver la sauvegarde supprimera votre code de vérification actuelle et désactivera d’autres mesures de sécurité. Dans ce cas :"
+    },
+    "error|update_power_level": {
+        "en": "You can not give admin or moderator rank to an invited external user",
+        "fr": "Vous n'avez pas la possibilité de nommer un invité externe au rang d'administrateur ou de modérateur"
     }
 }
