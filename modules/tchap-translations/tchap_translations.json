@@ -956,19 +956,19 @@
         "fr": "Si votre code de vérification n'est pas le plus récent, il sera incorrect."
     },
     "settings|encryption|key_storage|description": {
-        "en": "Automatically save your messages and recover them at any time with the verification code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "en": "Store automatically your messages and get them back anytime with the verification code. This will allow you to view your message history on any new devices. <a>Learn more</a>",
         "fr": "Sauvegardez automatiquement vos messages et récupérez-les à tout moment à l’aide du code de vérification. Cela vous permettra de consulter l'historique de vos messages sur tous les nouveaux appareils. <a>En savoir plus</a>"
     },
     "settings|encryption|advanced|breadcrumb_title": {
-        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "en": "Automatically save your messages and recover them at any time with the verification code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
         "fr": "Êtes-vous sûr de vouloir réinitialiser la sécurité de tous vos appareils?"
     },
     "settings|encryption|advanced|breadcrumb_title_sync_failed": {
-        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "en": "Failed to sync key storage. You need to reset the security of all your devices.",
         "fr": "Impossible de synchroniser le stockage des clés. Vous devez réinitialiser la sécurité de tous vos appareils."
     },
     "settings|encryption|advanced|breadcrumb_title_forgot": {
-        "en": "Automatically save your messages and recover them at any time with the recovery code. This will allow you to see historic messages on all new devices. <a> Learn more </a>",
+        "en": "Forgot your verification code? You'll need to reset the security of all your devices.",
         "fr": "Vous avez oublié votre code de vérification? Vous devez réinitialiser la sécurité de tous vos appareils."
     },
     "action|sign_in_by_email": {
@@ -1048,8 +1048,8 @@
         "fr": "Saisir le code de vérification"
     },
     "encryption|forgot_recovery_key": {
-        "en": "Forgot recovery code ?",
-        "fr": "Code de Récupération oublié?"
+        "en": "Forgot verification code ?",
+        "fr": "Code de vérification oublié?"
     },
     "encryption|verification|confirm_identity_description": {
         "en": "Verify your device to access locked messages and prove your identity to others.",
@@ -1061,7 +1061,7 @@
     },
     "encryption|set_up_recovery": {
         "en": "Configure the verification",
-        "fr": "Configurer la récupération"
+        "fr": "Configurer la vérification"
     },
     "encryption|access_secret_storage_dialog|security_key_label": {
         "en": "Verification code",
@@ -1094,5 +1094,17 @@
     "timeline|summary|kicked|one": {
         "en": "was removed",
         "fr": "a été retiré(e)"
+    },
+    "encryption|verification|use_recovery_key": {
+        "en": "Use verification code",
+        "fr": "Utiliser le code de vérification"
+    },
+    "bug_reporting|failed_send_logs_causes|rejected_recovery_key": {
+        "en": "Your bug report was rejected for safety reasons, as it contained a verification code.",
+        "fr": "Votre rapport de bogue a été rejeté pour des raisons de sécurité, car il contenait un code de vérification."
+    },
+    "settings|encryption|delete_key_storage|description": {
+        "en": "Deleting the automatic backup will delete your actual verification code and message keys from the server and turn off the following security features:",
+        "fr": "Désactiver la sauvegarde supprimera votre code de vérification actuelle et désactivera d’autres mesures de sécurité. Dans ce cas :"
     }
 }
