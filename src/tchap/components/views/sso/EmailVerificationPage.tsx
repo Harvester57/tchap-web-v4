@@ -36,7 +36,6 @@ import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 import { startOidcLogin } from "../../../../utils/oidc/authorize";
 import { getScreenFromLocation } from "~tchap-web/src/vector/routing";
 
-import "~tchap-web/res/css/views/sso/TchapSSO.pcss";
 
 interface IProps {
     //propagate the server config change

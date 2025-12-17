@@ -1,7 +1,5 @@
 import React from "react";
 
-import "../../../../../res/css/common/_TchapAnchor.pcss";
-
 interface TchapAnchorProps {
     children: React.ReactNode;
     className?: string;

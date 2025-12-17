@@ -6,7 +6,6 @@ import ContextMenu, { ChevronFace, alwaysAboveRightOf, useContextMenu } from '~t
 import AccessibleButton from '~tchap-web/src/components/views/elements/AccessibleButton';
 import classNames from 'classnames';
 import { _t } from '../../../../languageHandler';
-import "../../../../../res/css/common/_TchapLeftPanel.pcss";
 
 const TchapGaufre: React.FC<{
     isPanelCollapsed: boolean;

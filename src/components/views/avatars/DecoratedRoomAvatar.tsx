@@ -18,7 +18,6 @@ import {
     UserEvent,
 } from "matrix-js-sdk/src/matrix";
 import { UnstableValue } from "matrix-js-sdk/src/NamespacedValue";
-import { Tooltip } from "@vector-im/compound-web";
 
 import RoomAvatar from "./RoomAvatar";
 import NotificationBadge from "../rooms/NotificationBadge";
@@ -32,7 +31,6 @@ import { type IOOBData } from "../../../stores/ThreepidInviteStore";
 import { getJoinedNonFunctionalMembers } from "../../../utils/room/getJoinedNonFunctionalMembers";
 
 import TchapRoomUtils from "~tchap-web/src/tchap/util/TchapRoomUtils";
-import "~tchap-web/res/css/views/avatars/_TchapDecoratedRoomAvatar.pcss";
 import { TchapRoomType } from "~tchap-web/src/tchap/@types/tchap";
 import WithTchapIndicator from "~tchap-web/src/tchap/components/views/avatars/WithTchapIndicator";
 
@@ -72,21 +70,6 @@ enum Icon {
     PresenceAway = "AWAY",
     PresenceOffline = "OFFLINE",
     PresenceBusy = "BUSY",
-}
-
-function tooltipText(variant: Icon): string | undefined {
-    switch (variant) {
-        case Icon.Globe:
-            return _t("room|header|room_is_public");
-        case Icon.PresenceOnline:
-            return _t("presence|online");
-        case Icon.PresenceAway:
-            return _t("presence|away");
-        case Icon.PresenceOffline:
-            return _t("presence|offline");
-        case Icon.PresenceBusy:
-            return _t("presence|busy");
-    }
 }
 
 /**
