@@ -55,7 +55,7 @@ export default class UserMenu extends React.Component<IProps, IState> {
                         onClick={(e) => this.onSettingsOpen(e)}
                     />
                 </div>
-
+                {name}
                 {this.props.children}
             </div>
         );
