@@ -971,10 +971,6 @@
         "en": "Forgot your verification code? You'll need to reset the security of all your devices.",
         "fr": "Vous avez oublié votre code de vérification? Vous devez réinitialiser la sécurité de tous vos appareils."
     },
-    "action|sign_in_by_email": {
-        "en": "Login by email",
-        "fr": "Se connecter par email"
-    },
     "room_settings|security|title": {
         "en": "Privacy",
         "fr": "Vie privée"
@@ -1110,5 +1106,13 @@
     "error|update_power_level": {
         "en": "You can not give admin or moderator rank to an invited external user",
         "fr": "Vous n'avez pas la possibilité de nommer un invité externe au rang d'administrateur ou de modérateur"
+    },
+    "email_verification|title": {
+        "en": "Authentificate to Tchap",
+        "fr": "Authentification à Tchap"
+    },
+    "email_verification|description": {
+        "en": "Tchap use a new authentification service, more robust and standardized to secure your conversations. Fill in your email to begin.",
+        "fr": "Tchap utilise désormais un service d'authentification plus robuste et standardisé pour sécuriser davantage vos échanges. Renseignez votre mail pour commencer."
     }
 }

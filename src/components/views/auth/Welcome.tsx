@@ -47,7 +47,7 @@ export default class Welcome extends React.PureComponent<EmptyObject> {
         }
 
         return (
-            <AuthPage>
+            <AuthPage addBlur={false}>
                 <div
                     className={classNames("mx_Welcome", {
                         mx_WelcomePage_registrationDisabled: !SettingsStore.getValue(UIFeature.Registration),
@@ -55,7 +55,7 @@ export default class Welcome extends React.PureComponent<EmptyObject> {
                     data-testid="mx_welcome_screen"
                 >
                     <EmbeddedPage className="mx_WelcomePage" url={pageUrl} replaceMap={replaceMap} />
-                    <LanguageSelector />
+                    {/* :TCHAP: <LanguageSelector /> */}
                 </div>
             </AuthPage>
         );

@@ -28,6 +28,7 @@
         text-align: center;
         padding: 25px 35px;
         color: #2e2f32;
+        width: 500px;
     }
 
 
@@ -105,11 +106,11 @@
         background-repeat: no-repeat;
         background-position: 10px center;
         text-decoration: none;
-        color: #2e2f32 !important;
+        color: #3e5de7 !important;
     }
 
-    .mx_ButtonLabel {
-        margin-left: 30px;
+    .mx_ButtonLabel_create {
+        color: #3e5de7;
     }
 
     .mx_Header_title {
@@ -135,7 +136,7 @@
     }
 
     .mx_ButtonSignIn {
-        background-color: #000091;
+        background-color: #3e5de7;
         color: white !important;
     }
 
@@ -146,14 +147,11 @@
 
     .mx_SecondaryButton {
         background-color: #ffffff;
-        outline: 1px solid #2e2f32;
+        outline: 1px solid #3e5de7;
         outline-offset: -2px;
         margin-bottom: 40px;
     }
 
-    .mx_Button_iconSignIn {
-        background-image: url("welcome/images/icon-sign-in.svg");
-    }
 
     .mx_Button_iconCreateAccount {
         background-image: url("welcome/images/icon-create-account.svg");
@@ -245,7 +243,7 @@ we don't have an account and should hide them. No account == no guest account ei
     }
 
     .tc_ButtonProconnect {
-        background-color: #3E5DE7;
+        background-color: #3e5de7;
         color: white !important;
         margin-bottom: 10px;
     }
@@ -297,13 +295,13 @@ we don't have an account and should hide them. No account == no guest account ei
     </div>
     <div class="mx_ButtonGroup">
         <div class="mx_ButtonRow">
-            <a href="#/email-precheck-sso" class="mx_ButtonParent mx_ButtonSignIn mx_Button_iconSignIn">
-                <div class="mx_ButtonLabel">_t("action|sign_in_by_email")</div>
+            <a href="#/email-precheck-sso" class="mx_ButtonParent mx_ButtonSignIn">
+                <div>_t("action|sign_in")</div>
             </a>
         </div>
         <div class="mx_ButtonRow">
             <a href="#/email-precheck-sso?createAccount=true" class="mx_ButtonParent mx_SecondaryButton">
-                <div class="mx_ButtonLabel">_t("action|create_account")</div>
+                <div class="mx_ButtonLabel_create">_t("action|create_account")</div>
             </a>
         </div>
     </div>

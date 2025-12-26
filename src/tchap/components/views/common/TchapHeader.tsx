@@ -18,7 +18,7 @@ export const TchapHeader: React.FC = () => {
                             <div className="fr-header__service">
                                 <a className="lasuite-header__service-link ui-home" href="/" title="Accueil - Tchap - DINUM">
                                     <img src="/themes/tchap/img/logos/tchap-logo.svg" alt="" className="lasuite-header__service-logo fr-responsive-img" width="32" height="32" />
-                                    <p className="fr-header__service-title lasuite-header__service-title">
+                                    <p className="fr-header__service-title lasuite-header__service-title tc_header_title">
                                         Tchap
                                     </p>
                                 </a>
