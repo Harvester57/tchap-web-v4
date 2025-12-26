@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import "../../../../../../res/css/views/messages/ContentScanningImageBody.pcss";
 
 import React from "react";
 import { IBodyProps } from "~tchap-web/src/components/views/messages/IBodyProps";

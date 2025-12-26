@@ -21,7 +21,6 @@ import { _t } from "~tchap-web/src/languageHandler";
 
 import { TchapAnchor } from "../../../../components/views/common/TchapAnchor";
 import KeySavedImage from "../../../../../../res/img/tchap/key-saved.svg";
-import "../../../../../../res/css/views/dialogs/_TchapExportE2eKeysSuccessDialog.pcss";
 import TchapUrls from "../../../../util/TchapUrls";
 
 interface IProps {

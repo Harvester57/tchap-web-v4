@@ -25,7 +25,6 @@ import { KeysStartingWith } from "~tchap-web/src/@types/common";
 import { MatrixClient } from "matrix-js-sdk/src/client";
 import { logger } from "matrix-js-sdk/src/logger";
 
-import "../../../../../../res/css/views/dialogs/_TchapExportE2eKeysDialog.pcss";
 import { DialogProps } from "@matrix-org/react-sdk-module-api/lib/components/DialogContent";
 import TchapExportE2eKeysSuccessDialog from "./TchapExportE2eKeysSuccessDialog";
 import PassphraseConfirmField from "~tchap-web/src/components/views/auth/PassphraseConfirmField";

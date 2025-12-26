@@ -10,7 +10,6 @@ import LabelledToggleSwitch from "~tchap-web/src/components/views/elements/Label
 
 import { TchapRoomType } from "../../../@types/tchap";
 
-import "../../../../../res/css/views/elements/_TchapRoomTypeSelector.pcss";
 
 interface IProps {
     value: TchapRoomType;

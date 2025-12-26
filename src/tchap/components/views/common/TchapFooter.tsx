@@ -41,7 +41,7 @@ const TchapFooter = (): ReactElement => {
     );
 
     return (
-        <footer className="fr-footer lasuite lasuite-footer" role="contentinfo" id="footer-7475" style={{ marginTop: "1.5rem", padding: "1rem" }}>
+        <footer className="fr-footer lasuite lasuite-footer tc_footer_wrapper" role="contentinfo" id="footer-7475">
             <div className="fr-container lasuite-container">
                 <div className="fr-footer__body">
                     <div className="fr-footer__brand">
