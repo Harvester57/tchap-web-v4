@@ -208,7 +208,8 @@
             "agent.ssi.tchap.gouv.fr",
             "agent.culture.tchap.gouv.fr",
             "agent.agriculture.tchap.gouv.fr",
-            "agent.justice.tchap.gouv.fr"
+            "agent.justice.tchap.gouv.fr",
+            "agent.diplomatie.tchap.gouv.fr"
         ],
         "feature_screenshare_call": ["*"]
     },
