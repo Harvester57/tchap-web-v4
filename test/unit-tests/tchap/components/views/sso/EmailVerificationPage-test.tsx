@@ -98,6 +98,13 @@ describe("Tests sso and oidc native flow", () => {
             unmockPlatformPeg();
         });
 
+        it("should display correct title and button label when mas flow is deactivated", () => {
+            const { container } = renderEmailVerificationPage();
+
+            expect(screen.getByTestId("proconnect-submit")).toBeInTheDocument();
+            expect(container.getElementsByClassName("mx_AuthHeader").length).toBe(1);
+        });
+
         it("returns error when empty email", async () => {
             renderEmailVerificationPage();
 
@@ -298,10 +305,10 @@ describe("Tests sso and oidc native flow", () => {
         });
 
         it("should display correct title and button label when mas flow is activated", () => {
-            renderEmailVerificationPage();
+            const { container } = renderEmailVerificationPage();
 
-            expect(screen.getByRole("button", { name: "Continue" })).toBeInTheDocument();
-            expect(screen.getByRole("heading", { name: "Sign in" })).toBeInTheDocument();
+            expect(screen.getByTestId("mas-submit")).toBeInTheDocument();
+            expect(container.getElementsByClassName("mx_AuthHeader").length).toBe(0);
         });
 
         it("should call start oidc native flow with login_hint", async () => {

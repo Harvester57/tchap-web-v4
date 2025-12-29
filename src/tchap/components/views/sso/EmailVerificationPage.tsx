@@ -253,9 +253,9 @@ export default function EmailVerificationPage(props: IProps) {
                             <img src="/themes/tchap/img/logos/tchap-logo.svg" alt="" width="64" height="64"></img>
                         </div>
                         <h1>
-                            {_td("email_verification|title")}
+                            {_t("auth|email_verification_title")}
                         </h1>
-                        <p> {_td("email_verification|description")} </p>
+                        <p> {_t("auth|email_verification_description")} </p>
                     </section>
                     <form onSubmit={onSubmit} className="tc_pronnect">
                         <fieldset disabled={loading} className="tc_login">

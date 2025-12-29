@@ -1107,11 +1107,11 @@
         "en": "You can not give admin or moderator rank to an invited external user",
         "fr": "Vous n'avez pas la possibilité de nommer un invité externe au rang d'administrateur ou de modérateur"
     },
-    "email_verification|title": {
+    "auth|email_verification_title": {
         "en": "Authentificate to Tchap",
         "fr": "Authentification à Tchap"
     },
-    "email_verification|description": {
+    "auth|email_verification_description": {
         "en": "Tchap use a new authentification service, more robust and standardized to secure your conversations. Fill in your email to begin.",
         "fr": "Tchap utilise désormais un service d'authentification plus robuste et standardisé pour sécuriser davantage vos échanges. Renseignez votre mail pour commencer."
     }

@@ -46,8 +46,24 @@ export default class Welcome extends React.PureComponent<EmptyObject> {
             // end :TCHAP:
         }
 
+        // :TCHAP:
+        if (TchapUIFeature.isMASFlowActive()) {
+            return (
+                <AuthPage addBlur={false}>
+                    <div
+                        className={classNames("mx_Welcome", {
+                            mx_WelcomePage_registrationDisabled: !SettingsStore.getValue(UIFeature.Registration),
+                        })}
+                        data-testid="mx_welcome_screen_mas"
+                    >
+                        <EmbeddedPage className="mx_WelcomePage" url={pageUrl} replaceMap={replaceMap} />
+                    </div>
+                </AuthPage>
+            )
+        }
+        // end :TCHAP:
         return (
-            <AuthPage addBlur={false}>
+            <AuthPage>
                 <div
                     className={classNames("mx_Welcome", {
                         mx_WelcomePage_registrationDisabled: !SettingsStore.getValue(UIFeature.Registration),
@@ -55,7 +71,7 @@ export default class Welcome extends React.PureComponent<EmptyObject> {
                     data-testid="mx_welcome_screen"
                 >
                     <EmbeddedPage className="mx_WelcomePage" url={pageUrl} replaceMap={replaceMap} />
-                    {/* :TCHAP: <LanguageSelector /> */}
+                    <LanguageSelector />
                 </div>
             </AuthPage>
         );
