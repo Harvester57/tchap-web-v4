@@ -24,6 +24,8 @@ import type BaseEventIndexManager from '~tchap-web/src/indexing/BaseEventIndexMa
 
 import Modal from '~tchap-web/src/Modal';
 import Spinner from '~tchap-web/src/components/views/elements/Spinner';
+import ToastStore from '~tchap-web/src/stores/ToastStore';
+import GenericExpiringToast from '~tchap-web/src/components/views/toasts/GenericExpiringToast';
 
 const SSO_ID_KEY = "tchap-desktop-ssoid";
 
@@ -77,8 +79,41 @@ export default class TauriPlatform extends BasePlatform {
         this.checkUpdates();
 
         this.checkDeepLinkOpen();
+
+        this.onDownloadFinish();
     }
 
+    public onDownloadFinish(): void {
+        listen("download-finished", (event) => {
+            const path  = event.payload as string;
+
+            const key = `DOWNLOAD_TOAST_${Date.now()}`;
+            
+            const onAccept = (): void => {
+                this.ipc.call("user_download_action", { path });
+                ToastStore.sharedInstance().dismissToast(key);
+            };
+
+            const onDismiss = (): void => {
+                ToastStore.sharedInstance().dismissToast(key);
+            };
+
+            ToastStore.sharedInstance().addOrReplaceToast({
+                key,
+                title: _t("download_completed"),
+                props: {
+                    description: path,
+                    primaryLabel: _t("action|open"),
+                    onPrimaryClick: onAccept,
+                    dismissLabel: _t("action|dismiss"),
+                    onDismiss,
+                    numSeconds: 10,
+                },
+                component: GenericExpiringToast,
+                priority: 99,
+            });
+        });
+    }
     public async checkDeepLinkOpen(): Promise<void> {
         await onOpenUrl((urls) => {
             console.log('***** deep link:', urls)
@@ -285,7 +320,7 @@ export default class TauriPlatform extends BasePlatform {
 
     public setNotificationCount(count: number): void {
         if (this.notificationCount === count) return;
-        
+        console.log("[Tauri plaforme] set notification badge count");
         getCurrentWindow().setBadgeCount(count);
         super.setNotificationCount(count);
         

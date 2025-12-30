@@ -65,13 +65,11 @@ export default class ContentScanningDownloadActionButton extends React.PureCompo
     }
 
     private onDownloadClick = async () => {
-        console.log("===== onDownloadClick", this.state.downloadState);
         if (this.state.downloadState === DownloadState.Scanning) {
             return;
         }
         
         if (this.state.blob) {
-            console.log("===== onDownloadClick inside blob", this.state.blob);
             // Cheat and trigger a download, again.
             return this.doDownload(this.state.blob);
         }
