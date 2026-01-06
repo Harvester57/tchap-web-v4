@@ -575,7 +575,24 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
                 </span>
             );
         }
-
+        // :TCHAP:
+        if (TchapUIFeature.isMASFlowActive()) {
+            return (
+                <AuthPage addBlur={false}>
+                  <AuthBody>
+                        <h1>
+                            {_t("action|sign_in")}
+                            {loader}
+                        </h1>
+                        {errorTextSection}
+                        {serverDeadSection}
+                        {this.renderLoginComponentForFlows()}
+                        {footer}
+                    </AuthBody>
+                </AuthPage>
+            )
+        }
+        // end :TCHAP:
         return (
             <AuthPage>
                 <AuthHeader disableLanguageSelector={this.props.isSyncing || this.state.busyLoggingIn} />

@@ -33,8 +33,10 @@ import { VerifyEmailModal } from "./forgot-password/VerifyEmailModal";
 import Spinner from "../../views/elements/Spinner";
 import { formatSeconds } from "../../../DateUtils";
 import AutoDiscoveryUtils from "../../../utils/AutoDiscoveryUtils";
+
 import TchapUtils from "~tchap-web/src/tchap/util/TchapUtils"; // :TCHAP: forgot-password
 import Tchapi18nUtils from "~tchap-web/src/tchap/i18n/Tchapi18nUtils";
+import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 
 const emailCheckInterval = 2000;
 
@@ -508,6 +510,15 @@ export default class ForgotPassword extends React.Component<Props, State> {
                 return;
         }
 
+        // :TCHAP:
+        if (TchapUIFeature.isMASFlowActive()) {
+            return (
+                <AuthPage addBlur={false}>
+                    <AuthBody className="mx_AuthBody_forgot-password">{resetPasswordJsx}</AuthBody>
+                </AuthPage>
+            )
+        }
+        // end :TCHAP:
         return (
             <AuthPage>
                 <AuthHeader />

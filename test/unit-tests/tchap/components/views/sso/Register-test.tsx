@@ -1,7 +1,8 @@
 import React from "react";
-import { render } from "jest-matrix-react";
-import { mocked, type MockedObject } from "jest-mock";
-import { type MatrixClient, MatrixError, type OidcClientConfig, createClient } from "matrix-js-sdk/src/matrix";
+import { render, screen, waitForElementToBeRemoved } from "jest-matrix-react";
+import { type MockedObject } from "jest-mock";
+import * as Matrix from "matrix-js-sdk/src/matrix";
+import { type MatrixClient, MatrixError, type OidcClientConfig } from "matrix-js-sdk/src/matrix";
 import fetchMock from "fetch-mock";
 
 import SdkConfig, { type ConfigOptions, DEFAULTS } from "~tchap-web/src/SdkConfig";
@@ -35,9 +36,9 @@ describe("<Register />", () => {
     const defaultHsUrl = "https://matrix.org";
     const defaultIsUrl = "https://vector.im";
 
-    const addSSOFlowToMockConfig = (isActive: boolean = false) => {
+    const addMASToMockConfig = (isActive: boolean = false) => {
         // mock SdkConfig.get("tchap_features")
-        const config: ConfigOptions = { tchap_mas_flow: { isActive } };
+        const config: ConfigOptions = { tchap_mas_flow: { isActive, temp_is_MAS_migration: isActive } };
         SdkConfig.put(config);
     };
 
@@ -62,33 +63,16 @@ describe("<Register />", () => {
             disable_custom_urls: true,
         });
         mockClient = await getMockClientWithEventEmitter({
-            registerRequest: jest.fn().mockImplementation(
-                () =>
-                    new MatrixError(
-                        {
-                            flows: [{ stages: [] }],
-                        },
-                        401,
-                    ),
+            registerRequest: jest.fn().mockRejectedValue(
+                new MatrixError(
+                    {
+                        flows: [{ stages: [] }],
+                    },
+                    401,
+                ),
             ),
             loginFlows: jest.fn().mockResolvedValue({ flows: [{ type: "m.login.sso" }, { type: "m.login.password" }] }),
             getVersions: jest.fn().mockResolvedValue({ versions: SERVER_SUPPORTED_MATRIX_VERSIONS }),
-        });
-
-        // used for registerRequest, but should return a MatrixError instance for the code to work... which is not the case here
-        fetchMock.catch({
-            status: 401,
-            body: '{"errcode": "M_UNAUTHORIZE", "error": "Unauthorize request"}',
-            headers: { "content-type": "application/json" },
-        });
-
-        // Doing this line can mock the request we want, but we want it to throw an error 401 which this doesnt do
-        // fetchMock.post(`${defaultHsUrl}/_matrix/client/v3/register`, { status: 401, type: "error" });
-
-        await mocked(createClient).mockImplementation((opts) => {
-            mockClient.idBaseUrl = opts.idBaseUrl;
-            mockClient.baseUrl = opts.baseUrl;
-            return mockClient;
         });
 
         fetchMock.get(`${defaultHsUrl}/_matrix/client/versions`, {
@@ -114,6 +98,8 @@ describe("<Register />", () => {
             hsName: "example.com",
         } as ValidatedServerConfig);
 
+        jest.spyOn(Matrix, "createClient").mockReturnValue(mockClient);
+
         mockPlatformPeg({
             startSingleSignOn: jest.fn(),
         });
@@ -126,29 +112,43 @@ describe("<Register />", () => {
         unmockPlatformPeg();
     });
 
-    /** TODO weird behavior of requestregister which the mock is not detected
-     * So it will al<ays display an error and the loader wont disapear
-     * Will need to fix this mocked request and it should be good
-     *
-     */
-    // eslint-disable-next-line jest/no-commented-out-tests
-    // it("returns proconnect button in register when the config include sso flow", async () => {
-    //     addSSOFlowToMockConfig(true);
+    it("returns proconnect button in register in standard mode", async () => {
+        addMASToMockConfig(false);
+        mockClient.loginFlows.mockResolvedValue({ flows: [{ type: "m.login.password" }, { type: "m.login.sso" }] });
 
-    //     const { container } = render(getRawComponent());
+        const { container } = render(getRawComponent());
 
-    //     await waitForElementToBeRemoved(() => screen.queryAllByTestId("spinner"));
+        await waitForElementToBeRemoved(() => screen.queryAllByTestId("spinner"));
 
-    //     screen.debug();
+        expect(container.getElementsByClassName("tc_pronnect").length).toBe(1);
+    });
 
-    //     expect(container.getElementsByClassName("tc_pronnect").length).toBe(1);
-    // });
+    it("returns no proconnect button in register in MAS mode", async () => {
+        addMASToMockConfig(true);
+        mockClient.loginFlows.mockResolvedValue({ flows: [{ type: "m.login.password" }, { type: "m.login.sso" }] });
+
+        const { container } = render(getRawComponent());
+
+        await waitForElementToBeRemoved(() => screen.queryAllByTestId("spinner"));
+
+        expect(container.getElementsByClassName("tc_pronnect").length).toBe(0);
+    });
 
     it("returns no proconnect button when the config does'nt include sso flow", () => {
-        addSSOFlowToMockConfig(false);
+        addMASToMockConfig(false);
 
         const { container } = render(getRawComponent());
 
         expect(container.getElementsByClassName("tc_pronnect").length).toBe(0);
+        expect(container.getElementsByClassName("mx_AuthHeader").length).toBe(1);
+    });
+
+    it("should display MAS compatible UI", async () => {
+        addMASToMockConfig(true);
+
+        const { container } = render(getRawComponent());
+
+        // should not include auth headers
+        expect(container.getElementsByClassName("mx_AuthHeader").length).toBe(0);
     });
 });
