@@ -2,7 +2,7 @@ import React from "react";
  
 export const TchapHeader: React.FC = () => {
     return (
-        <header role="banner" className="lasuite fr-header lasuite-header">
+        <header role="banner" className="lasuite fr-header">
             <div className="fr-header__body">
                 <div className="fr-container lasuite-container">
                     <div className="fr-header__body-row">
