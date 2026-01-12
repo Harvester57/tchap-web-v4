@@ -275,11 +275,13 @@ const RoomSummaryCardView: React.FC<IProps> = ({
                             label={_t("right_panel|files_button")}
                             onSelect={vm.onRoomFilesClick}
                         />
-                        <MenuItem
+                        {/* :TCHAP: no extension available in tchap*/}
+                        {/* <MenuItem
                             Icon={ExtensionsIcon}
                             label={_t("right_panel|extensions_button")}
                             onSelect={vm.onRoomExtensionsClick}
-                        />
+                        /> */}
+                        {/* end :TCHAP: */}
                     </>
                 )}
 

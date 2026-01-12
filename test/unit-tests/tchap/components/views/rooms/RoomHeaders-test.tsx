@@ -238,7 +238,7 @@ describe("RoomHeader", () => {
     });
 
     // :TCHAP: flow-legacy-call-element-call
-    it("directly start legacy call when there is only two users in the room", async () => {
+    it("Start legacy call when there is only two users in the room", async () => {
         addHomeserverToMockConfig([homeserverName], featureVideoGroupName);
         mockRoomMembers(room, 2);
 
@@ -268,7 +268,7 @@ describe("RoomHeader", () => {
         );
     });
 
-    it("directly start legacy call when it is a DM room and element call is enabled", async () => {
+    it("directly start legacy call when it is a DM room and element call is enabled, no modale confirmation", async () => {
         addHomeserverToMockConfig([homeserverName], [featureVideoGroupName, featureVideoName]);
         mockDMRoom();
 
@@ -277,17 +277,8 @@ describe("RoomHeader", () => {
         logRoles(container);
         // Click the video call button
         await videoButton.click();
-        // confirmation Modal should display
-        expect(Modal.createDialog).toHaveBeenCalledWith(QuestionDialog, {
-            button: "Continue",
-            cancelButton: "Cancel",
-            description: (
-                <div>
-                    <p>voip</p>
-                </div>
-            ),
-            title: "voip",
-        });
+        // confirmation Modal should not display
+        expect(Modal.createDialog).not.toHaveBeenCalled();
         // placeCall to have been called with PlatformCallType.LegacyCall
         expect(placeCall).toHaveBeenCalledWith(
             expect.anything(),

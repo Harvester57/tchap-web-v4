@@ -22,7 +22,14 @@ div[data-floating-ui-portal][data-floating-ui-inert] * {
 /* For tooltip hover, with grey background and black text */
 div[data-floating-ui-focusable] {
     color: black;
-    background-color: var(--cpd-color-gray-1000)
+    background-color: var(--cpd-color-gray-1000);
+}
+
+/* For caption in tooltip on read receipt */
+div[data-floating-ui-portal] {
+    span {
+        color: black;
+    }
 }
 
 /* The first bubble description in the room, should not have blue background  */

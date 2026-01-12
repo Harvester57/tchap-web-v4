@@ -818,6 +818,17 @@ export default class Registration extends React.Component<IProps, IState> {
                 </div>
             );
         }
+        // :TCHAP:
+        if (TchapUIFeature.isMASFlowActive()) {
+            return (
+                <AuthPage addBlur={false}>
+                <AuthHeaderProvider>
+                    <AuthBody flex>{body}</AuthBody>
+                </AuthHeaderProvider>
+            </AuthPage>    
+            )
+        }
+        // end :TCHAP:
         return (
             <AuthPage>
                 <AuthHeader />

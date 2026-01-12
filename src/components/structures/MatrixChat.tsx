@@ -148,7 +148,7 @@ import EmailVerificationPage from "~tchap-web/src/tchap/components/views/sso/Ema
 export { default as Views } from "../../Views";
 
 // :TCHAP: const AUTH_SCREENS = ["register", "mobile_register", "login", "forgot_password", "start_sso", "start_cas", "welcome", ""];
-const AUTH_SCREENS = ["register", "mobile_register", "login", "forgot_password", "start_sso", "start_cas", "welcome", "email_precheck_sso"];
+const AUTH_SCREENS = ["register", "mobile_register", "login", "forgot_password", "start_sso", "start_cas", "welcome", "email-precheck-sso"];
 // end :TCHAP
 
 // Actions that are redirected through the onboarding process prior to being

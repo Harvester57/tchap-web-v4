@@ -31,6 +31,11 @@ describe("<Welcome />", () => {
 
         // the component should choose the correct html page based on the sso_flo active value
         expect(screen.getByRole("heading", { level: 1 }).textContent).toEqual("MAS");
+        expect(screen.getByTestId("mx_welcome_screen_mas")).toBeInTheDocument();
+
+        // should have white background
+        const authWrapper = document.getElementsByClassName("mx_AuthPage")[0];
+        expect(authWrapper).toHaveStyle({ "background-color": "white" });
     });
 
     it("returns proconnect welcome html page without mas flow", async () => {
@@ -45,5 +50,9 @@ describe("<Welcome />", () => {
 
         // the component should choose the correct html page based on the sso_flo active value
         expect(screen.getByRole("heading", { level: 1 }).textContent).toEqual("proconnect");
+        expect(screen.getByTestId("mx_welcome_screen")).toBeInTheDocument();
+        // should not have white background, but image
+        const authWrapper = document.getElementsByClassName("mx_AuthPage")[0];
+        expect(authWrapper).not.toHaveStyle({ "background-color": "white" });
     });
 });

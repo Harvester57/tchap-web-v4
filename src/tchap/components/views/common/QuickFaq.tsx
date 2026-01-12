@@ -1,7 +1,5 @@
 
-import React, { JSX } from 'react'
-
-import "../../../../../res/css/common/_TchapLeftPanel.pcss";
+import React, { JSX } from 'react';
 
 import { ChevronFace, alwaysAboveRightOf, useContextMenu } from '~tchap-web/src/components/structures/ContextMenu';
 import AccessibleButton from '~tchap-web/src/components/views/elements/AccessibleButton';

@@ -17,7 +17,7 @@ const TchapFooter = (): ReactElement => {
 
 
     for (const linkEntry of links) {
-        if (["CGU", "FAQ"].includes(linkEntry.text)) {
+        if (["Modalités d'utilisation", "FAQ"].includes(linkEntry.text)) {
             authFooterBottomLinks.push(
                 <li className="fr-footer__bottom-item">
                     <a className="fr-footer__bottom-link" target="_blank" rel="noreferrer external" title={linkEntry.text} href={linkEntry.url}>{linkEntry.text}</a>
@@ -41,7 +41,7 @@ const TchapFooter = (): ReactElement => {
     );
 
     return (
-        <footer className="fr-footer lasuite lasuite-footer" role="contentinfo" id="footer-7475" style={{ marginTop: "1.5rem", padding: "1rem" }}>
+        <footer className="fr-footer lasuite lasuite-footer tc_footer_wrapper" role="contentinfo" id="footer-7475">
             <div className="fr-container lasuite-container">
                 <div className="fr-footer__body">
                     <div className="fr-footer__brand">

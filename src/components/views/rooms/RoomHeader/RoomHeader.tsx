@@ -120,8 +120,8 @@ export default function RoomHeader({
     // );
     const videoClick = useCallback(
         async (ev: React.MouseEvent, isJoin: boolean = false) => {
-            // directly start call if join click
-            if (isJoin) {
+            // directly start call if join click or is a DM video call
+            if (isJoin || isDirectMessage) {
                 videoCallClick(ev, callOptions[0]);
                 return;
             }

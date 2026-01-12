@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import "../../../../../../res/css/views/messages/ContentScanningFileBody.pcss";
 
 import React from "react";
 import InlineSpinner from "~tchap-web/src/components/views/elements/InlineSpinner";

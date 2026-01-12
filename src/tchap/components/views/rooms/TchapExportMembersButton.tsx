@@ -9,7 +9,6 @@ import { ButtonEvent } from "~tchap-web/src/components/views/elements/Accessible
 import { _t } from "~tchap-web/src/languageHandler";
 import { Icon as UserExportIcon } from "~tchap-web/res/img/tchap/user-export.svg";
 
-import "~tchap-web/res/css/views/rooms/TchapExportMembersButton.pcss";
 import { MemberWithSeparator, SEPARATOR } from "~tchap-web/src/components/viewmodels/memberlist/MemberListViewModel";
 import { Button, Tooltip } from "@vector-im/compound-web";
 import { RoomMember } from "matrix-js-sdk/src/matrix";

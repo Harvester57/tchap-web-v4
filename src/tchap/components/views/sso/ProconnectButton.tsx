@@ -1,7 +1,6 @@
 import { MatrixClient, SSOAction } from "matrix-js-sdk/src/matrix";
 import React, { JSX } from "react";
 
-import "~tchap-web/res/css/views/sso/TchapSSO.pcss";
 import { _t } from "~tchap-web/src/languageHandler";
 import PlatformPeg from "~tchap-web/src/PlatformPeg";
 

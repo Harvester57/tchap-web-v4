@@ -156,6 +156,7 @@
         "UIFeature.locationSharing": true,
         "UIFeature.feedback": false,
         "MessageComposerInput.showPollsButton": true,
+        "MessageComposerInput.showStickersButton": false,
         "RoomList.orderAlphabetically": false,
         "Spaces.allRoomsInHome": true,
         "layout": "bubble",
@@ -172,7 +173,7 @@
             { "text": "OpenData", "url": "https://www.data.gouv.fr" },
             { "text": "DINUM", "url": "https://numerique.gouv.fr" },
             { "text": "beta.gouv.fr", "url": "https://beta.gouv.fr" },
-            { "text": "CGU", "url": "https://www.tchap.gouv.fr/cgu" },
+            { "text": "Modalités d'utilisation", "url": "https://www.tchap.gouv.fr/cgu" },
             { "text": "FAQ", "url": "https://www.tchap.gouv.fr/faq" }
         ],
         "welcome_background_url": "themes/tchap/img/backgrounds/tchap-bg.jpg"
@@ -207,7 +208,8 @@
             "agent.ssi.tchap.gouv.fr",
             "agent.culture.tchap.gouv.fr",
             "agent.agriculture.tchap.gouv.fr",
-            "agent.justice.tchap.gouv.fr"
+            "agent.justice.tchap.gouv.fr",
+            "agent.diplomatie.tchap.gouv.fr"
         ],
         "feature_screenshare_call": ["*"]
     },
@@ -224,5 +226,6 @@
         "url": "https://call.tchap.gouv.fr/",
         "participant_limit": 25,
         "brand": "Appel de groupe"
-    }
+    },
+    "logout_redirect_url": "#/welcome"
 }

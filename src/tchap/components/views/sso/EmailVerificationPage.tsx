@@ -19,7 +19,6 @@ import { _t, _td } from "~tchap-web/src/languageHandler";
 
 import AuthPage from "~tchap-web/src/components/views/auth/AuthPage";
 import AuthBody from "~tchap-web/src/components/views/auth/AuthBody";
-import AuthHeader from "~tchap-web/src/components/views/auth/AuthHeader";
 import EmailField from "~tchap-web/src/components/views/auth/EmailField";
 import Field from "~tchap-web/src/components/views/elements/Field";
 import Spinner from "~tchap-web/src/components/views/elements/Spinner";
@@ -35,8 +34,8 @@ import * as Email from "~tchap-web/src/email";
 import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 import { startOidcLogin } from "../../../../utils/oidc/authorize";
 import { getScreenFromLocation } from "~tchap-web/src/vector/routing";
+import AuthHeader from "~tchap-web/src/components/views/auth/AuthHeader";
 
-import "~tchap-web/res/css/views/sso/TchapSSO.pcss";
 
 interface IProps {
     //propagate the server config change
@@ -192,6 +191,9 @@ export default function EmailVerificationPage(props: IProps) {
 
     const getTitleLabel = () => {
         if (isMASFlow) {
+            if (isCreateAccount) {
+                return _t("auth|create_account_title")
+            }
             return _t("action|sign_in");
         }
         return _t("auth|proconnect|email_title");
@@ -247,9 +249,44 @@ export default function EmailVerificationPage(props: IProps) {
         </>
     }
 
+    if (isMASFlow) {
+        return (
+            <AuthPage addBlur={false}>
+                <AuthBody>
+                    <section className="tc-verification-page_header">
+                        <div className="tc-verification-page_header_img">
+                            <img src="/themes/tchap/img/logos/tchap-logo.svg" alt="" width="64" height="64"></img>
+                        </div>
+                        <h1>
+                            {_t("auth|email_verification_title")}
+                        </h1>
+                        <p> {_t("auth|email_verification_description")} </p>
+                    </section>
+                    <form onSubmit={onSubmit} className="tc_pronnect">
+                        <fieldset disabled={loading} className="tc_login">
+                            <div className="mx_AuthBody_fieldRow">
+                                <EmailField
+                                    name="check_email" // define a name so browser's password autofill gets less confused
+                                    label={_td("auth|proconnect|email_placeholder")}
+                                    labelRequired={_td("auth|forgot_password_email_required")}
+                                    labelInvalid={_td("auth|forgot_password_email_invalid")}
+                                    value={email}
+                                    autoFocus={true}
+                                    onChange={(event: React.FormEvent<HTMLInputElement>) => onInputChanged(event)}
+                                    fieldRef={emailFieldRef}
+                                />
+                            </div>
+                            {errorText && <ErrorMessage message={errorText} />}
+                            {getButtonGroup()}
+                        </fieldset>
+                    </form>
+                </AuthBody>
+            </AuthPage>
+        );
+    }
     return (
         <AuthPage>
-            <AuthHeader/>
+            <AuthHeader />
             <AuthBody>
                 <h1>
                     {getTitleLabel()}

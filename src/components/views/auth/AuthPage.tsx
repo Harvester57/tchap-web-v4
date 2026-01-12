@@ -14,6 +14,7 @@ import SdkConfig from "../../../SdkConfig";
 
 import { TchapHeader } from "~tchap-web/src/tchap/components/views/common/TchapHeader";
 import TchapFooter from "~tchap-web/src/tchap/components/views/common/TchapFooter";
+import TchapUIFeature from "~tchap-web/src/tchap/util/TchapUIFeature";
 
 interface IProps {
     /**
@@ -49,8 +50,13 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
     }
 
     public render(): React.ReactElement {
-        const pageStyle = {
-            background: `center/cover fixed url(${AuthPage.getWelcomeBackgroundUrl()})`,
+
+        const backgroundImage = `center/cover fixed url(${AuthPage.getWelcomeBackgroundUrl()})`;
+
+        const pageStyle = TchapUIFeature.isMASFlowActive() ?  {
+            backgroundColor: "white",
+        } : {
+            background: backgroundImage
         };
 
         const modalStyle: React.CSSProperties = {
@@ -65,7 +71,7 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
             bottom: 0,
             left: 0,
             filter: "blur(40px)",
-            background: pageStyle.background,
+            background: backgroundImage,
         };
 
         const modalContentStyle: React.CSSProperties = {
