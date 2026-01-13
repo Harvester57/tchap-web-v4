@@ -182,10 +182,8 @@ export default function EmailVerificationPage(props: IProps) {
     }
 
     const onLoginByPasswordClick = () => {
-        // propagate if needs direct connection to SSO without repassing by email verification check
         // Used for mas migration only, where both legacy and mas login/register are available
         // window.location.assign("#/login?mas_migration=true"); 
-        sessionStorage.setItem("tc_direct_sso", String(true));
         props.onLoginClick();
     }
 
