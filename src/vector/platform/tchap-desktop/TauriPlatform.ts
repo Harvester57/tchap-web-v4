@@ -7,7 +7,7 @@ import { relaunch } from '@tauri-apps/plugin-process';
 import { open } from '@tauri-apps/plugin-shell';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
-import { type MatrixEvent, type Room, type MatrixClient, type SSOAction } from 'matrix-js-sdk/src/matrix';
+import { type MatrixEvent, type Room, type MatrixClient, type SSOAction, type OidcRegistrationClientMetadata } from 'matrix-js-sdk/src/matrix';
 import { isPermissionGranted, requestPermission } from '@tauri-apps/plugin-notification';
 import { encodeParams } from 'matrix-js-sdk/src/utils';
 
@@ -234,6 +234,15 @@ export default class TauriPlatform extends BasePlatform {
         url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
     }
+       
+    public async getOidcClientMetadata(): Promise<OidcRegistrationClientMetadata> {
+        const baseMetadata = await super.getOidcClientMetadata();
+        return {
+            ...baseMetadata,
+            applicationType: "native",
+        };
+    }
+    
 
     public startSingleSignOn(
         mxClient: MatrixClient,
