@@ -293,5 +293,11 @@
         "files": [
             "src/stores/oidc/OidcClientStore.ts"
         ]
+    },
+    "welcome-flow-MAS-ui": {
+     "issue": "https://github.com/tchapgouv/tchap-web-v4/issues/1494",
+        "files": [
+            "src/components/structures/auth/CompleteSecurity.tsx"
+        ]   
     }
 }
