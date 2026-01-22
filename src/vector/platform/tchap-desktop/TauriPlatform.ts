@@ -4,7 +4,7 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import { logger } from 'matrix-js-sdk/src/logger';
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
-import { open } from '@tauri-apps/plugin-shell';
+import { openUrl } from '@tauri-apps/plugin-opener';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { secureRandomString } from 'matrix-js-sdk/src/randomstring';
 import { type MatrixEvent, type Room, type MatrixClient, type SSOAction, type OidcRegistrationClientMetadata } from 'matrix-js-sdk/src/matrix';
@@ -122,6 +122,11 @@ export default class TauriPlatform extends BasePlatform {
                 const loginToken = url.searchParams.get("loginToken"); // for SSO
                 const code  = url.searchParams.get("code"); // for native OIDC
                 const state = url.searchParams.get("state"); // for native OIDC
+                // When coming back from UIA reset cross signing action
+                if (url.href.includes("reset-cross-signing.success")) {
+                    window.postMessage("authDone", "*");
+                    return;
+                }
                 // callback return from sso connexion 
                 if (loginToken) window.location.replace(`/?loginToken=${loginToken}`);
                 if (code && state) window.location.replace(`/?code=${code}&state=${state}`)
@@ -386,7 +391,7 @@ export default class TauriPlatform extends BasePlatform {
     }
 
     public openAuthorizationInBrowser(authorizationUrl: string): void {
-        open(authorizationUrl).then(
+        openUrl(authorizationUrl).then(
             () => {
                 Modal.createDialog(Spinner, { message: _t("auth|desktop_waiting_sso")});
             }, 
@@ -397,6 +402,6 @@ export default class TauriPlatform extends BasePlatform {
     }
 
     public openUrl(uri: string): void {
-        open(uri);
+        openUrl(uri);
     }
 }
