@@ -78,11 +78,11 @@ export class ContentScanner {
             await this.fetchKey();
         }
 
-        const encrypedtData = this.encryptData(file); 
+        const encryptedData = this.encryptData(file); 
         return fetch(this.scannerUrl + "/_matrix/media_proxy/unstable/download_encrypted", {
             method: "POST",
             body: JSON.stringify({
-                encrypted_body: encrypedtData,
+                encrypted_body: encryptedData,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -111,11 +111,11 @@ export class ContentScanner {
             if (!this.publicKey) {
                 await this.fetchKey();
             }
-            const encrypedtData = this.encryptData(file); 
+            const encryptedData = this.encryptData(file); 
             response = await fetch(this.scannerUrl + "/_matrix/media_proxy/unstable/scan_encrypted", {
                 method: "POST",
                 body: JSON.stringify({
-                    encrypted_body: encrypedtData
+                    encrypted_body: encryptedData
                 }),
                 headers: {
                     "Content-Type": "application/json",
