@@ -2312,11 +2312,6 @@
   resolved "https://registry.yarnpkg.com/@matrix-org/matrix-sdk-crypto-wasm/-/matrix-sdk-crypto-wasm-15.3.0.tgz#141fd041ae382b793369bcee4394b0b577bdea0c"
   integrity sha512-QyxHvncvkl7nf+tnn92PjQ54gMNV8hMSpiukiDgNrqF6IYwgySTlcSdkPYdw8QjZJ0NR6fnVrNzMec0OohM3wA==
 
-"@matrix-org/olm@3.2.15":
-  version "3.2.15"
-  resolved "https://registry.yarnpkg.com/@matrix-org/olm/-/olm-3.2.15.tgz#55f3c1b70a21bbee3f9195cecd6846b1083451ec"
-  integrity sha512-S7lOrndAK9/8qOtaTq/WhttJC/o4GAzdfK0MUPpo8ApzsJEC0QjtwrkC3KBXdFP1cD1MXi/mlKR7aaoVMKgs6Q==
-
 "@matrix-org/react-sdk-module-api@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@matrix-org/react-sdk-module-api/-/react-sdk-module-api-1.0.0.tgz#de73e163a439fe330f6971a6a0cef2ccb090d616"
