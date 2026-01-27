@@ -810,6 +810,7 @@ export class SSOAuthEntry extends React.Component<ISSOAuthEntryProps, ISSOAuthEn
     };
 
     private onReceiveMessage = (event: MessageEvent): void => {
+        // :TCHAP: desktop-uia - if (event.data === "authDone" && event.source === this.popupWindow) {
         if (event.data === "authDone" && (event.source === this.popupWindow || window.__TAURI__)) {
             if (this.popupWindow) {
                 this.popupWindow.close();
@@ -829,6 +830,7 @@ export class SSOAuthEntry extends React.Component<ISSOAuthEntryProps, ISSOAuthEn
         // in the url, there is alreay a query param for sessionId, so we use & instead of ?
         this.ssoUrl = this.ssoUrl + "&" + encodeParams({"login_hint" :email});
         
+        // :TCHAP: desktop-uia - this.popupWindow = window.open(this.ssoUrl, "_blank");
         if (window.__TAURI__) {
             const tauriPlatform = window.mxPlatformPeg.get() as TauriPlatform;
             this.ssoUrl = this.ssoUrl + "&" + encodeParams({"desktop" :true});
@@ -940,6 +942,7 @@ export class FallbackAuthEntry<T extends object> extends React.Component<IAuthEn
     };
 
     private onReceiveMessage = (event: MessageEvent): void => {
+        // :TCHAP: desktop-uia - if (event.data === "authDone" && event.source === this.popupWindow) {
         if (event.data === "authDone" && (event.source === this.popupWindow || window.__TAURI__)) {
             this.props.submitAuthDict({});
         }
@@ -979,6 +982,7 @@ export class MasUnlockCrossSigningAuthEntry extends FallbackAuthEntry<{
 
     private onGoToAccountClick = (): void => {
         if (!this.props.stageParams?.url) return;
+        // :TCHAP: desktop-uia - this.popupWindow = window.open(this.props.stageParams.url, "_blank");
         if (window.__TAURI__) {
             const tauriPlatform = window.mxPlatformPeg.get() as TauriPlatform;
             const url = new URL(this.props.stageParams.url);
@@ -987,6 +991,7 @@ export class MasUnlockCrossSigningAuthEntry extends FallbackAuthEntry<{
         } else {
             this.popupWindow = window.open(this.props.stageParams.url, "_blank");
         }
+        // end :TCHAP:
     };
 
     private onRetryClick = (): void => {
